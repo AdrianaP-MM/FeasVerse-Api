@@ -1,0 +1,15 @@
+#header
+{
+    background-color: #0E72A1;
+}
+
+.black-logo 
+{
+    filter: invert(100%); 
+}
+
+/* Estilo para alinear los enlaces a la izquierda después del logo */
+.container {
+    display: flex;
+    -ms-flex-align: start;
+}
