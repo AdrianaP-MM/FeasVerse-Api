@@ -1,4 +1,23 @@
-#header
+#bg-color-3blue
 {
-    background-color: black;
+    background-color: #0E72A1;
 }
+#textLight
+{
+    background-color: #0E72A1;
+}
+#center
+{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+.flexboxNav1
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: max-content;
+}
+
