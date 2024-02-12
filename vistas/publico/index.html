@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<!-- Declaración del idioma para el documento -->
+<html lang="es">
+
 <!-- ESTILOS DE DOCUMENTACIÓN DEL CODIGO
 * Comentario claro
 ! Alerta
@@ -5,10 +9,6 @@
 TODO importante // realtando algo
 // Comentario tachado
 -->
-
-<!DOCTYPE html>
-<!-- Declaración del idioma para el documento -->
-<html lang="es">
 
 <head>
     <!-- TODO Título del documento -->
@@ -21,14 +21,56 @@ TODO importante // realtando algo
     <!-- TODO Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
     <!-- *Llamada a las hojas de estilos del framework e iconos -->
-    <link rel="stylesheet" href="../../recursos/estilos/publico/header.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
     <!-- *Contenido principal del documento -->
     <main>
+        <header>
+            <nav class="navbar navbar-expand-lg bg-primary cursor-hover fixed-top" data-bs-theme="dark" style="padding: 20px; padding-left: 65px; padding-right: 65px;">
+                <div class="container-fluid cursor-hover">
+                    <a class="navbar-brand" href="#">
+                        <img src="../../recursos/imagenes/logo.svg" alt="FeasVerseCompany" width="70" height="70">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse cursor-hover" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active pointer-hover" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link pointer-hover" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle pointer-hover" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu cursor-hover">
+                                    <li><a class="dropdown-item pointer-hover" href="#">Action</a></li>
+                                    <li><a class="dropdown-item pointer-hover" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item pointer-hover" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item cursor-hover">
+                                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
     </main>
     <!-- *Llamada al controlador del sitio público -->
     <script type="text/javascript" src="../../controlador/utilidades(plantillas)/publico.js"></script>
