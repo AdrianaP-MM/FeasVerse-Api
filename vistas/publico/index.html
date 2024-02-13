@@ -20,14 +20,6 @@ TODO importante // realtando algo
     <!-- *IMPORTACIÓN DE RECURSOS EXTERNOS -->
     <!-- TODO Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
-    <!-- *Llamada a las hojas de estilos del framework e iconos -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="../../recursos/estilos/publico/index.css" rel="stylesheet">
-    <link href="../../recursos/estilos/publico/fuentes.css" rel="stylesheet">
 </head>
 
 <body>
@@ -35,8 +27,8 @@ TODO importante // realtando algo
     <main>
         <header>
             <div class="flexboxNav1">
-                <div> <!--Columna 1-->
-                    <nav id="bg-color-3blue" class="navbar navbar-expand-lg cursor-hover fixed-top" data-bs-theme="dark"
+                <div> 
+                    <nav class="navbar navbar-expand-lg cursor-hover fixed-top bg-color-3blue" data-bs-theme="dark"
                         style="padding: 20px; padding-left: 65px; padding-right: 65px;">
                         <div class="container-fluid cursor-hover">
                             <a href="index.html" class="titillium-web-black text25">FEASVERSE
@@ -48,30 +40,30 @@ TODO importante // realtando algo
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse cursor-hover" id="navbarSupportedContent">
-                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
                                     <li class="nav-item dropdown"> <!--*Elemento desplegable-->
-                                        <a class="nav-link dropdown-toggle pointer-hover titillium-web-black" href="#" role="button"
+                                        <a class="nav-link dropdown-toggle pointer-hover titillium-web-bold text18" href="#" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             Ingresar
                                         </a>
-                                        <ul class="dropdown-menu cursor-hover" id="bg-color-3blue">
-                                            <li><a class="dropdown-item pointer-hover" id="textLight"
+                                        <ul class="dropdown-menu cursor-hover bg-color-3blue">
+                                            <li><a class="dropdown-item pointer-hover text15" 
                                                     href="#">Registrarse</a>
                                             </li>
-                                            <li><a class="dropdown-item pointer-hover" id="textLight" href="#">Iniciar
+                                            <li><a class="dropdown-item pointer-hover text15" id="textLight" href="#">Iniciar
                                                     Sesión</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link pointer-hover" href="#">Sobre Nosotros</a>
+                                        <a class="nav-link pointer-hover titillium-web-bold text18" href="#">Sobre Nosotros</a>
                                     </li>
                                     <li class="nav-item dropdown"> <!--*Elemento desplegable -->
-                                        <a class="nav-link dropdown-toggle pointer-hover" href="#" role="button"
+                                        <a class="nav-link dropdown-toggle pointer-hover titillium-web-bold text18" href="#" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
                                             Marcas
                                         </a>
                                         <div>
-                                            <ul class="dropdown-menu cursor-hover" id="bg-color-3blue">
+                                            <ul class="dropdown-menu cursor-hover bg-color-3blue">
                                                 <li><a class="dropdown-item pointer-hover" id="textLight" href="#">Action</a>
                                                 </li>
                                                 <li><a class="dropdown-item pointer-hover" id="textLight" href="#">Another
@@ -81,23 +73,11 @@ TODO importante // realtando algo
                                     </li>
                                 </ul>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <button class="btn btn-light me-md-2" type="button">Carrito</button>
+                                    <button class="btn btn-outline-primary me-md-2" type="button"></button>
                                 </div>
                             </div>
                         </div>
                     </nav>
-                </div>
-                <div> <!--Columna 2-->
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Active</a>
-                    </li>
-                </div>
-                <div> <!--Columna 3-->
-                    <ul class="navbar-nav mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-light">Carrito</button>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </header>
@@ -106,6 +86,14 @@ TODO importante // realtando algo
     <script type="text/javascript" src="../../controlador/utilidades(plantillas)/publico.js"></script>
     <!-- *Llamada al controlador de la página web -->
     <script type="text/javascript" src="../../controlador/publico/index.js"></script>
+        <!-- *Llamada a las hojas de estilos del framework e iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../../recursos/estilos/publico/index.css" rel="stylesheet">
+    <link href="../../recursos/estilos/publico/fuentes.css" rel="stylesheet">
 </body>
 
 </html>

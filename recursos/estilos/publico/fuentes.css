@@ -63,3 +63,24 @@
     font-weight: 700;
     font-style: italic;
 }
+
+.text25
+{
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.text15
+{
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.text18
+{
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
