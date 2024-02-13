@@ -58,9 +58,9 @@ const loadTemplate = async () => {
                                     </a>
                                     <div>
                                         <ul class="dropdown-menu cursor-hover bg-color-3blue">
-                                            <div class="contenedorFlexboxMarcas">
+                                            <div class="d-flex flex-column">
                                                 <!--TODO Inicio de filas, contenedor de filas-->
-                                                <div class="contenedorFlexboxElementos"> <!--!fila 1-->
+                                                <div class="d-flex flex-row mb-2"> <!--!fila 1-->
                                                     <li> <!--*Elemento 1-->
                                                         <a class="dropdown-item pointer-hover" id="textLight"
                                                             href="#">
@@ -89,11 +89,11 @@ const loadTemplate = async () => {
                                                         <a class="dropdown-item pointer-hover" id="textLight"
                                                             href="#">
                                                             <img class="imgMarca"
-                                                                src="../../recursos/imagenes/marcas/adidas.svg"
-                                                                alt="ADIDAS">
+                                                            src="../../recursos/imagenes/marcas/adidas.svg"
+                                                            alt="ADIDAS">
                                                         </a>
                                                     </li>
-                                                </div>
+                                                </div> 
                                             </div>
                                         </ul>
                                     </div>
@@ -111,19 +111,19 @@ const loadTemplate = async () => {
     `);
     //* Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
-        <footer>
-            <nav class="navbar fixed-bottom bg-body-tertiary">
-            <div class="container">
-                <div>
-                    <h6>CoffeeShop</h6>
-                    <p><i class="bi bi-c-square"></i> 2018-2024 Todos los derechos reservados</p>
-                </div>
-                <div>
-                    <h6>Contáctanos</h6>
-                    <p><i class="bi bi-envelope"></i> dacasoft@outlook.com</p>
-                </div>
-            </div>
-        </nav>
-        </footer>
+    <footer>
+    <nav class="navbar fixed-bottom bg-body-tertiary">
+    <div class="container">
+        <div>
+            <h6>CoffeeShop</h6>
+            <p><i class="bi bi-c-square"></i> 2018-2024 Todos los derechos reservados</p>
+        </div>
+        <div>
+            <h6>Contáctanos</h6>
+            <p><i class="bi bi-envelope"></i> dacasoft@outlook.com</p>
+        </div>
+    </div>
+</nav>
+</footer>
     `);
 }

@@ -24,14 +24,3 @@
     border: white;
     border-radius: 10px;
 }
-.contenedorFlexboxMarcas
-{
-    display: flex;
-    flex-direction: column;
-}
-
-.contenedorFlexboxElementos
-{
-    display: flex;
-    flex-direction: row;
-}
