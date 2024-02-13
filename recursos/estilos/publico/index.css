@@ -1,23 +1,20 @@
-#bg-color-3blue
-{
+#bg-color-3blue {
     background-color: #0E72A1;
-}
-#textLight
-{
-    background-color: #0E72A1;
-}
-#center
-{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-}
-.flexboxNav1
-{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: max-content;
 }
 
+#textLight {
+    background-color: #0E72A1;
+    color: white;
+}
+
+.text25
+{
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.img1paddingb
+{
+    padding-bottom: 10px;
+}
