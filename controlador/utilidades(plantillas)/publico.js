@@ -18,7 +18,7 @@ const loadTemplate = async () => {
     <header>
         <div class="flexboxNav1">
             <div>
-                <nav class="navbar navbar-expand-lg cursor-hover fixed-top bg-color-3blue" data-bs-theme="dark"
+                <nav class="navbar navbar-expand-lg cursor-hover fixed-top bg-color-3blue z-3" data-bs-theme="dark"
                     style="padding: 20px; padding-left: 65px; padding-right: 65px;">
                     <div class="container-fluid cursor-hover">
                         <a href="index.html" class="titillium-web-black text25">FEASVERSE
@@ -111,19 +111,6 @@ const loadTemplate = async () => {
     `);
     //* Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
-    <footer>
-    <nav class="navbar fixed-bottom bg-body-tertiary">
-    <div class="container">
-        <div>
-            <h6>CoffeeShop</h6>
-            <p><i class="bi bi-c-square"></i> 2018-2024 Todos los derechos reservados</p>
-        </div>
-        <div>
-            <h6>Contáctanos</h6>
-            <p><i class="bi bi-envelope"></i> dacasoft@outlook.com</p>
-        </div>
-    </div>
-</nav>
-</footer>
+    
     `);
 }
