@@ -11,16 +11,6 @@
     margin-right: 50px;
 }
 
-.btn1 {
-    background-image: url('../../imagenes/carrito.svg');
-    background-repeat: no-repeat;
-    border: 0;
-    height: 60px;
-    width: 70px;
-    background-size: 50px 50px;
-    background-position: center;
-}
-
 .imgMarca {
     width: 80px;
     height: 80px;
@@ -49,23 +39,22 @@
     position: absolute;
 }
 
-.triangulo:nth-child(3) 
-{
+.triangulo:nth-child(3) {
     margin-top: 90px;
 }
-.triangulo:nth-child(4) 
-{
+
+.triangulo:nth-child(4) {
     margin-top: 180px;
 }
-.triangulo:nth-child(5) 
-{
+
+.triangulo:nth-child(5) {
     margin-top: 270px;
 }
-.triangulo:nth-child(6) 
-{
+
+.triangulo:nth-child(6) {
     margin-top: 360px;
 }
-.triangulo:nth-child(7) 
-{
+
+.triangulo:nth-child(7) {
     margin-top: 450px;
 }

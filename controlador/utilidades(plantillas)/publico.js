@@ -99,8 +99,10 @@ const loadTemplate = async () => {
                                     </div>
                                 </li>
                             </ul>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn bnt1 btn-outline-primary me-md-2" type="button"></button>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end z-3">
+                                <button class="btn bnt1 btn-outline-primary me-md-2" type="button">
+                                    <img src="../../recursos/imagenes/carrito.svg" width="50px" height="50">
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -111,6 +113,83 @@ const loadTemplate = async () => {
     `);
     //* Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
-    
+    <nav class="fixed-bottom z-2">
+    <footer class=" text-white text-center text-lg-start py-5 bg-color-3blue z-1">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row ">
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 pb-3 z-2 ">
+                    <h5 class="mb-0 titillium-web-bold z-2">Contáctanos</h5>
+                    <ul class="list-unstyled mb-0 mt-4 ">
+                        <li class="mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href=""> FEASVerse </a>
+                        </li>
+                        <li class="mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href=""> FEAS.VERSE.SV </a>
+                        </li>
+                        <li class="mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href=""> FEASVerse </a>
+                        </li>
+                        <li class="mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons//gmlIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href=""> feasverse.sv@gmail.com </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0 pb-5">
+                    <h5 class="mb-0 titillium-web-bold ">Desarrolladores</h5>
+
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 titillium-web-regular">
+                            Josué Emiliano Valdés Jacobo
+                        </li>
+                        <li class="mb-3 titillium-web-regular">
+                            Fernando José Gomez Martinez
+                        </li>
+                        <li class="mb-3 titillium-web-regular">
+                            Adriana Paola Mejía Méndez
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 pb-5">
+                    <h5 class="titillium-web-bold ">Donde Estamos Ubicados</h5>
+                    <p class="titillium-web-regular mt-4">
+                        Norte y, 83 Avenida Sur, San Salvador
+                    </p>
+                    <button type="button"
+                        class="btn border border-2 shadow bg-color-4blue col-5 mt-4 rounded-pill p-3 text15 titillium-web-semibold">Más
+                        Sobre Nosotros</button>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+        <div class="d-flex justify-content-center">
+            <!-- Copyright -->
+            <div class="text-center copyright titillium-web-bold" style="background-color: rgba(255, 0, 0, 0);">
+                Copyright © 2024 FeasVerseCompany. All rights reserved
+                <a class="text-white titillium-web-light" href="./index.html">FeasVerse.com</a>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="triangulo z-0"></div>
+        <div class="triangulo z-0"></div>
+        <div class="triangulo z-0"></div>
+        <div class="triangulo z-0"></div>
+        <div class="triangulo z-0"></div>
+        <div class="triangulo z-0"></div>
+    </footer>
+</nav>
     `);
 }
