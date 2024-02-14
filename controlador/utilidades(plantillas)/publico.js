@@ -15,7 +15,7 @@ document.querySelector('title').textContent = 'FeasVerse';
 const loadTemplate = async () => {
     // *Se agrega el encabezado de la página web antes del contenido principal.
     MAIN.insertAdjacentHTML('beforebegin', `
-    <header>
+    <header> 
         <div class="flexboxNav1">
             <div>
                 <nav class="navbar navbar-expand-lg cursor-hover fixed-top bg-color-3blue z-3" data-bs-theme="dark"
