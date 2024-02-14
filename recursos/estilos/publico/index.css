@@ -24,3 +24,12 @@
     border: white;
     border-radius: 10px;
 }
+
+.copyright
+{
+    border: #1591CC 2px solid; 
+    width: 70%; 
+    padding: 20px;
+    border-left: 0;
+    border-right: 0;
+}
