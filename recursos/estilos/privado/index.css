@@ -1,0 +1,10 @@
+
+/**Fondo de pantalla*/
+body {
+    background-image: url('../../imagenes/fondoprivado.svg');
+    background-color: #04151d;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
