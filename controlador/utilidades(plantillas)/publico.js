@@ -100,7 +100,7 @@ const loadTemplate = async () => {
                                 </li>
                             </ul>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-outline-primary me-md-2" type="button"></button>
+                                <button class="btn bnt1 btn-outline-primary me-md-2" type="button"></button>
                             </div>
                         </div>
                     </div>
