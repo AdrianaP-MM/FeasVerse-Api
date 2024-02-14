@@ -142,11 +142,9 @@ const loadTemplate = async () => {
                     </ul>
                 </div>
                 <!--Grid column-->
-
                 <!--Grid column-->
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0 pb-5">
                     <h5 class="mb-0 titillium-web-bold ">Desarrolladores</h5>
-
                     <ul class="list-unstyled mt-4">
                         <li class="mb-3 titillium-web-regular">
                             Josué Emiliano Valdés Jacobo
