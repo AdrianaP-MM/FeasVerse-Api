@@ -103,7 +103,7 @@
         display: flex;
     }
 
-    .card {
+    .cardM {
         margin: 25px;
         width: calc(100%/5);
     }
@@ -123,7 +123,7 @@
 }
 
 @media screen and (max-width: 666px) {
-    .card:not(:first-child) {
+    .cardM:not(:first-child) {
         display: none;
     }
 
@@ -137,20 +137,72 @@
     }
 
     .image-wrapper {
-        height: 30vh ;
+        height: 20vh;
         width: 100vw;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 }
-.linea
-{
+
+.linea {
     background-color: #146A93;
     width: 100%;
     height: 3px;
 }
-.a
-{
+
+.a {
     width: 30px;
+}
+
+
+.containerCards {
+    width: 99vw;
+}
+
+@media screen and (max-width: 666px) {
+    #cardC {
+        margin: 15px;
+        margin-left: 30px;
+        width: calc(80%/1);
+        height: fit-content;
+    }
+
+
+    .image-wrapper2 img {
+        width: 80vw;
+        height: 30vh;
+    }
+
+    .image-wrapper2 {
+        height: 30vh;
+        width: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 667px) {
+    #cardC {
+        margin: 15px;
+        margin-left: 30px;
+        width: calc(90%/2);
+        height: fit-content;
+    }
+
+
+    .image-wrapper2 img {
+        width: 50vw;
+        height: 30vh;
+    }
+
+    .image-wrapper2 {
+        height: 50vh;
+        width: max-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
