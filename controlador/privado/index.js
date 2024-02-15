@@ -7,5 +7,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     LOGIN_FORM.classList.remove('d-none');
 
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'FEASVERSE - Inicio de Sesión';
+    MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
 });
