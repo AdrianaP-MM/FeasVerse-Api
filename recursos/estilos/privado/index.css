@@ -8,3 +8,8 @@ body {
     background-attachment: fixed;
 }
 
+/** Estilo para el h2 */
+#mainTitle {
+    color: white; /* Cambia el color del texto a blanco */
+    text-align: center; /* Centra el texto */
+}

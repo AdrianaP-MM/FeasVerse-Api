@@ -9,3 +9,6 @@ document.querySelector('title').textContent = 'FeasVerse - Privado';
 
 //* Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
+
+//* Constante para establecer el elemento del título principal.
+const MAIN_TITLE = document.getElementById('mainTitle');
