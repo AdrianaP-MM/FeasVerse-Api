@@ -165,7 +165,7 @@ const loadTemplate = async () => {
                         Norte y, 83 Avenida Sur, San Salvador
                     </p>
                     <button type="button"
-                        class="btn border border-2 shadow bg-color-4blue col-5 mt-4 rounded-pill p-3 text15 titillium-web-semibold">Más
+                        class="btn border border-2 shadow bg-color-4blue col-5 mt-4 rounded-pill p-3 text15 titillium-web-semibold text-white">Más
                         Sobre Nosotros</button>
                 </div>
                 <!--Grid column-->
