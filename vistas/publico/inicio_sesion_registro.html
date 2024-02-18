@@ -1,14 +1,5 @@
 <!DOCTYPE html>
-<!-- Declaración del idioma para el documento -->
 <html lang="es">
-
-<!-- ESTILOS DE DOCUMENTACIÓN DEL CODIGO
-* Comentario claro
-! Alerta
-? Pregunta
-TODO importante // realtando algo
-// Comentario tachado
--->
 
 <head>
     <!-- TODO Título del documento -->
@@ -25,13 +16,11 @@ TODO importante // realtando algo
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <!-- *Llamada al hoja de estilo css -->
-    <link href="../../recursos/estilos/privado/index.css" rel="stylesheet">
     <!-- *Llamada al hoja de fuentes -->
     <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-color-3blue">
     <!-- *Contenido principal del documento -->
     <main class="d-flex align-items-center justify-content-center flex-column min-vh-100">
         <!-- Contenedor para la imagen y los formularios -->
@@ -107,15 +96,15 @@ TODO importante // realtando algo
                                 <div class="d-flex align-items-center">
                                     <img src="../../recursos/imagenes/correo.svg" class="me-1 mb-2" width="15"
                                         alt="candado">
-                                    <label for="correo_electronico_paso1" class="form-label titillium-web-regular">Correo
+                                    <label for="correo_electronico" class="form-label titillium-web-regular">Correo
                                         electrónico</label>
                                 </div>
-                                <input id="correo_electronico_paso1" type="email" name="correo_electronico"
+                                <input id="correo_electronico" type="email" name="correo_electronico"
                                     class="form-control titillium-web-regular" placeholder="pollo.camperosv@gmail.com"
                                     style="border-color: #146A93;" required>
                             </div>
                             <label class="text-end col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
-                                for="volver_inicio_sesion" style="color: #146A93;">
+                                for="volver" style="color: #146A93;">
                                 <a href="javascript:void(0);" onclick="showLoginForm()">
                                     Volver al inicio de sesión</a>
                                 </label>
@@ -149,12 +138,12 @@ TODO importante // realtando algo
                                 <div class="d-flex align-items-center">
                                     <img src="../../recursos/imagenes/correo.svg" class="me-1 mb-2" width="15"
                                         alt="candado">
-                                    <label for="codigo_paso2" class="form-label titillium-web-regular">
+                                    <label for="correo_electronico" class="form-label titillium-web-regular">
                                         Código
                                     </label>
                                 </div>
-                                <input id="codigo_paso2" type="email" name="correo_electronico"
-                                    class="form-control titillium-web-regular" placeholder="r37grforiufewf32"
+                                <input id="correo_electronico" type="email" name="correo_electronico"
+                                    class="form-control titillium-web-regular" placeholder="pollo.camperosv@gmail.com"
                                     style="border-color: #146A93;" required>
                             </div>
                             <label class="text-end col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
@@ -191,9 +180,9 @@ TODO importante // realtando algo
                                     <div class="d-flex align-items-center">
                                         <img src="../../recursos/imagenes/candado2.svg" class="me-1 mb-2" width="15"
                                             alt="candado">
-                                        <label for="clave_paso3" class="form-label titillium-web-regular">Contraseña</label>
+                                        <label for="clave" class="form-label titillium-web-regular">Contraseña</label>
                                     </div>
-                                    <input id="clave_paso3" type="password" name="clave"
+                                    <input id="clave" type="password" name="clave"
                                         class="form-control titillium-web-regular" placeholder="●●●●●●●●●●"
                                         style="border-color: #146A93" required>
                                 </div>
@@ -201,9 +190,9 @@ TODO importante // realtando algo
                                     <div class="d-flex align-items-center">
                                         <img src="../../recursos/imagenes/candado2.svg" class="me-1 mb-2" width="15"
                                             alt="candado">
-                                        <label for="clave2_paso3" class="form-label titillium-web-regular">Confirmar contraseña</label>
+                                        <label for="clave2" class="form-label titillium-web-regular">Confirmar contraseña</label>
                                     </div>
-                                    <input id="clave2_paso3" type="password" name="clave2"
+                                    <input id="clave" type="password" name="clave2"
                                         class="form-control titillium-web-regular" placeholder="●●●●●●●●●●"
                                         style="border-color: #146A93" required>
                                 </div>
@@ -225,9 +214,6 @@ TODO importante // realtando algo
     </main>
     <!-- *Llamada al framework de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- *Llamada al controlador del sitio público -->
-    <!--<script type="text/javascript" src="../../controlador/utilidades(plantillas)/privado.js"></script>-->
-    <script type="text/javascript" src="../../controlador/privado/index.js"></script>
 </body>
 
 </html>
