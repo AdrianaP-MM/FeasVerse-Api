@@ -181,12 +181,6 @@ const loadTemplate = async () => {
             </div>
         </div>
         <!-- Copyright -->
-        <div class="triangulo z-0"></div>
-        <div class="triangulo z-0"></div>
-        <div class="triangulo z-0"></div>
-        <div class="triangulo z-0"></div>
-        <div class="triangulo z-0"></div>
-        <div class="triangulo z-0"></div>
     </footer>
 </nav>
     `);

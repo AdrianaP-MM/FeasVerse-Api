@@ -57,3 +57,8 @@ function showForgotPasswordStepThreeForm() {
     // Se establece el título del contenido principal.
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
+
+function showDashboard()
+{
+    location.href = '/vistas/privado/panel_principal.html';
+}
