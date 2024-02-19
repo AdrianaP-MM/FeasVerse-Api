@@ -12,9 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (HOUR <= 23) {
         greeting = 'Buenas noches';
     }
+    // Selecciona el contenedor del saludo
+    const greetingContainer = document.getElementById('mainTitle');
+    // Asigna el saludo al contenedor
+    greetingContainer.textContent = `${greeting}, bienvenida/o`;
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = `${greeting}, bienvenida/o`;
-    // Llamada a la funciones que generan los gráficos en la página web.
 });

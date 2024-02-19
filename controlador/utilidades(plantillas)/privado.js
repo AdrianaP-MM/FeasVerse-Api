@@ -4,11 +4,9 @@
 */
 
 //* Constante para establecer el elemento del contenido principal.
-const MAIN = document.querySelector('main');
+const MAIN = document.querySelector('#mainContent');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'FeasVerse Panel Privado';
-const MAIN_TITLE = document.getElementById('mainTitle');
-MAIN_TITLE.classList.add('text-center', 'py-3');
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -16,12 +14,51 @@ MAIN_TITLE.classList.add('text-center', 'py-3');
 */
 
 const loadTemplate = async () => {
-    // *Se agrega el encabezado de la página web antes del contenido principal.
-    MAIN.insertAdjacentHTML('beforebegin', `
+    const header = document.createElement('header');
+    header.innerHTML = `
+    <nav class="navbar bg-color-5blue fixed-top position-relative">
+    <div class="container-fluid m-3">
+        <div class="d-flex align-items-center collapse-div">
+            <h1 class="collapse-fea">FEASVERSE - </h1>
+            <h2 class="collapse-admin"> Administrador</h2>
+        </div>
+        <div class="linea"></div>
+        <form class="d-flex align-items-center">
+            <h1 class="navbar-brand text-white titillium-web-semibold margin-user">Usuario</h1>
+            <button class="btn btn-outline-primary" type="button">
+                <img src="/recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
+            </button>
+    </div>
+</nav>
+    `;
 
-    `);
-    //* Se agrega el pie de la página web después del contenido principal.
-    MAIN.insertAdjacentHTML('afterend', `
+    const slideMenu = document.createElement('div');
+    slideMenu.innerHTML = `
 
-    `);
+    `;
+
+    const footer = document.createElement('footer');
+    footer.innerHTML = `
+        <nav class="z-2">
+            <footer class="text-white text-center text-lg-start py-5 bg-color-5blue z-1">
+                <div class="d-flex justify-content-left mx-5">
+                    <div class="text-center copyright titillium-web-bold" style="background-color: rgba(255, 0, 0, 0);">
+                        Copyright © 2024 FeasVerseCompany. All rights reserved
+                        <a class="text-white titillium-web-light" href="./index.html">FeasVerse.com</a>
+                    </div>
+                </div>
+            </footer>
+        </nav>
+    `;
+    var contenedorSlide = document.getElementById("slide");
+    contenedorSlide.appendChild(slideMenu);
+
+    var contenedorHeader = document.getElementById("header");
+    contenedorHeader.appendChild(header);
+
+    var contenedorDiv = document.getElementById("contenedorMAIN");
+    contenedorDiv.appendChild(MAIN);
+
+    var contenedorFooter = document.getElementById("footer");
+    contenedorFooter.appendChild(footer);
 }
