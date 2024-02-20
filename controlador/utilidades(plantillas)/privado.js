@@ -5,8 +5,6 @@
 
 //* Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('#mainContent');
-// Se establece el título de la página web.
-document.querySelector('title').textContent = 'FeasVerse Panel Privado';
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -34,24 +32,30 @@ const loadTemplate = async () => {
 
     const slideMenu = document.createElement('div');
     slideMenu.innerHTML = `
-
+        
     `;
 
     const footer = document.createElement('footer');
     footer.innerHTML = `
-        <nav class="z-2">
-            <footer class="text-white text-center text-lg-start py-5 bg-color-5blue z-1">
+        <nav class="z-2 fixed-bottom position-relative">
+            <div class="text-white text-center text-lg-start py-3 bg-color-5blue z-1">
                 <div class="d-flex justify-content-left mx-5">
                     <div class="text-center copyright titillium-web-bold" style="background-color: rgba(255, 0, 0, 0);">
                         Copyright © 2024 FeasVerseCompany. All rights reserved
                         <a class="text-white titillium-web-light" href="./index.html">FeasVerse.com</a>
                     </div>
                 </div>
-            </footer>
+            </div>
         </nav>
     `;
     var contenedorSlide = document.getElementById("slide");
     contenedorSlide.appendChild(slideMenu);
+
+    const hamBurger = document.querySelector(".toggle-btn");
+    hamBurger.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("expand");
+        document.querySelector(".lineah").classList.toggle("expand");
+    });
 
     var contenedorHeader = document.getElementById("header");
     contenedorHeader.appendChild(header);

@@ -1,0 +1,232 @@
+@media screen and (max-width: 430px) {
+    .collapse-fea {
+        font-size: 17px;
+        margin: 0px;
+        text-align: center;
+        color: white;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    .collapse-admin {
+        font-size: 15px;
+        margin: 0px;
+        text-align: center;
+        color: white;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin-left: 5px;
+    }
+
+    .collapse-div {
+        margin-bottom: 15px;
+    }
+}
+
+@media screen and (min-width: 431px) {
+    .collapse-fea {
+        font-size: 20px;
+        margin: 0px;
+        text-align: center;
+        color: white;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 900;
+        font-style: normal;
+    }
+
+    .collapse-admin {
+        font-size: 20px;
+        margin: 0px;
+        text-align: center;
+        color: white;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        margin-left: 10px;
+    }
+
+    .collapse-div {
+        margin-bottom: 0px;
+    }
+}
+
+.margin-user {
+    margin: 0px;
+}
+
+.linea {
+    width: 20vw;
+    height: 9px;
+    background-color: #146A93;
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    border-radius: 10px;
+}
+
+
+/*SIDEBAR*/
+body{
+    max-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+#mainContent
+{
+    max-height: 100%;
+    padding-left: 50px;
+    padding-top: 25px;
+    overflow: auto;
+    width: 100%;
+}
+
+.img
+{
+    margin-left: 25px;
+}
+
+#slide {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    justify-content: stretch;
+}
+
+.text-nav
+{
+    padding-left: 15px;
+    border-top: 20px;
+}
+.contenedorItemNav{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    justify-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+li {
+    list-style: none;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: stretch;
+}
+
+#contenedorMAIN {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.35s ease-in-out;
+    background-color: #fafbfe;
+}
+
+#sidebar {
+    width: 100px;
+    min-width: 100px;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    background-color: #0D4560;
+    display: flex;
+    flex-direction: column;
+}
+
+.lineah.expand
+{
+    width: 20vw;
+    height: 9px;
+    background-color: #146A93;
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    border-radius: 10px;
+}
+
+#sidebar.expand {
+    width: 250px;
+    min-width: 250px;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+    padding: 1rem 1.5rem;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+    display: none;
+}
+
+.sidebar-nav {
+    padding: 2rem 0;
+    flex: 1 1 auto;
+}
+
+a.sidebar-link {
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    display: block;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+    margin-right: 0;
+}
+
+a.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-item {
+    position: relative;
+    width: 100%;
+}
+
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+    position: absolute;
+    top: 0;
+    left: 70px;
+    background-color: #0e2238;
+    padding: 0;
+    min-width: 15rem;
+    display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+    border: solid;
+    border-width: 0 .075rem .075rem 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.4rem;
+    transform: rotate(-135deg);
+    transition: all .2s ease-out;
+}
+
+#sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+    transform: rotate(45deg);
+    transition: all .2s ease-out;
+}
