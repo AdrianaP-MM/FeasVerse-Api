@@ -81,7 +81,7 @@ body{
     max-height: 100%;
     padding-left: 50px;
     padding-top: 25px;
-    overflow: auto;
+    overflow:scroll;
     width: 100%;
 }
 
@@ -130,6 +130,11 @@ li {
     background-color: #fafbfe;
 }
 
+.claseDesbordamiento
+{
+    overflow-y: auto;
+}
+
 #sidebar {
     width: 100px;
     min-width: 100px;
@@ -139,16 +144,26 @@ li {
     display: flex;
     flex-direction: column;
 }
-
-.lineah.expand
+.triangleimg
 {
-    width: 20vw;
-    height: 9px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.lineah
+{
+    width: 70%;
+    height: 3px;
     background-color: #146A93;
     position: absolute;
-    bottom: 5%;
-    left: 0;
+    top: 100%;
     border-radius: 10px;
+    margin-top: 10px;
+}
+.lineah:nth-child(2) {
+    margin-top: 25px;
+    right: 0%;
 }
 
 #sidebar.expand {
@@ -169,8 +184,11 @@ li {
 }
 
 .sidebar-nav {
-    padding: 2rem 0;
+    padding-top: 2rem 0;
     flex: 1 1 auto;
+    padding-left: 0;
+    padding-bottom: 0;
+    padding-right: 0;
 }
 
 a.sidebar-link {
