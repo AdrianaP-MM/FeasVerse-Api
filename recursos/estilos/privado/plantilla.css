@@ -68,8 +68,9 @@
 
 
 /*SIDEBAR*/
-body{
+body,html{
     max-height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -81,7 +82,6 @@ body{
     max-height: 100%;
     padding-left: 50px;
     padding-top: 25px;
-    overflow:scroll;
     width: 100%;
 }
 
@@ -108,7 +108,6 @@ body{
     flex-direction: row;
     justify-content: start;
     justify-items: center;
-    padding-top: 5px;
     padding-bottom: 10px;
 }
 li {
@@ -128,11 +127,7 @@ li {
     overflow: hidden;
     transition: all 0.35s ease-in-out;
     background-color: #fafbfe;
-}
-
-.claseDesbordamiento
-{
-    overflow-y: auto;
+    overflow:scroll;
 }
 
 #sidebar {
@@ -143,6 +138,7 @@ li {
     background-color: #0D4560;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 .triangleimg
 {
@@ -164,6 +160,11 @@ li {
 .lineah:nth-child(2) {
     margin-top: 25px;
     right: 0%;
+}
+
+.marg1
+{
+    margin-top: 65px;
 }
 
 #sidebar.expand {

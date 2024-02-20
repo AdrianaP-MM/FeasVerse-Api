@@ -44,9 +44,9 @@ const loadTemplate = async () => {
                 </button>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item mt-4">
+                <li class="sidebar-item marg1">
                     <a href="#" class="sidebar-link">
-                        <div class="contenedorItemNav pt-5">
+                        <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/houseIcon.svg"
                                     width="40" height="40" class="imgIcon"></i>
                             <span class="text-nav text20 titillium-web-regular">Inicio</span>
@@ -140,16 +140,6 @@ const loadTemplate = async () => {
     hamBurger.addEventListener("click", function () {
         document.querySelector("#sidebar").classList.toggle("expand");
     });
-
-    const sideBar = document.getElementById('sidebar');
-    // Verifica si el contenido excede la altura del elemento
-    if (sideBar.scrollHeight > sideBar.clientHeight) {
-        // Agrega la clase si el contenido se desborda
-        sideBar.classList.add('claseDesbordamiento');
-    } else {
-        // Elimina la clase si el contenido no se desborda
-        sideBar.classList.remove('claseDesbordamiento');
-    }
 
     var contenedorHeader = document.getElementById("header");
     contenedorHeader.appendChild(header);
