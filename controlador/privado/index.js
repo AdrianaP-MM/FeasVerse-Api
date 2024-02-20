@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Se muestra el formulario para iniciar sesión.
     LOGIN_FORM.classList.remove('d-none');
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
+    MAIN_TITLE.textContent = 'FEASVERSE';
     // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2).
     FORGOT_PASSWORD_FORM.classList.add('d-none');
     FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
