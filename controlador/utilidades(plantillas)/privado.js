@@ -46,7 +46,7 @@ const loadTemplate = async () => {
             <ul class="sidebar-nav">
                 <li class="sidebar-item mt-4">
                     <a href="#" class="sidebar-link">
-                        <div class="contenedorItemNav">
+                        <div class="contenedorItemNav pt-5">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/houseIcon.svg"
                                     width="40" height="40" class="imgIcon"></i>
                             <span class="text-nav text20 titillium-web-regular">Inicio</span>

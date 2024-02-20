@@ -108,7 +108,7 @@ body{
     flex-direction: row;
     justify-content: start;
     justify-items: center;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 10px;
 }
 li {
