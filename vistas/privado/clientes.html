@@ -28,7 +28,7 @@
     <header id="header"></header>
     <div id="slide"></div>
     <main id="mainContent">
-        <main class="d-flex flex-column min-vh-100">
+        <div class="d-flex min-vh-100">
             <!--contenedor de todo-->
             <div class="container">
                 <!--div contenedor del texto de cliente y linea-->
@@ -36,30 +36,30 @@
                     class="row 2 col-sm-12 col-md-6 offset-md-3 col-lg-2 offset-lg-5 justify-content-center align-items-center">
                     <h3 id="mainTitle mb-1" class="titillium-web-bold color-3blue line text-center my-4">Clientes</h3>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-lg-12 d-none" id="tabla_cliente">
                     <!--div tabla-->
-                    <div class="table_name col-lg-1 titillium-web-light text-center text-white bg-color-3blue">
+                    <div class="col-lg-1 titillium-web-light text-center text-white bg-color-3blue">
                         <h6>Tabla</h6>
-                    </div>
-                    <div class="tabla_contenido col-lg-12 bg-color-3blue">
+                    </div>                    
+                    <div class="col-lg-12 bg-color-3blue">
                         <br>
                         <!--div para la tabla-->
                         <div class="col-lg-10 offset-lg-1">
                             <!-- Tabla para mostrar los registros existentes -->
-                            <table class="table table-hover bg-color-5blue">
+                            <table class="table table-hover">
                                 <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
                                 <thead>
                                     <tr>
                                         <td colspan="7" id="rowsFound"></td>
                                     </tr>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Apellidos</th>
-                                        <th>Nombres</th>
-                                        <th>DUI</th>
-                                        <th>Teléfono</th>
-                                        <th>Correo</th>
-                                        <th>Estado</th>
+                                        <th class="cabecera-color text-white text-center">ID</th>
+                                        <th class="cabecera-color text-white text-center">Apellidos</th>
+                                        <th class="cabecera-color text-white text-center">Nombres</th>
+                                        <th class="cabecera-color text-white text-center">DUI</th>
+                                        <th class="cabecera-color text-white text-center">Teléfono</th>
+                                        <th class="cabecera-color text-white text-center">Correo</th>
+                                        <th class="cabecera-color text-white text-center">Estado</th>
                                     </tr>
                                 </thead>
                                 <!-- Cuerpo de la tabla para mostrar un registro por fila -->
@@ -81,20 +81,78 @@
                         <div class="d-flex">
                             <div>
                                 <button type="button"
-                                    class="btn btn-primary titillium-web-regular me-2 bg-color-5blue"><i
+                                    class="btn btn-primary titillium-web-regular me-2 bg-color-5blue" style="background-color: #146A93; border-color: #146A93;"><i
                                         class="bi bi-send"></i>
                                     Bloquear</button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-primary titillium-web-regular bg-color-5blue"><i
+                                <button type="button" class="btn btn-primary titillium-web-regular bg-color-5blue" style="background-color: #146A93; border-color: #146A93;"><i
                                         class="bi bi-send"></i>
                                     Desbloquear</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-12 bg-color-3blue" id="detalle_cliente">
+                    <div class="d-flex offset-lg-1 align-items-center col-lg-4">
+                        <img src="../../recursos/imagenes/icono_usuario_circulo.svg" class="me-3 mt-4 mb-3" width="65" alt="icono de usuario en circulo">
+                        <h2 class="mt-2 mb-1 text-white">Detalles Clientes</h2>
+                    </div>
+                    <div class="offset-lg-1 col-lg-10">
+                        <div class="col-lg-12 bg-color-white d-flex">
+                            <div class="offset-lg-2 justify-content-center">
+                                <div class="d-flex align-items-center col-lg-12 mt-4">
+                                    <label for="nombres" class="me-1">Nombres:</label>
+                                    <input class="form-control me-5" type="text"
+                                    placeholder="Adriana Paola"  disabled>
+                                    <label for="nombres" class="me-1">Apellidos:</label>
+                                    <input class="form-control" type="text"
+                                    placeholder="Menjia Mendez"  disabled>
+                                </div>
+                                <div class="d-flex align-items-center col-lg-12 mt-4">
+                                    <label for="nombres" class="me-1">Nombres:</label>
+                                    <input class="form-control me-5" type="text"
+                                    placeholder="Adriana Paola"  disabled>
+                                    <label for="nombres" class="me-1">Apellidos:</label>
+                                    <input class="form-control" type="text"
+                                    placeholder="Menjia Mendez"  disabled>
+                                </div>
+                                <div class="d-flex align-items-center col-lg-12 mt-4">
+                                    <label for="nombres" class="me-1">Nombres:</label>
+                                    <input class="form-control me-5" type="text"
+                                    placeholder="Adriana Paola"  disabled>
+                                    <label for="nombres" class="me-1">Apellidos:</label>
+                                    <input class="form-control" type="text"
+                                    placeholder="Menjia Mendez"  disabled>
+                                </div>
+                                <div class="d-flex align-items-center col-lg-12 mt-4">
+                                    <label for="nombres" class="me-1">Nombres:</label>
+                                    <input class="form-control me-5" type="text"
+                                    placeholder="Adriana Paola"  disabled>
+                                    <label for="nombres" class="me-1">Apellidos:</label>
+                                    <input class="form-control" type="text"
+                                    placeholder="Menjia Mendez"  disabled>
+                                </div>
+                                <div class="d-flex align-items-center col-lg-12 mt-4 mb-4">
+                                    <label for="nombres" class="me-1">Nombres:</label>
+                                    <input class="form-control me-5" type="text"
+                                    placeholder="Adriana Paola"  disabled>
+                                    <label for="nombres" class="me-1">Apellidos:</label>
+                                    <input class="form-control" type="text"
+                                    placeholder="Menjia Mendez"  disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary titillium-web-regular btn-lg bg-color-5blue my-3 me-2" style="background-color: #146A93; border-color: #146A93;"><i
+                            class="bi bi-send"></i>
+                        Regresar</button>
+                        <button type="button" class="btn btn-primary titillium-web-regular btn-lg bg-color-5blue my-3" style="background-color: #146A93; border-color: #146A93;"><i
+                            class="bi bi-send"></i>
+                        Editar</button>
+                    </div>
+                </div>
             </div>
-        </main>
+        </div>
     </main>
     <footer id="footer"></footer>
 

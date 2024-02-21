@@ -1,3 +1,13 @@
 .line {
     border-bottom: 2px solid #0E72A1; 
 }
+
+.tabla_cabecera{
+    background-color: #0D4560 !important;
+    color: white;
+}
+
+.cabecera-color{
+    background-color: #0D4560 !important;
+    color: white;
+}
