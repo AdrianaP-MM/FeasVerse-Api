@@ -9,5 +9,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     // Se muestra la tabla.
-    //TABLE_CLIENT.classList.remove('d-none');
+    TABLE_CLIENT.classList.remove('d-none');
 });
