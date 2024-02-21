@@ -30,7 +30,7 @@ function showAddDiv(boton) {
     });
 
     // Cambia el color del botón clicado
-    boton.style.backgroundColor = '#1591CC';
+    boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
 }
 
@@ -48,7 +48,7 @@ function showTableDiv(boton) {
     });
 
     // Cambia el color del botón clicado
-    boton.style.backgroundColor = '#1591CC';
+    boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
 }
 
@@ -64,3 +64,17 @@ Array.from(forms).forEach(form => {
         form.classList.add('was-validated')
     }, false)
 })
+
+function returnBack() {
+    var inputs = document.querySelectorAll('.form-control');
+    inputs.forEach(function (I) {
+        I.value = '';
+    });
+
+    var primeraPestana = document.querySelector('#tabla-tab');
+    primeraPestana.click();
+    // Se muestra el div de tabla
+    TABLE_DIV.classList.remove('d-none');
+    ADD_DIV.classList.add('d-none');
+
+}

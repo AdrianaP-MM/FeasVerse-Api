@@ -1,5 +1,4 @@
-.ContenedorT
-{
+.ContenedorT {
     min-height: 100%;
     max-height: 100%;
     width: 100%;
@@ -9,12 +8,11 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
-.ContenedorTitulo
-{
+.ContenedorTitulo {
     max-height: fit-content;
     width: fit-content;
     display: flex;
@@ -23,8 +21,7 @@
     background-color: white;
 }
 
-.ContenedorPestaña
-{
+.ContenedorPestaña {
     height: 100%;
     flex: 1;
     display: flex;
@@ -32,38 +29,37 @@
     width: 100%;
 }
 
-.nav-item{
+.nav-item {
     background-color: #146A93;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     margin-bottom: -5px;
     color: white;
 }
-.nav-link
-{
+
+.nav-link {
     text-decoration: none;
     color: white;
+    font-size: 18px;
 }
-.contenidoP
-{
+
+.contenidoP {
     background-color: #1591CC;
     height: 100%;
     flex: 1;
     display: flex;
     width: 100%;
     flex-direction: column;
-    margin-bottom: 40px;
 }
-#myTabControl
-{
+
+#myTabControl {
     width: 100%;
     height: 100%;
     min-height: 100%;
     max-height: 100%;
 }
 
-.rectangle
-{
+.rectangle {
     position: absolute;
     left: 0;
     width: 50%;
@@ -73,8 +69,7 @@
     border-bottom-right-radius: 50px;
 }
 
-.linea1
-{
+.linea1 {
     width: 100%;
     height: 2px;
     background-color: #146A93;
@@ -84,27 +79,25 @@
     margin-top: 10px;
 }
 
-.textP{
+.textP {
     color: #146A93;
 }
 
-.tab-pane1
-{
+.tab-pane1 {
     width: 100%;
     min-height: 100%;
     max-height: 100%;
 }
 
-#tabla
-{
+#tabla {
     min-height: 100%;
     max-height: 100%;
     display: flex;
     flex: 1;
 }
 
-.contenedorBotones,.contenedorBotones2
-{
+.contenedorBotones,
+.contenedorBotones2 {
     width: 100%;
     min-height: fit-content;
     max-height: fit-content;
@@ -112,26 +105,26 @@
     bottom: -4%;
 }
 
-.contenedorBotones2
-{
-    bottom: 0;
+.contenedorBotones2 {
+    bottom: 2%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-.btn2
-{
+.btn2 {
     padding-left: 20px;
     padding-right: 20px;
     background-color: #146A93;
 }
 
-#tabla-tab
-{
+#tabla-tab {
     padding-left: 20px;
     padding-right: 20px;
 }
 
-.ContenedorTotal
-{
+.ContenedorTotal {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -139,8 +132,7 @@
     height: 100%;
 }
 
-#agregar
-{
+#agregar {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -151,13 +143,12 @@
     align-items: center;
 }
 
-.ContenedorTituloA{
+.ContenedorTituloA {
     margin-top: 20px;
     width: 100%;
 }
 
-.ContenedorForm
-{
+.ContenedorForm {
     background-color: white;
     width: 100%;
     height: 100%;
@@ -170,15 +161,24 @@
     padding-bottom: 50px;
     padding-top: 30px;
     border-radius: 10px;
-    margin-bottom: 30px
+    margin-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-.form-control
-{
+.form-control {
     border: #146A93 solid 1px;
 }
 
-.form1
+.btn3
 {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #146A93;
+}
+
+.form1 {
     min-width: 100%;
 }

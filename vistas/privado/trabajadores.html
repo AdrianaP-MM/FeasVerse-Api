@@ -57,68 +57,68 @@
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div class="ContenedorTotal z-3">
+                        <div class="ContenedorTotal z-3 position-relative">
                             <div class="ContenedorTituloA">
-                                <h1 class="titillium-web-regular text25 text-white mb-3 mt-2">Agregar Trabajador</h1>
+                                <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Agregar Trabajador</h1>
                             </div>
-
                             <div class="ContenedorForm">
                                 <form class="row needs-validation form1" novalidate>
                                     <div class="col-md-6">
                                         <label for="validationCustom01" class="form-label">Nombres</label>
-                                        <input type="text" class="form-control" id="validationCustom01" placeholder="Ingresa los nombres"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom01"
+                                            placeholder="Ingresa los nombres" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="validationCustom02" class="form-label ">Apellidos</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa los apellidos"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa los apellidos" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">DUI</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa el dui"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa el dui" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">Teléfono</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa el número telefonico"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa el número telefonico" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">Correo Electronico</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa el correo electronico"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa el correo electronico" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">Fecha de Nacimiento</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa la fecha de nacimiento"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa la fecha de nacimiento" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label">Fecha de Registro</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="21/2/2024"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="21/2/2024" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        <label for="validationCustom02" class="form-label ">Estado del Trabajador</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Vigente"
-                                            required>
+                                        <label for="validationCustom02" class="form-label ">Estado del
+                                            Trabajador</label>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Vigente" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">Nivel de Usuario</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa el nivel de usuario"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa el nivel de usuario" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="validationCustom02" class="form-label ">Contraseña</label>
-                                        <input type="text" class="form-control" id="validationCustom02" placeholder="Ingresa la contraseña"
-                                            required>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            placeholder="Ingresa la contraseña" required>
                                     </div>
-                                    <div class="col-12 position-relative">
-                                        <div class="contenedorBotones2">
-                                            <button class="btn btn-primary" type="submit">Agregar</button>
-                                            <button type="button" class="btn btn-primary ms-2 shadow">Desbloquear</button>
-                                        </div>
+                                    <div class="contenedorBotones2">
+                                        <button type="button" onclick="returnBack()"
+                                            class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
+                                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                                            type="submit">Agregar</button>
                                     </div>
                                 </form>
                             </div>
@@ -126,12 +126,14 @@
                     </div>
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="tabla"
                         aria-labelledby="tabla-tab">
-                        <div class="Contenedor tabla">
+                        <div class="Contenedor tabla z-3">
 
                         </div>
-                        <div class="contenedorBotones">
-                            <button type="button" class="btn btn2 btn-primary ms-4 shadow">Bloquear</button>
-                            <button type="button" class="btn btn2 btn-primary ms-2 shadow">Desbloquear</button>
+                        <div class="contenedorBotones z-0">
+                            <button type="button"
+                                class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
+                            <button type="button"
+                                class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Desbloquear</button>
                         </div>
                     </div>
                 </div>
