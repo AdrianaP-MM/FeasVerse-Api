@@ -45,7 +45,7 @@ const loadTemplate = async () => {
             </div>
             <ul class="sidebar-nav">
                 <li class="sidebar-item marg1">
-                    <a href="#" class="sidebar-link">
+                    <a href="/vistas/privado/panel_principal.html" class="sidebar-link">
                         <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/houseIcon.svg"
                                     width="40" height="40" class="imgIcon"></i>
@@ -55,7 +55,7 @@ const loadTemplate = async () => {
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/vistas/privado/trabajadores.html" class="sidebar-link">
                         <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/workersIcon.svg"
                                     width="40" height="40"></i>
@@ -65,7 +65,7 @@ const loadTemplate = async () => {
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/vistas/privado/clientes.html" class="sidebar-link">
                         <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/clientIcon.svg"
                                     width="40" height="40"></i>
