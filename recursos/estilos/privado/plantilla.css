@@ -125,7 +125,6 @@ li {
 #contenedorMAIN {
     height: 100%;
     width: 100%;
-    overflow: hidden;
     transition: all 0.35s ease-in-out;
     overflow:scroll;
 }
@@ -139,6 +138,7 @@ li {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 .triangleimg
 {
