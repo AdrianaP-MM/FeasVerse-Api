@@ -34,7 +34,6 @@ const loadTemplate = async () => {
     slideMenu.innerHTML = `
     <div class="wrapper">
         <aside id="sidebar" class="position-relative">
-            
             <div class="d-flex position-relative">
                 <div class="lineah"></div>
                 <div class="lineah"></div>

@@ -14,8 +14,7 @@
 
 .ContenedorTitulo
 {
-    height: fit-content;
-    flex: 1;
+    max-height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
