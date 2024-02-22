@@ -15,19 +15,20 @@ const loadTemplate = async () => {
     const header = document.createElement('header');
     header.innerHTML = `
     <nav class="navbar bg-color-5blue fixed-top position-relative">
-    <div class="container-fluid m-0">
-        <div class="d-flex align-items-center collapse-div">
-            <h1 class="collapse-fea">FEASVERSE - </h1>
-            <h2 class="collapse-admin"> Administrador</h2>
+        <div class="container-fluid m-0">
+            <div class="d-flex align-items-center collapse-div">
+                <h1 class="collapseFea">FEASVERSE - </h1>
+                <h2 class="collapseAdmin"> Administrador</h2>
+            </div>
+            <div class="linea"></div>
+            <form class="d-flex align-items-center">
+                <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">Usuario</h1>
+                <button class="btn btn-outline-primary" type="button">
+                    <img src="/recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
+                </button>
+            </form>
         </div>
-        <div class="linea"></div>
-        <form class="d-flex align-items-center">
-            <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">Usuario</h1>
-            <button class="btn btn-outline-primary" type="button">
-                <img src="/recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
-            </button>
-    </div>
-</nav>
+    </nav>
     `;
 
     const slideMenu = document.createElement('div');
@@ -94,7 +95,7 @@ const loadTemplate = async () => {
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/vistas/privado/marcas.html" class="sidebar-link">
                         <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/marcaIcon.svg"
                                     width="40" height="40"></i>

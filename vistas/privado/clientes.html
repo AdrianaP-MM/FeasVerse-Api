@@ -54,7 +54,7 @@
                             <!--div para la tabla-->
                             <div class="col-lg-10 offset-lg-1">
                                 <div class="Contenedor-tabla z-3 mt-2 table-responsive">
-                                    <table class="table table-hover table-bordered" id="tablaTrabajadores">
+                                    <table class="table table-hover table-bordered" id="tablaClientes">
                                         <thead class="thead">
                                             <tr>
                                                 <th scope="col" class="cabecera-color text-white text-center">ID</th>
@@ -72,7 +72,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="table-row" data-bs-toggle="modal" data-bs-target="#detailModal">
+                                            <tr class="table-row" onclick="openUpdate(row)">
                                                 <th scope="row">1</th>
                                                 <td>Jacobo</td>
                                                 <td>Emiliano</td>
