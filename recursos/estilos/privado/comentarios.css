@@ -85,18 +85,28 @@ body {
     border-radius: 5px;
     min-width: 100%;
     box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
     
+}
+
+.ComentarioC:hover{
+    transform: translateY(-10px);
 }
 
 .comentarioT {
     color: #1591CC;
+    
 }
 
 .rectanguloP {
     position: absolute;
     width: 100%;
     left: 0;
-    min-height: 100%;
+    height: fit-content;
+    padding-bottom: 20px;
     background-color: #D9D9D9;
 }
 
@@ -106,6 +116,11 @@ body {
 
 .sizedbox {
     padding-bottom: 20px;
+}
+
+.a {
+    text-decoration: none;
+    color: black;
 }
 
 
