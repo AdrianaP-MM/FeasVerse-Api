@@ -44,7 +44,6 @@
                     </li>
                     
                 </ul>
-
                 <div class="tab-content contenidoP position-relative" id="">
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3" role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
@@ -74,7 +73,7 @@
                                         </thead>
                                         <!-- Cuerpo de la tabla para mostrar un registro por fila -->
                                         <tbody id="tableBody" class="table-group-divider">
-                                            <tr>
+                                            <tr class="table-row" data-bs-toggle="modal" data-bs-target="#detailModal">
                                                 <th scope="row">1</th>
                                                 <td>Jacobo</td>
                                                 <td>Emiliano</td>
@@ -90,6 +89,71 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Componente Modal para ver detalle y actualizar de un registro -->
+        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered bg-color-3blue">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- Formulario para visualizar y actualizar un registro -->
+                    <form id="detailUpdateForm">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="hidden" id="idCLiente" name="Cliente">
+                            <div class="col-md-6">
+                                <label for="validationCustom01" class="form-label">Nombres</label>
+                                <input type="text" class="form-control" id="validationCustom01"
+                                    placeholder="Fernando José" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="validationCustom02" class="form-label ">Apellidos</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="Goméz Martinéz" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label ">DUI</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="45345543-4" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label ">Teléfono</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="6544-4654" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label ">Correo Electronico</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="fernando.gomez@gmail.com" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label ">Fecha de Nacimiento</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="22/07/98" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label">Fecha de Registro</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="21/2/2024" required>
+                            </div>
+                            <div class="col-md-6 mt-3">
+                                <label for="validationCustom02" class="form-label ">Estado del
+                                    Cliente</label>
+                                <input type="text" class="form-control" id="validationCustom02"
+                                    placeholder="Vigente" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
