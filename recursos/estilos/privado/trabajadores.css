@@ -90,12 +90,8 @@
 }
 
 .Contenedor-tabla {
-    min-height: 100%;
-    max-height: 50vh;
-    overflow-y: auto;
-    margin-right: 3.25rem;
-    margin-left: 3.25rem;
-    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .contenedorBotones,
@@ -253,4 +249,8 @@
     padding-top: 40px;
     margin-bottom: 40px;
     border-radius: 10px;
+}
+
+.thead {
+    border-top:#0D4560 solid 0px;
 }
