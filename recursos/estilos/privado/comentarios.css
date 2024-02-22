@@ -1,3 +1,111 @@
-.line {
-    border-bottom: 2px solid #0E72A1; 
+*
+*::before,
+*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+.ContenedorT {
+    min-height: 100%;
+    max-height: 100%;
+    width: 100%;
+    /*background-color: black;*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.ContenedorTitulo {
+    max-height: fit-content;
+    width: fit-content;
+    margin-top: 20px;
+    align-items: center;
+    justify-items: center;
+    background-color: white;
+}
+
+.textP {
+    color: #146A93;
+}
+
+
+.linea1 {
+    width: 100%;
+    height: 2px;
+    background-color: #146A93;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+html{
+    font-size: 16px;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.contenidoP {
+    width: min(90%, 1140px);
+    margin: 3rem auto;
+}
+
+.comentario {
+    position: relative;
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-right: 40px;
+}
+
+.comentario::before {
+    content: "";
+    background-color: white;
+    position: absolute;
+    min-height: 100%;
+    width: 1px;
+    left: -10px;
+}
+
+.comentario:not(:first-child){
+    margin-left: 3rem;
+    margin-top: 1rem;
+}
+
+.ComentarioC{
+    padding: 20px;
+    padding-left: 10px;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 100%;
+    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    
+}
+
+.comentarioT {
+    color: #1591CC;
+}
+
+.rectanguloP {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    min-height: 100%;
+    background-color: #D9D9D9;
+}
+
+.comentarioD {
+    padding-top: 5px;
+}
+
+.sizedbox {
+    padding-bottom: 20px;
+}
+
+
