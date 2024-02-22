@@ -28,127 +28,67 @@
     <header id="header"></header>
     <div id="slide"></div>
     <main id="mainContent">
-        <div class="d-flex min-vh-100">
-            <!--contenedor de todo-->
-            <div class="container">
-                <!--div contenedor del texto de cliente y linea-->
-                <div
-                    class="row 2 col-sm-12 col-md-6 offset-md-3 col-lg-2 offset-lg-5 justify-content-center align-items-center">
-                    <h3 id="mainTitle mb-1" class="titillium-web-bold color-3blue line text-center my-4">Clientes</h3>
-                </div>
-                <div class="col-lg-12 d-none" id="tabla_cliente">
-                    <!--div tabla-->
-                    <div class="col-lg-1 titillium-web-light text-center text-white bg-color-3blue">
-                        <h6>Tabla</h6>
-                    </div>                    
-                    <div class="col-lg-12 bg-color-3blue">
-                        <br>
-                        <!--div para la tabla-->
-                        <div class="col-lg-10 offset-lg-1">
-                            <!-- Tabla para mostrar los registros existentes -->
-                            <table class="table table-hover table-responsive">
-                                <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                <thead>
-                                    <tr>
-                                        <td colspan="7" id="rowsFound"></td>
-                                    </tr>
-                                    <tr>
-                                        <th class="cabecera-color text-white text-center">ID</th>
-                                        <th class="cabecera-color text-white text-center">Apellidos</th>
-                                        <th class="cabecera-color text-white text-center">Nombres</th>
-                                        <th class="cabecera-color text-white text-center">DUI</th>
-                                        <th class="cabecera-color text-white text-center">Teléfono</th>
-                                        <th class="cabecera-color text-white text-center">Correo</th>
-                                        <th class="cabecera-color text-white text-center">Estado</th>
-                                    </tr>
-                                </thead>
-                                <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                                <tbody id="tableBody" class="table-group-divider">
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Jacobo</td>
-                                        <td>Emiliano</td>
-                                        <td>765839343-3</td>
-                                        <td>5434-5343</td>
-                                        <td>emi.jaco@gmail.com</td>
-                                        <td>Vigente</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <br>
-                        </div>
-                        <!--div para los botones-->
-                        <div class="d-flex">
-                            <div>
-                                <button type="button"
-                                    class="btn btn-primary titillium-web-regular me-2 bg-color-5blue" style="background-color: #146A93; border-color: #146A93;"><i
-                                        class="bi bi-send"></i>
-                                    Bloquear</button>
+        <div class="ContenedorT">
+            <div class="ContenedorTitulo position-relative">
+                <h3 class="titillium-web-semibold color-3blue">Clientes</h3>
+                <div class="linea1"></div>
+            </div>
+            <div class="ContenedorPestaña">
+                <ul class="nav nav-tabs ms-5">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link text-white titillium-web-regular" data-bs-toggle="tab" id="tabla-tab" type="button"
+                            data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
+                            onclick="showTableDiv(this)">
+                            Tabla
+                        </button>
+                    </li>
+                    
+                </ul>
+
+                <div class="tab-content contenidoP position-relative" id="">
+                    <div class="rectangle z-0"></div>
+                    <div class="tab-pane fade show z-3" role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
+                        <div class="ContenedorTotal z-3 position-relative">
+                            <div class="ContenedorTituloTabla text-center">
+                                <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Tabla de clientes</h1>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-primary titillium-web-regular bg-color-5blue" style="background-color: #146A93; border-color: #146A93;"><i
-                                        class="bi bi-send"></i>
-                                    Desbloquear</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 bg-color-3blue d-none" id="detalle_cliente">
-                    <div class="d-flex offset-lg-1 align-items-center col-lg-4">
-                        <img src="../../recursos/imagenes/icono_usuario_circulo.svg" class="me-3 mt-4 mb-3" width="65" alt="icono de usuario en circulo">
-                        <h2 class="mt-2 mb-1 text-white">Detalles Clientes</h2>
-                    </div>
-                    <div class="offset-lg-1 col-lg-10">
-                        <div class="col-lg-12 bg-color-white d-flex">
-                            <div class="offset-lg-2 justify-content-center">
-                                <div class="d-flex align-items-center col-lg-12 mt-4">
-                                    <label for="nombres" class="me-1">Nombres:</label>
-                                    <input class="form-control me-5" type="text"
-                                    placeholder="Adriana Paola"  disabled>
-                                    <label for="nombres" class="me-1">Apellidos:</label>
-                                    <input class="form-control" type="text"
-                                    placeholder="Menjia Mendez"  disabled>
-                                </div>
-                                <div class="d-flex align-items-center col-lg-12 mt-4">
-                                    <label for="nombres" class="me-1">Nombres:</label>
-                                    <input class="form-control me-5" type="text"
-                                    placeholder="Adriana Paola"  disabled>
-                                    <label for="nombres" class="me-1">Apellidos:</label>
-                                    <input class="form-control" type="text"
-                                    placeholder="Menjia Mendez"  disabled>
-                                </div>
-                                <div class="d-flex align-items-center col-lg-12 mt-4">
-                                    <label for="nombres" class="me-1">Nombres:</label>
-                                    <input class="form-control me-5" type="text"
-                                    placeholder="Adriana Paola"  disabled>
-                                    <label for="nombres" class="me-1">Apellidos:</label>
-                                    <input class="form-control" type="text"
-                                    placeholder="Menjia Mendez"  disabled>
-                                </div>
-                                <div class="d-flex align-items-center col-lg-12 mt-4">
-                                    <label for="nombres" class="me-1">Nombres:</label>
-                                    <input class="form-control me-5" type="text"
-                                    placeholder="Adriana Paola"  disabled>
-                                    <label for="nombres" class="me-1">Apellidos:</label>
-                                    <input class="form-control" type="text"
-                                    placeholder="Menjia Mendez"  disabled>
-                                </div>
-                                <div class="d-flex align-items-center col-lg-12 mt-4 mb-4">
-                                    <label for="nombres" class="me-1">Nombres:</label>
-                                    <input class="form-control me-5" type="text"
-                                    placeholder="Adriana Paola"  disabled>
-                                    <label for="nombres" class="me-1">Apellidos:</label>
-                                    <input class="form-control" type="text"
-                                    placeholder="Menjia Mendez"  disabled>
+                                <!--div para la tabla-->
+                                <div class="col-lg-10 offset-lg-1">
+                                    <!-- Tabla para mostrar los registros existentes -->
+                                    <table class="table table-hover table-responsive">
+                                        <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
+                                        <thead>
+                                            <tr>
+                                                <td colspan="7" id="rowsFound"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="cabecera-color text-white text-center">ID</th>
+                                                <th class="cabecera-color text-white text-center">Apellidos</th>
+                                                <th class="cabecera-color text-white text-center">Nombres</th>
+                                                <th class="cabecera-color text-white text-center">DUI</th>
+                                                <th class="cabecera-color text-white text-center">Teléfono</th>
+                                                <th class="cabecera-color text-white text-center">Correo</th>
+                                                <th class="cabecera-color text-white text-center">Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
+                                        <tbody id="tableBody" class="table-group-divider">
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Jacobo</td>
+                                                <td>Emiliano</td>
+                                                <td>765839343-3</td>
+                                                <td>5434-5343</td>
+                                                <td>emi.jaco@gmail.com</td>
+                                                <td>Vigente</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary titillium-web-regular btn-lg bg-color-5blue my-3 me-2" style="background-color: #146A93; border-color: #146A93;"><i
-                            class="bi bi-send"></i>
-                            Regresar</button>
-                        <button type="button" class="btn btn-primary titillium-web-regular btn-lg bg-color-5blue my-3" style="background-color: #146A93; border-color: #146A93;"><i
-                            class="bi bi-send"></i>
-                            Editar</button>
                     </div>
                 </div>
             </div>

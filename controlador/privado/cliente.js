@@ -8,6 +8,14 @@ const TABLE_CLIENT = document.getElementById('tabla_cliente');
 document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-    // Se muestra la tabla.
-    TABLE_CLIENT.classList.remove('d-none');
+    // Bloquear el botón y mostrar la pestaña al cargar la página
+    // Mostrar la pestaña
+    document.getElementById("tabla-tab").click();
+     // Bloquear el botón
+    document.getElementById("tabla-tab").setAttribute("disabled", "disabled");
 });
+
+function showTableDiv(button){
+    button.style.backgroundColor = '#1A89BD';
+    button.style.color = 'white';
+}
