@@ -30,9 +30,8 @@ function showDetailModal(rowData) {
     const detailUpdateForm = document.getElementById('detailUpdateForm');
 
     modalTitle.textContent = 'Detalles del Cliente';
-    //detailUpdateForm.querySelector("#validationCustom01").value = rowData[2]; // Nombre
-    //detailUpdateForm.querySelector("#validationCustom02").value = rowData[1]; // Apellidos
-
+    //detailUpdateForm.querySelector("#validationCustomName").value = rowData[2]; // Nombre
+    //detailUpdateForm.querySelector("#validationCustomLastName").value = rowData[1]; // Apellidos
 
     // Mostrar el modal
     const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
