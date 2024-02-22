@@ -15,7 +15,7 @@ const loadTemplate = async () => {
     const header = document.createElement('header');
     header.innerHTML = `
     <nav class="navbar bg-color-5blue fixed-top position-relative">
-    <div class="container-fluid m-3">
+    <div class="container-fluid m-0">
         <div class="d-flex align-items-center collapse-div">
             <h1 class="collapse-fea">FEASVERSE - </h1>
             <h2 class="collapse-admin"> Administrador</h2>
