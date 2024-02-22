@@ -95,7 +95,7 @@ const loadTemplate = async () => {
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                    <a href="/vistas/privado/marcas.html" class="sidebar-link">
                         <div class="contenedorItemNav">
                             <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/marcaIcon.svg"
                                     width="40" height="40"></i>
