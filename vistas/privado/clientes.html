@@ -13,15 +13,15 @@
     <!-- *IMPORTACIÓN DE RECURSOS EXTERNOS -->
     <!-- TODO Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
-    <!-- *Llamada a las hojas de estilos propios de css -->
-    <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
-    <link href="/recursos/estilos/privado/plantilla.css" rel="stylesheet">
-    <link href="/recursos/estilos/privado/clientes.css" rel="stylesheet">
     <!-- *Llamada a las hojas de estilos del framework -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- *Llamada a las hojas de estilos propios de css -->
+    <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
+    <link href="/recursos/estilos/privado/plantilla.css" rel="stylesheet">
+    <link href="/recursos/estilos/privado/clientes.css" rel="stylesheet">
 </head>
 
 <body>
@@ -36,13 +36,13 @@
             <div class="ContenedorPestaña">
                 <ul class="nav nav-tabs ms-5">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link text-white titillium-web-regular" data-bs-toggle="tab" id="tabla-tab" type="button"
-                            data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
+                        <button class="nav-link text-white titillium-web-regular" data-bs-toggle="tab" id="tabla-tab"
+                            type="button" data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
                             onclick="showTableDiv(this)">
                             Tabla
                         </button>
                     </li>
-                    
+
                 </ul>
                 <div class="tab-content contenidoP position-relative" id="">
                     <div class="rectangle z-0"></div>
@@ -51,28 +51,27 @@
                             <div class="ContenedorTituloTabla text-center">
                                 <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Tabla de clientes</h1>
                             </div>
-                            <div>
-                                <!--div para la tabla-->
-                                <div class="col-lg-10 offset-lg-1">
-                                    <!-- Tabla para mostrar los registros existentes -->
-                                    <table class="table table-hover table-responsive">
-                                        <!-- Encabezado de la tabla para mostrar la cantidad de registros y los títulos de las columnas -->
-                                        <thead>
+                            <!--div para la tabla-->
+                            <div class="col-lg-10 offset-lg-1">
+                                <div class="Contenedor-tabla z-3 mt-2 table-responsive">
+                                    <table class="table table-hover table-bordered" id="tablaTrabajadores">
+                                        <thead class="thead">
                                             <tr>
-                                                <td colspan="7" id="rowsFound"></td>
-                                            </tr>
-                                            <tr>
-                                                <th class="cabecera-color text-white text-center">ID</th>
-                                                <th class="cabecera-color text-white text-center">Apellidos</th>
-                                                <th class="cabecera-color text-white text-center">Nombres</th>
-                                                <th class="cabecera-color text-white text-center">DUI</th>
-                                                <th class="cabecera-color text-white text-center">Teléfono</th>
-                                                <th class="cabecera-color text-white text-center">Correo</th>
-                                                <th class="cabecera-color text-white text-center">Estado</th>
+                                                <th scope="col" class="cabecera-color text-white text-center">ID</th>
+                                                <th scope="col" class="cabecera-color text-white text-center">Apellidos
+                                                </th>
+                                                <th scope="col" class="cabecera-color text-white text-center">Nombres
+                                                </th>
+                                                <th scope="col" class="cabecera-color text-white text-center">DUI</th>
+                                                <th scope="col" class="cabecera-color text-white text-center">Teléfono
+                                                </th>
+                                                <th scope="col" class="cabecera-color text-white text-center">Correo
+                                                </th>
+                                                <th scope="col" class="cabecera-color text-white text-center">Estado
+                                                </th>
                                             </tr>
                                         </thead>
-                                        <!-- Cuerpo de la tabla para mostrar un registro por fila -->
-                                        <tbody id="tableBody" class="table-group-divider">
+                                        <tbody>
                                             <tr class="table-row" data-bs-toggle="modal" data-bs-target="#detailModal">
                                                 <th scope="row">1</th>
                                                 <td>Jacobo</td>
@@ -84,8 +83,13 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <br>
                                 </div>
+                            </div>
+                            <div class="contenedorBotones z-0">
+                                <button type="button"
+                                    class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
+                                <button type="button"
+                                    class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Desbloquear</button>
                             </div>
                         </div>
                     </div>
@@ -102,58 +106,7 @@
                         <h1 class="modal-title fs-5" id="modalTitle"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <!-- Formulario para visualizar y actualizar un registro -->
-                    <form id="detailUpdateForm">
-                        <div class="modal-body row g-3">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
-                            <input type="hidden" id="idCLiente" name="Cliente">
-                            <div class="col-md-6">
-                                <label for="validationCustomName" class="form-label">Nombres</label>
-                                <input type="text" class="form-control" id="validationCustomName"
-                                    placeholder="Fernando José" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="validationCustomLastName" class="form-label ">Apellidos</label>
-                                <input type="text" class="form-control" id="validationCustomLastName"
-                                    placeholder="Goméz Martinéz" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationCustomDui" class="form-label ">DUI</label>
-                                <input type="text" class="form-control" id="validationCustomDui"
-                                    placeholder="45345543-4" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationCustomCellphone" class="form-label ">Teléfono</label>
-                                <input type="text" class="form-control" id="validationCustomCellphone"
-                                    placeholder="6544-4654" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationEmail" class="form-label ">Correo Electronico</label>
-                                <input type="text" class="form-control" id="validationEmail"
-                                    placeholder="fernando.gomez@gmail.com" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationBirthDay" class="form-label ">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" id="validationBirthDay"
-                                    placeholder="22/07/98" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationRegisterDay" class="form-label">Fecha de Registro</label>
-                                <input type="text" class="form-control" id="validationRegisterDay"
-                                    placeholder="21/2/2024" required>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <label for="validationStatus" class="form-label ">Estado del
-                                    Cliente</label>
-                                <input type="text" class="form-control" id="validationStatus"
-                                    placeholder="Vigente" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
-                        </div>
-                    </form>
+                
                 </div>
             </div>
         </div>

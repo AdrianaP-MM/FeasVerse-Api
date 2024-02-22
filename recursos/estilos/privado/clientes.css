@@ -85,3 +85,32 @@
     font-size: 20px;
 }
 
+.table thead th {
+    background-color: #0D4560;
+    color: white;
+    border: 0;
+    text-align: center;
+}
+
+.thead {
+    border-top:#0D4560 solid 0px;
+}
+
+.btn2 {
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #146A93;
+}
+
+.contenedorBotones2 {
+    width: 100%;
+    min-height: fit-content;
+    max-height: fit-content;
+    position: absolute;
+    
+    bottom: 2%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
