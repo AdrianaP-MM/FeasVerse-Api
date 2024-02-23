@@ -21,13 +21,98 @@
     <!-- *Llamada a las hojas de estilos propios de css -->
     <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
     <link href="/recursos/estilos/privado/plantilla.css" rel="stylesheet">
+    <link href="/recursos/estilos/privado/marcas.css" rel="stylesheet">
 </head>
 
 <body>
     <header id="header"></header>
     <div id="slide"></div>
     <main id="mainContent">
-        <h1>MARCAS</h1>
+        <div class="ContenedorT">
+            <div class="ContenedorTitulo position-relative">
+                <h3 class="titillium-web-semibold textP"> Marcas </h3>
+                <div class="linea1"></div>
+            </div>
+
+            <div class="ContenedorPestaña">
+                <ul class="nav nav-tabs ms-5">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="marcas-tab" type="button"
+                            data-bs-target="#marcas" role="tab" aria-controls="marcas" aria-selected="true"
+                            onclick="ShowMarcasDiv(this)">
+                            Marcas registradas
+                        </button>
+                    </li>
+
+                    <li class="nav-item ms-3" role="presentation">
+                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
+                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"
+                            onclick="showAddDiv(this)">
+                            Agregar
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content contenidoP position-relative" id="">
+                    <div class="rectangle z-0"></div>
+                    <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="agregar"
+                        aria-labelledby="agregar-tab">
+                        <div
+                            class="ContenedorTotalA d-flex flex-column justify-content-center align-self-center  align-items-center">
+                            <h1 class="text-white titillium-web-regular text25 text-white mt-5">Ingreso de datos</h1>
+                            <div class="col-md-4 col-lg-4 col-sm-9">
+                                <label for="nombreMarca" class="form-label">Nombre de la marca</label>
+                                <input type="text" class="form-control" id="nombreMarca"
+                                    placeholder="Ingresa el nombre" required>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-9  d-flex flex-column justify-content-center align-self-center  align-items-center">
+                                <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto de la marca</h1>
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                    alt="example placeholder"  class="col-md-8 col-lg-8 col-sm-9"/>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="btn btn-primary btn-rounded">
+                                        <label class="form-label text-white m-1" for="customFile1">Seleccionar imagen</label>
+                                        <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage')" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="marcas"
+                        aria-labelledby="marcas-tab">
+                        <div class="d-flex flex-column mb-3 justify-content-center ">
+                            <div class="cardContainer d-flex flex-row justify-content-around m-5 flex-wrap">
+                                <div class="card" style="width: 15rem; height: 15rem;">
+                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
+                                            alt="..."></a>
+                                </div>
+                                <div class="card" style="width: 15rem; height: 15rem;">
+                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
+                                            alt="..."></a>
+                                </div>
+                                <div class="card" style="width: 15rem; height: 15rem;">
+                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
+                                            alt="..."></a>
+                                </div>
+                                <div class="card" style="width: 15rem; height: 15rem;">
+                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
+                                            alt="..."></a>
+                                </div>
+                                <div class="card" style="width: 15rem; height: 15rem;">
+                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
+                                            alt="..."></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <footer id="footer"></footer>
 

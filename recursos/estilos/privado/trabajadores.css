@@ -92,10 +92,13 @@
 .Contenedor-tabla {
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 20px;
+    height: 50vh;
 }
 
 .contenedorBotones,
-.contenedorBotones2 {
+.contenedorBotones2,
+.contenedorBotones3 {
     width: 100%;
     min-height: fit-content;
     max-height: fit-content;
@@ -105,6 +108,15 @@
 
 .contenedorBotones2 {
     bottom: 2%;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.contenedorBotones3 {
+    bottom: 2%;
+    position:static;
     left: 0;
     display: flex;
     flex-direction: row;
@@ -210,22 +222,6 @@
 }
 
 /*PopUp de detalles*/
-
-.custom-swal-popup
-{
-    height: fit-content;
-    overflow-y: auto;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    justify-items: left;
-    font-size: 14px;
-    font-family: "Titillium Web", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 .contenedorDetallesTrabajador
 {
     width: 100%;
@@ -253,4 +249,17 @@
 
 .thead {
     border-top:#0D4560 solid 0px;
+}
+.modal-content{
+    background-color: #1A89BD;
+    color: white;
+}
+
+#tablaTrabajadores{
+    overflow-y: auto;
+}
+thead tr th { 
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }

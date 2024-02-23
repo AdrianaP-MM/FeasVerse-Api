@@ -96,14 +96,14 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="fecharInput" class="form-label">Fecha de Registro</label>
-                                        <input type="text" class="form-control" id="fecharInput"
-                                            placeholder="21/2/2024" required>
+                                        <input type="text" class="form-control" id="fecharInput" placeholder="21/2/2024"
+                                            required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="estadoInput" class="form-label ">Estado del
                                             Trabajador</label>
-                                        <input type="text" class="form-control" id="estadoInput"
-                                            placeholder="Vigente" required>
+                                        <input type="text" class="form-control" id="estadoInput" placeholder="Vigente"
+                                            required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="nivelInput" class="form-label ">Nivel de Usuario</label>
@@ -182,76 +182,81 @@
                 </div>
             </div>
             <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
-                    <form id="updateFrom" name="updateFrom">
-                        <div class="modal-body row g-3">
-                            <!-- Campo oculto para asignar el id del registro al momento de modificar
+                aria-labelledby="modalTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                        </div>
+                        <!-- Formulario para crear o actualizar un registro -->
+                        <form id="updateFrom" name="updateFrom">
+                            <div class="modal-body row g-3">
+                                <!-- Campo oculto para asignar el id del registro al momento de modificar
                             <input type="hidden" id="idTrabajador" name="IdTrabajador"> -->
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nombreTrabajador" class="form-label">Nombres</label>
-                                <input id="nombreTrabajador" type="text" name="nombreTrabajador" class="form-control"
-                                    required>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="nombreTrabajador" class="form-label">Nombres</label>
+                                    <input id="nombreTrabajador" type="text" name="nombreTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="apellidosTrabajador" class="form-label">Apellidos</label>
+                                    <input id="apellidosTrabajador" type="text" name="apellidosTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="duiTrabajador" class="form-label">DUI</label>
+                                    <input id="duiTrabajador" type="text" name="duiTrabajador" class="form-control editableInput"
+                                        required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="telefonoTrabajador" class="form-label">Teléfono</label>
+                                    <input id="telefonoTrabajador" type="text" name="telefonoTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="correoTrabajador" class="form-label">Correo</label>
+                                    <input id="correoTrabajador" type="text" name="correoTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="fechanTrabajador" class="form-label">Fecha de nacimiento</label>
+                                    <input id="fechanTrabajador" type="text" name="fechanTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="fecharTrabajador" class="form-label">Fecha de registro</label>
+                                    <input id="fecharTrabajador" type="text" name="fecharTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="estadoTrabajador" class="form-label">Estado</label>
+                                    <input id="estadoTrabajador" type="text" name="estadoTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="nivelTrabajador" class="form-label">Nivel</label>
+                                    <input id="nivelTrabajador" type="text" name="nivelTrabajador" class="form-control editableInput"
+                                        required disabled>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label for="contraTrabajador" class="form-label">Contraseña</label>
+                                    <input id="contraTrabajador" type="text" name="contraTrabajador"
+                                        class="form-control editableInput" required disabled>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="apellidosTrabajador" class="form-label">Apellidos</label>
-                                <input id="apellidosTrabajador" type="text" name="apellidosTrabajador"
-                                    class="form-control" required>
+                            <div class="modal-footer mt-5">
+                                <div class="contenedorBotones3">
+                                    <button type="button" data-bs-dismiss="modal" 
+                                        class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular"
+                                        onclick="Return()"> Regresar</button>
+                                    <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                                        type="button" onclick="HabiliDesaInput()" id="updatesave">Actualizar</button>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="duiTrabajador" class="form-label">DUI</label>
-                                <input id="duiTrabajador" type="text" name="duiTrabajador" 
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="telefonoTrabajador" class="form-label">Teléfono</label>
-                                <input id="telefonoTrabajador" type="text" name="telefonoTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="correoTrabajador" class="form-label">Correo</label>
-                                <input id="correoTrabajador" type="text" name="correoTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="fechanTrabajador" class="form-label">Fecha de nacimiento</label>
-                                <input id="fechanTrabajador" type="text" name="fechanTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="fecharTrabajador" class="form-label">Fecha de registro</label>
-                                <input id="fecharTrabajador" type="text" name="fecharTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="estadoTrabajador" class="form-label">Estado</label>
-                                <input id="estadoTrabajador" type="text" name="estadoTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="nivelTrabajador" class="form-label">Nivel</label>
-                                <input id="nivelTrabajador" type="text" name="nivelTrabajador"
-                                    class="form-control" required>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <label for="contraTrabajador" class="form-label">Contraseña</label>
-                                <input id="contraTrabajador" type="text" name="contraTrabajador"
-                                    class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
     <footer id="footer"></footer>
