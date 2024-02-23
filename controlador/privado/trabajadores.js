@@ -10,9 +10,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
-
-    ondblclickRowTable();
 });
+
+const openDetails = async (row) => {
+
+    const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
+    APELLIDOS_INPUT = document.getElementById('apellidosTrabajador');
+    DUI_INPUT = document.getElementById('duiTrabajador');
+    TEL_INPUT = document.getElementById('telefonoTrabajador');
+    CORREO_INPUT = document.getElementById('correoTrabajador');
+    FECHAN_INPUT = document.getElementById('fechanTrabajador');
+    FECHAR_INPUT = document.getElementById('fecharTrabajador');
+    ESTADO_INPUT = document.getElementById('estadoTrabajador');
+    NIVEL_INPUT = document.getElementById('nivelTrabajador');
+    CONTRA_INPUT = document.getElementById('contraTrabajador');
+
+    const DATA_MODAL = new bootstrap.Modal('#dataModal'),
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    UPDATE_FORM = document.getElementById('updateFrom');
+
+    // Se muestra la caja de diálogo con su título.
+    DATA_MODAL.show();
+    MODAL_TITLE.textContent = 'Detalles Trabajador';
+    // Se prepara el formulario.
+    UPDATE_FORM.reset();
+    // Se inicializan los campos con los datos.
+    var cells = row.getElementsByTagName('td');
+    // Crea un array para almacenar los valores de las celdas
+    var values = [];
+    // Itera sobre las celdas y agrega sus valores al array
+    for (var i = 0; i < cells.length; i++) {
+        values.push(cells[i].innerText);
+    }
+
+    // Ahora puedes hacer lo que necesites con el array de valores
+    NOMBRES_INPUT.value = values[2];
+    APELLIDOS_INPUT.value = values[1];
+    DUI_INPUT.value = values[3];
+    TEL_INPUT.value =  values[4];
+    CORREO_INPUT.value = values[5] ;
+    FECHAN_INPUT.value = '...';
+    FECHAR_INPUT.value = '...';
+    ESTADO_INPUT.value = '...';
+    NIVEL_INPUT.value = values[6];
+    CONTRA_INPUT.value = '...';
+
+}
+
+
 
 function ondblclickRowTable() {
     var id, ape, nom, dui, tel, eml, nvl;
