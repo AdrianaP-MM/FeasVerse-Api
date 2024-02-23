@@ -57,35 +57,46 @@
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div
-                            class="ContenedorTotalA d-flex flex-column justify-content-center align-self-center  align-items-center">
-                            <h1 class="text-white titillium-web-regular text25 text-white mt-5">Ingreso de datos</h1>
-                            <div class="col-md-4 col-lg-4 col-sm-9">
-                                <label for="nombreMarca" class="form-label">Nombre de la marca</label>
-                                <input type="text" class="form-control" id="nombreMarca"
-                                    placeholder="Ingresa el nombre" required>
-                            </div>
+                        <div class="ContenedorTotalA d-flex flex-column justify-content-around align-items-center flex-wrap">
 
-                            <div class="col-md-6 col-lg-6 col-sm-9  d-flex flex-column justify-content-center align-self-center  align-items-center">
-                                <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto de la marca</h1>
-                                <div class="mb-4 d-flex justify-content-center">
-                                    <img id="selectedImage" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                                    alt="example placeholder"  class="col-md-8 col-lg-8 col-sm-9"/>
+                            <div class="contenedorDatos d-flex flex-column align-items-center">
+                                <h1 class="text-white titillium-web-regular text25 text-white mt-3 mb-4">Ingreso de
+                                    datos
+                                </h1>
+                                <div class="col-md-12 col-lg-12 col-sm-6 mb-4">
+                                    <label for="nombreMarca" class="form-label text-white">Nombre de la marca</label>
+                                    <input type="text" class="form-control" id="nombreMarca"
+                                        placeholder="Ingresa el nombre" required>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <div class="btn btn-primary btn-rounded">
-                                        <label class="form-label text-white m-1" for="customFile1">Seleccionar imagen</label>
-                                        <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage')" />
+                                <div class="input-group">
+                                    <span class="input-group-text">Descripciòn de la marca</span>
+                                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                                </div>
+                            </div>
+                            <div class="contenedorImagen d-flex flex-column align-items-center">
+                                <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto de la marca
+                                </h1>
+
+                                    <img id="selectedImage" width="300px" height="300px"
+                                        src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                        alt="example placeholder" class="col-md-6 col-lg-6 col-sm-6" />
+                                
+                                <div class="">
+                                    <div class="btn btn-primary btn-rounded mt-3">
+                                        <label class="form-label text-white m-1" for="customFile1">Seleccionar
+                                            imagen</label>
+                                        <input type="file" class="form-control d-none" id="customFile1"
+                                            onchange="displaySelectedImage(event, 'selectedImage')" />
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-
                     </div>
 
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="marcas"
                         aria-labelledby="marcas-tab">
-                        <div class="d-flex flex-column mb-3 justify-content-center ">
+                        <div class="d-flex flex-column mb-3 justify-content-center flex-wrap">
                             <div class="cardContainer d-flex flex-row justify-content-around m-5 flex-wrap">
                                 <div class="card" style="width: 15rem; height: 15rem;">
                                     <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
@@ -119,9 +130,7 @@
     <script src="script.js"></script>
     <!-- *Llamada a las hojas de estilos del framework e iconos -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
+
     <!-- *Llamada al controlador de la página web -->
     <script type="text/javascript" src="../../controlador/utilidades(plantillas)/privado.js"></script>
     <!-- *Llamada al controlador del sitio privado -->

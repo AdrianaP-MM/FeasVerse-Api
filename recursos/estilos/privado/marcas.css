@@ -83,3 +83,19 @@ h1
 {
     width: fit-content;
 }
+.contenedorImagen
+{
+    width: fit-content;
+    height: fit-content;
+}
+.contenedorDatos
+{
+    width: 50%;
+    height: fit-content;
+}
+.ContenedorTotalA
+{
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
