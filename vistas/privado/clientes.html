@@ -71,9 +71,9 @@
                                                 </th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr class="table-row" onclick="openUpdate(row)">
-                                                <th scope="row">1</th>
+                                        <tbody class="text-center">
+                                            <tr class="table-row" ondblclick="openDetails(this)">
+                                                <td>1</td>
                                                 <td>Jacobo</td>
                                                 <td>Emiliano</td>
                                                 <td>765839343-3</td>
@@ -98,15 +98,66 @@
         </div>
 
         <!-- Componente Modal para ver detalle y actualizar de un registro -->
-        <div class="modal fade" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-header d-flex justify-content-center">
+                        <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
                     </div>
-                
+                    <!-- Formulario para detalles o actualizar de un registro cliente -->
+                    <form id="detailUpdateForm" name="detailUpdateForm">
+                        <div class="modal-body row g-3">
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreCliente" class="form-label">Nombres</label>
+                                <input id="nombreCliente" type="text" name="nombreCliente" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="apellidosCliente" class="form-label">Apellidos</label>
+                                <input id="apellidosCliente" type="text" name="apellidosCliente" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="duiCliente" class="form-label">DUI</label>
+                                <input id="duiCliente" type="text" name="duiCliente" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="telefonoCliente" class="form-label">Teléfono</label>
+                                <input id="telefonoCliente" type="text" name="telefonoCliente" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="correoCliente" class="form-label">Correo</label>
+                                <input id="correoCliente" type="text" name="correoCliente" class="form-control"
+                                    required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="fechaDeNacimientoCliente" class="form-label">Fecha de nacimiento</label>
+                                <input id="fechaDeNacimientoCliente" type="text" name="fechaDeNacimientoCliente"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="fechaDeRegistroCliente" class="form-label">Fecha de registro</label>
+                                <input id="fechaDeRegistroCliente" type="text" name="fechaDeRegistroCliente"
+                                    class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="estadoCliente" class="form-label">Estado</label>
+                                <input id="estadoCliente" type="text" name="estadoCliente" class="form-control"
+                                    required>
+                            </div>
+                        </div>
+                        <!--Footer del modal-->
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" id="cancelarBtn" class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular">
+                                Cancelar
+                            </button>
+                            <button type="button" id="actualizarBtn" class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular" onclick="botonActualizar()">
+                                Actualizar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -118,6 +169,8 @@
     <!-- *Llamada al controlador de la página web -->
     <script type="text/javascript" src="../../controlador/utilidades(plantillas)/privado.js"></script>
     <script type="text/javascript" src="../../controlador/privado/cliente.js"></script>
+    <!--*Libreria de mensajes-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

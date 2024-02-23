@@ -1,17 +1,25 @@
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Feasverse - Clientes';
 
-const DETAIL_MODAL = new bootstrap.Modal('#detailModal');
+const NOMBRES_INPUT = document.getElementById('nombreCliente');
+const APELLIDOS_INPUT = document.getElementById('apellidosCliente');
+const DUI_INPUT = document.getElementById('duiCliente');
+const TEL_INPUT = document.getElementById('telefonoCliente');
+const CORREO_INPUT = document.getElementById('correoCliente');
+const FECHAN_INPUT = document.getElementById('fechaDeNacimientoCliente');
+const FECHAR_INPUT = document.getElementById('fechaDeRegistroCliente');
+const ESTADO_INPUT = document.getElementById('estadoCliente');
+
+const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
+
+const DATA_MODAL = new bootstrap.Modal('#dataModal');
+const MODAL_TITLE = document.getElementById('modalTitle');
+const UPDATE_FORM = document.getElementById('detailUpdateForm');
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
-
-    // Establecer evento para cuando la pestaña de la tabla se haya mostrado completamente
-    document.getElementById('tabla-tab').addEventListener('shown.bs.tab', function () {
-        ondblclickRowTable();
-    });
 
     // Bloquear el botón y mostrar la pestaña al cargar la página
     // Mostrar la pestaña
@@ -20,43 +28,82 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('tabla-tab').setAttribute('disabled', 'disabled');
 });
 
-function ondblclickRowTable() {
-    var id, ape, nom, dui, tel, eml, nvl;
-
-    var table = document.getElementById('tablaClientes');
-    for (var i = 1; i < table.rows.length; i++) {
-        table.rows[i].ondblclick = function () {
-            rIndex = this.rowIndex;
-            id = this.cells[0].innerHTML;
-            ape = this.cells[1].innerHTML;
-            nom = this.cells[2].innerHTML;
-            dui = this.cells[3].innerHTML;
-            tel = this.cells[4].innerHTML;
-            eml = this.cells[5].innerHTML;
-            nvl = this.cells[6].innerHTML;
-
-            const modalTitle = document.getElementById('modalTitle');
-            const detailUpdateForm = document.getElementById('detailUpdateForm');
-
-            modalTitle.textContent = 'Detalles del Cliente';
-
-            detailUpdateForm.querySelector("#validationCustomName").value = nom; // Nombre
-            detailUpdateForm.querySelector("#validationCustomLastName").value = ape; // Apellidos
-
-            // Mostrar el modal
-            const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
-            detailModal.show();
-        }
+const openDetails = async (row) => {
+    // Se muestra la caja de diálogo con su título.
+    DATA_MODAL.show();
+    // Se prepara el formulario.
+    UPDATE_FORM.reset();
+    // Se inicializan los campos con los datos.
+    var cells = row.getElementsByTagName('td');
+    // Crea un array para almacenar los valores de las celdas
+    var values = [];
+    // Itera sobre las celdas y agrega sus valores al array
+    for (var i = 0; i < cells.length; i++) {
+        values.push(cells[i].innerText);
     }
-}
 
+    // Ahora puedes hacer lo que necesites con el array de valores
+    NOMBRES_INPUT.value = values[2];
+    APELLIDOS_INPUT.value = values[1];
+    DUI_INPUT.value = values[3];
+    TEL_INPUT.value =  values[4];
+    CORREO_INPUT.value = values[5] ;
+    FECHAN_INPUT.value = '...';
+    FECHAR_INPUT.value = '...';
+    ESTADO_INPUT.value = values[6];
 
+    // Deshabilitar la edición de los campos de entrada
+    NOMBRES_INPUT.readOnly = true;
+    APELLIDOS_INPUT.readOnly = true;
+    DUI_INPUT.readOnly = true;
+    TEL_INPUT.readOnly = true;
+    CORREO_INPUT.readOnly = true;
+    FECHAN_INPUT.readOnly = true;
+    FECHAR_INPUT.readOnly = true;
+    ESTADO_INPUT.readOnly = true;
 
-const detailData = async (row) => {
-    
-}
+    var idCliente = values[0];
+    MODAL_TITLE.textContent = 'Detalles de Clientes #'+idCliente;
+};
 
 function showTableDiv(button) {
     button.style.backgroundColor = '#1A89BD';
     button.style.color = 'white';
+}
+
+DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
+    // Después de que el modal se haya ocultado, cambiar el texto del botón a "Actualizar"
+    BOTON_ACTUALIZAR.textContent = "Actualizar";
+});
+
+function botonActualizar() {
+    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
+    
+    if (textoBoton == 'Actualizar') {
+        
+        // habilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = false;
+        APELLIDOS_INPUT.readOnly = false;
+        DUI_INPUT.readOnly = false;
+        TEL_INPUT.readOnly = false;
+        CORREO_INPUT.readOnly = false;
+        FECHAN_INPUT.readOnly = false;
+        FECHAR_INPUT.readOnly = false;
+        ESTADO_INPUT.readOnly = false;
+
+        BOTON_ACTUALIZAR.textContent = "Guardar";
+    }
+    else if(textoBoton == 'Guardar'){
+        // Deshabilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        FECHAR_INPUT.readOnly = true;
+        ESTADO_INPUT.readOnly = true;
+
+        DATA_MODAL.hide();
+    }
 }
