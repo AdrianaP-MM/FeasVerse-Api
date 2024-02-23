@@ -15,14 +15,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 const openDetails = async (row) => {
 
     const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
-        APELLIDOS_INPUT = document.getElementById('apellidosTrabajador');
-    DUI_INPUT = document.getElementById('duiTrabajador');
-    TEL_INPUT = document.getElementById('telefonoTrabajador');
-    CORREO_INPUT = document.getElementById('correoTrabajador');
-    FECHAN_INPUT = document.getElementById('fechanTrabajador');
-    FECHAR_INPUT = document.getElementById('fecharTrabajador');
-    ESTADO_INPUT = document.getElementById('estadoTrabajador');
-    NIVEL_INPUT = document.getElementById('nivelTrabajador');
+        APELLIDOS_INPUT = document.getElementById('apellidosTrabajador'),
+    DUI_INPUT = document.getElementById('duiTrabajador'),
+    TEL_INPUT = document.getElementById('telefonoTrabajador'),
+    CORREO_INPUT = document.getElementById('correoTrabajador'),
+    FECHAN_INPUT = document.getElementById('fechanTrabajador'),
+    FECHAR_INPUT = document.getElementById('fecharTrabajador'),
+    ESTADO_INPUT = document.getElementById('estadoTrabajador'),
+    NIVEL_INPUT = document.getElementById('nivelTrabajador'),
     CONTRA_INPUT = document.getElementById('contraTrabajador');
 
     const DATA_MODAL = new bootstrap.Modal('#dataModal'),

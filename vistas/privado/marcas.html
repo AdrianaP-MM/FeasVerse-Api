@@ -30,7 +30,7 @@
     <main id="mainContent">
         <div class="ContenedorT">
             <div class="ContenedorTitulo position-relative">
-                <h3 class="titillium-web-semibold textP"> Marcas </h3>                                        
+                <h3 class="titillium-web-semibold textP"> Marcas </h3>
                 <div class="linea1"></div>
             </div>
 
@@ -57,7 +57,8 @@
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div class="ContenedorTotalA d-flex flex-column justify-content-around align-items-center flex-wrap">
+                        <div
+                            class="ContenedorTotalA d-flex flex-column justify-content-around align-items-center flex-wrap">
 
                             <div class="contenedorDatos d-flex flex-column align-items-center">
                                 <h1 class="text-white titillium-web-regular text25 text-white mt-3 mb-4">Ingreso de
@@ -77,10 +78,10 @@
                                 <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto de la marca
                                 </h1>
 
-                                    <img id="selectedImage" width="300px" height="300px"
-                                        src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                                        alt="example placeholder" class="col-md-6 col-lg-6 col-sm-6" />
-                                
+                                <img id="selectedImage" width="300px" height="300px"
+                                    src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                    alt="example placeholder" class="col-md-6 col-lg-6 col-sm-6" />
+
                                 <div class="">
                                     <div class="btn btn-primary btn-rounded mt-3">
                                         <label class="form-label text-white m-1" for="customFile1">Seleccionar
@@ -101,29 +102,66 @@
                         aria-labelledby="marcas-tab">
                         <div class="d-flex flex-column mb-3 justify-content-center flex-wrap">
                             <div class="cardContainer d-flex flex-row justify-content-around m-5 flex-wrap">
-                                <div class="card" style="width: 15rem; height: 15rem;">
-                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
-                                            alt="..."></a>
+                                <div class="card" style="width: 15rem; height: 15rem;" ondblclick="openDetails()">
+                                     <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"  />                          
                                 </div>
-                                <div class="card" style="width: 15rem; height: 15rem;">
-                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
-                                            alt="..."></a>
+                                <div class="card" style="width: 15rem; height: 15rem;"  ondblclick="openDetails()" >
+                                    <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"/>  
                                 </div>
-                                <div class="card" style="width: 15rem; height: 15rem;">
-                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
-                                            alt="..."></a>
+                                <div class="card" style="width: 15rem; height: 15rem;" ondblclick="openDetails()" >
+                                    <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"/>  
                                 </div>
-                                <div class="card" style="width: 15rem; height: 15rem;">
-                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
-                                            alt="..."></a>
+                                <div class="card" style="width: 15rem; height: 15rem;" ondblclick="openDetails()" >
+                                    <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"/>  
                                 </div>
-                                <div class="card" style="width: 15rem; height: 15rem;">
-                                    <a href=""> <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top"
-                                            alt="..."></a>
+                                <div class="card" style="width: 15rem; height: 15rem;" ondblclick="openDetails()">
+                                    <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top" />  
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalTitle"></h1>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="updateFrom" name="updateFrom">
+                        <div class="modal-body row g-3">
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar
+                            <input type="hidden" id="idTrabajador" name="IdTrabajador"> -->
+                            <div class="col-sm-12 col-md-6">
+                                <label for="nombreMarca" class="form-label">Nombre Marca</label>
+                                <input id="nombreMarca" type="text" name="nombreMarca"
+                                    class="form-control editableInput" required disabled>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="fotoMarca" class="form-label">Foto Marca</label>
+                                <input id="fotoMarca" type="text" name="fotoMarca"
+                                    class="form-control editableInput" required disabled>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <label for="descripcionMarca" class="form-label">Descripciòn</label>
+                                <input id="descripcionMarca" type="text" name="descripcionMarca"
+                                    class="form-control editableInput" required disabled>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-5">
+                            <div class="contenedorBotones3">
+                                <button type="button" data-bs-dismiss="modal"
+                                    class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular"
+                                    > Regresar</button>
+                                <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                                    type="button"  id="updatesave">Actualizar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

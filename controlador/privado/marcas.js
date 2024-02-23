@@ -66,3 +66,23 @@ function displaySelectedImage(event, elementId) {
         reader.readAsDataURL(fileInput.files[0]);
     }
 }
+
+const openDetails = async () => {
+
+    const NOMBRE_MARCA_INPUT = document.getElementById('nombreMarca'),
+        DESCRIPCION_MARCA_INPUT = document.getElementById('descripcionMarca');
+
+    const DATA_MODAL = new bootstrap.Modal('#dataModal'),
+        MODAL_TITLE = document.getElementById('modalTitle'),
+        UPDATE_FORM = document.getElementById('updateFrom');
+
+    // Se muestra la caja de diálogo con su título.
+    DATA_MODAL.show();
+    // Se prepara el formulario.
+    UPDATE_FORM.reset();
+    // Ahora puedes hacer lo que necesites con el array de valores
+    NOMBRE_MARCA_INPUT.value = "ADIDAS";
+    DESCRIPCION_MARCA_INPUT.value = 'Buena marca de zapatos';
+    MODAL_TITLE.textContent = 'Detalles Marca';
+
+}
