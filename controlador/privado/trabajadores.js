@@ -58,6 +58,8 @@ const openDetails = async (row) => {
 
 }
 
+
+
 // Constante para establecer el espacio de tabla y el espacio de agregar.
 const TABLE_DIV = document.getElementById('tabla');
 const ADD_DIV = document.getElementById('agregar');
