@@ -107,3 +107,7 @@ function botonActualizar() {
         DATA_MODAL.hide();
     }
 }
+
+function botonCancelar() {
+    DATA_MODAL.hide();
+}

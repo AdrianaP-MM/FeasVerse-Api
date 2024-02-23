@@ -69,8 +69,8 @@ function displaySelectedImage(event, elementId) {
 
 const openDetails = async () => {
 
-    const NOMBRE_MARCA_INPUT = document.getElementById('nombreMarca'),
-        DESCRIPCION_MARCA_INPUT = document.getElementById('descripcionMarca');
+    const NOMBRE_MARCA_INPUT = document.getElementById('nombreMarcaD'),
+        DESCRIPCION_MARCA_INPUT = document.getElementById('descripcionMarcaD');
 
     const DATA_MODAL = new bootstrap.Modal('#dataModal'),
         MODAL_TITLE = document.getElementById('modalTitle'),
