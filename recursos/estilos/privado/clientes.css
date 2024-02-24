@@ -120,3 +120,21 @@
     flex-direction: row;
     justify-content: center;
 }
+
+/*Sweet alert*/
+.swal2-popup {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.swal2-title {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.swal2-content {
+    font-family: "Titillium Web", sans-serif;
+}
+
+.swal2-actions button {
+    margin: 10px;
+    width: 100px;
+}

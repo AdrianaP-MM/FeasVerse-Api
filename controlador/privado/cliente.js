@@ -76,7 +76,7 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
     BOTON_ACTUALIZAR.textContent = "Actualizar";
 });
 
-function botonActualizar() {
+const botonActualizar = async () =>  {
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
     
     if (textoBoton == 'Actualizar') {
@@ -103,11 +103,27 @@ function botonActualizar() {
         FECHAN_INPUT.readOnly = true;
         FECHAR_INPUT.readOnly = true;
         ESTADO_INPUT.readOnly = true;
-
+        await sweetAlert(1, 'Se ha actualizado correctamente', true);
         DATA_MODAL.hide();
     }
 }
 
-function botonCancelar() {
-    DATA_MODAL.hide();
+const  botonCancelar = async () => {
+    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
+    
+    if (textoBoton == 'Actualizar') {
+        // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+        const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
+        if(RESPONSE.isConfirmed){
+            DATA_MODAL.hide();
+        }
+    }
+    else if(textoBoton == 'Guardar'){
+        // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+        const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardara');
+        if(RESPONSE.isConfirmed){
+        DATA_MODAL.hide();
+    }
+    }
+    
 }
