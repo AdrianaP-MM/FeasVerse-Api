@@ -138,3 +138,8 @@
     margin: 10px;
     width: 100px;
 }
+
+.modal-content{
+    background-color: #1A89BD;
+    color: white;
+}
