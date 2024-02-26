@@ -116,7 +116,7 @@
                                     <div class="contenedorBotones2">
                                         <button type="button" onclick="returnBack()"
                                             class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
-                                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular" onclick="addSave()"
                                             type="submit">Agregar</button>
                                     </div>
                                 </form>
@@ -194,61 +194,66 @@
                                 <div class="col-sm-12 col-md-6">
                                     <label for="nombreTrabajador" class="form-label">Nombres</label>
                                     <input id="nombreTrabajador" type="text" name="nombreTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="apellidosTrabajador" class="form-label">Apellidos</label>
                                     <input id="apellidosTrabajador" type="text" name="apellidosTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="duiTrabajador" class="form-label">DUI</label>
-                                    <input id="duiTrabajador" type="text" name="duiTrabajador" class="form-control editableInput"
-                                        required disabled>
+                                    <input id="duiTrabajador" type="text" name="duiTrabajador"
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="telefonoTrabajador" class="form-label">Teléfono</label>
                                     <input id="telefonoTrabajador" type="text" name="telefonoTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="correoTrabajador" class="form-label">Correo</label>
                                     <input id="correoTrabajador" type="text" name="correoTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="fechanTrabajador" class="form-label">Fecha de nacimiento</label>
                                     <input id="fechanTrabajador" type="text" name="fechanTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="fecharTrabajador" class="form-label">Fecha de registro</label>
                                     <input id="fecharTrabajador" type="text" name="fecharTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="estadoTrabajador" class="form-label">Estado</label>
                                     <input id="estadoTrabajador" type="text" name="estadoTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="nivelTrabajador" class="form-label">Nivel</label>
-                                    <input id="nivelTrabajador" type="text" name="nivelTrabajador" class="form-control editableInput"
-                                        required disabled>
+                                    <input id="nivelTrabajador" type="text" name="nivelTrabajador"
+                                        class="form-control editableInput" required>
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label for="contraTrabajador" class="form-label">Contraseña</label>
                                     <input id="contraTrabajador" type="text" name="contraTrabajador"
-                                        class="form-control editableInput" required disabled>
+                                        class="form-control editableInput" required>
                                 </div>
                             </div>
                             <div class="modal-footer mt-5">
                                 <div class="contenedorBotones3">
-                                    <button type="button" data-bs-dismiss="modal" 
-                                        class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular"
-                                        onclick="Return()"> Regresar</button>
-                                    <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
-                                        type="button" onclick="HabiliDesaInput()" id="updatesave">Actualizar</button>
+                                    <button type="button" id="cancelarBtn"
+                                        class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        onclick="botonCancelar()">
+                                        Cancelar
+                                    </button>
+                                    <button type="button" id="actualizarBtn"
+                                        class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        onclick="botonActualizar()">
+                                        Actualizar
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -267,6 +272,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- *Llamada al controlador de la página web -->
     <script type="text/javascript" src="../../controlador/utilidades(plantillas)/privado.js"></script>
+    <script type="text/javascript" src="../../controlador/utilidades(plantillas)/componentes.js"></script>
     <!-- *Llamada al controlador del sitio privado -->
     <script type="text/javascript" src="../../controlador/privado/trabajadores.js"></script>
 </body>

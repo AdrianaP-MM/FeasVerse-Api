@@ -1,3 +1,26 @@
+const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
+
+const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
+    APELLIDOS_INPUT = document.getElementById('apellidosTrabajador'),
+    DUI_INPUT = document.getElementById('duiTrabajador'),
+    TEL_INPUT = document.getElementById('telefonoTrabajador'),
+    CORREO_INPUT = document.getElementById('correoTrabajador'),
+    FECHAN_INPUT = document.getElementById('fechanTrabajador'),
+    FECHAR_INPUT = document.getElementById('fecharTrabajador'),
+    ESTADO_INPUT = document.getElementById('estadoTrabajador'),
+    NIVEL_INPUT = document.getElementById('nivelTrabajador'),
+    CONTRA_INPUT = document.getElementById('contraTrabajador');
+
+const DATA_MODAL = new bootstrap.Modal('#dataModal'),
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    UPDATE_FORM = document.getElementById('updateFrom');
+
+// Constante para establecer el espacio de tabla y el espacio de agregar.
+const TABLE_DIV = document.getElementById('tabla');
+const ADD_DIV = document.getElementById('agregar');
+
+const forms = document.querySelectorAll('.needs-validation')
+
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
@@ -13,21 +36,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const openDetails = async (row) => {
-
-    const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
-        APELLIDOS_INPUT = document.getElementById('apellidosTrabajador'),
-    DUI_INPUT = document.getElementById('duiTrabajador'),
-    TEL_INPUT = document.getElementById('telefonoTrabajador'),
-    CORREO_INPUT = document.getElementById('correoTrabajador'),
-    FECHAN_INPUT = document.getElementById('fechanTrabajador'),
-    FECHAR_INPUT = document.getElementById('fecharTrabajador'),
-    ESTADO_INPUT = document.getElementById('estadoTrabajador'),
-    NIVEL_INPUT = document.getElementById('nivelTrabajador'),
-    CONTRA_INPUT = document.getElementById('contraTrabajador');
-
-    const DATA_MODAL = new bootstrap.Modal('#dataModal'),
-        MODAL_TITLE = document.getElementById('modalTitle'),
-        UPDATE_FORM = document.getElementById('updateFrom');
 
     // Se muestra la caja de diálogo con su título.
     DATA_MODAL.show();
@@ -54,15 +62,108 @@ const openDetails = async (row) => {
     NIVEL_INPUT.value = values[6];
     CONTRA_INPUT.value = '...';
     var id = values[0];
+
+    // Deshabilitar la edición de los campos de entrada
+    NOMBRES_INPUT.readOnly = true;
+    APELLIDOS_INPUT.readOnly = true;
+    DUI_INPUT.readOnly = true;
+    TEL_INPUT.readOnly = true;
+    CORREO_INPUT.readOnly = true;
+    FECHAN_INPUT.readOnly = true;
+    FECHAR_INPUT.readOnly = true;
+    ESTADO_INPUT.readOnly = true;
+    NIVEL_INPUT.readOnly = true;
+    CONTRA_INPUT.readOnly = true;
+
     MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
 
 }
 
+DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
+    // Después de que el modal se haya ocultado, cambiar el texto del botón a "Actualizar"
+    BOTON_ACTUALIZAR.textContent = "Actualizar";
+});
 
+const botonActualizar = async () => {
+    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
 
-// Constante para establecer el espacio de tabla y el espacio de agregar.
-const TABLE_DIV = document.getElementById('tabla');
-const ADD_DIV = document.getElementById('agregar');
+    if (textoBoton == 'Actualizar') {
+
+        // habilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = false;
+        APELLIDOS_INPUT.readOnly = false;
+        DUI_INPUT.readOnly = false;
+        TEL_INPUT.readOnly = false;
+        CORREO_INPUT.readOnly = false;
+        FECHAN_INPUT.readOnly = false;
+        ESTADO_INPUT.readOnly = false;
+        NIVEL_INPUT.readOnly = false;
+        CONTRA_INPUT.readOnly = false;
+
+        BOTON_ACTUALIZAR.textContent = "Guardar";
+    }
+    else if (textoBoton == 'Guardar') {
+        // Deshabilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        ESTADO_INPUT.readOnly = true;
+        CONTRA_INPUT.readOnly = true;
+        NIVEL_INPUT.readOnly = true;
+        await sweetAlert(1, 'Se ha actualizado correctamente', true);
+        DATA_MODAL.hide();
+    }
+}
+
+const botonCancelar = async () => {
+    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
+
+    if (textoBoton == 'Actualizar') {
+        // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+        const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
+        if (RESPONSE.isConfirmed) {
+            DATA_MODAL.hide();
+        }
+    }
+    else if (textoBoton == 'Guardar') {
+        // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+        const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardará');
+        if (RESPONSE.isConfirmed) {
+            DATA_MODAL.hide();
+        }
+    }
+
+}
+const returnBack = async () => {
+
+    // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Los datos ingresados no serán guardados');
+    if (RESPONSE.isConfirmed) {
+        DATA_MODAL.hide();
+        var primeraPestana = document.querySelector('#tabla-tab');
+        if (primeraPestana) {
+
+            document.getElementById('nombreInput').value = '';
+            document.getElementById('apellidosInput').value = '';
+            document.getElementById('duiInput').value = '';
+            document.getElementById('telefonoInput').value = '';
+            document.getElementById('correoInput').value = '';
+            document.getElementById('fechanInput').value = '';
+            document.getElementById('fecharInput').value = '';
+            document.getElementById('estadoInput').value = '';
+            document.getElementById('nivelInput').value = '';
+            document.getElementById('contraInput').value = '';       
+
+            primeraPestana.click();
+            // Se muestra el div de tabla
+            TABLE_DIV.classList.remove('d-none');
+            ADD_DIV.classList.add('d-none');
+        }
+    }
+}
 
 
 function showAddDiv(boton) {
@@ -100,92 +201,13 @@ function showTableDiv(boton) {
     boton.style.color = 'white';
 }
 
-const forms = document.querySelectorAll('.needs-validation')
-
 Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
         if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
         }
-
+        
         form.classList.add('was-validated')
     }, false)
 })
-
-function returnBack() {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: "btn btn-success",
-            cancelButton: "btn btn-danger"
-        },
-        buttonsStyling: false
-    });
-    swalWithBootstrapButtons.fire({
-        title: "¿Seguro que quieres cancelar?",
-        text: 'Los datos ingresados no serán guardados',
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Si",
-        cancelButtonText: "No",
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var inputs = document.querySelectorAll('.form-control');
-            inputs.forEach(function (I) {
-                I.value = '';
-            });
-
-            var primeraPestana = document.querySelector('#tabla-tab');
-            primeraPestana.click();
-            // Se muestra el div de tabla
-            TABLE_DIV.classList.remove('d-none');
-            ADD_DIV.classList.add('d-none');
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-
-        }
-    });
-}
-
-function HabiliDesaInput() {
-    var inputs = document.querySelectorAll('.editableInput');
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].disabled = !inputs[i].disabled;
-    }
-
-    /*if todos los input están habilitados, guardar
-    y cerrar alert*/
-
-}
-function Return() {
-    const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-            confirmButton: "btn btn-success",
-            cancelButton: "btn btn-danger"
-        },
-        buttonsStyling: false
-    });
-    swalWithBootstrapButtons.fire({
-        title: "¿Seguro que quieres regresar?",
-        text: 'Los datos ingresados no serán actualizados',
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Si",
-        cancelButtonText: "No",
-        reverseButtons: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const DATA_MODAL = new bootstrap.Modal('#dataModal');
-            DATA_MODAL.cancel(); 
-        } else if (
-            /* Read more about handling dismissals below */
-            result.dismiss === Swal.DismissReason.cancel
-        ) {
-
-        }
-    });
-}
-
