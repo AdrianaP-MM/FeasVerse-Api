@@ -18,6 +18,7 @@
     display: flex;
     flex-direction: column;
     /*background-color: aquamarine;*/
+    margin-bottom: 20px;
     background-color: white;
 }
 
@@ -122,7 +123,7 @@
     background-color: white;
 }
 
-#idPedidoNum{
+#idPedidoNum {
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
     border-top: 1px solid #0D4560;
@@ -133,25 +134,164 @@
 }
 
 #contenedorDeLasCardsDePedido {
-    max-height: 400px; /* ajusta la altura máxima según tus necesidades */
-    overflow-y: auto; /* agrega un scroll vertical si es necesario */
-    scrollbar-width:auto; /* para navegadores que no son WebKit */
-    scrollbar-color: #146A93 #1591CC; /* color del scrollbar */
+    max-height: 400px;
+    /* ajusta la altura máxima según tus necesidades */
+    overflow-y: auto;
+    /* agrega un scroll vertical si es necesario */
+    scrollbar-width: auto;
+    /* para navegadores que no son WebKit */
+    scrollbar-color: #146A93 #1591CC;
+    /* color del scrollbar */
 }
 
 #contenedorDeLasCardsDePedido::-webkit-scrollbar {
-    width: 12px; /* ancho del scrollbar */
+    width: 12px;
+    /* ancho del scrollbar */
 }
 
 #contenedorDeLasCardsDePedido::-webkit-scrollbar-thumb {
-    background-color: #146A93; /* color del thumb (barra deslizante) */
-    border-radius: 6px; /* esquinas redondeadas */
+    background-color: #146A93;
+    /* color del thumb (barra deslizante) */
+    border-radius: 6px;
+    /* esquinas redondeadas */
 }
 
 #contenedorDeLasCardsDePedido::-webkit-scrollbar-track {
-    background-color: #1591CC; /* color del track (fondo del scrollbar) */
+    background-color: #1591CC;
+    /* color del track (fondo del scrollbar) */
 }
 
 #contenedorDeLasCardsDePedido .accordion-item {
     margin-bottom: 10px;
+}
+
+.form-control{
+    height: 46px;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-icon,
+.clear-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.search-icon {
+    right: 35px;
+    /* Ajusta la posición del icono de búsqueda según tus necesidades */
+}
+
+.clear-icon {
+    right: 10px;
+    /* Ajusta la posición del icono de limpiar según tus necesidades */
+    display: none;
+}
+
+.custom-select {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 275%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-image: url('../../imagenes/icons/selector.svg');
+    /* Ruta de tu imagen */
+    background-position: right 10px center;
+    /* Ajusta la posición de la imagen */
+    background-repeat: no-repeat;
+    background-size: 30px 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
+}
+
+.col-lg-2.col-md-4 {
+    float: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerCards {
+    overflow-x: auto; /* Establece el desplazamiento horizontal automático */
+    white-space: nowrap; /* Evita el salto de línea dentro del contenedor */
+    display: flex; /* Utiliza un contenedor flexible para mantener los elementos en línea */
+}
+
+.containerCards::-webkit-scrollbar {
+    height: 12px; /* Ajusta el tamaño del scrollbar según tus preferencias */
+}
+
+.containerCards::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color del thumb (la barra deslizadora) */
+    border-radius: 6px; /* Ajusta el radio de la esquina del thumb */
+}
+
+.card-body{
+    max-width: 100%;
+}
+
+
+#nombreZapato{
+    border-bottom: 4px solid #0D4560;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+#color{
+    width: 25px;
+    height: 25px;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: red;
+}
+
+#tallaPedido{
+    background-color:#EDEDED;
+    padding: 5px;
+    border: 1px solid #5F5F5F;
+    border-radius: 10px;
+
+}
+
+#precioZapato{
+    left: 0;
+}
+
+#cantidadTotal{
+    right: 0;
+}
+
+
+
+
+
+/* Responsive */
+@media screen and (max-width: 767px) {
+    .custom-select select{
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .custom-select select{
+        margin-top: 20px;
+        width: 250%;
+    }
+}
+
+@media screen and (max-width: 372px) {
+    .custom-select select{
+        margin-top: 20px;
+        width: 100%;
+    }
 }

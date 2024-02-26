@@ -59,28 +59,31 @@
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="repartidor"
                         aria-labelledby="repartidor-tab">
-
                     </div>
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="pedidos"
                         aria-labelledby="pedidos-tab">
                         <div class="container mt-5">
-                            <div class="row">
-                                <div class="offset-lg-1 col-lg-10">
+                            <div class="row g-3">
+                                <div class="col-lg-12">
                                     <!-- Formulario de búsqueda -->
-                                    <form class="col-lg-12 col-md-5 mt-3 mb-4" id="searchForm">
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <input type="search" class="form-control" name="search"
-                                                    placeholder="Buscar" required>
-                                            </div>
-                                            <div class="col-3 justify-content-center align-items-end">
-                                                <button type="submit" class="btn btn-success bg-color-5blue">
-                                                    <i class="bi bi-search"></i>
-                                                </button>
-                                                <button type="reset" class="btn btn-secondary bg-color-4blue"
-                                                    onclick="fillTable()">
-                                                    <i class="bi bi-x-square-fill"></i>
-                                                </button>
+                                    <form class="ms-2 col-lg-10 col-md-10 col mt-3 mb-4" id="searchForm">
+                                        <div class="row col-lg-12">
+                                            <div class="col-lg-10 col-md-8">
+                                                <div class="search-container me-5">
+                                                    <input type="search" class="form-control" name="search" placeholder="Buscar" id="buscadorInputPedidos" required>
+                                                    <span class="search-icon"><i class="bi bi-search"></i></span>
+                                                    <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
+                                                </div>
+                                            </div>                                            
+                                            <div class="col-lg-2 col-md-4">
+                                                <div class="custom-select">
+                                                    <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Todos</option>
+                                                    <option value="1">Entregado</option>
+                                                    <option value="2">En camino</option>
+                                                    <option value="3">Pendiente</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>
@@ -98,220 +101,118 @@
                                                             Pedido N# 4322</p>
                                                     </div>
                                                     <div id="contenedorDelAcordionSoloHeaderAndBody">
-                                                        <div class="container mt-3" id="detallesDelPedido">
-                                                            <p>Hola pedido</p>
-                                                        </div>
-                                                        <!-- Detalles del Más Pedido (Body) -->
-                                                        <div id="collapseOne" class="accordion-collapse collapse show">
-                                                            <div class="accordion-body" id="detallesDeMasPedido">
-                                                                <strong>This is the first item's accordion
-                                                                    body.</strong> It is shown by
-                                                                default,
-                                                                until the collapse plugin adds the appropriate classes
-                                                                that we use to style
-                                                                each
-                                                                element. These classes control the overall appearance,
-                                                                as well as the
-                                                                showing
-                                                                and
-                                                                hiding via CSS transitions. You can modify any of this
-                                                                with custom CSS or
-                                                                overriding
-                                                                our default variables. It's also worth noting that just
-                                                                about any HTML can
-                                                                go
-                                                                within
-                                                                the <code>.accordion-body</code>, though the transition
-                                                                does limit overflow.
+                                                        <div class="col-lg-12 container mt-3 d-flex flex-nowrap" id="detallesDelPedido">
+                                                            <!--Comienzo de cards-->
+                                                            <div class="containerCards col-lg-4 d-flex flex-wrap">
+                                                                <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                                    <div class="card">
+                                                                        <img src="../../recursos/imagenes/sneakersExample.svg" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                                        <div class="card-body">
+                                                                            <div class="ContenedorNombreZapato col-lg-12">
+                                                                                <h4 class="titillium-web-semibold text-center" id="nombreZapato" >Nike Air Force 1'07</h4>
+                                                                            </div>
+                                                                            <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                                    <h6 class="titillium-web-extralight me-1">Color</h6>
+                                                                                    <div id="color" class="mb-2"></div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                                    <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                                    <div id="talla">
+                                                                                        <h6 id="tallaPedido">32</h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                                                <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: 12</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer bg-color-4blue">
+                                                                            <div class="d-flex contenedorPrecios col-lg-12">
+                                                                                <div class="col-lg-6 d-flex justify-content-start">
+                                                                                    <h6 class="titillium-web-bold text-white"  id="precioZapato">$120</h6>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex justify-content-end">
+                                                                                    <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $1,440</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Botón (Footer) -->
-                                                <div class="offset-lg-9 col-lg-3">
-                                                    <button id="accordionButton"
-                                                        class="accordion-button rounded-bottom rounded-top-0"
-                                                        type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">
-                                                        Ver más información
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Detalles del CARDS de Pedido -->
-                                        <div class="accordion mt-3 mb-4" id="detalleInformacion">
-                                            <div class="accordion-item">
-                                                <!--HEADER del accordion-->
-                                                <div id="detalleInformacionHeader" class="accordion-header"
-                                                    data-bs-parent="#detalleInformacion">
-                                                    <div class="col-lg-3">
-                                                        <p id="idPedidoNum"
-                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                            Pedido N# 4322</p>
-                                                    </div>
-                                                    <div id="contenedorDelAcordionSoloHeaderAndBody">
-                                                        <div class="container mt-3" id="detallesDelPedido">
-                                                            <p>Hola pedido</p>
-                                                        </div>
-                                                        <!-- Detalles del Más Pedido (Body) -->
-                                                        <div id="collapseOne" class="accordion-collapse collapse show">
-                                                            <div class="accordion-body" id="detallesDeMasPedido">
-                                                                <strong>This is the first item's accordion
-                                                                    body.</strong> It is shown by
-                                                                default,
-                                                                until the collapse plugin adds the appropriate classes
-                                                                that we use to style
-                                                                each
-                                                                element. These classes control the overall appearance,
-                                                                as well as the
-                                                                showing
-                                                                and
-                                                                hiding via CSS transitions. You can modify any of this
-                                                                with custom CSS or
-                                                                overriding
-                                                                our default variables. It's also worth noting that just
-                                                                about any HTML can
-                                                                go
-                                                                within
-                                                                the <code>.accordion-body</code>, though the transition
-                                                                does limit overflow.
+                                                            <div class="containerCards col-lg-4 d-flex flex-wrap m-1">
+                                                                <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                                    <div class="card">
+                                                                        <img src="../../recursos/imagenes/sneakersExample.svg" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                                        <div class="card-body">
+                                                                            <div class="ContenedorNombreZapato col-lg-12">
+                                                                                <h4 class="titillium-web-semibold text-center" id="nombreZapato" >Nike Air Force 1'07</h4>
+                                                                            </div>
+                                                                            <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                                    <h6 class="titillium-web-extralight me-1">Color</h6>
+                                                                                    <div id="color" class="mb-2"></div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                                    <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                                    <div id="talla">
+                                                                                        <h6 id="tallaPedido">32</h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                                                <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: 12</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer bg-color-4blue">
+                                                                            <div class="d-flex contenedorPrecios col-lg-12">
+                                                                                <div class="col-lg-6 d-flex justify-content-start">
+                                                                                    <h6 class="titillium-web-bold text-white"  id="precioZapato">$120</h6>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex justify-content-end">
+                                                                                    <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $1,440</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div><div class="containerCards col-lg-4 d-flex flex-wrap">
+                                                                <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                                    <div class="card">
+                                                                        <img src="../../recursos/imagenes/sneakersExample.svg" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                                        <div class="card-body">
+                                                                            <div class="ContenedorNombreZapato col-lg-12">
+                                                                                <h4 class="titillium-web-semibold text-center" id="nombreZapato" >Nike Air Force 1'07</h4>
+                                                                            </div>
+                                                                            <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                                    <h6 class="titillium-web-extralight me-1">Color</h6>
+                                                                                    <div id="color" class="mb-2"></div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                                    <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                                    <div id="talla">
+                                                                                        <h6 id="tallaPedido">32</h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                                                <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: 12</h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer bg-color-4blue">
+                                                                            <div class="d-flex contenedorPrecios col-lg-12">
+                                                                                <div class="col-lg-6 d-flex justify-content-start">
+                                                                                    <h6 class="titillium-web-bold text-white"  id="precioZapato">$120</h6>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex justify-content-end">
+                                                                                    <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $1,440</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Botón (Footer) -->
-                                                <div class="offset-lg-9 col-lg-3">
-                                                    <button id="accordionButton"
-                                                        class="accordion-button rounded-bottom rounded-top-0"
-                                                        type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">
-                                                        Ver más información
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Detalles del CARDS de Pedido -->
-                                        <div class="accordion mt-3 mb-4" id="detalleInformacion">
-                                            <div class="accordion-item">
-                                                <!--HEADER del accordion-->
-                                                <div id="detalleInformacionHeader" class="accordion-header"
-                                                    data-bs-parent="#detalleInformacion">
-                                                    <div class="col-lg-3">
-                                                        <p id="idPedidoNum"
-                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                            Pedido N# 4322</p>
-                                                    </div>
-                                                    <div id="contenedorDelAcordionSoloHeaderAndBody">
-                                                        <div class="container mt-3" id="detallesDelPedido">
-                                                            <p>Hola pedido</p>
-                                                        </div>
-                                                        <!-- Detalles del Más Pedido (Body) -->
-                                                        <div id="collapseOne" class="accordion-collapse collapse show">
-                                                            <div class="accordion-body" id="detallesDeMasPedido">
-                                                                <strong>This is the first item's accordion
-                                                                    body.</strong> It is shown by
-                                                                default,
-                                                                until the collapse plugin adds the appropriate classes
-                                                                that we use to style
-                                                                each
-                                                                element. These classes control the overall appearance,
-                                                                as well as the
-                                                                showing
-                                                                and
-                                                                hiding via CSS transitions. You can modify any of this
-                                                                with custom CSS or
-                                                                overriding
-                                                                our default variables. It's also worth noting that just
-                                                                about any HTML can
-                                                                go
-                                                                within
-                                                                the <code>.accordion-body</code>, though the transition
-                                                                does limit overflow.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Botón (Footer) -->
-                                                <div class="offset-lg-9 col-lg-3">
-                                                    <button id="accordionButton"
-                                                        class="accordion-button rounded-bottom rounded-top-0"
-                                                        type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">
-                                                        Ver más información
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Detalles del CARDS de Pedido -->
-                                        <div class="accordion mt-3 mb-4" id="detalleInformacion">
-                                            <div class="accordion-item">
-                                                <!--HEADER del accordion-->
-                                                <div id="detalleInformacionHeader" class="accordion-header"
-                                                    data-bs-parent="#detalleInformacion">
-                                                    <div class="col-lg-3">
-                                                        <p id="idPedidoNum"
-                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                            Pedido N# 4322</p>
-                                                    </div>
-                                                    <div id="contenedorDelAcordionSoloHeaderAndBody">
-                                                        <div class="container mt-3" id="detallesDelPedido">
-                                                            <p>Hola pedido</p>
-                                                        </div>
-                                                        <!-- Detalles del Más Pedido (Body) -->
-                                                        <div id="collapseOne" class="accordion-collapse collapse show">
-                                                            <div class="accordion-body" id="detallesDeMasPedido">
-                                                                <strong>This is the first item's accordion
-                                                                    body.</strong> It is shown by
-                                                                default,
-                                                                until the collapse plugin adds the appropriate classes
-                                                                that we use to style
-                                                                each
-                                                                element. These classes control the overall appearance,
-                                                                as well as the
-                                                                showing
-                                                                and
-                                                                hiding via CSS transitions. You can modify any of this
-                                                                with custom CSS or
-                                                                overriding
-                                                                our default variables. It's also worth noting that just
-                                                                about any HTML can
-                                                                go
-                                                                within
-                                                                the <code>.accordion-body</code>, though the transition
-                                                                does limit overflow.
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- Botón (Footer) -->
-                                                <div class="offset-lg-9 col-lg-3">
-                                                    <button id="accordionButton"
-                                                        class="accordion-button rounded-bottom rounded-top-0"
-                                                        type="button" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseOne" aria-expanded="true"
-                                                        aria-controls="collapseOne">
-                                                        Ver más información
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Detalles del CARDS de Pedido -->
-                                        <div class="accordion mt-3 mb-4" id="detalleInformacion">
-                                            <div class="accordion-item">
-                                                <!--HEADER del accordion-->
-                                                <div id="detalleInformacionHeader" class="accordion-header"
-                                                    data-bs-parent="#detalleInformacion">
-                                                    <div class="col-lg-3">
-                                                        <p id="idPedidoNum"
-                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                            Pedido N# 4322</p>
-                                                    </div>
-                                                    <div id="contenedorDelAcordionSoloHeaderAndBody">
-                                                        <div class="container mt-3" id="detallesDelPedido">
-                                                            <p>Hola pedido</p>
                                                         </div>
                                                         <!-- Detalles del Más Pedido (Body) -->
                                                         <div id="collapseOne" class="accordion-collapse collapse show">
