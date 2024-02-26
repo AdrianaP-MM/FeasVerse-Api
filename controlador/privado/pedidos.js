@@ -53,3 +53,32 @@ function ShowPedidos(boton) {
     boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
 }
+
+// Función para mostrar/ocultar el icono de limpiar según si hay texto en el input
+document.getElementById('buscadorInputPedidos').addEventListener('input', function() {
+    var searchIcon = document.querySelector('.search-icon');
+    var clearIcon = document.querySelector('.clear-icon');
+    
+    if (this.value.length > 0) {
+        searchIcon.style.display = 'none';
+        clearIcon.style.display = 'block';
+    } else {
+        searchIcon.style.display = 'block';
+        clearIcon.style.display = 'none';
+    }
+});
+
+// Función para limpiar el input y ocultar el icono de limpiar
+function clearSearch() {
+    var input = document.getElementById('buscadorInputPedidos');
+    var searchIcon = document.querySelector('.search-icon');
+    var clearIcon = document.querySelector('.clear-icon');
+    
+    input.value = '';
+    input.focus();
+    
+    searchIcon.style.display = 'block';
+    clearIcon.style.display = 'none';
+}
+
+
