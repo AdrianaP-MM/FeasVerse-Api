@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- TODO Título del documento -->
+    <title>FeasVerse Usuario</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="author" content="FeasVerseCompany">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- *IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <!-- TODO Llamada al icono de la página web -->
+    <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
+    <!-- *Llamada a las hojas de estilos del framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- *Llamada a las hojas de estilos propios de css -->
+    <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
+    <link href="/recursos/estilos/privado/plantilla.css" rel="stylesheet">
+    <link href="../../recursos/estilos/privado/detalles_usuario.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header"></header>
+    <div id="slide"></div>
+    <main id="mainContent">
+        <div class="ContenedorT" id="ContenedorMain">
+            <div class="ContenedorTitulo position-relative mb-5">
+                <h2 class="titillium-web-semibold textTitulo"> Cuenta de usuario </h2>
+                <div class="linea1"></div>
+            </div>
+            <a>
+                <div class="contenedor d-flex flex-row justify-content-around flex-wrap shadow"
+                    onclick="showFormUser()">
+                    <img src="/recursos/imagenes/icons/UserIconG.svg" width="100px" height="100px" class="me-5">
+                    <div class="d-flex flex-column mt-3">
+                        <div class="ContenedorTitulo2 position-relative">
+                            <h3 class="titillium-web-regular "> Tu perfil </h3>
+                            <div class="linea1"></div>
+                        </div>
+                        <p class="titillium-web-regula mt-2">Aparatado para visualizar tu información y modificarla en
+                            caso un dato este <br>
+                            incorrecto o si requiere una actualización</p>
+                    </div>
+                </div>
+            </a>
+            <a href="/vistas/privado/index.html">
+                <div class="contenedor d-flex flex-column justify-content-center flex-wrap shadow mt-4 ms-auto">
+                    <div class="ContenedorTitulo position-relative">
+                        <h5 class="titillium-web-regular"> Cerrar sesión </h5>
+                        <div class="linea1"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="d-none" id="formDiv">
+            <h1>Formulario de usuario</h1>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+
+    <script src="script.js"></script>
+    <!-- *Llamada a las hojas de estilos del framework e iconos -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <!-- *Llamada al controlador de la página web -->
+    <script type="text/javascript" src="../../controlador/utilidades(plantillas)/privado.js"></script>
+    <!-- *Llamada al controlador del sitio privado -->
+    <script type="text/javascript" src="../../controlador/privado/detalles_usuario.js"></script>
+</body>
+
+</html>
