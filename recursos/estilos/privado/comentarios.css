@@ -1,6 +1,5 @@
-*
-*::before,
-*::after{
+* *::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,7 +41,7 @@
     margin-top: 10px;
 }
 
-html{
+html {
     font-size: 16px;
     min-height: 100%;
 }
@@ -72,33 +71,33 @@ body {
     left: -10px;
 }
 
-.comentario:not(:first-child){
+.comentario:not(:first-child) {
     margin-left: 3rem;
     margin-top: 1rem;
 }
 
-.ComentarioC{
+.ComentarioC {
     padding: 20px;
     padding-left: 10px;
     background-color: whitesmoke;
     border: 1px solid black;
     border-radius: 5px;
     min-width: 100%;
-    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
     transition-property: transform;
     transition-duration: 0.5s;
     transition-timing-function: ease;
     transition-delay: 0s;
-    
+
 }
 
-.ComentarioC:hover{
+.ComentarioC:hover {
     transform: translateY(-10px);
 }
 
 .comentarioT {
     color: #1591CC;
-    
+
 }
 
 .rectanguloP {
@@ -128,7 +127,7 @@ body {
     width: 80%;
     height: 600px;
     background-color: #D9D9D9;
-    border-radius: 50px;    
+    border-radius: 50px;
 }
 
 .InfoC {
@@ -138,40 +137,40 @@ body {
     font-size: 40px;
 }
 
-.C1{
+.C1 {
     color: #000000;
     padding-top: 30px;
     padding-left: 35px;
     font-size: 25px;
 }
 
-.C2{
+.C2 {
     color: #000000;
     padding-top: 5px;
     padding-left: 35px;
     font-size: 25px;
 }
 
-.C3{
+.C3 {
     color: #000000;
     padding-top: 5px;
     padding-left: 35px;
     font-size: 25px;
 }
 
-.ComentarioDetalle{
+.ComentarioDetalle {
     position: absolute;
     padding: 100px;
     padding-left: 10px;
     padding-top: 10px;
     background-color: whitesmoke;
     border-radius: 10px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.1);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
     height: 40%;
     width: 95%;
     top: 73%;
     right: 50%;
-    transform: translate(50%, -50%);   
+    transform: translate(50%, -50%);
 }
 
 .CT1 {
@@ -181,10 +180,70 @@ body {
     font-size: 30px;
 }
 
-.Comentario{
+.Comentario {
     color: black;
     font-size: 30px;
     padding-top: 50px;
     padding-left: 5px;
     text-align: center;
+}
+
+.DetalleProducto {
+    position: absolute;
+    padding: 100px;
+    padding-left: 110px;
+    padding-top: 110px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+    width: 23%;
+    height: 45%;
+    top: 25%;
+    right: 15%;
+    transform: translate(50%, -50%);
+}
+
+.PD {
+    color: #0D4560;
+    position: absolute;
+    top: 3%;
+    right: 29%;
+    font-size: 23px;
+}
+
+.zapatoC {
+    position: relative;
+    bottom: 170%;
+    right: 60%;
+}
+
+.DC{
+    position: relative;
+    width: 150px;
+    right: 75%;
+    font-size: 22px;
+    bottom: 170%;
+}
+
+.DC1{
+    position: relative;
+    width: 150px;
+    right: 75%;
+    font-size: 17px;
+    bottom: 200%;
+}
+
+.DC2{
+    position: relative;
+    width: 150px;
+    right: 75%;
+    font-size: 17px;
+    bottom: 220%;
+}
+
+.DC3{
+    position: relative;
+    width: 150px;
+    right: 75%;
+    font-size: 17px;
+    bottom: 245%;
 }
