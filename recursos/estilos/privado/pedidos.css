@@ -103,6 +103,21 @@
     box-shadow: none;
 }
 
+#infoDeRepartidor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 300px;
+}
+
+#infoDeRepartidor img {
+    max-width: 100%; /* Ajusta el tamaño máximo de la imagen al 100% del contenedor */
+}
+
+
+
+
 #contenedorDelAcordionSoloHeaderAndBody {
     border-top: 1px solid #0D4560;
     border-left: 1px solid #0D4560;
@@ -272,12 +287,24 @@
 }
 
 
-
+#botonDePedido{
+    height: 70px;
+}
 
 
 /* Responsive */
+@media screen and (max-width: 991px) {
+    .skew-div{
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .custom-select select{
+        margin-top: 20px;
+    }
+
+    #containerTotales{
         margin-top: 20px;
     }
 }
@@ -286,6 +313,10 @@
     .custom-select select{
         margin-top: 20px;
         width: 250%;
+    }
+
+    #containerTotales{
+        margin-top: 20px;
     }
 }
 

@@ -102,6 +102,22 @@
                                                     </div>
                                                     <div id="contenedorDelAcordionSoloHeaderAndBody">
                                                         <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center" id="detallesDelPedido">
+                                                            <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                                <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">Pendiente</h6>
+                                                            </div>
+                                                            <!--Info del repartidor y cliente-->
+                                                            <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor">
+                                                                <div class="col-lg-3">
+                                                                    <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg" class="img-fluid" alt="Icono de usuario">
+                                                                </div>
+                                                                <div class="col-lg-9">
+                                                                    <h6 class="titillium-web" id="nombreRepartidor"><b>Nombre del repartidor:</b> Fernando Gomez</h6>
+                                                                    <h6 class="titillium-web" id="nombreCliente"><b>Nombre del cliente:</b> Animalito  Pollo Campero de Campero</h6>
+                                                                    <h6 class="titillium-web" id="correoCliente"><b>Correo del cliente:</b> PolloCampero@Pollo.com.sv</h6>
+                                                                    <h6 class="titillium-web" id="telefonoCliente"><b>Teléfono del cliente:</b> 6543-4354</h6>
+                                                                    <h6 class="titillium-web" id="direccionCliente"><b>Dirección del cliente:</b> Pollo campero S.V</h6>
+                                                                </div>
+                                                            </div>
                                                             <!--Comienzo de cards-->
                                                             <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
                                                                 <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
@@ -215,18 +231,18 @@
                                                                 </div>
                                                             </div>
                                                         <!-- Detalles del Más Pedido (Body) -->
-                                                        <div id="collapseOne" class="accordion-collapse collapse show">
+                                                        <div id="collapseOne" class="accordion-collapse collapse show col-lg-12">
                                                             <div class="accordion-body" id="detallesDeMasPedido">
                                                                 <div class="col-lg-12">
                                                                     <div class="container">
-                                                                        <div class="row">
-                                                                            <div class="col-lg-6">
-                                                                                <button type="button" class="btn btn-primary shadow text18 titillium-web-regular bg-color-5blue">Iniciar entrega</button>
+                                                                        <div class="row col-lg-12">
+                                                                            <div class="col-lg-6 d-flex justify-content-center">
+                                                                                <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido">Iniciar entrega</button>
                                                                             </div>
-                                                                            <div class="col-lg-6">
-                                                                                <h6 class="titillium-web-extralight">Total del pedido: $4,310</h6>
-                                                                                <h6 class="titillium-web-extralight">Envío: $10</h6>
-                                                                                <h6 class="titillium-web-extralight">Total a cobrar: $4,320</h6>
+                                                                            <div class="col-lg-6" id="containerTotales">
+                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalPediod">Total del pedido: $4,310</h6>
+                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end" id="envio">Envío: $10</h6>
+                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalCobrar">Total a cobrar: $4,320</h6>
                                                                             </div>
                                                                         </div>
                                                                     </div>                                                                                                                                                                                                    

@@ -17,6 +17,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         PEDIDOS_DIV.classList.remove('d-none');
         REPARTIDOR_DIV.classList.add('d-none');
     }
+
+    // Selecciona el botón de accordion
+    const accordionButton = document.getElementById('accordionButton');
+
+    // Añade el evento click al botón
+    accordionButton.addEventListener('click', function () {
+        // Toggle para cambiar entre expandir y contraer
+        const isExpanded = accordionButton.getAttribute('aria-expanded') === 'true';
+
+        // Cambiar la etiqueta de d-none en el contenedor del cuerpo
+        const detallesDeMasPedido = document.getElementById('infoDeRepartidor');
+        // Aquí puedes agregar más lógica según si está expandiendo o contrayendo
+        if (isExpanded) {
+            detallesDeMasPedido.classList.remove('d-none');
+        } else {
+            detallesDeMasPedido.classList.add('d-none');
+        }
+
+        // Cambiar el texto del botón según si está expandiendo o contrayendo
+        accordionButton.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    });
+
+    accordionButton.click();
 });
 
 function ShowRepartidor(boton) {
@@ -55,10 +78,10 @@ function ShowPedidos(boton) {
 }
 
 // Función para mostrar/ocultar el icono de limpiar según si hay texto en el input
-document.getElementById('buscadorInputPedidos').addEventListener('input', function() {
+document.getElementById('buscadorInputPedidos').addEventListener('input', function () {
     var searchIcon = document.querySelector('.search-icon');
     var clearIcon = document.querySelector('.clear-icon');
-    
+
     if (this.value.length > 0) {
         searchIcon.style.display = 'none';
         clearIcon.style.display = 'block';
@@ -73,10 +96,10 @@ function clearSearch() {
     var input = document.getElementById('buscadorInputPedidos');
     var searchIcon = document.querySelector('.search-icon');
     var clearIcon = document.querySelector('.clear-icon');
-    
+
     input.value = '';
     input.focus();
-    
+
     searchIcon.style.display = 'block';
     clearIcon.style.display = 'none';
 }
