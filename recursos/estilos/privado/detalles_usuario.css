@@ -1,7 +1,7 @@
 .ContenedorT {
     min-height: 100%;
     max-height: 100%;
-    width:fit-content;
+    width: fit-content;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -9,13 +9,15 @@
     padding: 30px;
 }
 
-.ContenedorTitulo,.ContenedorTitulo2 {
+.ContenedorTitulo,
+.ContenedorTitulo2 {
     max-height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
 }
-.ContenedorTitulo{
+
+.ContenedorTitulo {
     align-self: center;
 }
 
@@ -28,12 +30,12 @@
     border-radius: 10px;
     margin-top: 10px;
 }
+
 .textTitulo {
     color: #146A93;
 }
 
-.contenedor
-{
+.contenedor {
     max-width: fit-content;
     min-width: fit-content;
     padding: 20px;
@@ -45,11 +47,81 @@
     transition-timing-function: ease;
     transition-delay: 0s;
 }
-.contenedor:hover{
+
+.contenedor:hover {
     transform: translateY(-10px);
 }
 
-a{
+a {
     text-decoration: none;
+    color: black;
+}
+
+#formDiv {
+    display: flex;
+    flex: 1;
+}
+
+.contenedorTotalForm {
+    width: 100%;
+    height: 100%;
+}
+
+.linea1 {
+    width: 100%;
+    height: 2px;
+    background-color: #146A93;
+    position: absolute;
+    bottom: 0;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.contenedorCorreo {
+    max-width: fit-content;
+}
+
+.contenedorCabecera {
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.contenedorForm {
+    width: 60vw;
+    height: 100%;
+
+}
+
+.form1 {
+    padding-bottom: 100px;
+}
+
+.form-control {
+    border: #1A89BD solid 1px;
+}
+
+.contenedorBotones2 {
+    width: 100%;
+    min-height: fit-content;
+    max-height: fit-content;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn3, .btn2 {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #146A93;
+    border: solid 0px;
+}
+.btn2
+{
+    background-color: white;
     color: black;
 }

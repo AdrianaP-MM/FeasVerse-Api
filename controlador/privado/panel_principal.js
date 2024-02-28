@@ -18,4 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     greetingContainer.textContent = `${greeting}, bienvenida/o`;
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    graficoBarrasVentas();
 });
+
+const graficoBarrasVentas = async () => {
+    // Se declaran los arreglos para guardar los datos a graficar.
+    let Meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    let Ventas = [80,150,45,30,50,80,30,100,95,95,50,70];
+    
+    // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+    barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
+
+}

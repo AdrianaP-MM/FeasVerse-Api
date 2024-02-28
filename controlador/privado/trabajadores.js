@@ -165,7 +165,6 @@ const returnBack = async () => {
     }
 }
 
-
 function showAddDiv(boton) {
     // Se muestra el div para agregar trabajador.
     ADD_DIV.classList.remove('d-none');
