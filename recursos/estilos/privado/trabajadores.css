@@ -123,12 +123,6 @@
     justify-content: center;
 }
 
-.btn2 {
-    padding-left: 20px;
-    padding-right: 20px;
-    background-color: #146A93;
-}
-
 #tabla-tab {
     padding-left: 20px;
     padding-right: 20px;
@@ -180,12 +174,19 @@
     border: #146A93 solid 1px;
 }
 
-.btn3 {
-    padding-left: 30px;
-    padding-right: 30px;
+.btn3, .btn2 {
+    padding-left: 70px;
+    padding-right: 70px;
     padding-top: 10px;
     padding-bottom: 10px;
     background-color: #146A93;
+    border: solid 0px;
+}
+.btn2
+{
+    background-color: white;
+    border: #8F8F8F 1px solid;
+    color: black;
 }
 
 .form1 {
@@ -222,31 +223,6 @@
 }
 
 /*PopUp de detalles*/
-.contenedorDetallesTrabajador
-{
-    width: 100%;
-    height: 100%;
-    background-color: #1A89BD;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: left;
-    color: black;
-
-}
-.contenedorFormD
-{
-    width: 90%;
-    height: fit-content;
-    background-color: white;
-    padding: 65px;
-    padding-top: 40px;
-    margin-bottom: 40px;
-    border-radius: 10px;
-}
-
 .thead {
     border-top:#0D4560 solid 0px;
 }
