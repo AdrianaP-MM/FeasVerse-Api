@@ -1,9 +1,8 @@
-.ContenedorT
-{
+.ContenedorT {
     min-height: 100%;
     max-height: 100%;
     width: 100%;
- /*background-color: black;*/
+    /*background-color: black;*/
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -14,24 +13,25 @@
     padding-left: 50px;
     padding-right: 50px;
 }
-.ItemsContenedorMain
-{
-    min-height: 100%;
-    max-height: 100%;
+
+.ItemsContenedorMain {
+    min-height: 70vh;
+    max-height: 70vh;
     flex: 1;
-    width: fit-content;
+    min-width: 55vw;
+    max-width: 55vw;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-   /* background-color: aquamarine;*/
+    /* background-color: aquamarine;*/
     padding: 40px;
 }
 
-.ContenedorSaludo,.ContenedorGrafica
-{
-    height: 100%;
-    width: 100%;
-/* background-color: gray;*/
+.ContenedorSaludo,
+.ContenedorGrafica {
+    min-height: 100%;
+    min-width: 100%;
+    /* background-color: gray;*/
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -39,19 +39,22 @@
 
 /**Clase donde se pondra la animacion */
 .ContenedorT {
-    animation: transitionIn 1s; 
+    animation: transitionIn 1s;
 }
+
 .ContenedorT {
-    animation: transitionIn 1s; 
+    animation: transitionIn 1s;
 }
+
 /**Animacion de entrada a la pagina */
 @keyframes transitionIn {
     from {
-     opacity: 0;
-     transform: rotateX(-10deg);
+        opacity: 0;
+        transform: rotateX(-10deg);
     }
-    to  {
-     opacity: 1;
-     transform: rotateX(0);
+
+    to {
+        opacity: 1;
+        transform: rotateX(0);
     }
 }
