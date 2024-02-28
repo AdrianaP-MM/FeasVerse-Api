@@ -31,7 +31,7 @@ const confirmAction = (title, message) => {
 *   Retorno: ninguno.
 */
 const sweetAlert = async (type, text, timer) => {
-    let title, icon; 
+    let title, icon;
     // Se compara el tipo de mensaje a mostrar.
     switch (type) {
         case 1:
@@ -60,13 +60,13 @@ const sweetAlert = async (type, text, timer) => {
         closeOnEsc: false,
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#0D4560'
-        }
-    
+    }
+
     // Se verifica el uso del temporizador.
     options.timer = timer ? 3000 : null;
 
     // Se muestra el mensaje.
-    await Swal.fire(options); 
+    await Swal.fire(options);
 };
 
 /*
@@ -89,7 +89,7 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
             datasets: [{
                 label: legend,
                 data: yAxis,
-                
+
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             }]
@@ -106,4 +106,20 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
             }
         }
     });
+}
+
+/*
+*   Función asíncrona para cerrar la sesión del usuario.
+*   Parámetros: ninguno.
+*   Retorno: ninguno.
+*/
+const logOut = async () => {
+    // Se muestra un mensaje de confirmación y se captura la respuesta en una constante.
+    const RESPONSE = await confirmAction('¿Está seguro de cerrar la sesión?', 'Será regresado al inicio de sesión');
+    // Se verifica la respuesta del mensaje.
+    if (RESPONSE.isConfirmed) {
+        location.href = '/vistas/privado/index.html';
+    } else {
+        DATA_MODAL.hide();
+    }
 }
