@@ -1,3 +1,4 @@
+/* Estilos para el contenedor principal */
 .ContenedorT {
     min-height: 100%;
     max-height: 100%;
@@ -11,17 +12,17 @@
     padding-bottom: 30px;
 }
 
-
+/* Estilos para un contenedor de título */
 .ContenedorTitulo {
     max-height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
-    /*background-color: aquamarine;*/
     margin-bottom: 20px;
     background-color: white;
 }
 
+/* Estilos para un contenedor de pestañas */
 .ContenedorPestaña {
     height: 100%;
     flex: 1;
@@ -30,6 +31,7 @@
     width: 100%;
 }
 
+/* Estilos para la barra de navegación */
 .nav-item {
     background-color: #146A93;
     border-top-left-radius: 10px;
@@ -38,12 +40,14 @@
     color: white;
 }
 
+/* Estilos para los enlaces de la barra de navegación */
 .nav-link {
     text-decoration: none;
     color: white;
     font-size: 18px;
 }
 
+/* Estilos para el contenido principal */
 .contenidoP {
     background-color: #1591CC;
     height: 100%;
@@ -53,6 +57,7 @@
     flex-direction: column;
 }
 
+/* Estilos para un tab control */
 #myTabControl {
     width: 100%;
     height: 100%;
@@ -60,6 +65,7 @@
     max-height: 100%;
 }
 
+/* Estilos para un rectángulo con bordes redondeados */
 .rectangle {
     position: absolute;
     left: 0;
@@ -70,6 +76,7 @@
     border-bottom-right-radius: 50px;
 }
 
+/* Estilos para una línea horizontal */
 .linea1 {
     width: 100%;
     height: 2px;
@@ -80,29 +87,35 @@
     margin-top: 10px;
 }
 
+/* Estilos para un texto con color específico */
 .textP {
     color: #146A93;
 }
 
+/* Estilos para un panel de pestaña */
 .tab-pane1 {
     width: 100%;
     min-height: 100%;
     max-height: 100%;
 }
 
+/* Estilos específicos para un detalle de información dentro de un acordeón */
 #detalleInformacion .accordion-item {
     background-color: transparent;
     border: none;
 }
 
+/* Estilos generales para un acordeón */
 .accordion-item {
     border: none;
 }
 
+/* Estilos para un botón de acordeón enfocado */
 .accordion-button:focus {
     box-shadow: none;
 }
 
+/* Estilos para la información de un repartidor */
 #infoDeRepartidor {
     display: flex;
     flex-direction: row;
@@ -111,13 +124,12 @@
     margin-left: 300px;
 }
 
+/* Estilos para la imagen de un repartidor */
 #infoDeRepartidor img {
     max-width: 100%; /* Ajusta el tamaño máximo de la imagen al 100% del contenedor */
 }
 
-
-
-
+/* Estilos para un contenedor de acordeón con solo encabezado y cuerpo */
 #contenedorDelAcordionSoloHeaderAndBody {
     border-top: 1px solid #0D4560;
     border-left: 1px solid #0D4560;
@@ -128,6 +140,7 @@
     z-index: 0;
 }
 
+/* Estilos para un botón de acordeón */
 .accordion-button {
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
@@ -138,6 +151,7 @@
     background-color: white;
 }
 
+/* Estilos el div de numero de pedido */
 #idPedidoNum {
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
@@ -148,22 +162,23 @@
     background-color: white;
 }
 
+/* Estilos para un contenedor de tarjetas de pedido con scroll */
 #contenedorDeLasCardsDePedido {
     max-height: 400px;
-    /* ajusta la altura máxima según tus necesidades */
     overflow-y: auto;
-    /* agrega un scroll vertical si es necesario */
     scrollbar-width: auto;
     /* para navegadores que no son WebKit */
     scrollbar-color: #146A93 #1591CC;
     /* color del scrollbar */
 }
 
+/* Estilos para el scrollbar del contenedor de tarjetas de pedido en navegadores WebKit */
 #contenedorDeLasCardsDePedido::-webkit-scrollbar {
     width: 12px;
     /* ancho del scrollbar */
 }
 
+/* Estilos para el thumb (barra deslizante) del scrollbar en navegadores WebKit */
 #contenedorDeLasCardsDePedido::-webkit-scrollbar-thumb {
     background-color: #146A93;
     /* color del thumb (barra deslizante) */
@@ -171,23 +186,28 @@
     /* esquinas redondeadas */
 }
 
+/* Estilos para el track (fondo del scrollbar) del scrollbar en navegadores WebKit */
 #contenedorDeLasCardsDePedido::-webkit-scrollbar-track {
     background-color: #1591CC;
     /* color del track (fondo del scrollbar) */
 }
 
+/* Estilos para los ítems de acordeón dentro del contenedor de tarjetas de pedido */
 #contenedorDeLasCardsDePedido .accordion-item {
     margin-bottom: 10px;
 }
 
+/* Estilos para un input de formulario */
 .form-control{
     height: 46px;
 }
 
+/* Estilos para un contenedor de búsqueda */
 .search-container {
     position: relative;
 }
 
+/* Estilos para el ícono de búsqueda y limpieza en el contenedor de búsqueda */
 .search-icon,
 .clear-icon {
     position: absolute;
@@ -196,22 +216,26 @@
     cursor: pointer;
 }
 
+/* Estilos específicos para el ícono de búsqueda */
 .search-icon {
     right: 35px;
     /* Ajusta la posición del icono de búsqueda según tus necesidades */
 }
 
+/* Estilos específicos para el ícono de limpieza */
 .clear-icon {
     right: 10px;
     /* Ajusta la posición del icono de limpiar según tus necesidades */
     display: none;
 }
 
+/* Estilos para un select personalizado */
 .custom-select {
     position: relative;
     display: inline-block;
 }
 
+/* Estilos para el select de la imagen */
 .custom-select select {
     appearance: none;
     -webkit-appearance: none;
@@ -229,38 +253,44 @@
     background-size: 30px 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
 }
 
+/* Estilos específicos para el contenedor de tarjetas de pedido en dispositivos más grandes */
 .col-lg-2.col-md-4 {
     float: left;
     justify-content: center;
     align-items: center;
 }
 
+/* Estilos para un contenedor de tarjetas flexibles */
 .containerCards {
     overflow-x: auto; /* Establece el desplazamiento horizontal automático */
     white-space: nowrap; /* Evita el salto de línea dentro del contenedor */
     display: flex; /* Utiliza un contenedor flexible para mantener los elementos en línea */
 }
 
+/* Estilos para el scrollbar del contenedor de tarjetas flexibles en navegadores WebKit */
 .containerCards::-webkit-scrollbar {
     height: 12px; /* Ajusta el tamaño del scrollbar según tus preferencias */
 }
 
+/* Estilos para el thumb del scrollbar del contenedor de tarjetas flexibles en navegadores WebKit */
 .containerCards::-webkit-scrollbar-thumb {
     background-color: #888; /* Color del thumb (la barra deslizadora) */
     border-radius: 6px; /* Ajusta el radio de la esquina del thumb */
 }
 
+/* Estilos para el cuerpo de una tarjeta */
 .card-body{
     max-width: 100%;
 }
 
-
+/* Estilos para el nombre de un zapato */
 #nombreZapato{
     border-bottom: 4px solid #0D4560;
     max-width: 100%;
     border-radius: 10px;
 }
 
+/* Estilos para el color de un zapato */
 #color{
     width: 25px;
     height: 25px;
@@ -270,6 +300,7 @@
     background-color: red;
 }
 
+/* Estilos para la talla de un pedido */
 #tallaPedido{
     background-color:#EDEDED;
     padding: 5px;
@@ -278,27 +309,31 @@
 
 }
 
+/* Estilos para el precio de un zapato */
 #precioZapato{
     left: 0;
 }
 
+/* Estilos para la cantidad total de un pedido */
 #cantidadTotal{
     right: 0;
 }
 
-
+/* Estilos para un botón de pedido */
 #botonDePedido{
     height: 70px;
 }
 
 
 /* Responsive */
+/* Estilos para dispositivos con pantalla menor o igual a 991px */
 @media screen and (max-width: 991px) {
     .skew-div{
         width: 100%;
     }
 }
 
+/* Estilos para dispositivos con pantalla menor o igual a 767px */
 @media screen and (max-width: 767px) {
     .custom-select select{
         margin-top: 20px;
@@ -309,6 +344,7 @@
     }
 }
 
+/* Estilos para dispositivos con pantalla menor o igual a 480px */
 @media screen and (max-width: 480px) {
     .custom-select select{
         margin-top: 20px;
@@ -320,6 +356,7 @@
     }
 }
 
+/* Estilos para dispositivos con pantalla menor o igual a 372px */
 @media screen and (max-width: 372px) {
     .custom-select select{
         margin-top: 20px;

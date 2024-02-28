@@ -5,47 +5,80 @@ document.querySelector('title').textContent = 'Feasverse - Pedidos';
 const PEDIDOS_DIV = document.getElementById('pedidos');
 const REPARTIDOR_DIV = document.getElementById('repartidor');
 
-// *Método del evento para cuando el documento ha cargado.
+// Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
-    // *Llamada a la función para mostrar el encabezado y pie del documento.
+    // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
 
+    // Selecciona la primera pestaña y muestra el div de tabla o repartidor según la pestaña seleccionada.
     var primeraPestana = document.querySelector('#pedidos-tab');
     if (primeraPestana) {
         primeraPestana.click();
-        // Se muestra el div de tabla
         PEDIDOS_DIV.classList.remove('d-none');
         REPARTIDOR_DIV.classList.add('d-none');
     }
 
-    // Selecciona el botón de accordion
+    // Selecciona el botón de accordion y agrega un evento click para expandir o contraer detalles.
     const accordionButton = document.getElementById('accordionButton');
-
-    // Añade el evento click al botón
     accordionButton.addEventListener('click', function () {
-        // Toggle para cambiar entre expandir y contraer
         const isExpanded = accordionButton.getAttribute('aria-expanded') === 'true';
 
-        // Cambiar la etiqueta de d-none en el contenedor del cuerpo
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
         const detallesDeMasPedido = document.getElementById('infoDeRepartidor');
-        // Aquí puedes agregar más lógica según si está expandiendo o contrayendo
         if (isExpanded) {
             detallesDeMasPedido.classList.remove('d-none');
         } else {
             detallesDeMasPedido.classList.add('d-none');
         }
 
-        // Cambiar el texto del botón según si está expandiendo o contrayendo
+        // Cambia el texto del botón según si está expandiendo o contrayendo
         accordionButton.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
     });
 
+    // Selecciona el botón de accordion y agrega un evento click para expandir o contraer detalles.
+    const accordionButton2 = document.getElementById('accordionButton2');
+    accordionButton2.addEventListener('click', function () {
+        const isExpanded = accordionButton2.getAttribute('aria-expanded') === 'true';
+
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
+        const detallesDeMasPedido2 = document.getElementById('infoDeRepartidor2');
+        if (isExpanded) {
+            detallesDeMasPedido2.classList.remove('d-none');
+        } else {
+            detallesDeMasPedido2.classList.add('d-none');
+        }
+
+        // Cambia el texto del botón según si está expandiendo o contrayendo
+        accordionButton2.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    });
+
+    // Selecciona el botón de accordion y agrega un evento click para expandir o contraer detalles.
+    const accordionButton3 = document.getElementById('accordionButton3');
+    accordionButton3.addEventListener('click', function () {
+        const isExpanded = accordionButton3.getAttribute('aria-expanded') === 'true';
+
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
+        const detallesDeMasPedido3 = document.getElementById('infoDeRepartidor3');
+        if (isExpanded) {
+            detallesDeMasPedido3.classList.remove('d-none');
+        } else {
+            detallesDeMasPedido3.classList.add('d-none');
+        }
+
+        // Cambia el texto del botón según si está expandiendo o contrayendo
+        accordionButton3.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    });
+
+
+    // Hace clic automáticamente en el botón del accordion para mostrar los detalles por defecto.
     accordionButton.click();
+    accordionButton2.click();
+    accordionButton3.click();
 });
 
+// Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
 function ShowRepartidor(boton) {
-    // Se muestra el div para agregar trabajador.
     REPARTIDOR_DIV.classList.remove('d-none');
-    // Se oculta el formulario de tabla.
     PEDIDOS_DIV.classList.add('d-none');
 
     // Restablece el color de todos los botones
@@ -59,11 +92,8 @@ function ShowRepartidor(boton) {
     boton.style.color = 'white';
 }
 
-
 function ShowPedidos(boton) {
-    // Se muestra el div para agregar trabajador.
     PEDIDOS_DIV.classList.remove('d-none');
-    // Se oculta el formulario de tabla.
     REPARTIDOR_DIV.classList.add('d-none');
 
     // Restablece el color de todos los botones
@@ -104,4 +134,7 @@ function clearSearch() {
     clearIcon.style.display = 'none';
 }
 
-
+//Función asicronicaa de cambio de estado
+const cambioDeEstado = async () =>  {
+    await sweetAlert(1, 'Se ha cambiado correctamente el estado del pedido', true);
+}

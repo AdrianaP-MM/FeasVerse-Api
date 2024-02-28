@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <!-- TODO Título del documento -->
+    <!-- Título del documento -->
     <title></title>
     <!-- Metadatos de la página web -->
     <meta charset="UTF-8">
@@ -10,51 +10,65 @@
     <meta charset="utf-8">
     <meta name="author" content="FeasVerseCompany">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- *IMPORTACIÓN DE RECURSOS EXTERNOS -->
-    <!-- TODO Llamada al icono de la página web -->
+    <!-- IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <!-- Llamada al icono de la página web -->
     <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
-    <!-- *Llamada a las hojas de estilos del framework -->
+    <!-- Llamada a las hojas de estilos del framework Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <!-- *Llamada a las hojas de estilos propios de css -->
+    <!-- Llamada a las hojas de estilos propios de CSS -->
     <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
     <link href="/recursos/estilos/privado/plantilla.css" rel="stylesheet">
     <link href="/recursos/estilos/privado/clientes.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Sección del encabezado -->
     <header id="header"></header>
+    <!-- Sección del carrusel -->
     <div id="slide"></div>
+    <!-- Sección principal del contenido -->
     <main id="mainContent">
+        <!-- Contenedor principal -->
         <div class="ContenedorT">
+            <!-- Contenedor del título -->
             <div class="ContenedorTitulo position-relative">
                 <h3 class="titillium-web-semibold color-3blue">Clientes</h3>
                 <div class="linea1"></div>
             </div>
+            <!-- Contenedor de pestañas -->
             <div class="ContenedorPestaña">
+                <!-- Lista de pestañas -->
                 <ul class="nav nav-tabs ms-5">
                     <li class="nav-item" role="presentation">
+                        <!-- Botón de pestaña Tabla -->
                         <button class="nav-link text-white titillium-web-regular" data-bs-toggle="tab" id="tabla-tab"
                             type="button" data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
                             onclick="showTableDiv(this)">
                             Tabla
                         </button>
                     </li>
-
                 </ul>
+                <!-- Contenido de las pestañas -->
                 <div class="tab-content contenidoP position-relative" id="">
+                    <!-- Rectángulo de fondo -->
                     <div class="rectangle z-0"></div>
+                    <!-- Contenido de la pestaña "Tabla" -->
                     <div class="tab-pane fade show z-3" role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
+                        <!-- Contenedor total de la tabla -->
                         <div class="ContenedorTotal z-3 position-relative">
+                            <!-- Contenedor del título de la tabla -->
                             <div class="ContenedorTituloTabla text-center">
                                 <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Tabla de clientes</h1>
                             </div>
-                            <!--div para la tabla-->
+                            <!-- Contenedor de la tabla -->
                             <div class="col-lg-10 offset-lg-1">
                                 <div class="Contenedor-tabla z-3 mt-2 table-responsive">
+                                    <!-- Tabla de clientes -->
                                     <table class="table table-hover table-bordered" id="tablaClientes">
+                                        <!-- Cabecera de la tabla -->
                                         <thead class="thead">
                                             <tr>
                                                 <th scope="col" class="cabecera-color text-white text-center">ID</th>
@@ -71,7 +85,9 @@
                                                 </th>
                                             </tr>
                                         </thead>
+                                        <!-- Cuerpo de la tabla -->
                                         <tbody class="text-center">
+                                            <!-- Fila de ejemplo -->
                                             <tr class="table-row" ondblclick="openDetails(this)">
                                                 <td>1</td>
                                                 <td>Jacobo</td>
@@ -85,6 +101,7 @@
                                     </table>
                                 </div>
                             </div>
+                            <!-- Contenedor de botones -->
                             <div class="contenedorBotones z-0">
                                 <button type="button"
                                     class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
@@ -100,14 +117,17 @@
         <!-- Componente Modal para ver detalle y actualizar de un registro -->
         <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalTitle" aria-hidden="true">
+            <!-- Contenedor del modal -->
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
+                    <!-- Encabezado del modal -->
                     <div class="modal-header d-flex justify-content-center">
                         <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
                     </div>
                     <!-- Formulario para detalles o actualizar de un registro cliente -->
                     <form id="detailUpdateForm" name="detailUpdateForm">
                         <div class="modal-body row g-3">
+                            <!-- Campos del formulario -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="nombreCliente" class="form-label">Nombres</label>
                                 <input id="nombreCliente" type="text" name="nombreCliente" class="form-control"
@@ -150,10 +170,14 @@
                         </div>
                         <!--Footer del modal-->
                         <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" id="cancelarBtn" class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular" onclick="botonCancelar()">
+                            <button type="button" id="cancelarBtn"
+                                class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                onclick="botonCancelar()">
                                 Cancelar
                             </button>
-                            <button type="button" id="actualizarBtn" class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular" onclick="botonActualizar()">
+                            <button type="button" id="actualizarBtn"
+                                class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                onclick="botonActualizar()">
                                 Actualizar
                             </button>
                         </div>
