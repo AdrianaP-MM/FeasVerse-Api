@@ -1,3 +1,4 @@
+// Obtener referencias a elementos del formulario por su ID
 const NOMBRES_INPUT = document.getElementById('nombreInput'),
     APELLIDOS_INPUT = document.getElementById('apellidosInput'),
     DUI_INPUT = document.getElementById('duiInput'),
@@ -7,12 +8,13 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     CONTRA_INPUT = document.getElementById('contraInput'),
     CONTRAC_INPUT = document.getElementById('contraCInput');
 
-// *Método del evento para cuando el documento ha cargado.
+// Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
-    // *Llamada a la función para mostrar el encabezado y pie del documento.
+    // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
 });
 
+// Función para mostrar el formulario de usuario.
 function showFormUser() {
     const FROM_DIV = document.getElementById('formDiv');
     const MAIN = document.getElementById('ContenedorMain');
@@ -23,6 +25,7 @@ function showFormUser() {
     MAIN.classList.add('d-none');
 }
 
+// Función para regresar a la página anterior con confirmación.
 const returnBack = async () => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Los datos modificados no serán guardados');
@@ -31,6 +34,7 @@ const returnBack = async () => {
     }
 }
 
+// Función para agregar o guardar datos con SweetAlert integrado.
 const addSave = async () => {
     const btnUpdate = document.getElementById('btnUpdate');
 
@@ -39,29 +43,29 @@ const addSave = async () => {
     if (textoBoton == 'Guardar') {
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
         btnUpdate.textContent = 'Actualizar';
-        NOMBRES_INPUT.readOnly = true;
-        APELLIDOS_INPUT.readOnly = true;
-        DUI_INPUT.readOnly = true;
-        TEL_INPUT.readOnly = true;
-        CORREO_INPUT.readOnly = true;
-        FECHAN_INPUT.readOnly = true;
-        CONTRA_INPUT.readOnly = true;
-        CONTRAC_INPUT.readOnly = true;
+        // Hacer los campos de entrada de solo lectura después de guardar.
+        makeFieldsReadOnly(true);
     }
     else if (textoBoton == 'Actualizar') {
-        NOMBRES_INPUT.readOnly = false;
-        APELLIDOS_INPUT.readOnly = false;
-        DUI_INPUT.readOnly = false;
-        TEL_INPUT.readOnly = false;
-        CORREO_INPUT.readOnly = false;
-        FECHAN_INPUT.readOnly = false;
-        CONTRA_INPUT.readOnly = false;
-        CONTRAC_INPUT.readOnly = false;
-
+        // Hacer los campos de entrada editables para actualizar.
+        makeFieldsReadOnly(false);
         btnUpdate.textContent = 'Guardar';
     }
 }
 
+// Función para hacer los campos de entrada de solo lectura o editables.
+function makeFieldsReadOnly(isReadOnly) {
+    NOMBRES_INPUT.readOnly = isReadOnly;
+    APELLIDOS_INPUT.readOnly = isReadOnly;
+    DUI_INPUT.readOnly = isReadOnly;
+    TEL_INPUT.readOnly = isReadOnly;
+    CORREO_INPUT.readOnly = isReadOnly;
+    FECHAN_INPUT.readOnly = isReadOnly;
+    CONTRA_INPUT.readOnly = isReadOnly;
+    CONTRAC_INPUT.readOnly = isReadOnly;
+}
+
+// Evento para validar el formulario antes de enviarlo.
 Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
         if (!form.checkValidity()) {

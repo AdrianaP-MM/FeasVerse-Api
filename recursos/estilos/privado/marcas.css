@@ -104,8 +104,10 @@ h1
     padding-right: 70px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #146A93;
     border: solid 0px;
+}
+.btn3{
+    background-color: #146A93;
 }
 .btn2
 {

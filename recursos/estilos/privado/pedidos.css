@@ -235,6 +235,7 @@
     /* para navegadores que no son WebKit */
     scrollbar-color: #146A93 #1591CC;
     /* color del scrollbar */
+    overflow-x: hidden;
 }
 
 /* Estilos para el scrollbar del contenedor de tarjetas de pedido en navegadores WebKit */

@@ -56,11 +56,11 @@ const openDetails = async (row) => {
     DUI_INPUT.value = values[3];
     TEL_INPUT.value = values[4];
     CORREO_INPUT.value = values[5];
-    FECHAN_INPUT.value = '...';
-    FECHAR_INPUT.value = '...';
-    ESTADO_INPUT.value = '...';
+    FECHAN_INPUT.value = '2001-08-12';
+    FECHAR_INPUT.value = '2024-12-08';
+    ESTADO_INPUT.value = 'Vigente';
     NIVEL_INPUT.value = values[6];
-    CONTRA_INPUT.value = '...';
+    CONTRA_INPUT.value = 'Hola123';
     var id = values[0];
 
     // Deshabilitar la edición de los campos de entrada

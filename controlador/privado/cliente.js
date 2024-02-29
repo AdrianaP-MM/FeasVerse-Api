@@ -48,8 +48,8 @@ const openDetails = async (row) => {
     DUI_INPUT.value = values[3];
     TEL_INPUT.value =  values[4];
     CORREO_INPUT.value = values[5] ;
-    FECHAN_INPUT.value = '...';
-    FECHAR_INPUT.value = '...';
+    FECHAN_INPUT.value = '2024-09-03';
+    FECHAR_INPUT.value = '2024-03-04';
     ESTADO_INPUT.value = values[6];
 
     // Deshabilitar la edición de los campos de entrada
@@ -88,7 +88,6 @@ const botonActualizar = async () =>  {
         TEL_INPUT.readOnly = false;
         CORREO_INPUT.readOnly = false;
         FECHAN_INPUT.readOnly = false;
-        FECHAR_INPUT.readOnly = false;
         ESTADO_INPUT.readOnly = false;
 
         BOTON_ACTUALIZAR.textContent = "Guardar";

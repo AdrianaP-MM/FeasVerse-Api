@@ -100,7 +100,9 @@
 .btn3 {
     padding-left: 20px;
     padding-right: 20px;
-    background-color: #146A93;
+    background-color: white;
+    color: black;
+    border: #8F8F8F solid 1px;
 }
 
 .contenedorBotones2 {
@@ -108,30 +110,11 @@
     min-height: fit-content;
     max-height: fit-content;
     position: absolute;
-    
     bottom: 2%;
     left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-/*Sweet alert*/
-.swal2-popup {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-title {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-content {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-actions button {
-    margin: 10px;
-    width: 100px;
 }
 
 .modal-content{

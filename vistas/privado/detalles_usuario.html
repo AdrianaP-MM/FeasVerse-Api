@@ -28,15 +28,19 @@
     <header id="header"></header>
     <div id="slide"></div>
     <main id="mainContent">
+         <!-- Contenido principal de la página -->
         <div class="ContenedorT" id="ContenedorMain">
+            <!-- Contenedor principal con título -->
             <div class="ContenedorTitulo position-relative mb-5">
                 <h2 class="titillium-web-semibold textTitulo"> Cuenta de usuario </h2>
                 <div class="linea1"></div>
             </div>
             <a>
+                <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
                 <div class="contenedor d-flex flex-row justify-content-around flex-wrap shadow"
                     onclick="showFormUser()">
                     <img src="/recursos/imagenes/icons/UserIconG.svg" width="100px" height="100px" class="me-2">
+                    <!--Contenedor de perfil y descripcion-->
                     <div class="d-flex flex-column mt-3">
                         <div class="ContenedorTitulo2 position-relative">
                             <h3 class="titillium-web-regular "> Tu perfil </h3>
@@ -48,9 +52,10 @@
                     </div>
                 </div>
             </a>
-
+            <!--Contenedor del cerrar sesion para que tenga el shadow-->
             <div class="contenedor d-flex flex-column justify-content-center flex-wrap shadow mt-4 ms-auto">
                 <a onclick="logOut()">
+                    <!--Contenedor que contiene el texto cerrar sesion y linea-->
                     <div class="ContenedorTitulo position-relative">
                         <h5 class="titillium-web-regular"> Cerrar sesión </h5>
                         <div class="linea1"></div>
@@ -59,70 +64,81 @@
             </div>
         </div>
 
+        <!--Contenedor del div de visualizacion toda la informacion del usuario estando oculto por el momento-->
         <div class="d-none" id="formDiv">
             <div class="contenedorTotalForm d-flex flex-column justify-content-center align-items-center flex-wrap p-5">
+                <!--Contenedor de la informacion del usuario, nombres y correo-->
                 <div class="contenedorCabecera d-flex flex-row align-items-center flex-wrap mb-2">
                     <div class="contenedorImg">
                         <img src="/recursos/imagenes/icons/Account.svg" width="150px" height="150px">
                     </div>
                     <div class="contenedorInfo d-flex flex-column ms-4">
                         <div class="contenedorNombre">
-                            <h3 class="titillium-web-regular"> Emiliano Ano de Anito </h3>
+                            <h3 class="titillium-web-regular" id="nombreDeUsuario"> Emiliano Hernandez</h3>
                         </div>
                         <div class="contenedorCorreo position-relative">
-                            <h6 class="titillium-web-extralight">emilianoanito@gmail.com.sv</h6>
+                            <h6 class="titillium-web-extralight" id="correoDeUsuario">emilianito@gmail.com.sv</h6>
                             <div class="linea1"></div>
                         </div>
                     </div>
                 </div>
-
+                <!--Contenedor del formulario para cambiar-->
                 <div class="contenedorForm d-flex flex-column">
                     <form class="row needs-validation form1 position-relative" novalidate>
+                        <!--Formulario de nombre-->
                         <div class="col-md-6">
                             <label for="nombreInput" class="form-label">Nombres</label>
                             <input type="text" class="form-control" id="nombreInput" required readonly
-                            value="Emiliano ano">
+                            value="Emiliano">
                         </div>
+                        <!--Formulario de apellido-->
                         <div class="col-md-6">
                             <label for="apellidosInput" class="form-label ">Apellidos</label>
                             <input type="text" class="form-control" id="apellidosInput" required readonly
-                            value="de anito">
+                            value="Hernandéz">
                         </div>
+                        <!--Formulario de DUI-->
                         <div class="col-md-6 mt-3">
                             <label for="duiInput" class="form-label ">DUI</label>
                             <input type="text" class="form-control" id="duiInput" required readonly
                             value="12345678-9">
                         </div>
+                        <!--Formulario de telefono-->
                         <div class="col-md-6 mt-3">
                             <label for="telefonoInput" class="form-label ">Teléfono</label>
                             <input type="text" class="form-control" id="telefonoInput" required readonly
                             value="1234-5678">
                         </div>
+                        <!--Formulario de correo electronico-->
                         <div class="col-md-6 mt-3">
-                            <label for="correoInput" class="form-label ">Correo Electronico</label>
+                            <label for="correoInput" class="form-label ">Correo Electrónico</label>
                             <input type="text" class="form-control" id="correoInput" required readonly
-                            value="emilianoanito@gmail.com.sv">
+                            value="emilianito@gmail.com.sv">
                         </div>
+                        <!--Formulario de fecha de nacimento-->
                         <div class="col-md-6 mt-3">
                             <label for="fechanInput" class="form-label ">Fecha de Nacimiento</label>
-                            <input type="text" class="form-control" id="fechanInput" required readonly
-                            value="07/07/2001">
+                            <input type="date" class="form-control" id="fechanInput" 
+                            required readonly value="2001-07-07">
                         </div>
+                        <!--Formulario de contraseña-->
                         <div class="col-md-6 mt-3">
                             <label for="contraInput" class="form-label ">Contraseña</label>
-                            <input type="text" class="form-control" id="contraInput" required readonly
+                            <input type="password" class="form-control" id="contraInput" required readonly
                             value="**********">
                         </div>
-
+                        <!--Formulario de confirmar contraseña-->
                         <div class="col-md-6 mt-3">
                             <label for="contraCInput" class="form-label ">Confirmar Contraseña</label>
-                            <input type="text" class="form-control" id="contraCInput" required readonly
+                            <input type="password" class="form-control" id="contraCInput" required readonly
                             value="**********">
                         </div>
-
+                        <!--contenedores de los botones-->
                         <div class="contenedorBotones2">
+                            <!--boton de regresar-->
                             <button type="button" onclick="returnBack()"
                                 class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Regresar</button>
+                            <!--boton de guardar-->
                             <button class="btn btn3 btn-primary shadow ms-5 text18 titillium-web-regular" id="btnUpdate"
                                 onclick="addSave()" type="button">Actualizar</button>
                         </div>
