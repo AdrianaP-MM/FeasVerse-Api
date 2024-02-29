@@ -61,6 +61,7 @@
                 <!--Contenedor del contenido del tab-->
                 <div class="tab-content contenidoP position-relative" id="">
                     <div class="rectangle z-0"></div>
+                    <!-- TODO REPARTIDOR-->
                     <!--Contenedor de repartidor-->
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="repartidor"
                         aria-labelledby="repartidor-tab">
@@ -103,44 +104,259 @@
                                                     <!--Contenedor del cuerpo-->
                                                     <div id="contenedorDelAcordionSoloHeaderAndBody">
                                                         <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
-                                                            id="detallesDelPedido">
+                                                            id="detallesDelRepartidor">
                                                             <!--Info del repartidor y cliente-->
                                                             <div class="container col-lg-12 d-flex justify-content-center mt-4 mb-2"
-                                                                id="infoDeRepartidor">
+                                                                id="infoDeRepartidorDelApartadoDelRepartidor">
                                                                 <div class="col-lg-3">
                                                                     <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg"
                                                                         class="img-fluid" alt="Icono de usuario">
                                                                 </div>
                                                                 <div class="col-lg-9">
-                                                                    <h6 class="titillium-web" id="nombreRepartidor">
+                                                                    <h6 class="titillium-web"
+                                                                        id="idRepartidorApartadoRepartidor">
+                                                                        <b>ID del repartidor:</b> 372632
+                                                                    </h6>
+                                                                    <h6 class="titillium-web"
+                                                                        id="nombreRepartidorApartadoRepartidor">
                                                                         <b>Nombre del repartidor:</b> Fernando Gomez
                                                                     </h6>
-                                                                    <h6 class="titillium-web" id="nombreCliente">
-                                                                        <b>Nombre del cliente:</b> Animalito Pollo
-                                                                        Campero de Campero
-                                                                    </h6>
-                                                                    <h6 class="titillium-web" id="correoCliente">
-                                                                        <b>Correo del cliente:</b>
+                                                                    <h6 class="titillium-web"
+                                                                        id="correoRepartidorApartadoRepartidor">
+                                                                        <b>Correo del repartidor:</b>
                                                                         PolloCampero@Pollo.com.sv
                                                                     </h6>
-                                                                    <h6 class="titillium-web" id="telefonoCliente">
-                                                                        <b>Teléfono del cliente:</b> 6543-4354
+                                                                    <h6 class="titillium-web"
+                                                                        id="telefonoRepartidorApartadoRepartidor">
+                                                                        <b>Teléfono del repartidor:</b> 6543-4354
                                                                     </h6>
-                                                                    <h6 class="titillium-web" id="direccionCliente">
-                                                                        <b>Dirección del cliente:</b> Pollo campero S.V
+                                                                    <h6 class="titillium-web"
+                                                                        id="pedidosRealizadosDelRepartidor">
+                                                                        <b>Pedidos realizados:</b> 1
                                                                     </h6>
                                                                 </div>
                                                             </div>
                                                             <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                            <div id="collapseOne"
+                                                            <div id="collapseOneRepartidor"
                                                                 class="accordion-collapse collapse show col-lg-12">
-                                                                <div class="accordion-body" id="detallesDeRepatidorMasPedido">
+                                                                <div class="accordion-body"
+                                                                    id="detallesDeRepatidorMasPedido">
                                                                     <div class="col-lg-12">
                                                                         <div class="container">
-                                                                            <div class="col-lg-3">
-                                                                                <div class="bg-color-1blue">
-                                                                                        <img src="../../recursos/imagenes/icons/notebook.svg"
-                                                                                            class="img-fluid" alt="Icono de libreta">
+                                                                            <!--Contenedor de todas las categorias del pedido-->
+                                                                            <div id="contenedorCategoriaPedido" class="offset-lg-1 col-lg-3 mt-4 d-flex align-items-center grid gap-3">
+                                                                                <!--contenedor de Nuevos Pedidos-->
+                                                                                <div class="bg-color-1blue rounded-2 col-lg-12 d-flex flex-column justify-content-center align-items-center" onclick="mostrarNuevosPedidos()">
+                                                                                    <img src="../../recursos/imagenes/icons/notebook.svg"
+                                                                                        class="img-fluid mt-4 mb-2 me-1 ms-1"
+                                                                                        alt="Icono de libreta">
+                                                                                    <h6
+                                                                                        class="titillium-web-bold text-white me-1">
+                                                                                        Nuevos Pedidos</h6>
+                                                                                    <h6 class="titillium-web-extralight text-white mb-4 me-1"
+                                                                                        id="cantidadNuevosPedidosRepartidor">
+                                                                                        1</h6>
+                                                                                </div>
+                                                                                <!--contenedor de Pedidos en progreso-->
+                                                                                <div class="bg-color-1blue rounded-2 col-lg-12 d-flex flex-column justify-content-center align-items-center">
+                                                                                    <img src="../../recursos/imagenes/icons/camion.svg"
+                                                                                        class="img-fluid mt-4 mb-2 me-1 ms-1"
+                                                                                        alt="Icono de camion">
+                                                                                    <h6 class="titillium-web-bold text-white me-1">
+                                                                                        Pedidos en progreso</h6>
+                                                                                    <h6 class="titillium-web-extralight text-white mb-4 me-1"
+                                                                                        id="cantidadProgresoPedidosRepartidor">
+                                                                                        1</h6>
+                                                                                </div>
+                                                                                <!--contenedor de Pedidos Entregados-->
+                                                                                <div class="bg-color-1blue rounded-2 col-lg-12 d-flex flex-column justify-content-center align-items-center">
+                                                                                    <img src="../../recursos/imagenes/icons/entregado.svg"
+                                                                                        class="img-fluid mt-4 mb-2 me-1 ms-1"
+                                                                                        alt="Icono de entregado">
+                                                                                    <h6 class="titillium-web-bold text-white me-1">
+                                                                                        Pedidos Entregados</h6>
+                                                                                    <h6 class="titillium-web-extralight text-white mb-4 me-1"
+                                                                                        id="cantidadEntregadosPedidosRepartidor">
+                                                                                        1</h6>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--Contenedor para las card de nuevos pedidos (pendiente)-->
+                                                                            <div id="cardsDeNuevosPedidos" class="mt-4 col-lg-12 d-none">
+                                                                                <div class="offset-lg-2 col-lg-8 bg-color-1blue d-flex justify-content-center align-items-center rounded-3">
+                                                                                    <img src="../../recursos/imagenes/icons/notebook.svg"
+                                                                                        class="img-fluid mt-3 mb-3 me-1 ms-1"
+                                                                                        alt="Icono de libreta">
+                                                                                        <h6
+                                                                                        class="titillium-web-bold text-white me-1">
+                                                                                        Nuevos Pedidos</h6>
+                                                                                    <h6 class="titillium-web-extralight text-white me-1"
+                                                                                        id="cantidadNuevosPedidosRepartidor">
+                                                                                        1</h6>    
+                                                                                </div>
+                                                                                <!--Comienzo de cards de zapatos-->
+                                                                                <div id="cardsDeZapato" class="col-lg-12">
+                                                                                    <div class="accordion mt-3 mb-4" id="detalleInformacionRepartidor">
+                                                                                        <div class="accordion-item">
+                                                                                            <!--HEADER del accordion-->
+                                                                                            <div id="detalleInformacionHeaderRepatidor" class="accordion-header"
+                                                                                                data-bs-parent="#detalleInformacionRepartidor">
+                                                                                                <!--Etiqueta del pedido-->
+                                                                                                <div class="col-lg-3">
+                                                                                                    <p id="idPedidoNum2"
+                                                                                                        class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
+                                                                                                        Pedido N# 4322</p>
+                                                                                                </div>
+                                                                                                <!--Contenedor del cuerpo-->
+                                                                                                <div id="contenedorDelAcordionSoloHeaderAndBody2">
+                                                                                                    <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
+                                                                                                        id="detallesDelPedidoRepartidor">
+                                                                                                        <!--Contenedor de la etiqueta del pedido-->
+                                                                                                        <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div"
+                                                                                                            id="colorDelEstadoDelPedido">
+                                                                                                            <h6 class="text-white skew-text text-center"
+                                                                                                                id="nombreDelEstadoDelPedido">Pendiente</h6>
+                                                                                                        </div>
+                                                                                                        <!--Info del cliente-->
+                                                                                                        <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2"
+                                                                                                            id="infoDelClienteParaRepartidor">
+                                                                                                            <div class="col-lg-3">
+                                                                                                                <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg"
+                                                                                                                    class="img-fluid" alt="Icono de usuario">
+                                                                                                            </div>
+                                                                                                            <div class="col-lg-9">
+                                                                                                                <h6 class="titillium-web" id="nombreClienteRepartidor">
+                                                                                                                    <b>Nombre del cliente:</b> Animalito Pollo
+                                                                                                                    Campero de Campero
+                                                                                                                </h6>
+                                                                                                                <h6 class="titillium-web" id="correoClienteRepartidor">
+                                                                                                                    <b>Correo del cliente:</b>
+                                                                                                                    PolloCampero@Pollo.com.sv
+                                                                                                                </h6>
+                                                                                                                <h6 class="titillium-web" id="telefonoClienteRepartidor">
+                                                                                                                    <b>Teléfono del cliente:</b> 6543-4354
+                                                                                                                </h6>
+                                                                                                                <h6 class="titillium-web" id="direccionClienteRepartidor">
+                                                                                                                    <b>Dirección del cliente:</b> Pollo campero S.V
+                                                                                                                </h6>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!--Comienzo de cards de zapato-->
+                                                                                                        <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
+                                                                                                            <div class="containerCard col-lg-12 flex-wrap"
+                                                                                                                id="cardPedido">
+                                                                                                                <div class="card">
+                                                                                                                    <!--Contenedor de la imagen-->
+                                                                                                                    <img src="../../recursos/imagenes/sneakersExample.svg"
+                                                                                                                        class="card-img-top img-fluid"
+                                                                                                                        alt="Imagen de zapato">
+                                                                                                                    <!--Contenedor del cuerpo de la card-->
+                                                                                                                    <div class="card-body">
+                                                                                                                        <!--Contenedor de nombre zapato-->
+                                                                                                                        <div
+                                                                                                                            class="ContenedorNombreZapato col-lg-12">
+                                                                                                                            <h4 class="titillium-web-semibold text-center"
+                                                                                                                                id="nombreZapato">Nike Air
+                                                                                                                                Force 1'07</h4>
+                                                                                                                        </div>
+                                                                                                                        <!--Contenedor del color y talla-->
+                                                                                                                        <div
+                                                                                                                            class="ContenedorColorTalla col-lg-12 d-flex">
+                                                                                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
+                                                                                                                                id="contenedorColor">
+                                                                                                                                <h6
+                                                                                                                                    class="titillium-web-extralight me-1">
+                                                                                                                                    Color</h6>
+                                                                                                                                <div id="color" class="mb-2"></div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
+                                                                                                                                id="contenedorTalla">
+                                                                                                                                <h6
+                                                                                                                                    class="titillium-web-extralight me-1">
+                                                                                                                                    Talla</h6>
+                                                                                                                                <div id="talla">
+                                                                                                                                    <h6 id="tallaPedido">32</h6>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                        <!--Contenedor de la cantidad-->
+                                                                                                                        <div
+                                                                                                                            class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                                                                                            <h6 class="titillium-web-extralight text-center"
+                                                                                                                                id="cantidadPedido">Cantidad: 12
+                                                                                                                            </h6>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <!--Contenedor del footer-->
+                                                                                                                    <div class="card-footer bg-color-4blue">
+                                                                                                                        <!--Contenedor del precio-->
+                                                                                                                        <div
+                                                                                                                            class="d-flex contenedorPrecios col-lg-12">
+                                                                                                                            <div
+                                                                                                                                class="col-lg-6 d-flex justify-content-start">
+                                                                                                                                <h6 class="titillium-web-bold text-white"
+                                                                                                                                    id="precioZapato">$120</h6>
+                                                                                                                            </div>
+                                                                                                                            <div
+                                                                                                                                class="col-lg-6 d-flex justify-content-end">
+                                                                                                                                <h6 class="titillium-web-extralight text-white"
+                                                                                                                                    id="cantidadTotal">Total: $1,440
+                                                                                                                                </h6>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        <!-- Detalles del Más Pedido (Body) del acordion-->
+                                                                                                        <div id="collapseOnePedidoRepartidor"
+                                                                                                            class="accordion-collapse collapse show col-lg-12">
+                                                                                                            <div class="accordion-body" id="detallesDeMasPedidoRepartidor">
+                                                                                                                <div class="col-lg-12">
+                                                                                                                    <div class="container">
+                                                                                                                        <!--Contenedor de boton de entrega y precio total-->
+                                                                                                                        <div class="row col-lg-12">
+                                                                                                                            <!--Contenedor del boton de iniciar entrega -->
+                                                                                                                            <div
+                                                                                                                                class="col-lg-6 d-flex justify-content-center">
+                                                                                                                                <button type="button"
+                                                                                                                                    class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue"
+                                                                                                                                    id="botonDePedido"
+                                                                                                                                    onclick="cambioDeEstado()">
+                                                                                                                                    Iniciar entrega
+                                                                                                                                </button>
+                                                                                                                            </div>
+                                                                                                                            <!--Contenedor de los precios-->
+                                                                                                                            <div class="col-lg-6"
+                                                                                                                                id="containerTotales">
+                                                                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                                                                                                    id="totalPediod">Total del
+                                                                                                                                    pedido: $4,310</h6>
+                                                                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                                                                                                    id="envio">Envío: $10</h6>
+                                                                                                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                                                                                                    id="totalCobrar">Total a cobrar:
+                                                                                                                                    $4,320</h6>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <!-- Botón (Footer) -->
+                                                                                                <div class="offset-lg-9 col-lg-3">
+                                                                                                    <button id="accordionButtonRepartidorPedido"
+                                                                                                        class="accordion-button rounded-bottom rounded-top-0"
+                                                                                                        type="button" data-bs-toggle="collapse"
+                                                                                                        data-bs-target="#collapseOnePedidoRepartidor" aria-expanded="true"
+                                                                                                        aria-controls="collapseOnePedidoRepartidor">
+                                                                                                        Ver más información
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -151,11 +367,11 @@
                                                     </div>
                                                     <!-- Botón (Footer) -->
                                                     <div class="offset-lg-9 col-lg-3">
-                                                        <button id="accordionButton"
+                                                        <button id="accordionButtonRepartidor"
                                                             class="accordion-button rounded-bottom rounded-top-0"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
+                                                            data-bs-target="#collapseOneRepartidor" aria-expanded="true"
+                                                            aria-controls="collapseOneRepartidor">
                                                             Ver más información
                                                         </button>
                                                     </div>
@@ -167,6 +383,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- TODO PEDIDO -->
                     <!--Contenedor de pedido-->
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="pedidos"
                         aria-labelledby="pedidos-tab">
@@ -316,140 +533,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                            <div id="collapseOne"
+                                                            <div id="collapseOnePedido"
                                                                 class="accordion-collapse collapse show col-lg-12">
                                                                 <div class="accordion-body" id="detallesDeMasPedido">
                                                                     <div class="col-lg-12">
@@ -490,8 +575,8 @@
                                                         <button id="accordionButton"
                                                             class="accordion-button rounded-bottom rounded-top-0"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
+                                                            data-bs-target="#collapseOnePedido" aria-expanded="true"
+                                                            aria-controls="collapseOnePedido">
                                                             Ver más información
                                                         </button>
                                                     </div>
@@ -614,140 +699,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                            <div id="collapseOne"
+                                                            <div id="collapseTwo"
                                                                 class="accordion-collapse collapse show col-lg-12">
                                                                 <div class="accordion-body" id="detallesDeMasPedido">
                                                                     <div class="col-lg-12">
@@ -788,8 +741,8 @@
                                                         <button id="accordionButton2"
                                                             class="accordion-button rounded-bottom rounded-top-0"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
+                                                            data-bs-target="#collapseTwo" aria-expanded="true"
+                                                            aria-controls="collapseTwo">
                                                             Ver más información
                                                         </button>
                                                     </div>
@@ -912,140 +865,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                    id="cardPedido">
-                                                                    <div class="card">
-                                                                        <!--Contenedor de la imagen-->
-                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                            class="card-img-top img-fluid"
-                                                                            alt="Imagen de zapato">
-                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                        <div class="card-body">
-                                                                            <!--Contenedor de nombre zapato-->
-                                                                            <div
-                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                    id="nombreZapato">Nike Air
-                                                                                    Force 1'07</h4>
-                                                                            </div>
-                                                                            <!--Contenedor del color y talla-->
-                                                                            <div
-                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorColor">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Color</h6>
-                                                                                    <div id="color" class="mb-2"></div>
-                                                                                </div>
-                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                    id="contenedorTalla">
-                                                                                    <h6
-                                                                                        class="titillium-web-extralight me-1">
-                                                                                        Talla</h6>
-                                                                                    <div id="talla">
-                                                                                        <h6 id="tallaPedido">32</h6>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Contenedor de la cantidad-->
-                                                                            <div
-                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                    id="cantidadPedido">Cantidad: 12
-                                                                                </h6>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--Contenedor del footer-->
-                                                                        <div class="card-footer bg-color-4blue">
-                                                                            <!--Contenedor del precio-->
-                                                                            <div
-                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                        id="precioZapato">$120</h6>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                        id="cantidadTotal">Total: $1,440
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                            <div id="collapseOne"
+                                                            <div id="collapseTreePedido"
                                                                 class="accordion-collapse collapse show col-lg-12">
                                                                 <div class="accordion-body" id="detallesDeMasPedido">
                                                                     <div class="col-lg-12">
@@ -1086,8 +907,8 @@
                                                         <button id="accordionButton3"
                                                             class="accordion-button rounded-bottom rounded-top-0"
                                                             type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
+                                                            data-bs-target="#collapseTreePedido" aria-expanded="true"
+                                                            aria-controls="collapseTreePedido">
                                                             Ver más información
                                                         </button>
                                                     </div>

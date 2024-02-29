@@ -4,6 +4,9 @@ document.querySelector('title').textContent = 'Feasverse - Pedidos';
 // Constante para establecer el espacio de tabla y el espacio de agregar.
 const PEDIDOS_DIV = document.getElementById('pedidos');
 const REPARTIDOR_DIV = document.getElementById('repartidor');
+//CONSTANTE PARA TIPOS DE CATEGORIA PARA EL RESULTADO
+const CONT_CATEGORIA_PEDIDO = document.getElementById('contenedorCategoriaPedido');
+const CARDS_NUEVOS_PEDIDOS = document.getElementById('cardsDeNuevosPedidos');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -22,10 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const accordionButton = document.getElementById('accordionButton');
     accordionButton.addEventListener('click', function () {
         const isExpanded = accordionButton.getAttribute('aria-expanded') === 'true';
-
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
         const detallesDeMasPedido = document.getElementById('infoDeRepartidor');
         if (isExpanded) {
+            console.log('Hola')
             detallesDeMasPedido.classList.remove('d-none');
         } else {
             detallesDeMasPedido.classList.add('d-none');
@@ -38,42 +41,67 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Selecciona el botón de accordion y agrega un evento click para expandir o contraer detalles.
     const accordionButton2 = document.getElementById('accordionButton2');
     accordionButton2.addEventListener('click', function () {
-        const isExpanded = accordionButton2.getAttribute('aria-expanded') === 'true';
+        const isExpanded2 = accordionButton2.getAttribute('aria-expanded') === 'true';
 
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
         const detallesDeMasPedido2 = document.getElementById('infoDeRepartidor2');
-        if (isExpanded) {
+        if (isExpanded2) {
             detallesDeMasPedido2.classList.remove('d-none');
         } else {
             detallesDeMasPedido2.classList.add('d-none');
         }
 
         // Cambia el texto del botón según si está expandiendo o contrayendo
-        accordionButton2.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+        accordionButton2.textContent = isExpanded2 ? 'Ver menos información' : 'Ver más información';
     });
 
     // Selecciona el botón de accordion y agrega un evento click para expandir o contraer detalles.
     const accordionButton3 = document.getElementById('accordionButton3');
     accordionButton3.addEventListener('click', function () {
-        const isExpanded = accordionButton3.getAttribute('aria-expanded') === 'true';
-
+        const isExpanded3 = accordionButton3.getAttribute('aria-expanded') === 'true';
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
         const detallesDeMasPedido3 = document.getElementById('infoDeRepartidor3');
-        if (isExpanded) {
+        if (isExpanded3) {
             detallesDeMasPedido3.classList.remove('d-none');
         } else {
             detallesDeMasPedido3.classList.add('d-none');
         }
 
         // Cambia el texto del botón según si está expandiendo o contrayendo
-        accordionButton3.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+        accordionButton3.textContent = isExpanded3 ? 'Ver menos información' : 'Ver más información';
     });
 
+    //Cambio del texto para la info del accordion
+    const accordionButtonRepartidorPedido = document.getElementById('accordionButtonRepartidorPedido');
+    accordionButtonRepartidorPedido.addEventListener('click', function(){
 
-    // Hace clic automáticamente en el botón del accordion para mostrar los detalles por defecto.
+        const isExpanded = accordionButtonRepartidorPedido.getAttribute('aria-expanded') === 'true';
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
+        const infoDelClienteParaRepartidor = document.getElementById('infoDelClienteParaRepartidor');
+        if (isExpanded) {
+            infoDelClienteParaRepartidor.classList.remove('d-none');
+        } else {
+            infoDelClienteParaRepartidor.classList.add('d-none');
+        }
+
+        //Cambio del texto del boton 
+        accordionButtonRepartidorPedido.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    }) 
+
+    //Cambio del texto para la info del accordion
+    const accordionButtonRepartidor = document.getElementById('accordionButtonRepartidor');
+    accordionButtonRepartidor.addEventListener('click', function(){ 
+        const isExpanded = accordionButtonRepartidor.getAttribute('aria-expanded') === 'true';
+        //Cambio del texto del boton 
+        accordionButtonRepartidor.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    })
+
+    // Hace clic automáticamente en el botón del accordion para ocultar los detalles por defecto.
     accordionButton.click();
     accordionButton2.click();
     accordionButton3.click();
+    accordionButtonRepartidorPedido.click();
+    accordionButtonRepartidor.click();
 });
 
 // Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
@@ -120,6 +148,12 @@ document.getElementById('buscadorInputPedidos').addEventListener('input', functi
         clearIcon.style.display = 'none';
     }
 });
+
+//FUNCION PARA mostrar los nuevos pedidos del repartidor  
+function mostrarNuevosPedidos(){
+    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
+    CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
+}
 
 // Función para limpiar el input y ocultar el icono de limpiar
 function clearSearch() {
