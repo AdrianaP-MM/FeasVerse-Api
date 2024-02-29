@@ -37,38 +37,74 @@
             <div class="container">
                 <!--div contenedor del texto de comentarios y linea-->
                 <div class="contenidoP">
-                    <div class="nav-link rectanguloP z-0" id="rectanguloP">
+
+                    <div class="nav-link rectanguloP z-0 d-none" id="rectanguloP">
                         <div class="comentario mt-1">
                             <div class="ComentarioC" data-bs-toggle="tab" id="ComentarioC" role="tab"
-                            data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
-                            <script>
-                                document.querySelector('.ComentarioC').addEventListener('click', function() {
-                                    ShowComentario(this);
-                                });
-                            </script>
+                                data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
+                                <script>
+                                    document.querySelector('.ComentarioC').addEventListener('click', function () {
+                                        ShowComentario(this);
+                                    });
+                                </script>
                                 <h5 class="comentarioT">Emilianito</h5>
                                 <p class="comentarioD">El mejor pollo, es del pollo campero!</p>
                             </div>
+
                             <div class="sizedbox"></div>
                             <div class="ComentarioC">
                                 <h5 class="comentarioT">Emilianito</h5>
                                 <p class="comentarioD">El mejor pollo, es del pollo campero!</p>
                             </div>
+
                             <div class="sizedbox"></div>
                             <div class="ComentarioC">
                                 <h5 class="comentarioT">Emilianito</h5>
                                 <p class="comentarioD">El mejor pollo, es del pollo campero!</p>
                             </div>
+
                             <div class="sizedbox"></div>
                             <div class="ComentarioC">
                                 <h5 class="comentarioT">Emilianito</h5>
                                 <p class="comentarioD">El mejor pollo, es del pollo campero!</p>
                             </div>
+
                         </div>
                     </div>
-                    <div class="nav-link rectanguloP1 z-0 position-absolute top-50 start-50 translate-middle d-none" id="rectanguloP1"
-                        data-bs-toggle="tab" id="rectanguloP1-tab" role="tab" data-bs-target="#rectanguloP1"
-                        aria-controls="rectanguloP1" aria-selected="true" onclick="ShowComentario(this)">
+                </div>
+
+            </div>
+
+            <div class="nav-link rectanguloP1 z-0 d-none d-flex flex-column flex-wrap" id="rectanguloP1" data-bs-toggle="tab"
+                id="rectanguloP1-tab" role="tab" data-bs-target="#rectanguloP1" aria-controls="rectanguloP1"
+                aria-selected="true" onclick="ShowComentario(this)">
+
+                <div class="d-flex flex-row flex-wrap contenedorElemento1 ">
+
+                    <div class="d-flex flex-column">
+                        <h3 class="fw-normal">Información del comentario</h3>
+                        <p class="titillium-web-regular">
+                            <span class="fw-bold">
+                                Nombre del cliente:
+                            </span> Emilianito
+                        </p>
+
+                        <p class=" titillium-web-regular">
+                            <span class="fw-bold">
+                                Correo del cliente:
+                            </span>
+                            Emilianito@gmail.com
+                        </p>
+
+                        <p class="titillium-web-regular">
+                            <span class="fw-bold">
+                                Teléfono del cliente:
+                            </span>
+                            1234-5678
+                        </p>
+
+                    </div>
+                    <div class="d-flex flex-column contedorDataZapato">
                         <div class="DetalleProducto">
                             <h9 class="PD titillium-web-extralight"> Producto Comentado</h9>
                             <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="zapatoC">
@@ -77,37 +113,53 @@
                             <p class="DC2">2 Colores</p>
                             <p class="DC3 fw-bold">$185</p>
                         </div>
-                        <h3 class="InfoC fw-normal">Información del comentario</h3>
-                        <p class="C1 titillium-web-regular">
-                            <span class="fw-bold">
-                                Nombre del cliente:
-                            </span> Emilianito
-                        </p>
-                        <p class="C2 titillium-web-regular">
-                            <span class="fw-bold">
-                                Correo del cliente:
-                            </span>
-                            Emilianito@gmail.com
-                        </p>
-                        <p class="C3 titillium-web-regular">
-                            <span class="fw-bold">
-                                Teléfono del cliente:
-                            </span>
-                            1234-5678
-                        </p>
-                        <div class="ComentarioDetalle ">
-                            <h8 class="CT1 titillium-web-semibold">Descripcion del comentario:</h8>
-                            <p class="Comentario"> Un zapato que la verdad recomiendo mucho, me gustan sus colores y es
-                                muy comodo, lo recomiendo para
-                                fiestas por que es muy elegante.
-                            </p>
-                            <div class="contenedor-boton">
-                                <button type="button" class="btn btn-primary">Retirar comentario</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
+
+                <div class="d-flex flex-column contenedorElemento2">
+
+                </div>
+
+                <!-- <div class="DetalleProducto">
+                <h9 class="PD titillium-web-extralight"> Producto Comentado</h9>
+                <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="zapatoC">
+                <p class="DC fw-semi-bold">Nike Dunk Low</p>
+                <p class="DC1">Zapato Unisex</p>
+                <p class="DC2">2 Colores</p>
+                <p class="DC3 fw-bold">$185</p>
             </div>
+
+            <h3 class="InfoC fw-normal">Información del comentario</h3>
+            <p class="C1 titillium-web-regular">
+                <span class="fw-bold">
+                    Nombre del cliente:
+                </span> Emilianito
+            </p>
+
+            <p class="C2 titillium-web-regular">
+                <span class="fw-bold">
+                    Correo del cliente:
+                </span>
+                Emilianito@gmail.com
+            </p>
+            <p class="C3 titillium-web-regular">
+                <span class="fw-bold">
+                    Teléfono del cliente:
+                </span>
+                1234-5678
+            </p>
+            <div class="ComentarioDetalle ">
+                <h8 class="CT1 titillium-web-semibold">Descripcion del comentario:</h8>
+                <p class="Comentario"> Un zapato que la verdad recomiendo mucho, me gustan sus colores y es
+                    muy comodo, lo recomiendo para
+                    fiestas por que es muy elegante.
+                </p>
+                <div class="contenedor-boton">
+                    <button type="button" class="btn btn-primary">Retirar comentario</button>
+                </div>
+            </div>-->
+            </div>
+
         </div>
     </main>
     <footer id="footer"></footer>

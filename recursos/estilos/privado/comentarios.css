@@ -121,27 +121,37 @@ body {
     text-decoration: none;
     color: black;
 }
+/*
 
 .rectanguloP1 {
     position: relative;
-    width: 80%;
-    height: 600px; /* Ajusta la altura según sea necesario */
+    right: 22%;
+    width: 145%;
+    height: 600px;
     background-color: #D9D9D9;
     border-radius: 10px;
-    margin: 0 auto; /* Centrar horizontalmente */
-}
+    margin: 0 auto;
+    /* Centrar horizontalmente
+}*/
+
+
 
 .InfoC {
     color: #0D4560;
-    padding: 20px; /* Ajuste del espaciado */
-    font-size: 2rem; /* Cambiado a unidades relativas */
+    padding: 20px;
+    /* Ajuste del espaciado */
+    font-size: 2rem;
+    /* Cambiado a unidades relativas */
 }
 
-.C1, .C2, .C3 {
+.C1,
+.C2,
+.C3 {
     color: #000000;
     padding: 10px 0;
     padding-left: 20px;
-    font-size: 1.6rem; /* Cambiado a unidades relativas */
+    font-size: 1.6rem;
+    /* Cambiado a unidades relativas */
 }
 
 .ComentarioDetalle {
@@ -238,11 +248,149 @@ body {
     position: absolute;
     font-size: 15px;
     top: 132%;
-    left: 94%; /* Mover el botón hacia la derecha */
+    left: 94%;
+    /* Mover el botón hacia la derecha */
     transform: translate(-50%, -50%);
 }
 
 .contenedor-botones {
     position: relative;
     width: 100%;
+}
+
+
+@media  (max-width: 1794px){
+    /*.rectanguloP1{
+        width: 130%;
+        right: 15%;
+    }*/
+}
+
+@media  (max-width: 1600px){
+    /*.rectanguloP1{
+        width: 115%;
+        right: 7%;
+    }*/
+}
+
+@media  (max-width: 1440px){
+    /*.rectanguloP1{
+        width: 110%;
+        right: 5%;
+    }*/
+}
+
+@media  (max-width: 1200px){
+    /*.rectanguloP1{
+        width: 105%;
+        right: 3%;
+    }*/
+}
+
+@media  (max-width: 1440px){
+    .Comentario{
+        width: 110%;
+        padding-left: 10px;
+    }
+}
+
+@media  (max-width: 1200px){
+    .Comentario{
+        font-size: 27px;
+        width: 105%;
+        right: 5%;
+    }
+}
+
+@media  (max-width: 990px){
+    .Comentario{
+        font-size: 23px;
+        text-align:left;
+        width: 105%;
+        right: 5%;
+    }
+}
+
+@media  (max-width: 990px){
+    /*.rectanguloP1{
+        width: 110%;
+        height: 700px;
+        right: 5%;
+    }*/
+}
+
+@media  (max-width: 990px){
+    .DetalleProducto{
+        position: relative;
+        width: 100%;
+        left: -80px;
+    }
+}
+
+@media  (max-width: 990px){
+    .InfoC{
+        position: relative;
+        font-size: 30px;
+        text-align:left;
+        width: 105%;
+        bottom: 30%;
+        right: 1%;
+    }
+}
+
+@media  (max-width: 990px){
+    .C1{
+        position: relative;
+        font-size: 25px;
+        text-align:left;
+        width: 105%;
+        bottom: 33%;
+        right: 1%;
+    }
+}
+
+@media  (max-width: 990px){
+    .C2{
+        position: relative;
+        font-size: 25px;
+        text-align:left;
+        width: 105%;
+        bottom: 34%;
+        right: 1%;
+    }
+}
+
+@media  (max-width: 990px){
+    .C3{
+        position: relative;
+        font-size: 25px;
+        text-align:left;
+        width: 105%;
+        bottom: 36%;
+        right: 1%;
+    }
+}
+
+@media  (max-width: 990px){
+    .ComentarioDetalle{
+        position: absolute;
+        width: 90%;
+        bottom: -1000px;
+        right: 50%;
+    }
+}
+
+.rectanguloP1 {
+    border: solid white 30px;
+    width: 100%;
+    height: 600px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    margin: 0 auto;
+    /* Centrar horizontalmente */
+}
+
+.contedorDataZapato
+{
+    
 }
