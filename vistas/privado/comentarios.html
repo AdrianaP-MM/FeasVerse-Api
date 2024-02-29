@@ -75,14 +75,14 @@
 
             </div>
 
-            <div class="nav-link rectanguloP1 z-0 d-none d-flex flex-column flex-wrap" id="rectanguloP1" data-bs-toggle="tab"
+            <div class="nav-link rectanguloP1 z-0 d-none d-flex flex-column" id="rectanguloP1" data-bs-toggle="tab"
                 id="rectanguloP1-tab" role="tab" data-bs-target="#rectanguloP1" aria-controls="rectanguloP1"
                 aria-selected="true" onclick="ShowComentario(this)">
 
-                <div class="d-flex flex-row flex-wrap contenedorElemento1 ">
+                <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
 
-                    <div class="d-flex flex-column">
-                        <h3 class="fw-normal">Información del comentario</h3>
+                    <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
+                        <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
                         <p class="titillium-web-regular">
                             <span class="fw-bold">
                                 Nombre del cliente:
@@ -102,22 +102,31 @@
                             </span>
                             1234-5678
                         </p>
-
                     </div>
-                    <div class="d-flex flex-column contedorDataZapato">
-                        <div class="DetalleProducto">
-                            <h9 class="PD titillium-web-extralight"> Producto Comentado</h9>
-                            <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="zapatoC">
-                            <p class="DC fw-semi-bold">Nike Dunk Low</p>
-                            <p class="DC1">Zapato Unisex</p>
-                            <p class="DC2">2 Colores</p>
-                            <p class="DC3 fw-bold">$185</p>
+
+                    <div class="d-flex flex-column contedorDataZapato flex-wrap">
+                        <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
+                            <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
+                            <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="">
+                            <p class=" m-0 fw-semi-bold">Nike Dunk Low</p>
+                            <p class="m-0">Zapato Unisex</p>
+                            <p class="m-0">2 Colores</p>
+                            <p class=" m-0 fw-bold">$185</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex flex-column contenedorElemento2">
-
+                <div class="d-flex flex-column contenedorElemento2 flex-wrap justify-content-center align-items-center">
+                    <div class="d-flex flex-column flex-wrap contenedorComentario">
+                        <h6 class="titillium-web-semibold color-3blue">Descripcion del comentario:</h6>
+                        <p class=""> Un zapato que la verdad recomiendo mucho, me gustan sus colores y es
+                            muy comodo, lo recomiendo para
+                            fiestas por que es muy elegante.
+                        </p>
+                        <div class="container p-0 m-0 mt-4">
+                            <button type="button" class="btn btn1 btn-primary">Retirar comentario</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- <div class="DetalleProducto">
