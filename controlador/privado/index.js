@@ -8,7 +8,7 @@ const MAIN_TITLE = document.getElementById('mainTitle');
 const LOGIN_FORM = document.getElementById('loginForm');
 const FORGOT_PASSWORD_FORM = document.getElementById('forgetpasswordstepone');
 const FORGOT_PASSWORD_STEP_TWO_FORM = document.getElementById('forgetpasswordsteptwo');
-const FORGOT_PASSWORD_STEP_THREE_FORM = document.getElementById('forgetpasswordstepthree');
+const FORGOT_PASSWORD_STEP_THREE_FORM = document.getElementById('forgetPasswordStepThree');
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Se muestra el formulario para iniciar sesión.

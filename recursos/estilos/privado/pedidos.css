@@ -10,6 +10,7 @@
     justify-items: center;
     padding-top: 30px;
     padding-bottom: 30px;
+    overflow-x: none;
 }
 
 /* Estilos para un contenedor de título */
@@ -115,6 +116,10 @@
     box-shadow: none;
 }
 
+#contenedorDeLasCardsDeRepatidor{
+    overflow-x: none;
+}
+
 /* Estilos para la información de los pedidos de la info del repartidor */
 #infoDeRepartidor {
     display: flex;
@@ -154,7 +159,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
 }
 
 
@@ -428,4 +432,12 @@
         margin-top: 20px;
         width: 100%;
     }
+}
+
+.img1
+{
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
 }
