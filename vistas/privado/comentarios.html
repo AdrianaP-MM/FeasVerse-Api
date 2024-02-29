@@ -37,8 +37,7 @@
             <div class="container">
                 <!--div contenedor del texto de comentarios y linea-->
                 <div class="contenidoP">
-
-                    <div class="nav-link rectanguloP z-0 d-none" id="rectanguloP">
+                    <div class="nav-link rectanguloP z-0" id="rectanguloP">
                         <div class="comentario mt-1">
                             <div class="ComentarioC" data-bs-toggle="tab" id="ComentarioC" role="tab"
                                 data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
@@ -75,12 +74,14 @@
 
             </div>
 
-            <div class="nav-link rectanguloP1 z-0 d-none d-flex flex-column" id="rectanguloP1" data-bs-toggle="tab"
-                id="rectanguloP1-tab" role="tab" data-bs-target="#rectanguloP1" aria-controls="rectanguloP1"
-                aria-selected="true" onclick="ShowComentario(this)">
+            <div class="nav-link rectanguloP1 z-0 d-flex flex-column d-none " id="rectanguloP1">
 
                 <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
-
+                    <div class="container p-0 m-0">
+                        <button class="btn" type="button" onclick="volver()">
+                            <img src="/recursos/imagenes/flecha.png" width="25px" height="30px">
+                        </button>
+                </div>
                     <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
                         <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
                         <p class="titillium-web-regular">
@@ -105,6 +106,7 @@
                     </div>
 
                     <div class="d-flex flex-column contedorDataZapato flex-wrap">
+                        
                         <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
                             <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
                             <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="">

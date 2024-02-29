@@ -9,7 +9,7 @@
         // *Llamada a la función para mostrar el encabezado y pie del documento.
         loadTemplate();
         COMENTARIOS_DIV.classList.remove('d-none');
-        DCOMENTARIOS_DIV.classList.add('d-none');
+       //DCOMENTARIOS_DIV.classList.add('d-none');
     });
 
     function ShowComentario(div) {
@@ -18,4 +18,10 @@
         div.style.backgroundColor=""
         // Se oculta el formulario de tabla.
         COMENTARIOS_DIV.classList.add('d-none');
+    }
+
+    function volver() {
+        COMENTARIOS_DIV.classList.remove('d-none');
+        // Se oculta el formulario de tabla.
+        DCOMENTARIOS_DIV.classList.add('d-none');
     }

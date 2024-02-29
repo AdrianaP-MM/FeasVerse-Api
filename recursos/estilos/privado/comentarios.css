@@ -121,20 +121,6 @@ body {
     text-decoration: none;
     color: black;
 }
-/*
-
-.rectanguloP1 {
-    position: relative;
-    right: 22%;
-    width: 145%;
-    height: 600px;
-    background-color: #D9D9D9;
-    border-radius: 10px;
-    margin: 0 auto;
-    /* Centrar horizontalmente
-}*/
-
-
 
 .InfoC {
     color: #0D4560;
@@ -239,52 +225,11 @@ body {
     margin-top: -36%;
     margin-left: -80%;
 }
-/*
-.btn.btn-primary {
-    background-color: #0D4560;
-    color: #ffffff;
-    border: none;
-    padding: 4px 70px;
-    position: absolute;
-    font-size: 15px;
-    top: 132%;
-    left: 94%;
-    /* Mover el botón hacia la derecha 
-    transform: translate(-50%, -50%);
-}*/
+
 
 .contenedor-botones {
     position: relative;
     width: 100%;
-}
-
-
-@media  (max-width: 1794px){
-    /*.rectanguloP1{
-        width: 130%;
-        right: 15%;
-    }*/
-}
-
-@media  (max-width: 1600px){
-    /*.rectanguloP1{
-        width: 115%;
-        right: 7%;
-    }*/
-}
-
-@media  (max-width: 1440px){
-    /*.rectanguloP1{
-        width: 110%;
-        right: 5%;
-    }*/
-}
-
-@media  (max-width: 1200px){
-    /*.rectanguloP1{
-        width: 105%;
-        right: 3%;
-    }*/
 }
 
 @media  (max-width: 1440px){
@@ -309,14 +254,6 @@ body {
         width: 105%;
         right: 5%;
     }
-}
-
-@media  (max-width: 990px){
-    /*.rectanguloP1{
-        width: 110%;
-        height: 700px;
-        right: 5%;
-    }*/
 }
 
 @media  (max-width: 990px){
@@ -380,10 +317,6 @@ body {
     }
 }
 
-
-
-
-
 .rectanguloP1 {
     margin: 30px;
     width: 90%;
@@ -425,4 +358,8 @@ body {
 .btn1
 {
     background-color: #0D4560;
+}
+
+.btn .btn-outline-primary{
+    border: none;
 }
