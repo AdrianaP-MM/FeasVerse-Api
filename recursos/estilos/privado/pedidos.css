@@ -493,6 +493,12 @@
         flex-direction: column;
     }
 
+    #infoDelClienteParaRepartidor{
+        display: flex;
+        flex-direction: column;
+        overflow-x: auto;
+    }
+
     #infoDeRepartidor {
         flex-direction: column;
     }
@@ -507,6 +513,21 @@
 
     .img1 {
         margin-bottom: 30px;
+    }
+
+    #detallesDeMasPedidoRepartidor{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #containerTotales{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-self: center;
+        justify-items: center;
+        align-items: center;
     }
 
 }
@@ -602,6 +623,10 @@
     }
 
     .contenedorDeNuevosPedidosImagenTexto{
+        overflow-x: auto;
+    }
+
+    #detallesDelPedidoRepartidor{
         overflow-x: auto;
     }
 }
