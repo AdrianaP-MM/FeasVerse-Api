@@ -7,11 +7,8 @@ const REPARTIDOR_DIV = document.getElementById('repartidor');;
 //CONSTANTE PARA TIPOS DE CATEGORIA PARA EL RESULTADO
 const CONT_CATEGORIA_PEDIDO = document.getElementById('contenedorCategoriaPedido');
 const CARDS_NUEVOS_PEDIDOS = document.getElementById('cardsDeNuevosPedidos');
-const IMAGEN_PEDIDO = document.getElementById('imagenPedido');
-const TEXTO_CABEZADO = document.getElementById('textoDelCabezado');
-const REPARTIR = document.getElementById('cantidadNuevosPedidosRepartidor');
-const COLOR = document.getElementById('colorDelEstadoDelPedido');
-const NOMBRE_ESTADO = document.getElementById('nombreDelEstadoDelPedido')
+const CARDS_PEDIDO_PROGRESO = document.getElementById('cardsDePedidosProgreso');
+const CARDS_PEDIDO_ENTREGADO = document.getElementById('cardsDePedidosEntregado');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -93,6 +90,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         accordionButtonRepartidorPedido.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
     }) 
 
+    const accordionButtonRepartidorPedido2 = document.getElementById('accordionButtonRepartidorPedido2');
+    accordionButtonRepartidorPedido2.addEventListener('click', function(){
+
+        const isExpanded = accordionButtonRepartidorPedido2.getAttribute('aria-expanded') === 'true';
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
+        const infoDelClienteParaRepartidor2 = document.getElementById('infoDelClienteParaRepartidor2');
+        if (isExpanded) {
+            infoDelClienteParaRepartidor2.classList.remove('d-none');
+        } else {
+            infoDelClienteParaRepartidor2.classList.add('d-none');
+        }
+
+        //Cambio del texto del boton 
+        accordionButtonRepartidorPedido2.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    }) 
+
+    const accordionButtonRepartidorPedido3 = document.getElementById('accordionButtonRepartidorPedido3');
+    accordionButtonRepartidorPedido3.addEventListener('click', function(){
+
+        const isExpanded = accordionButtonRepartidorPedido3.getAttribute('aria-expanded') === 'true';
+        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
+        const infoDelClienteParaRepartidor3 = document.getElementById('infoDelClienteParaRepartidor3');
+        if (isExpanded) {
+            infoDelClienteParaRepartidor3.classList.remove('d-none');
+        } else {
+            infoDelClienteParaRepartidor3.classList.add('d-none');
+        }
+
+        //Cambio del texto del boton 
+        accordionButtonRepartidorPedido3.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
+    }) 
+
     //Cambio del texto para la info del accordion
     const accordionButtonRepartidor = document.getElementById('accordionButtonRepartidor');
     accordionButtonRepartidor.addEventListener('click', function(){ 
@@ -106,26 +135,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     accordionButton2.click();
     accordionButton3.click();
     accordionButtonRepartidorPedido.click();
+    accordionButtonRepartidorPedido2.click();
+    accordionButtonRepartidorPedido3.click();
     accordionButtonRepartidor.click();
 });
 
 function regresar(){
     CONT_CATEGORIA_PEDIDO.classList.remove('d-none');
     CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+    CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+    CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
 }
 
 //FUNCION PARA mostrar los nuevos pedidos del repartidor  
 function mostrarNuevosPedidos(){
     CONT_CATEGORIA_PEDIDO.classList.add('d-none');
     CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
+    CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
 }
 
 function mostrarPedidosProgreso(){
-
+    CARDS_PEDIDO_PROGRESO.classList.remove('d-none');
+    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
+    CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+    CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
 }
 
 function mostrarPedidosEntregados(){
-
+    CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
+    CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+    CARDS_PEDIDO_ENTREGADO.classList.remove('d-none');
 }
 
 // Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.

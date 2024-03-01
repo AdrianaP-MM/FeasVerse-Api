@@ -23,7 +23,7 @@ const loadTemplate = async () => {
             </div>
             <div class="linea"></div>
             <form class="d-flex align-items-center">
-                <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">Emiliano Ano</h1>
+                <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">Emiliano</h1>
                 <a href="/vistas/privado/detalles_usuario.html">
                     <button class="btn btn-outline-primary" type="button">
                         <img src="/recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
