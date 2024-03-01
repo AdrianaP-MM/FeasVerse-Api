@@ -35,7 +35,7 @@
                 <h3 class="titillium-web-semibold textP"> Zapatos </h3>
                 <div class="linea1"></div>
             </div>
-            <div class="ContenedorPestaña"> <!--Contenedor para las "Pestañas"--> 
+            <div class="ContenedorPestaña"> <!--Contenedor para las "Pestañas"-->
                 <ul class="nav nav-tabs ms-5">
                     <li class="nav-item" role="presentation">
                         <!--Boton para los zapatos registrados-->
@@ -79,7 +79,7 @@
                             <!-- Contenedor del carrusel -->
                             <div class="carrousel">
                                 <div class="lista-carrousel" id="lista-carrousel">
-                                   <!--Boton para mover el carrusel--> 
+                                    <!--Boton para mover el carrusel-->
                                     <button class="carrusel-arrow carrusel-prev" id="button-prev"
                                         data-button="button-prev" onclick="app.processingButton(event)">
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas"
@@ -93,22 +93,22 @@
                                     <div class="carrusel-track" id="track">
                                         <!--Declarar el boton para ir a la pagina colores-->
                                         <div class="carrusel mx-2" data-bs-toggle="tab" id="d" role="tab"
-                                        data-bs-target="#colores" aria-controls="colores" aria-selected="true">
-                                        <script>
-                                            document.querySelector('.colores').addEventListener('click', function () {
-                                                showColores(this);
-                                            });
-                                        </script>
+                                            data-bs-target="#colores" aria-controls="colores" aria-selected="true">
+                                            <script>
+                                                document.querySelector('.colores').addEventListener('click', function () {
+                                                    showColores(this);
+                                                });
+                                            </script>
+                                            <!--Ingreso de imagenes para carrusel-->
+                                            <div>
+                                                <h4> <small>Nike Dunk Low</small> UNISEX </h4>
+                                                <picture>
+                                                    <img src="/recursos/imagenes/NikeP.png" class="rounded">
+                                                </picture>
+                                                </a>
+                                            </div>
+                                        </div>
                                         <!--Ingreso de imagenes para carrusel-->
-                                            <div>
-                                                <h4> <small>Nike Dunk Low</small> UNISEX </h4>
-                                                <picture>
-                                                    <img src="/recursos/imagenes/NikeP.png" class="rounded">
-                                                </picture>
-                                                </a>
-                                            </div>
-                                        </div>
-                                         <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -118,7 +118,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                         <!--Ingreso de imagenes para carrusel-->
+                                        <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -128,7 +128,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                         <!--Ingreso de imagenes para carrusel-->
+                                        <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -138,7 +138,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                         <!--Ingreso de imagenes para carrusel-->
+                                        <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -168,9 +168,7 @@
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="colores"
                         aria-labelledby="colores-tab">
                         <div class="ContenedorB1">
-
                             <div class="ContenedorTotalA d-flex flex-column align-items-center">
-
                                 <div class="contenedor1 d-flex flex-row align-items-center justify-content-evenly">
                                     <div class="col-lg-6 col-md-6">
                                         <label for="nombreColorInput"
@@ -207,7 +205,6 @@
                                             <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-
                                             <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
@@ -233,22 +230,40 @@
                                             <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Pagina para Agregar Zapato-->
+                    <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="agregar"
+                        aria-labelledby="agregar-tab">
+                        <div class="ContenedorB2">
+                            <div class="ContenedorTotalA1 d-flex flex-column align-items-center">
+                                <div class="contenedor1A d-flex flex-row align-items-center justify-content-evenly">
+                                    <div class="col-12">
+                                        <label class="form-label text25 m-1 titillium-web-extralight">Agregar
+                                            Zapato</label>
+                                    </div>
+                                    <div class="ContenedorForm col-1">
+                                        hola
+                                        <div class="sizedbox">
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane1 fade z-2 position-relative " role="tabpanel" id="agregar"
-                            aria-labelledby="agregar-tab">
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal para COLORES --> <!-- TODO ----------------------------COLORES MODAL------------------------------------------>
+        </div>
+
+        <!-- Modal para COLORES -->
+        <!-- TODO ----------------------------COLORES MODAL------------------------------------------>
         <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">

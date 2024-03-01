@@ -354,3 +354,43 @@ h4
     background-color: #1A89BD;
     color: white;
 }
+
+.ContenedorTotalA1{
+    justify-self: flex-start;
+    align-self: flex-start;
+    justify-content: flex-start;
+    min-width: 100%;
+    margin-bottom: 15px;
+}
+
+.ContenedorB2 {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    z-index: 3;
+}
+
+.contenedor1A,
+.contenedor2 {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: fit-content;
+}
+
+.tab-pane1
+{
+    padding-top: 3%;
+    min-width: 100%;
+    min-height: fit-content;
+}
+
+.ContenedorForm{
+    background-color: #383a3b;
+    width: 110%;
+    height: 500px;
+    right: 100%;
+}
+
+.sizedbox{
+    margin-left: 100%;
+}

@@ -1,7 +1,9 @@
 // Se establece el título de la página web.
     document.querySelector('title').textContent = 'Feasverse - Comentarios';
+    //Declaracion de variables
 
     const COMENTARIOS_DIV = document.getElementById('rectanguloP');
+    const BOTON_RETIRAR = document.getElementById('btnRetirar');
     const DCOMENTARIOS_DIV = document.getElementById('rectanguloP1');
 
     // *Método del evento para cuando el documento ha cargado.
@@ -24,4 +26,11 @@
         COMENTARIOS_DIV.classList.remove('d-none');
         // Se oculta el formulario de tabla.
         DCOMENTARIOS_DIV.classList.add('d-none');
+    }
+
+    const RetirarC = async () => {
+        var textoBoton = BOTON_RETIRAR.textContent.trim();
+    
+        await sweetAlert(1, 'Se ha retirado el comentario correctamente', true);
+
     }
