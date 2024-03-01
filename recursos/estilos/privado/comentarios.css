@@ -106,7 +106,7 @@ body {
     left: 0;
     height: fit-content;
     padding-bottom: 20px;
-    background-color: #D9D9D9;
+    background-color: #1A89BD;
 }
 
 .comentarioD {
@@ -232,6 +232,54 @@ body {
     width: 100%;
 }
 
+
+.rectanguloP1 {
+    margin: 30px;
+    width: 90%;
+    height: fit-content;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    margin: 0 auto;
+    padding: 1rem;
+    /* Centrar horizontalmente */
+}
+
+.contenedorComentario
+{
+    padding: 30px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.detalleZapato
+{
+    background-color: #EFEFEF;
+    width: max-content;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+.contenedorInfoCliente{
+    justify-self: center;
+    align-self: center;
+    justify-content: flex-start;
+
+}
+.contedorDataZapato{
+    justify-self: flex-end;
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+.btn1
+{
+    background-color: #0D4560;
+}
+
+.btn .btn-outline-primary{
+    border: none;
+}
+
 @media  (max-width: 1440px){
     .Comentario{
         width: 110%;
@@ -315,51 +363,4 @@ body {
         bottom: -1000px;
         right: 50%;
     }
-}
-
-.rectanguloP1 {
-    margin: 30px;
-    width: 90%;
-    height: fit-content;
-    background-color: #D9D9D9;
-    border-radius: 15px;
-    margin: 0 auto;
-    padding: 1rem;
-    /* Centrar horizontalmente */
-}
-
-.contenedorComentario
-{
-    padding: 30px;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-}
-
-.detalleZapato
-{
-    background-color: #EFEFEF;
-    width: max-content;
-    padding: 30px;
-    margin-bottom: 20px;
-    border-radius: 15px;
-}
-.contenedorInfoCliente{
-    justify-self: center;
-    align-self: center;
-    justify-content: flex-start;
-
-}
-.contedorDataZapato{
-    justify-self: flex-end;
-    align-self: flex-end;
-    justify-content: flex-end;
-}
-.btn1
-{
-    background-color: #0D4560;
-}
-
-.btn .btn-outline-primary{
-    border: none;
 }
