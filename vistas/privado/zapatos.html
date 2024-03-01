@@ -85,7 +85,13 @@
                                         </svg>
                                     </button>
                                     <div class="carrusel-track" id="track">
-                                        <div class="carrusel mx-2">
+                                        <div class="carrusel mx-2" data-bs-toggle="tab" id="d" role="tab"
+                                        data-bs-target="#colores" aria-controls="colores" aria-selected="true">
+                                        <script>
+                                            document.querySelector('.colores').addEventListener('click', function () {
+                                                showColores(this);
+                                            });
+                                        </script>
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
                                                 <picture>

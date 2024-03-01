@@ -211,6 +211,13 @@ input{
     transition: .3s ease-in-out;
 }
 
+.carrusel:hover{
+        transform: translateY(-10px);
+        transition-property: transform;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        transition-delay: 0s;
+}
 
 @media(min-width: 768px) {
     .carrusel {
