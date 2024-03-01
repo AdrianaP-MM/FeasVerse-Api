@@ -116,7 +116,8 @@ h1 {
 }
 
 /* Estilo para elementos con clases .btn3 y .btn2 */
-.btn3, .btn2 {
+.btn3,
+.btn2 {
     padding-left: 70px;
     padding-right: 70px;
     padding-top: 10px;
@@ -140,4 +141,32 @@ h1 {
 .modal-content {
     background-color: #1A89BD;
     color: white;
+}
+
+@media screen and (max-width: 700px) {
+
+    body {
+        background-color: #1591CC;
+    }
+
+    .ContenedorTotalA {
+        padding: 5px;
+    }
+
+    .btn2,
+    #btnUpdate {
+        margin-bottom: 20px;
+    }
+
+    .contenedorDatos {
+        min-width: max-content;
+    }
+
+    .contenedorBotones {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 }
