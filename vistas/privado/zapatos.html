@@ -47,14 +47,14 @@
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
-                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"onclick="showAgregar(this)"">
+                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"onclick="showAgregar(this)">
                             Agregar
                         </button>
                     </li>
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="colores-tab" type="button"
-                            data-bs-target="#colores" role="tab" aria-controls="colores" aria-selected="true">
+                            data-bs-target="#colores" role="tab" aria-controls="colores" aria-selected="true" onclick="showColores(this)">
                             Colores
                         </button>
                     </li>
@@ -143,12 +143,113 @@
                                 </button>
                                 </div>
                             </div>
+                        </div>
+                        </div>
+                        <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="colores"
+                        aria-labelledby="colores-tab">
+                        <div class="ContenedorTotalA d-flex flex-column align-items-center d-none" id="colores">
+                            <div class="contenedor1 d-flex flex-row align-items-center justify-content-evenly" id="colores">
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="nombreColorInput"
+                                        class="form-label text25 m-1 titillium-web-extralight">Nombre del color</label>
+                                    <input type="text" class="form-control" id="nombreColorInput"
+                                        placeholder="Ingresa el color" required>
+                                </div>
+                                <div class="contenedorBotones1 col-lg-6 ">
+                                    <button class="btn btnAdd btn-primary shadow ms-5 text18 titillium-web-regular"
+                                        onclick="addSave()" type="submit">Agregar</button>
+                                </div>
+                            </div>
 
+                            <div class="contenedor2 d-flex flex-column align-items-center mt-2">
+
+                                <div class="tituloColoresD mt-5">
+                                    <h2 class="titillium-web-extralight text25">Colores disponibles</h2>
+                                </div>
+
+                                <div class="contenedorColoresScroll d-flex flex-column">
+
+                                    <div class="contenedorFilaColores d-flex flex-row flex-wrap">
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                        <div class="pastilla">
+                                            <h4>Rojo</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="tab-pane1 fade z-2 position-relative " role="tabpanel" id="agregar"
                             aria-labelledby="agregar-tab">
-                            <div class="">
-                                <p>Hola Holaa</p>
-                            </div>
+                            
+                            
 
 
     </main>
