@@ -238,7 +238,7 @@ function clearFormInputs() {
     document.getElementById('fecharInput').value = '';
     document.getElementById('estadoInput').value = '';
     document.getElementById('nivelInput').value = '';
-    document.getElementById('contraInput').value = '';       
+    document.getElementById('contraInput').value = '';
 }
 
 // Función para ocultar el modal y cambiar a la primera pestaña de la tabla.
@@ -277,4 +277,58 @@ Array.from(forms).forEach(form => {
         // Añade la clase 'was-validated' al formulario para aplicar estilos de validación.
         form.classList.add('was-validated');
     }, false);
+});
+
+document.getElementById('duiInput').addEventListener('input', function (event) {
+    // Obtener el valor actual del campo de texto
+    let inputValue = event.target.value;
+
+    // Limpiar el valor de cualquier carácter que no sea un número
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Asegurar que no haya más de 9 dígitos
+    inputValue = inputValue.slice(0, 9);
+
+    // Formatear el número agregando el guión antes del último dígito si hay al menos dos dígitos
+    if (inputValue.length > 1) {
+        inputValue = inputValue.slice(0, -1) + '-' + inputValue.slice(-1);
+    }
+
+    // Actualizar el valor del campo de texto con la entrada formateada
+    event.target.value = inputValue;
+});
+
+document.getElementById('telefonoTrabajador').addEventListener('input', function () {
+    var telefonoInput = this.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+    if (telefonoInput.length > 4) {
+        telefonoInput = telefonoInput.substring(0, 4) + '-' + telefonoInput.substring(4, 8);
+    }
+    this.value = telefonoInput;
+});
+
+document.getElementById('duiTrabajador').addEventListener('input', function (event) {
+    // Obtener el valor actual del campo de texto
+    let inputValue = event.target.value;
+
+    // Limpiar el valor de cualquier carácter que no sea un número
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Asegurar que no haya más de 9 dígitos
+    inputValue = inputValue.slice(0, 9);
+
+    // Formatear el número agregando el guión antes del último dígito si hay al menos dos dígitos
+    if (inputValue.length > 1) {
+        inputValue = inputValue.slice(0, -1) + '-' + inputValue.slice(-1);
+    }
+
+    // Actualizar el valor del campo de texto con la entrada formateada
+    event.target.value = inputValue;
+});
+
+document.getElementById('telefonoInput').addEventListener('input', function () {
+    var telefonoInput = this.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+    if (telefonoInput.length > 4) {
+        telefonoInput = telefonoInput.substring(0, 4) + '-' + telefonoInput.substring(4, 8);
+    }
+    this.value = telefonoInput;
 });
