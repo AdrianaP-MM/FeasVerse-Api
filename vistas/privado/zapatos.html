@@ -47,14 +47,16 @@
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
-                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"onclick="showAgregar(this)">
+                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"
+                            onclick="showAgregar(this)">
                             Agregar
                         </button>
                     </li>
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="colores-tab" type="button"
-                            data-bs-target="#colores" role="tab" aria-controls="colores" aria-selected="true" onclick="showColores(this)">
+                            data-bs-target="#colores" role="tab" aria-controls="colores" aria-selected="true"
+                            onclick="showColores(this)">
                             Colores
                         </button>
                     </li>
@@ -70,7 +72,7 @@
                             <input type="text" placeholder="Buscar Zapato...">
                         </div>
                         <div class="ContenedorTotal1 z-3 position-relative">
-                            
+
                             <!-- Contenedor de la tabla -->
                             <div class="carrousel">
                                 <div class="lista-carrousel" id="lista-carrousel">
@@ -137,134 +139,147 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="carrusel-arrow carrusel-next" id="button-next" data-button="button-next"
-                                    onclick="app.processingButton(event)">
-                                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right"
-                                        class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 320 512">
-                                        <path fill="currentColor"
-                                            d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
-                                        </path>
-                                    </svg>
-                                </button>
+                                    <button class="carrusel-arrow carrusel-next" id="button-next"
+                                        data-button="button-next" onclick="app.processingButton(event)">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas"
+                                            data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10"
+                                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                                            <path fill="currentColor"
+                                                d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                                            </path>
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="colores"
+                    </div>
+                    <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="colores"
                         aria-labelledby="colores-tab">
                         <div class="ContenedorB1">
 
                             <div class="ContenedorTotalA d-flex flex-column align-items-center">
-    
+
                                 <div class="contenedor1 d-flex flex-row align-items-center justify-content-evenly">
                                     <div class="col-lg-6 col-md-6">
                                         <label for="nombreColorInput"
-                                            class="form-label text25 m-1 titillium-web-extralight">Nombre del color</label>
+                                            class="form-label text25 m-1 titillium-web-extralight">Nombre del
+                                            color</label>
                                         <input type="text" class="form-control" id="nombreColorInput"
                                             placeholder="Ingresa el color" required>
                                     </div>
-    
+
                                     <div class="contenedorBotones1 col-lg-6 ">
                                         <button class="btn btnAdd btn-primary shadow ms-5 text18 titillium-web-regular"
                                             onclick="addSave()" type="submit">Agregar</button>
                                     </div>
                                 </div>
-    
+
                                 <div class="contenedor2 d-flex flex-column align-items-center mt-2">
-    
+
                                     <div class="tituloColoresD mt-5">
                                         <h2 class="titillium-web-extralight text25">Colores disponibles</h2>
                                     </div>
-    
+
                                     <div class="contenedorColoresScroll d-flex flex-column">
-    
+
                                         <div class="contenedorFilaColores d-flex flex-row flex-wrap">
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-    
-                                            <div class="pastilla">
+
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-    
-                                            <div class="pastilla">
+
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-                                            <div class="pastilla">
+                                            <div class="pastilla" ondblclick="openDetails(this)">
                                                 <h4>Rojo</h4>
                                             </div>
-    
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
-                                            <div class="pastilla">
-                                                <h4>Rojo</h4>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
-    
                         </div>
-                            <div class="tab-pane1 fade z-2 position-relative " role="tabpanel" id="agregar"
+                        <div class="tab-pane1 fade z-2 position-relative " role="tabpanel" id="agregar"
                             aria-labelledby="agregar-tab">
-                            
-                            
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para COLORES --> <!-- TODO ----------------------------COLORES MODAL------------------------------------------>
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header d-flex justify-content-center align-items-center">
+                        <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
+                    </div>
+                    <!-- Formulario para crear o actualizar un registro -->
+                    <form id="updateFrom" name="updateFrom">
+                        <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                            <!-- Campo de nombres -->
+                            <div class="col-sm-6 col-md-6">
+                                <label for="nombreColor" class="form-label">Nombre del color</label>
+                                <input id="nombreColor" type="text" name="nombreColor"
+                                    class="form-control editableInput" required readonly>
+                            </div>
+
+                            <!-- Botones en el pie del modal -->
+                            <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                <div class="contenedorBotones3">
+                                    <!-- Botón para cancelar la operación -->
+                                    <button type="button" id="cancelarBtn"
+                                        class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        onclick="botonCancelar()">
+                                        Cancelar
+                                    </button>
+                                    <!-- Botón para actualizar el registro -->
+                                    <button type="button" id="actualizarBtn"
+                                        class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        onclick="botonActualizar()">
+                                        Actualizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </main>
+
     <footer id="footer"></footer>
 
 

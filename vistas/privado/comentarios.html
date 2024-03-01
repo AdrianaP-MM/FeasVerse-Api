@@ -25,19 +25,17 @@
 </head>
 
 <body>
-    <header id="header"></header>
-    <div id="slide"></div>
-    <main id="mainContent">
-        <div class="ContenedorT">
-            <!--contenedor de todo-->
-            <div class="ContenedorTitulo position-relative">
+    <header id="header"></header> <!--* Elemento de Plantilla-->
+    <div id="slide"></div> <!--* Elemento de Plantilla-->
+    <main id="mainContent"> <!--* Elemento de Plantilla-->
+        <div class="ContenedorT"> <!--contenedor de todo-->
+            <div class="ContenedorTitulo position-relative">  <!--contenedor del titulo y su linea de debajo-->
                 <h3 class="titillium-web-semibold textP">Comentarios</h3>
                 <div class="linea1"></div>
             </div>
-            <div class="container">
-                <!--div contenedor del texto de comentarios y linea-->
+            <div class="container"> <!--div contenedor del texto de comentarios y linea-->
                 <div class="contenidoP">
-                    <div class="nav-link rectanguloP z-0" id="rectanguloP">
+                    <div class="nav-link rectanguloP z-0" id="rectanguloP"> <!--Contenedor con fondo gris-->
                         <div class="comentario mt-1">
                             <div class="ComentarioC" data-bs-toggle="tab" id="ComentarioC" role="tab"
                                 data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
@@ -81,8 +79,9 @@
                         <button class="btn" type="button" onclick="volver()">
                             <img src="/recursos/imagenes/flecha.png" width="25px" height="30px">
                         </button>
-                </div>
-                    <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
+                    </div>
+                    <div
+                        class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
                         <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
                         <p class="titillium-web-regular">
                             <span class="fw-bold">
@@ -106,7 +105,7 @@
                     </div>
 
                     <div class="d-flex flex-column contedorDataZapato flex-wrap">
-                        
+
                         <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
                             <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
                             <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="">
@@ -173,7 +172,7 @@
 
         </div>
     </main>
-    <footer id="footer"></footer>
+    <footer id="footer"></footer> <!--* Elemento de Plantilla-->
 
     <!-- *Llamada a las hojas de estilos del framework e iconos -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
