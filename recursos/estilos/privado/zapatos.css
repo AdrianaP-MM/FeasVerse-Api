@@ -211,6 +211,13 @@ input{
     transition: .3s ease-in-out;
 }
 
+.carrusel:hover{
+        transform: translateY(-10px);
+        transition-property: transform;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        transition-delay: 0s;
+}
 
 @media(min-width: 768px) {
     .carrusel {
@@ -252,4 +259,98 @@ input{
 
 .carrusel-next{
     right: 0px;
+}
+
+.ContenedorB1 {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    z-index: 3;
+}
+
+.ContenedorTotalA {
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 2vw;
+}
+
+.btnAdd {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #0D4560;
+    border: solid 0px;
+}
+
+.tituloColoresD {
+    justify-self: flex-start;
+    align-self: flex-start;
+    justify-content: flex-start;
+    min-width: 100%;
+    margin-bottom: 15px;
+}
+
+.contenedor1,
+.contenedor2 {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: fit-content;
+}
+
+.contenedorColoresScroll {
+    background-color: #5F5F5F;
+    border-radius: 5px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.pastilla {
+    background-color: white;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    width: 200px;
+    height: 50px;
+}
+
+h4
+{
+    margin: 0px;
+}
+
+/* Estilo para elementos con clases .btn3 y .btn2 */
+.btn3, .btn2 {
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: solid 0px;
+}
+
+/* Estilo específico para .btn3 */
+.btn3 {
+    background-color: #146A93;
+}
+
+/* Estilo específico para .btn2 */
+.btn2 {
+    background-color: white;
+    color: black;
+    border: #8F8F8F solid 1px;
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #1A89BD;
+    color: white;
 }
