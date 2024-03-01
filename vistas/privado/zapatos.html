@@ -47,7 +47,7 @@
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
-                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true">
+                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"onclick="showAgregar(this)"">
                             Agregar
                         </button>
                     </li>
@@ -62,14 +62,15 @@
                 <div class="tab-content contenidoP position-relative" id="">
                     <!-- Rectángulo de fondo -->
                     <div class="rectangle z-0"></div>
-                    <div class="ContenedorB">
-                        <input type="text" placeholder="Buscar Zapato...">
-                    </div>
                     <!-- Contenido de la pestaña "Registrados" -->
                     <div class="tab-pane fade show z-3" role="tabpanel" id="registrados"
                         aria-labelledby="registrados-tab">
                         <!-- Contenedor total de la tabla -->
+                        <div class="ContenedorB">
+                            <input type="text" placeholder="Buscar Zapato...">
+                        </div>
                         <div class="ContenedorTotal1 z-3 position-relative">
+                            
                             <!-- Contenedor de la tabla -->
                             <div class="carrousel">
                                 <div class="lista-carrousel" id="lista-carrousel">
@@ -141,6 +142,12 @@
                                     </svg>
                                 </button>
                                 </div>
+                            </div>
+
+                            <div class="tab-pane1 fade z-2 position-relative " role="tabpanel" id="agregar"
+                            aria-labelledby="agregar-tab">
+                            <div class="">
+                                <p>Hola Holaa</p>
                             </div>
 
 
