@@ -27,17 +27,18 @@
 </head>
 
 <body>
-    <header id="header"></header>
-    <div id="slide"></div>
-    <main id="mainContent">
-        <div class="ContenedorT">
-            <div class="ContenedorTitulo position-relative">
+    <header id="header"></header> <!--* Elemento de Plantilla-->
+    <div id="slide"></div> <!--* Elemento de Plantilla-->
+    <main id="mainContent"> <!--* Elemento de Plantilla-->
+        <div class="ContenedorT"> <!--Contenedor de Todo-->
+            <div class="ContenedorTitulo position-relative"> <!--* Contenedor para titulo y la linea de abajo-->
                 <h3 class="titillium-web-semibold textP"> Zapatos </h3>
                 <div class="linea1"></div>
             </div>
-            <div class="ContenedorPestaña">
+            <div class="ContenedorPestaña"> <!--Contenedor para las "Pestañas"--> 
                 <ul class="nav nav-tabs ms-5">
                     <li class="nav-item" role="presentation">
+                        <!--Boton para los zapatos registrados-->
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="registrados-tab"
                             type="button" data-bs-target="#registrados" role="tab" aria-controls="registrados"
                             aria-selected="true" onclick="showZapatos(this)">
@@ -46,12 +47,14 @@
                     </li>
 
                     <li class="nav-item ms-3" role="presentation">
+                        <!--Boton para la pagina de agregar zapato-->
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
                             data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"
                             onclick="showAgregar(this)">
                             Agregar
                         </button>
                     </li>
+                    <!--Boton para el apartado de colores de zapato-->
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="colores-tab" type="button"
@@ -73,9 +76,10 @@
                         </div>
                         <div class="ContenedorTotal1 z-3 position-relative">
 
-                            <!-- Contenedor de la tabla -->
+                            <!-- Contenedor del carrusel -->
                             <div class="carrousel">
                                 <div class="lista-carrousel" id="lista-carrousel">
+                                   <!--Boton para mover el carrusel--> 
                                     <button class="carrusel-arrow carrusel-prev" id="button-prev"
                                         data-button="button-prev" onclick="app.processingButton(event)">
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas"
@@ -87,6 +91,7 @@
                                         </svg>
                                     </button>
                                     <div class="carrusel-track" id="track">
+                                        <!--Declarar el boton para ir a la pagina colores-->
                                         <div class="carrusel mx-2" data-bs-toggle="tab" id="d" role="tab"
                                         data-bs-target="#colores" aria-controls="colores" aria-selected="true">
                                         <script>
@@ -94,6 +99,7 @@
                                                 showColores(this);
                                             });
                                         </script>
+                                        <!--Ingreso de imagenes para carrusel-->
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
                                                 <picture>
@@ -102,6 +108,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                         <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -111,6 +118,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                         <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -120,6 +128,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                         <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -129,6 +138,7 @@
                                                 </a>
                                             </div>
                                         </div>
+                                         <!--Ingreso de imagenes para carrusel-->
                                         <div class="carrusel mx-2">
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
@@ -139,6 +149,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!--Boton para mover carrusel del otro lado-->
                                     <button class="carrusel-arrow carrusel-next" id="button-next"
                                         data-button="button-next" onclick="app.processingButton(event)">
                                         <svg aria-hidden="true" focusable="false" data-prefix="fas"
@@ -153,6 +164,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--Pagina de colores-->
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="colores"
                         aria-labelledby="colores-tab">
                         <div class="ContenedorB1">
