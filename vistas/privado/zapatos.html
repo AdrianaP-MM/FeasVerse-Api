@@ -258,6 +258,8 @@
                     <!--Pagina para Agregar Zapato-->
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
+                        <div class="form-floating  col-sm-12 col-md-6">
+                        </div>
                         <div class="ContenedorB2">
                             <div class="ContenedorTotalA1 d-flex flex-column align-items-center">
                                 <div class="contenedor1A d-flex flex-column align-items-center justify-content-evenly">
@@ -265,32 +267,41 @@
                                         <label class="form-label text25 m-1 titillium-web-extralight">Agregar
                                             Zapato</label>
                                     </div>
-                                    <div class="ContenedorForm col-12">
-                                        <p class="F1">Nombre del Zapato:</p>
-                                        <input type="text" class="nombreZapato" id="nombreZapato"
-                                            placeholder="Ingresa el nombre del zapato" required>
-
-                                        <p class="F2">Marca del Zapato:</p>
-                                        <input type="text" class="marcaZapato" id="nombreZapato"
-                                            placeholder="Ingresa la marca del zapato" required>
-
-                                        <p class="F3">Genero del Zapato:</p>
-                                        <input type="text" class="generoZapato" id="nombreZapato"
-                                            placeholder="Ingresa el genero del zapato" required>
-
-                                        <p class="F4">Precio del Zapato:</p>
-                                        <input type="text" class="precioZapato" id="nombreZapato"
-                                            placeholder="Ingresa el precio del zapato" required>
-
-                                        <p class="F5">Descripcion del Zapato:</p>
-                                        <input type="text" class="descZapato" id="nombreZapato"
-                                            placeholder="Ingresa la descripcion del zapato" required>
-                                        <div class="contenedorBotones2 col-12 ">
-
-                                            <button
-                                                class="btn btnAddD btn-primary shadow ms-5 text18 titillium-web-regular"
-                                                type="submit">Agregar detalles finales</button>
+                                    <div class="ContenedorForm">
+                                        <form class="row needs-validation form1" novalidate>
+                                            <div class="col-md-6">
+                                                <label for="nombreInput" class="form-label">Nombre del zapato</label>
+                                                <input type="text" class="form-control" id="nombreInput"
+                                                    placeholder="Ingresa el nombre del zapato" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="apellidosInput" class="form-label ">Marca del zapato</label>
+                                                <input type="text" class="form-control" id="apellidosInput"
+                                                    placeholder="Ingresa la marca del zapato" required>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label for="generoInput" class="form-label ">Genero del zapato</label>
+                                                <input type="text" class="form-control" id="generoInput"
+                                                    placeholder="Ingresa el genero del zapato" required>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label for="precioInput" class="form-label ">Precio del zapato</label>
+                                                <input type="text" class="form-control" id="precioInput"
+                                                    placeholder="Ingresa el precio del zapato" required>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label for="descInput" class="form-label ">Descripcion del producto</label>
+                                                <input type="text" class="form-control" id="descInput" style="height: 100px;"
+                                                    placeholder="Ingresa la descripción del producto" required>
+                                            </div>
+                                            <div class="contenedorBotones1A col-md-6 mt-3">
+                                        <button class="btn btnCan btn-primary shadow text18 titillium-web-regular"
+                                            type="submit">Cancelar</button>
                                         </div>
+                                        <div class="contenedorBotones1A col-md-6 mt-3">
+                                            <button class="btn btnAddD btn-primary shadow text18 titillium-web-regular"
+                                                type="submit">Agregar</button>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -298,6 +309,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
 
