@@ -43,9 +43,9 @@ function showColores(boton) {
 }
 
 function showAgregar(boton) {
-    // Se muestra el div para agregar marca.
+    // Se muestra el div para agregar zapato.
     AGREGAR_DIV.classList.remove('d-none');
-    // Se oculta la visualizacion de las marcas.
+    // Se oculta la visualizacion de los colores.
     COLORES_DIV.classList.add('d-none');
 
     // Restablece el color de todos los botones
@@ -115,7 +115,7 @@ const openDetails = async () => {
     // Establece valores predeterminados en algunos campos del formulario.
     NOMBREC_INPUT.value = "Rojo";
     
-    // Cambia el contenido del elemento con ID 'modalTitle' a 'Detalles Marca'.
+    // Cambia el contenido del elemento con ID 'modalTitle' a 'Cplores'.
     MODAL_TITLE.textContent = 'Detalles Color: Rojo';
 }
 
