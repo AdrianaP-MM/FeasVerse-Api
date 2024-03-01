@@ -185,6 +185,18 @@
     z-index: 0;
 }
 
+#contenedorDelAcordionSoloHeaderAndBody3{
+    border-top: 1px solid #0D4560;
+    border-left: 1px solid #0D4560;
+    border-right: 1px solid #0D4560;
+    border-bottom: 1px solid #0D4560;
+    background-color: white;
+    position: relative;
+    z-index: 0;
+    display: flex;
+    flex-direction: wrap;
+}
+
 /* Estilos para un botón de acordeón */
 .accordion-button {
     border-left: 1px solid #0D4560;
@@ -572,8 +584,31 @@
 
 }
 
+@media screen and (max-width: 500px){
+    #contenedorDelAcordionSoloHeaderAndBody3{
+        overflow-x: auto;
+    }
+
+    #collapseOneRepartidor{
+        overflow-x: auto;
+    }
+
+    #collapseTwoRepartidor{
+        overflow-x: auto;
+    }
+
+    #collapseThreeRepartidor{
+        overflow-x: auto;
+    }
+
+    .contenedorDeNuevosPedidosImagenTexto{
+        overflow-x: auto;
+    }
+}
+
 /* Estilos para dispositivos con pantalla menor o igual a 480px */
 @media screen and (max-width: 480px) {
+
     .custom-select select {
         margin-top: 20px;
         width: 250%;
