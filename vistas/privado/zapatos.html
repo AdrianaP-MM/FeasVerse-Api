@@ -35,25 +35,46 @@
                 <h3 class="titillium-web-semibold textP"> Zapatos </h3>
                 <div class="linea1"></div>
             </div>
-
             <div class="ContenedorPestaña">
                 <ul class="nav nav-tabs ms-5">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="tabla-tab" type="button"
-                            data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
-                            onclick="showTableDiv(this)">
-                            Tabla
+                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="registrados-tab" type="button"
+                            data-bs-target="#registrados" role="tab" aria-controls="registrados" aria-selected="true"
+                            onclick="showZapatos(this)">
+                            Registrados
                         </button>
                     </li>
 
                     <li class="nav-item ms-3" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
-                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"
-                            onclick="showAddDiv(this)">
+                            data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true">
                             Agregar
                         </button>
                     </li>
+
+                    <li class="nav-item ms-3" role="presentation">
+                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="colores-tab" type="button"
+                            data-bs-target="#colores" role="tab" aria-controls="colores" aria-selected="true">
+                            Colores
+                        </button>
+                    </li>
                 </ul>
+
+
+
+                <div class="tab-content contenidoP position-relative" id="">
+                    <!-- Rectángulo de fondo -->
+                    <div class="rectangle z-0"></div>
+                    <div class="ContenedorB">
+                        <input type="text" placeholder="Buscar Zapato...">
+                    </div>
+                    <!-- Contenido de la pestaña "Tabla" -->
+                    <div class="tab-pane fade show z-3" role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
+                        <!-- Contenedor total de la tabla -->
+                        <div class="ContenedorTotal z-3 position-relative">
+                            <!-- Contenedor de la tabla -->
+                            <div class="carrousel"></div>
+
 
     </main>
     <footer id="footer"></footer>
