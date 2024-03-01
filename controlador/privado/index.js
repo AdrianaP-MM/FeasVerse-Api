@@ -64,6 +64,10 @@ function showForgotPasswordStepThreeForm() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
+function showLoginForm(event) {
+    event.preventDefault(); // Evita la recarga de la página por defecto
+}
+
 //Funcion de mostrar la dashboard
 function showDashboard()
 {
