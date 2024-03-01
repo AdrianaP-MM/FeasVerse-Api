@@ -1,12 +1,17 @@
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Feasverse - Pedidos';
 
-// Constante para establecer el espacio de tabla y el espacio de agregar.
+// Constante para uso
 const PEDIDOS_DIV = document.getElementById('pedidos');
-const REPARTIDOR_DIV = document.getElementById('repartidor');
+const REPARTIDOR_DIV = document.getElementById('repartidor');;
 //CONSTANTE PARA TIPOS DE CATEGORIA PARA EL RESULTADO
 const CONT_CATEGORIA_PEDIDO = document.getElementById('contenedorCategoriaPedido');
 const CARDS_NUEVOS_PEDIDOS = document.getElementById('cardsDeNuevosPedidos');
+const IMAGEN_PEDIDO = document.getElementById('imagenPedido');
+const TEXTO_CABEZADO = document.getElementById('textoDelCabezado');
+const REPARTIR = document.getElementById('cantidadNuevosPedidosRepartidor');
+const COLOR = document.getElementById('colorDelEstadoDelPedido');
+const NOMBRE_ESTADO = document.getElementById('nombreDelEstadoDelPedido')
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -104,6 +109,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     accordionButtonRepartidor.click();
 });
 
+function regresar(){
+    CONT_CATEGORIA_PEDIDO.classList.remove('d-none');
+    CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+}
+
+//FUNCION PARA mostrar los nuevos pedidos del repartidor  
+function mostrarNuevosPedidos(){
+    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
+    CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
+}
+
+function mostrarPedidosProgreso(){
+
+}
+
+function mostrarPedidosEntregados(){
+
+}
+
 // Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
 function ShowRepartidor(boton) {
     REPARTIDOR_DIV.classList.remove('d-none');
@@ -150,12 +174,6 @@ document.getElementById('buscadorInputPedidos').addEventListener('input', functi
         clearIcon.style.display = 'none';
     }
 });
-
-//FUNCION PARA mostrar los nuevos pedidos del repartidor  
-function mostrarNuevosPedidos(){
-    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
-    CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
-}
 
 // Función para limpiar el input y ocultar el icono de limpiar
 function clearSearch() {

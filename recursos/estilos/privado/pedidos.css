@@ -116,7 +116,7 @@
     box-shadow: none;
 }
 
-#contenedorDeLasCardsDeRepatidor{
+#contenedorDeLasCardsDeRepatidor {
     overflow-x: none;
 }
 
@@ -126,7 +126,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
 }
 
 #infoDeRepartidor2 {
@@ -134,7 +133,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
 }
 
 #infoDeRepartidor3 {
@@ -142,19 +140,17 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
 }
 
-#infoDelClienteParaRepartidor{
+#infoDelClienteParaRepartidor {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 300px;
 }
 
 /* Estilos para la información del repartidor */
-#infoDeRepartidorDelApartadoDelRepartidor{
+#infoDeRepartidorDelApartadoDelRepartidor {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -164,7 +160,8 @@
 
 /* Estilos para la imagen de un repartidor */
 #infoDeRepartidor img {
-    max-width: 100%; /* Ajusta el tamaño máximo de la imagen al 100% del contenedor */
+    max-width: 100%;
+    /* Ajusta el tamaño máximo de la imagen al 100% del contenedor */
 }
 
 /* Estilos para un contenedor de acordeón con solo encabezado y cuerpo */
@@ -178,7 +175,7 @@
     z-index: 0;
 }
 
-#contenedorDelAcordionSoloHeaderAndBody2{
+#contenedorDelAcordionSoloHeaderAndBody2 {
     border-top: 1px solid #0D4560;
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
@@ -199,7 +196,7 @@
     background-color: white;
 }
 
-.accordionButtonRepartidor{
+.accordionButtonRepartidor {
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
     border-bottom: 1px solid #0D4560;
@@ -268,7 +265,7 @@
 }
 
 /* Estilos para un input de formulario */
-.form-control{
+.form-control {
     height: 46px;
 }
 
@@ -320,7 +317,8 @@
     background-position: right 10px center;
     /* Ajusta la posición de la imagen */
     background-repeat: no-repeat;
-    background-size: 30px 30px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    background-size: 30px 30px;
+    /* Ajusta el tamaño de la imagen según tus necesidades */
 }
 
 /* Estilos específicos para el contenedor de tarjetas de pedido en dispositivos más grandes */
@@ -332,36 +330,42 @@
 
 /* Estilos para un contenedor de tarjetas flexibles */
 .containerCards {
-    overflow-x: auto; /* Establece el desplazamiento horizontal automático */
-    white-space: nowrap; /* Evita el salto de línea dentro del contenedor */
-    display: flex; /* Utiliza un contenedor flexible para mantener los elementos en línea */
+    overflow-x: auto;
+    /* Establece el desplazamiento horizontal automático */
+    white-space: nowrap;
+    /* Evita el salto de línea dentro del contenedor */
+    display: flex;
+    /* Utiliza un contenedor flexible para mantener los elementos en línea */
 }
 
 /* Estilos para el scrollbar del contenedor de tarjetas flexibles en navegadores WebKit */
 .containerCards::-webkit-scrollbar {
-    height: 12px; /* Ajusta el tamaño del scrollbar según tus preferencias */
+    height: 12px;
+    /* Ajusta el tamaño del scrollbar según tus preferencias */
 }
 
 /* Estilos para el thumb del scrollbar del contenedor de tarjetas flexibles en navegadores WebKit */
 .containerCards::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color del thumb (la barra deslizadora) */
-    border-radius: 6px; /* Ajusta el radio de la esquina del thumb */
+    background-color: #888;
+    /* Color del thumb (la barra deslizadora) */
+    border-radius: 6px;
+    /* Ajusta el radio de la esquina del thumb */
 }
 
 /* Estilos para el cuerpo de una tarjeta */
-.card-body{
+.card-body {
     max-width: 100%;
 }
 
 /* Estilos para el nombre de un zapato */
-#nombreZapato{
+#nombreZapato {
     border-bottom: 4px solid #0D4560;
     max-width: 100%;
     border-radius: 10px;
 }
 
 /* Estilos para el color de un zapato */
-#color{
+#color {
     width: 25px;
     height: 25px;
     justify-content: center;
@@ -371,8 +375,8 @@
 }
 
 /* Estilos para la talla de un pedido */
-#tallaPedido{
-    background-color:#EDEDED;
+#tallaPedido {
+    background-color: #EDEDED;
     padding: 5px;
     border: 1px solid #5F5F5F;
     border-radius: 10px;
@@ -380,64 +384,320 @@
 }
 
 /* Estilos para el precio de un zapato */
-#precioZapato{
+#precioZapato {
     left: 0;
 }
 
 /* Estilos para la cantidad total de un pedido */
-#cantidadTotal{
+#cantidadTotal {
     right: 0;
 }
 
 /* Estilos para un botón de pedido */
-#botonDePedido{
+#botonDePedido {
     height: 70px;
 }
+
+/* Estilos para imagen*/
+.img1 {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+}
+
+.img2 {
+    margin-top: 20%;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    width: 100px;
+    height: 100px;
+}
+
+.img3 {
+    margin-top: 20%;
+    margin-left: 15px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    width: 100px;
+    height: 100px;
+}
+
+.img4 {
+    margin-top: 20%;
+    margin-left: 20px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-self: center;
+    width: 100px;
+    height: 100px;
+}
+
+#contenedorCategoriaPedido {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    justify-self: center;
+    justify-content: center;
+}
+
+
+#contenedorCategoriaPedido .col-lg-3 {
+    margin-right: 15px;
+    /* Ajusta el valor según el espacio que desees entre los contenedores */
+}
+
+#contenedorCategoriaPedido .col-lg-3:last-child {
+    margin-right: 0;
+    /* Elimina el margen derecho del último contenedor para evitar espacio adicional */
+}
+
+#contenedorCategoriaPedido {
+    margin-right: 15px;
+    /* Ajusta el valor según el espacio que desees entre los contenedores */
+}
+
+#contenedorCategoriaPedido :last-child {
+    margin-right: 0;
+    /* Elimina el margen derecho del último contenedor para evitar espacio adicional */
+}
+
 
 
 /* Responsive */
 /* Estilos para dispositivos con pantalla menor o igual a 991px */
 @media screen and (max-width: 991px) {
-    .skew-div{
+    .skew-div {
         width: 100%;
     }
+
+    #infoDeRepartidorDelApartadoDelRepartidor {
+        flex-direction: column;
+    }
+
+    #infoDeRepartidor {
+        flex-direction: column;
+    }
+
+    #infoDeRepartidor2 {
+        flex-direction: column;
+    }
+
+    #infoDeRepartidor3 {
+        flex-direction: column;
+    }
+
+    .img1 {
+        margin-bottom: 30px;
+    }
+
 }
 
 /* Estilos para dispositivos con pantalla menor o igual a 767px */
 @media screen and (max-width: 767px) {
-    .custom-select select{
+    .custom-select select {
         margin-top: 20px;
     }
 
-    #containerTotales{
+    #containerTotales {
         margin-top: 20px;
     }
+
+    .img2 img{
+        width: 100px;
+        height: 100px;
+    }
+    
+    .img3 img{
+        width: 100px;
+        height: 100px;
+    }
+    
+    .img4 img{
+        width: 100px;
+        height: 100px;
+    }
+    
+}
+
+@media screen and (max-width: 563px) {
+    #contenedorCategoriaPedido{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .img2 img{
+        margin-left: 30px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
+
+    .nuevosPedidos{
+        margin-bottom: 20px;
+    }
+
+    .img3 img{
+        margin-left: 30px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
+
+    .pedidosProgreso{
+        margin-bottom: 20px;
+    }
+
+    .img4 img{
+        margin-left: 30px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
+
 }
 
 /* Estilos para dispositivos con pantalla menor o igual a 480px */
 @media screen and (max-width: 480px) {
-    .custom-select select{
+    .custom-select select {
         margin-top: 20px;
         width: 250%;
     }
 
-    #containerTotales{
+    #containerTotales {
         margin-top: 20px;
+    }
+
+    #infoDeRepartidorDelApartadoDelRepartidor h6 {
+        font-size: 12px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor h6 {
+        font-size: 12px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor2 h6 {
+        font-size: 12px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor3 h6 {
+        font-size: 12px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
     }
 }
 
 /* Estilos para dispositivos con pantalla menor o igual a 372px */
 @media screen and (max-width: 372px) {
-    .custom-select select{
+    .custom-select select {
         margin-top: 20px;
         width: 100%;
     }
+
+    .img2 img{
+        margin-left: 25px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
+
+    .img3 img{
+        margin-left: 20px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
+
+    .img4 img{
+        margin-left: 20px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+    }
 }
 
-.img1
-{
-    display: flex;
-    align-self: center;
-    align-items: center;
-    justify-self: center;
+/* Estilos para dispositivos con pantalla menor o igual a 344px */
+@media screen and (max-width: 344px) {
+    #infoDeRepartidorDelApartadoDelRepartidor h6 {
+        font-size: 8px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor h6 {
+        font-size: 8px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor2 h6 {
+        font-size: 8px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor3 h6 {
+        font-size: 8px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+}
+
+/* Estilos para dispositivos con pantalla menor o igual a 280px */
+@media screen and (max-width: 280px) {
+    #infoDeRepartidorDelApartadoDelRepartidor h6 {
+        font-size: 6px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor h6 {
+        font-size: 6px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor2 h6 {
+        font-size: 6px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    #infoDeRepartidor3 h6 {
+        font-size: 6px;
+        /* Tamaño de letra más pequeño para pantallas pequeñas */
+    }
+
+    .img4 img{
+        margin-left: 20px;
+        display: flex;
+        justify-self: center;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .pedidosEntregados{
+        width: 110px;
+    }
 }
