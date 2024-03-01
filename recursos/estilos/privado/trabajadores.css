@@ -1,8 +1,8 @@
+/* Estilos para el contenedor principal */
 .ContenedorT {
     min-height: 100%;
     max-height: 100%;
     width: 100%;
-    /*background-color: black;*/
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -12,15 +12,16 @@
     padding-bottom: 30px;
 }
 
+/* Estilos para el contenedor del título */
 .ContenedorTitulo {
     max-height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
-    /*background-color: aquamarine;*/
     background-color: white;
 }
 
+/* Estilos para el contenedor de la pestaña */
 .ContenedorPestaña {
     height: 100%;
     flex: 1;
@@ -29,6 +30,7 @@
     width: 100%;
 }
 
+/* Estilos para los elementos de la barra de navegación */
 .nav-item {
     background-color: #146A93;
     border-top-left-radius: 10px;
@@ -37,12 +39,14 @@
     color: white;
 }
 
+/* Estilos para los enlaces de la barra de navegación */
 .nav-link {
     text-decoration: none;
     color: white;
     font-size: 18px;
 }
 
+/* Estilos para el contenido principal */
 .contenidoP {
     background-color: #1591CC;
     height: 100%;
@@ -52,6 +56,7 @@
     flex-direction: column;
 }
 
+/* Estilos para el contenedor del tab control */
 #myTabControl {
     width: 100%;
     height: 100%;
@@ -59,6 +64,7 @@
     max-height: 100%;
 }
 
+/* Estilos para el rectángulo */
 .rectangle {
     position: absolute;
     left: 0;
@@ -69,6 +75,7 @@
     border-bottom-right-radius: 50px;
 }
 
+/* Estilos para la línea */
 .linea1 {
     width: 100%;
     height: 2px;
@@ -79,16 +86,19 @@
     margin-top: 10px;
 }
 
+/* Estilos para el texto con clase .textP */
 .textP {
     color: #146A93;
 }
 
+/* Estilos para la pestaña con clase .tab-pane1 */
 .tab-pane1 {
     width: 100%;
     min-height: 100%;
     max-height: 100%;
 }
 
+/* Estilos para el contenedor de la tabla */
 .Contenedor-tabla {
     padding-left: 20px;
     padding-right: 20px;
@@ -96,6 +106,7 @@
     height: 50vh;
 }
 
+/* Estilos para los contenedores de botones */
 .contenedorBotones,
 .contenedorBotones2,
 .contenedorBotones3 {
@@ -106,6 +117,7 @@
     bottom: -10%;
 }
 
+/* Estilos para contenedorBotones2 */
 .contenedorBotones2 {
     bottom: 2%;
     left: 0;
@@ -114,20 +126,23 @@
     justify-content: center;
 }
 
+/* Estilos para contenedorBotones3 */
 .contenedorBotones3 {
     bottom: 2%;
-    position:static;
+    position: static; /* Cambiado a 'static' para que no sea posicionado de forma absoluta */
     left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
+/* Estilos para el elemento con ID 'tabla-tab' */
 #tabla-tab {
     padding-left: 20px;
     padding-right: 20px;
 }
 
+/* Estilos para ContenedorTotal */
 .ContenedorTotal {
     display: flex;
     flex: 1;
@@ -136,6 +151,7 @@
     height: 100%;
 }
 
+/* Estilos para el elemento con ID 'agregar' */
 #agregar {
     display: flex;
     flex: 1;
@@ -147,11 +163,13 @@
     align-items: center;
 }
 
+/* Estilos para ContenedorTituloA */
 .ContenedorTituloA {
     margin-top: 20px;
     width: 100%;
 }
 
+/* Estilos para ContenedorForm */
 .ContenedorForm {
     background-color: white;
     width: 100%;
@@ -170,10 +188,12 @@
     padding-right: 40px;
 }
 
+/* Estilos para form-control */
 .form-control {
     border: #146A93 solid 1px;
 }
 
+/* Estilos para btn3 y btn2 */
 .btn3, .btn2 {
     padding-left: 70px;
     padding-right: 70px;
@@ -182,17 +202,20 @@
     background-color: #146A93;
     border: solid 0px;
 }
-.btn2
-{
+
+/* Estilos para btn2 */
+.btn2 {
     background-color: white;
     border: #8F8F8F 1px solid;
     color: black;
 }
 
+/* Estilos para form1 */
 .form1 {
     min-width: 100%;
 }
 
+/* Estilos para table thead th */
 .table thead th {
     background-color: #0D4560;
     color: white;
@@ -200,41 +223,30 @@
     text-align: center;
 }
 
+/* Estilos para quitar el borde superior de la tabla */
 .table {
     border-top: 0px;
 }
 
-/*Sweet alert*/
-.swal2-popup {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-title {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-content {
-    font-family: "Titillium Web", sans-serif;
-}
-
-.swal2-actions button {
-    margin: 10px;
-    width: 100px;
+/* Estilos para quitar el borde superior de la tabla en la sección thead */
+.thead {
+    border-top: #0D4560 solid 0px;
 }
 
 /*PopUp de detalles*/
-.thead {
-    border-top:#0D4560 solid 0px;
-}
-.modal-content{
+/* Estilos para el contenido del modal */
+.modal-content {
     background-color: #1A89BD;
     color: white;
 }
 
-#tablaTrabajadores{
+/* Hacer que el encabezado de la tabla se mantenga fijo al hacer scroll en el cuerpo de la tabla */
+#tablaTrabajadores {
     overflow-y: auto;
 }
-thead tr th { 
+
+/* Hacer que el encabezado de la tabla se mantenga fijo al hacer scroll en el cuerpo de la tabla */
+thead tr th {
     position: sticky;
     top: 0;
     z-index: 10;

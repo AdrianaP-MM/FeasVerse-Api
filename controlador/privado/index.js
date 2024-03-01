@@ -64,6 +64,7 @@ function showForgotPasswordStepThreeForm() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
+//Funcion de mostrar la dashboard
 function showDashboard()
 {
     location.href = '/vistas/privado/panel_principal.html';

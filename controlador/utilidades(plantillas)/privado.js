@@ -12,6 +12,7 @@ const MAIN = document.querySelector('#mainContent');
 */
 
 const loadTemplate = async () => {
+    // Crear el elemento de encabezado con una barra de navegación.
     const header = document.createElement('header');
     header.innerHTML = `
     <nav class="navbar bg-color-5blue fixed-top position-relative">
@@ -33,6 +34,7 @@ const loadTemplate = async () => {
     </nav>
     `;
 
+    // Crear el menú deslizante lateral.
     const slideMenu = document.createElement('div');
     slideMenu.innerHTML = `
     <div class="wrapper">
@@ -121,7 +123,7 @@ const loadTemplate = async () => {
         </div>
     </div>
     `;
-
+    // Crear el elemento de pie de página.
     const footer = document.createElement('footer');
     footer.innerHTML = `
         <nav class="z-2 position-relative">
@@ -135,20 +137,25 @@ const loadTemplate = async () => {
             </div>
         </nav>
     `;
+    // Obtener el contenedor del menú deslizante
     var contenedorSlide = document.getElementById("slide");
     contenedorSlide.appendChild(slideMenu);
 
+    // Manejar la funcionalidad del botón hamburguesa
     const hamBurger = document.querySelector(".toggle-btn");
     hamBurger.addEventListener("click", function () {
         document.querySelector("#sidebar").classList.toggle("expand");
     });
 
+    // Obtener el contenedor del encabezado y agregar el elemento de encabezado.
     var contenedorHeader = document.getElementById("header");
     contenedorHeader.appendChild(header);
 
+    // Obtener el contenedor principal y agregar el contenido principal (MAIN).
     var contenedorDiv = document.getElementById("contenedorMAIN");
     contenedorDiv.appendChild(MAIN);
 
+    // Obtener el contenedor del pie de página y agregar el elemento de pie de página.
     var contenedorFooter = document.getElementById("footer");
     contenedorFooter.appendChild(footer);
 }

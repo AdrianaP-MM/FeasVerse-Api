@@ -124,40 +124,48 @@
                     <form id="detailUpdateForm" name="detailUpdateForm">
                         <div class="modal-body row g-3">
                             <!-- Campos del formulario -->
+                            <!-- Campo de nombre -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="nombreCliente" class="form-label">Nombres</label>
                                 <input id="nombreCliente" type="text" name="nombreCliente" class="form-control"
                                     required>
                             </div>
+                            <!-- Campo de apellido -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="apellidosCliente" class="form-label">Apellidos</label>
                                 <input id="apellidosCliente" type="text" name="apellidosCliente" class="form-control"
                                     required>
                             </div>
+                            <!-- Campo de DUI-->
                             <div class="col-sm-12 col-md-6">
                                 <label for="duiCliente" class="form-label">DUI</label>
                                 <input id="duiCliente" type="text" name="duiCliente" class="form-control" required>
                             </div>
+                            <!-- Campo de telefono -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="telefonoCliente" class="form-label">Teléfono</label>
                                 <input id="telefonoCliente" type="text" name="telefonoCliente" class="form-control"
                                     required>
                             </div>
+                            <!-- Campo de correo electronico -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="correoCliente" class="form-label">Correo electrónico</label>
                                 <input id="correoCliente" type="email" name="correoCliente" class="form-control"
                                     required>
                             </div>
+                            <!-- Campo de fecha de nacimiento -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="fechaDeNacimientoCliente" class="form-label">Fecha de nacimiento</label>
                                 <input id="fechaDeNacimientoCliente" type="date" name="fechaDeNacimientoCliente"
                                     class="form-control" required>
                             </div>
+                            <!-- Campo de fecha de registro -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="fechaDeRegistroCliente" class="form-label">Fecha de registro</label>
                                 <input id="fechaDeRegistroCliente" type="date" name="fechaDeRegistroCliente"
                                     class="form-control" required>
                             </div>
+                            <!-- Campo de estado -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="estadoCliente" class="form-label">Estado</label>
                                 <input id="estadoCliente" type="text" name="estadoCliente" class="form-control"
@@ -166,11 +174,13 @@
                         </div>
                         <!--Footer del modal-->
                         <div class="modal-footer d-flex justify-content-center">
+                            <!-- boton de cancelar -->
                             <button type="button" id="cancelarBtn"
                                 class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
                                 onclick="botonCancelar()">
                                 Cancelar
                             </button>
+                            <!-- boton de actualizar -->
                             <button type="button" id="actualizarBtn"
                                 class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
                                 onclick="botonActualizar()">

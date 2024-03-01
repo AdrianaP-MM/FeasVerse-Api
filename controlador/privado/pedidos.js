@@ -120,17 +120,19 @@ function ShowRepartidor(boton) {
     boton.style.color = 'white';
 }
 
+// Definición de la función llamada 'ShowPedidos'.
 function ShowPedidos(boton) {
+    // Muestra el div de pedidos y oculta el div de repartidores.
     PEDIDOS_DIV.classList.remove('d-none');
     REPARTIDOR_DIV.classList.add('d-none');
 
-    // Restablece el color de todos los botones
+    // Restablece el color de todos los botones.
     var botones = document.querySelectorAll('.boton-cambiar-color');
     botones.forEach(function (b) {
         b.style.backgroundColor = '#146A93';
     });
 
-    // Cambia el color del botón clicado
+    // Cambia el color del botón clicado a un color específico.
     boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
 }

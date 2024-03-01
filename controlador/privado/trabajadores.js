@@ -143,14 +143,20 @@ function showTableDiv(boton) {
 }
 
 // Agrega validación a los formularios.
+// Convierte la colección de formularios en un array y para cada formulario en el array...
 Array.from(forms).forEach(form => {
+    // Agrega un event listener para el evento de enviar el formulario.
     form.addEventListener('submit', event => {
+        // Verifica si el formulario no pasa la validación.
         if (!form.checkValidity()) {
+            // Previene la acción por defecto de enviar el formulario.
             event.preventDefault();
+            // Detiene la propagación del evento para prevenir que se propague a otros elementos.
             event.stopPropagation();
         }
+        // Agrega la clase 'was-validated' al formulario para aplicar estilos de validación.
         form.classList.add('was-validated');
-    }, false)
+    }, false);
 });
 
 // Función para habilitar la edición de campos del formulario.
@@ -184,7 +190,7 @@ function updateButtonColors(boton) {
     var botones = document.querySelectorAll('.boton-cambiar-color');
     botones.forEach(function (b) {
         b.style.backgroundColor = '#146A93';
-        b.style.color = 'black';
+        b.style.color = 'white';
     });
     boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
@@ -200,15 +206,26 @@ async function showCancelConfirmation(message, submessage) {
 
 // Función para ocultar el modal y cambiar a la primera pestaña de la tabla.
 function hideModalAndSwitchTab() {
+    // Oculta el modal.
     DATA_MODAL.hide();
+
+    // Busca el elemento con el ID 'tabla-tab'.
     var primeraPestana = document.querySelector('#tabla-tab');
+
+    // Verifica si se encontró la primera pestaña.
     if (primeraPestana) {
+        // Limpia los campos del formulario llamando a una función 'clearFormInputs'.
         clearFormInputs();
+
+        // Simula un clic en la primera pestaña.
         primeraPestana.click();
+
+        // Muestra el div de la tabla y oculta el div de agregar.
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
 }
+
 
 // Función para limpiar los campos del formulario de agregar trabajador.
 function clearFormInputs() {
@@ -226,26 +243,38 @@ function clearFormInputs() {
 
 // Función para ocultar el modal y cambiar a la primera pestaña de la tabla.
 function hideModalAndSwitchTab() {
+    // Oculta el modal.
     DATA_MODAL.hide();
+
+    // Busca el elemento con el ID 'tabla-tab'.
     var primeraPestana = document.querySelector('#tabla-tab');
+
+    // Verifica si se encontró la primera pestaña.
     if (primeraPestana) {
+        // Limpia los campos del formulario.
         clearFormInputs();
+
+        // Simula un clic en la primera pestaña.
         primeraPestana.click();
+
         // Muestra el div de la tabla y oculta el div de agregar.
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
 }
 
-// Evento que se ejecuta al enviar el formulario.
+// Itera sobre una colección de formularios y añade un event listener para el evento de enviar el formulario.
 Array.from(forms).forEach(form => {
+    // Añade un event listener al evento submit del formulario.
     form.addEventListener('submit', event => {
+        // Verifica si el formulario no pasa la validación.
         if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
+            // Previene la acción por defecto de enviar el formulario.
+            event.preventDefault();
+            // Detiene la propagación del evento para prevenir que se propague a otros elementos.
+            event.stopPropagation();
         }
-        form.classList.add('was-validated')
-    }, false)
-})
-
-
+        // Añade la clase 'was-validated' al formulario para aplicar estilos de validación.
+        form.classList.add('was-validated');
+    }, false);
+});

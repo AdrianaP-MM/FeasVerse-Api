@@ -1,14 +1,15 @@
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'Feasverse - Clientes';
 
-const NOMBRES_INPUT = document.getElementById('nombreCliente');
-const APELLIDOS_INPUT = document.getElementById('apellidosCliente');
-const DUI_INPUT = document.getElementById('duiCliente');
-const TEL_INPUT = document.getElementById('telefonoCliente');
-const CORREO_INPUT = document.getElementById('correoCliente');
-const FECHAN_INPUT = document.getElementById('fechaDeNacimientoCliente');
-const FECHAR_INPUT = document.getElementById('fechaDeRegistroCliente');
-const ESTADO_INPUT = document.getElementById('estadoCliente');
+//declaracion de las variables
+const NOMBRES_INPUT = document.getElementById('nombreCliente'),
+APELLIDOS_INPUT = document.getElementById('apellidosCliente'),
+DUI_INPUT = document.getElementById('duiCliente'),
+TEL_INPUT = document.getElementById('telefonoCliente'),
+CORREO_INPUT = document.getElementById('correoCliente'),
+FECHAN_INPUT = document.getElementById('fechaDeNacimientoCliente'),
+FECHAR_INPUT = document.getElementById('fechaDeRegistroCliente'),
+ESTADO_INPUT = document.getElementById('estadoCliente');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('tabla-tab').setAttribute('disabled', 'disabled');
 });
 
+//Constante para abrir detalles cuando se le de doble click a la tabla
 const openDetails = async (row) => {
     // Se muestra la caja de diálogo con su título.
     DATA_MODAL.show();
@@ -62,21 +64,26 @@ const openDetails = async (row) => {
     FECHAR_INPUT.readOnly = true;
     ESTADO_INPUT.readOnly = true;
 
+    //Titulo del modal con el id del cliente
     var idCliente = values[0];
     MODAL_TITLE.textContent = 'Detalles de Clientes #'+idCliente;
 };
 
+//Funcion cuando se muestre la pestaña de la tabla
 function showTableDiv(button) {
     button.style.backgroundColor = '#1A89BD';
     button.style.color = 'white';
 }
 
+//Evento cuando el modal esta oculto
 DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
     // Después de que el modal se haya ocultado, cambiar el texto del botón a "Actualizar"
     BOTON_ACTUALIZAR.textContent = "Actualizar";
 });
 
+//Funcion del boton actualizar
 const botonActualizar = async () =>  {
+    //se obtiene el texto del boton sin espacios
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
     
     if (textoBoton == 'Actualizar') {
@@ -107,7 +114,9 @@ const botonActualizar = async () =>  {
     }
 }
 
+//Funcion del boton cancelar
 const  botonCancelar = async () => {
+    //se obtiene el texto del boton sin espacios
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
     
     if (textoBoton == 'Actualizar') {

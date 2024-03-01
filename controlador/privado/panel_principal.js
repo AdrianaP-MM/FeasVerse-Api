@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     graficoBarrasVentas();
 });
 
+// Definición de la función asíncrona llamada 'graficoBarrasVentas'.
 const graficoBarrasVentas = async () => {
     // Se declaran los arreglos para guardar los datos a graficar.
+    // Se declaran dos arreglos: uno para los meses y otro para las ventas.
     let Meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     let Ventas = [80,150,45,30,50,80,30,100,95,95,50,70];
     
