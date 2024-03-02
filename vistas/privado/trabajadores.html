@@ -102,9 +102,12 @@
                                             required>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        <label for="nivelInput" class="form-label ">Nivel de Usuario</label>
-                                        <input type="text" class="form-control" id="nivelInput"
-                                            placeholder="Ingresa el nivel de usuario" required>
+                                        <label for="nivelInput" class="form-label">Nivel de Usuario</label>
+                                        <select class="form-select" aria-label="Nivel de Usuario" required>
+                                            <option value="" disabled selected>Selecciona un nivel</option>
+                                            <option value="1">Empleado</option>
+                                            <option value="2">Repartidor</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="contraInput" class="form-label ">Contraseña</label>

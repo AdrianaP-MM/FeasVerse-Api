@@ -193,6 +193,10 @@
     border: #146A93 solid 1px;
 }
 
+.form-select {
+    border: #146A93 solid 1px;
+}
+
 /* Estilos para btn3 y btn2 */
 .btn3, .btn2 {
     padding-left: 70px;
