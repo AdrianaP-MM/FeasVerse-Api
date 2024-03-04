@@ -18,6 +18,16 @@ body {
     animation: transitionIn 1s; /* Aplica la animación 'transitionIn' con una duración de 1 segundo */
 }
 
+/**Estilo para bordes*/
+.bordesAzul{
+    border-color: #146A93;
+}
+
+.botonAzul{
+    background-color: #146A93; 
+    width: 100%;
+}
+
 /** Animación de entrada a la página */
 @keyframes transitionIn {
     from {

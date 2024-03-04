@@ -61,10 +61,26 @@ const openDetails = async (row) => {
     CORREO_INPUT.value = values[5];
     FECHAN_INPUT.value = '2001-08-12';
     FECHAR_INPUT.value = '2024-12-08';
-    ESTADO_INPUT.value = 'Vigente';
-    NIVEL_INPUT.value = values[6];
     CONTRA_INPUT.value = 'Hola123';
     var id = values[0];
+
+
+    if(values[7] == 'Vigente'){
+        ESTADO_INPUT.value = 1;
+    }
+    else{
+        ESTADO_INPUT.value = 2;
+    }
+
+    if(values[6] == 'Admin'){
+        NIVEL_INPUT.value = 1;
+    }
+    else if(values[6] == 'Empleado'){
+        NIVEL_INPUT.value = 2;
+    }
+    else{
+        NIVEL_INPUT.value = 3;
+    }
 
     // Deshabilita la edición de los campos de entrada.
     NOMBRES_INPUT.readOnly = true;
@@ -74,8 +90,8 @@ const openDetails = async (row) => {
     CORREO_INPUT.readOnly = true;
     FECHAN_INPUT.readOnly = true;
     FECHAR_INPUT.readOnly = true;
-    ESTADO_INPUT.readOnly = true;
-    NIVEL_INPUT.readOnly = true;
+    ESTADO_INPUT.disabled = true;
+    NIVEL_INPUT.disabled = true;
     CONTRA_INPUT.readOnly = true;
 
     // Actualiza el título del modal con el ID del trabajador.
@@ -167,8 +183,8 @@ function enableFormFields() {
     TEL_INPUT.readOnly = false;
     CORREO_INPUT.readOnly = false;
     FECHAN_INPUT.readOnly = false;
-    ESTADO_INPUT.readOnly = false;
-    NIVEL_INPUT.readOnly = false;
+    ESTADO_INPUT.disabled = false;
+    NIVEL_INPUT.disabled = false;
     CONTRA_INPUT.readOnly = false;
 }
 
@@ -180,9 +196,9 @@ function disableFormFields() {
     TEL_INPUT.readOnly = true;
     CORREO_INPUT.readOnly = true;
     FECHAN_INPUT.readOnly = true;
-    ESTADO_INPUT.readOnly = true;
+    ESTADO_INPUT.disabled = true;
     CONTRA_INPUT.readOnly = true;
-    NIVEL_INPUT.readOnly = true;
+    NIVEL_INPUT.disabled = true;
 }
 
 // Función para cambiar el color de los botones según el que se haya clicado.
@@ -236,7 +252,6 @@ function clearFormInputs() {
     document.getElementById('correoInput').value = '';
     document.getElementById('fechanInput').value = '';
     document.getElementById('fecharInput').value = '';
-    document.getElementById('estadoInput').value = '';
     document.getElementById('nivelInput').value = '';
     document.getElementById('contraInput').value = '';
 }

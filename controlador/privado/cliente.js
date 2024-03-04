@@ -44,25 +44,34 @@ const openDetails = async (row) => {
         values.push(cells[i].innerText);
     }
 
-    // Ahora puedes hacer lo que necesites con el array de valores
-    NOMBRES_INPUT.value = values[2];
-    APELLIDOS_INPUT.value = values[1];
-    DUI_INPUT.value = values[3];
-    TEL_INPUT.value =  values[4];
-    CORREO_INPUT.value = values[5] ;
-    FECHAN_INPUT.value = '2024-09-03';
-    FECHAR_INPUT.value = '2024-03-04';
-    ESTADO_INPUT.value = values[6];
+    
+        // Deshabilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        FECHAR_INPUT.readOnly = true;
+        ESTADO_INPUT.disabled = true;
 
-    // Deshabilitar la edición de los campos de entrada
-    NOMBRES_INPUT.readOnly = true;
-    APELLIDOS_INPUT.readOnly = true;
-    DUI_INPUT.readOnly = true;
-    TEL_INPUT.readOnly = true;
-    CORREO_INPUT.readOnly = true;
-    FECHAN_INPUT.readOnly = true;
-    FECHAR_INPUT.readOnly = true;
-    ESTADO_INPUT.readOnly = true;
+        // Se coloca los valores en el input
+        NOMBRES_INPUT.value = values[2];
+        APELLIDOS_INPUT.value = values[1];
+        DUI_INPUT.value = values[3];
+        TEL_INPUT.value =  values[4];
+        CORREO_INPUT.value = values[5] ;
+        FECHAN_INPUT.value = '2024-09-03';
+        FECHAR_INPUT.value = '2024-03-04';
+
+    if (values[6] === 'Vigente'){
+        ESTADO_INPUT.value = 1;
+    }
+    else{
+        ESTADO_INPUT.value = 2;
+    }
+
+    
 
     //Titulo del modal con el id del cliente
     var idCliente = values[0];
@@ -95,7 +104,7 @@ const botonActualizar = async () =>  {
         TEL_INPUT.readOnly = false;
         CORREO_INPUT.readOnly = false;
         FECHAN_INPUT.readOnly = false;
-        ESTADO_INPUT.readOnly = false;
+        ESTADO_INPUT.disabled = false;
 
         BOTON_ACTUALIZAR.textContent = "Guardar";
     }
@@ -108,7 +117,7 @@ const botonActualizar = async () =>  {
         CORREO_INPUT.readOnly = true;
         FECHAN_INPUT.readOnly = true;
         FECHAR_INPUT.readOnly = true;
-        ESTADO_INPUT.readOnly = true;
+        ESTADO_INPUT.disabled = true;
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
         DATA_MODAL.hide();
     }
