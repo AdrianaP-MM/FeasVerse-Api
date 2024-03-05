@@ -1,0 +1,23 @@
+.carrusel {
+    min-height: fit-content;
+    max-height: max-content;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.carruselA {
+    min-height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+}
+
+.imgC1 {
+    width: 100%;
+    min-height: 500px;
+    object-fit: cover;
+    object-position: bottom;
+}
