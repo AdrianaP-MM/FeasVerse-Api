@@ -193,25 +193,25 @@ const loadTemplate = async () => {
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
                             <a class="text-white titillium-web-light" href="#">
-                                <h5>FEASVerse</h5>
+                                <h6>FEASVerse</h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
                             <a class="text-white titillium-web-light" href="">
-                                <h5>FEAS.VERSE.SV </h5>
+                                <h6>FEAS.VERSE.SV </h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
                             <a class="text-white titillium-web-light" href="">
-                                <h5>FEASVerse</h5>
+                                <h6>FEASVerse</h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons//gmlIcon1.svg" alt="">
                             <a class="text-white titillium-web-light" href="">
-                                <h5>feasverse.sv@gmail.com</h5>
+                                <h6>feasverse.sv@gmail.com</h6>
                             </a>
                         </div>
                     </div>
