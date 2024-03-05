@@ -185,7 +185,7 @@
     z-index: 0;
 }
 
-#contenedorDelAcordionSoloHeaderAndBody3{
+#contenedorDelAcordionSoloHeaderAndBody3 {
     border-top: 1px solid #0D4560;
     border-left: 1px solid #0D4560;
     border-right: 1px solid #0D4560;
@@ -480,6 +480,18 @@
     /* Elimina el margen derecho del último contenedor para evitar espacio adicional */
 }
 
+/*Hover de los divs*/
+#divPedidosEntregados:hover {
+    background-color: #12678f;
+}
+
+#divPedidosProgreso:hover {
+    background-color: #12678f;
+}
+
+#divPedidosPendientes:hover {
+    background-color: #12678f;
+}
 
 
 /* Responsive */
@@ -493,7 +505,7 @@
         flex-direction: column;
     }
 
-    #infoDelClienteParaRepartidor{
+    #infoDelClienteParaRepartidor {
         display: flex;
         flex-direction: column;
         overflow-x: auto;
@@ -515,12 +527,12 @@
         margin-bottom: 30px;
     }
 
-    #detallesDeMasPedidoRepartidor{
+    #detallesDeMasPedidoRepartidor {
         display: flex;
         flex-direction: column;
     }
 
-    #containerTotales{
+    #containerTotales {
         margin-top: 10px;
         display: flex;
         flex-direction: column;
@@ -542,30 +554,30 @@
         margin-top: 20px;
     }
 
-    .img2 img{
+    .img2 img {
         width: 100px;
         height: 100px;
     }
-    
-    .img3 img{
+
+    .img3 img {
         width: 100px;
         height: 100px;
     }
-    
-    .img4 img{
+
+    .img4 img {
         width: 100px;
         height: 100px;
     }
-    
+
 }
 
 @media screen and (max-width: 563px) {
-    #contenedorCategoriaPedido{
+    #contenedorCategoriaPedido {
         display: flex;
         flex-direction: column;
     }
 
-    .img2 img{
+    .img2 img {
         margin-left: 30px;
         display: flex;
         justify-self: center;
@@ -575,11 +587,11 @@
         height: 60px;
     }
 
-    .nuevosPedidos{
+    .nuevosPedidos {
         margin-bottom: 20px;
     }
 
-    .img3 img{
+    .img3 img {
         margin-left: 30px;
         display: flex;
         justify-self: center;
@@ -589,11 +601,11 @@
         height: 60px;
     }
 
-    .pedidosProgreso{
+    .pedidosProgreso {
         margin-bottom: 20px;
     }
 
-    .img4 img{
+    .img4 img {
         margin-left: 30px;
         display: flex;
         justify-self: center;
@@ -605,28 +617,28 @@
 
 }
 
-@media screen and (max-width: 500px){
-    #contenedorDelAcordionSoloHeaderAndBody3{
+@media screen and (max-width: 500px) {
+    #contenedorDelAcordionSoloHeaderAndBody3 {
         overflow-x: auto;
     }
 
-    #collapseOneRepartidor{
+    #collapseOneRepartidor {
         overflow-x: auto;
     }
 
-    #collapseTwoRepartidor{
+    #collapseTwoRepartidor {
         overflow-x: auto;
     }
 
-    #collapseThreeRepartidor{
+    #collapseThreeRepartidor {
         overflow-x: auto;
     }
 
-    .contenedorDeNuevosPedidosImagenTexto{
+    .contenedorDeNuevosPedidosImagenTexto {
         overflow-x: auto;
     }
 
-    #detallesDelPedidoRepartidor{
+    #detallesDelPedidoRepartidor {
         overflow-x: auto;
     }
 }
@@ -671,7 +683,7 @@
         width: 100%;
     }
 
-    .img2 img{
+    .img2 img {
         margin-left: 25px;
         display: flex;
         justify-self: center;
@@ -681,7 +693,7 @@
         height: 60px;
     }
 
-    .img3 img{
+    .img3 img {
         margin-left: 20px;
         display: flex;
         justify-self: center;
@@ -691,7 +703,7 @@
         height: 60px;
     }
 
-    .img4 img{
+    .img4 img {
         margin-left: 20px;
         display: flex;
         justify-self: center;
@@ -747,7 +759,7 @@
         /* Tamaño de letra más pequeño para pantallas pequeñas */
     }
 
-    .img4 img{
+    .img4 img {
         margin-left: 20px;
         display: flex;
         justify-self: center;
@@ -757,7 +769,7 @@
         height: 40px;
     }
 
-    .pedidosEntregados{
+    .pedidosEntregados {
         width: 110px;
     }
 }
