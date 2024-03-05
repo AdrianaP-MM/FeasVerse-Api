@@ -1,3 +1,7 @@
+main {
+    min-height: 50vh;
+}
+
 .space {
     display: flex;
     flex-direction: row;
@@ -39,9 +43,4 @@ h6 {
 .topFooter {
     background-color: #1591CC;
     height: 30px;
-}
-
-main
-{
-    height:  100vh;
 }
