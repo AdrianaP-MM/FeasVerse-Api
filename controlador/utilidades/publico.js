@@ -13,8 +13,8 @@ const MAIN = document.querySelector('main');
 const loadTemplate = async () => {
     // *Se agrega el encabezado de la página web antes del contenido principal.
     MAIN.insertAdjacentHTML('beforebegin', `
-    <header>
-        <nav class="navbar navbar-expand-lg sticky-top bg-color-3blue ">
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-color-3blue shadow">
             <div class="container-fluid">
                 <div class="d-flex flex-row m-3 me-5">
                     <a class="navbar-brand" href="/vistas/publico/index.html">
@@ -108,5 +108,126 @@ const loadTemplate = async () => {
     `);
     //* Se agrega el pie de la página web después del contenido principal.
     MAIN.insertAdjacentHTML('afterend', `
-    `);
+    <footer class="text-center text-lg-start text-white bg-color-3blue">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-between p-4 topFooter">
+            <!-- Right -->
+            <div>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="" class="text-white me-4">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+
+        <!-- Section: Links  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h5 class="text-white titillium-web-bold">FEASVERSE</h5>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" />
+                        <h6 class="titillium-web-regular">
+                            Trabajando por la calidad de nuestros productos desde 2024,
+                            garantizando la mejor calidad que no encontrarás en otro lado
+                        </h6>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+                        <!-- Links -->
+                        <h5 class="text-white titillium-web-bold">Desarrolladores</h5>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" />
+                        <h6 class="titillium-web-regular">
+                            <a href="#!" class="text-white">Josué Emiliano Valdés Jacobo</a>
+                        </h6>
+                        <h6 class="titillium-web-regular mt-3">
+                            <a href="#!" class="text-white">Adriana Paola Mejía Méndez</a>
+                        </h6>
+                        <h6 class="titillium-web-regular mt-3">
+                            <a href="#!" class="text-white">Fernando José Gomez Martinez</a>
+                        </h6>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h5 class="text-white titillium-web-bold">Donde estamos ubicados</h5>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" />
+                        <h6 class="titillium-web-regular">
+                            Norte y, 83 Avenida Sur, San Salvador
+                        </h6>
+                        <button type="button"
+                            class="btn border shadow bg-color-4blue col-10 rounded-pill p-3 text15 titillium-web-semibold text-white mt-4">
+                            Más Sobre Nosotros</button>
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <!-- Links -->
+                        <h5 class="text-white titillium-web-bold">Contáctanos</h5>
+                        <hr class="mb-4 mt-0 d-inline-block mx-auto" />
+
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href="#">
+                                <h5>FEASVerse</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href="">
+                                <h5>FEAS.VERSE.SV </h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href="">
+                                <h5>FEASVerse</h5>
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <img class="me-2" src="../../recursos/imagenes/icons//gmlIcon1.svg" alt="">
+                            <a class="text-white titillium-web-light" href="">
+                                <h5>feasverse.sv@gmail.com</h5>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3 btmFooter">
+            Copyright © 2024 FeasVerseCompany. All rights reserved
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+`);
 }

@@ -31,3 +31,17 @@ h6 {
         max-width: max-content;
     }
 }
+
+.btmFooter {
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+.topFooter {
+    background-color: #1591CC;
+    height: 30px;
+}
+
+main
+{
+    height:  100vh;
+}
