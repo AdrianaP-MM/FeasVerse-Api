@@ -143,6 +143,15 @@ h1 {
     color: white;
 }
 
+.sizeCard{
+    width: 15rem; 
+    height: 15rem;
+}
+
+.borderImage{
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 700px) {
 
     .ContenedorTotalA {

@@ -5,10 +5,12 @@ document.querySelector('title').textContent = 'Feasverse - Pedidos';
 const PEDIDOS_DIV = document.getElementById('pedidos');
 const REPARTIDOR_DIV = document.getElementById('repartidor');;
 //CONSTANTE PARA TIPOS DE CATEGORIA PARA EL RESULTADO
-const CONT_CATEGORIA_PEDIDO = document.getElementById('contenedorCategoriaPedido');
 const CARDS_NUEVOS_PEDIDOS = document.getElementById('cardsDeNuevosPedidos');
 const CARDS_PEDIDO_PROGRESO = document.getElementById('cardsDePedidosProgreso');
 const CARDS_PEDIDO_ENTREGADO = document.getElementById('cardsDePedidosEntregado');
+const DIV_PEDIDO_ENTREGADO = document.getElementById('divPedidosEntregados'),
+    DIV_PEDIDO_PROGRESO = document.getElementById('divPedidosProgreso'),
+    DIV_PEDIDO_PENDIENTE = document.getElementById('divPedidosPendientes');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -75,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     //Cambio del texto para la info del accordion
     const accordionButtonRepartidorPedido = document.getElementById('accordionButtonRepartidorPedido');
-    accordionButtonRepartidorPedido.addEventListener('click', function(){
+    accordionButtonRepartidorPedido.addEventListener('click', function () {
 
         const isExpanded = accordionButtonRepartidorPedido.getAttribute('aria-expanded') === 'true';
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
@@ -88,10 +90,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //Cambio del texto del boton 
         accordionButtonRepartidorPedido.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    }) 
+    })
 
     const accordionButtonRepartidorPedido2 = document.getElementById('accordionButtonRepartidorPedido2');
-    accordionButtonRepartidorPedido2.addEventListener('click', function(){
+    accordionButtonRepartidorPedido2.addEventListener('click', function () {
 
         const isExpanded = accordionButtonRepartidorPedido2.getAttribute('aria-expanded') === 'true';
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
@@ -104,10 +106,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //Cambio del texto del boton 
         accordionButtonRepartidorPedido2.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    }) 
+    })
 
     const accordionButtonRepartidorPedido3 = document.getElementById('accordionButtonRepartidorPedido3');
-    accordionButtonRepartidorPedido3.addEventListener('click', function(){
+    accordionButtonRepartidorPedido3.addEventListener('click', function () {
 
         const isExpanded = accordionButtonRepartidorPedido3.getAttribute('aria-expanded') === 'true';
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
@@ -120,11 +122,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //Cambio del texto del boton 
         accordionButtonRepartidorPedido3.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    }) 
+    })
 
     //Cambio del texto para la info del accordion
     const accordionButtonRepartidor = document.getElementById('accordionButtonRepartidor');
-    accordionButtonRepartidor.addEventListener('click', function(){ 
+    accordionButtonRepartidor.addEventListener('click', function () {
         const isExpanded = accordionButtonRepartidor.getAttribute('aria-expanded') === 'true';
         //Cambio del texto del boton 
         accordionButtonRepartidor.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
@@ -140,32 +142,86 @@ document.addEventListener('DOMContentLoaded', async () => {
     accordionButtonRepartidor.click();
 });
 
-function regresar(){
-    CONT_CATEGORIA_PEDIDO.classList.remove('d-none');
+function regresar() {
     CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
     CARDS_PEDIDO_PROGRESO.classList.add('d-none');
     CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+    DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+    DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+    DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
 }
 
 //FUNCION PARA mostrar los nuevos pedidos del repartidor  
-function mostrarNuevosPedidos(){
-    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
-    CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
-    CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+function mostrarNuevosPedidos() {
+    // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+    var colorActual = window.getComputedStyle(DIV_PEDIDO_PENDIENTE).backgroundColor;
+
+    // Verificar el color actual y ejecutar la lógica correspondiente
+    if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+        CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+        CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+        CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
+    } else {
+        // si el color no es el esperado
+        CARDS_NUEVOS_PEDIDOS.classList.remove('d-none');
+        CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+        CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#146A93';
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
+    }
 }
 
-function mostrarPedidosProgreso(){
-    CARDS_PEDIDO_PROGRESO.classList.remove('d-none');
-    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
-    CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
-    CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+function mostrarPedidosProgreso() {
+    // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+    var colorActual = window.getComputedStyle(DIV_PEDIDO_PROGRESO).backgroundColor;
+
+    // Verificar el color actual y ejecutar la lógica correspondiente
+    if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+        CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+        CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+        CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
+    } else {
+        // si el color no es el esperado
+        CARDS_PEDIDO_PROGRESO.classList.remove('d-none');
+        CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+
+        CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#146A93';
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
+    }
 }
 
-function mostrarPedidosEntregados(){
-    CARDS_PEDIDO_PROGRESO.classList.add('d-none');
-    CONT_CATEGORIA_PEDIDO.classList.add('d-none');
-    CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
-    CARDS_PEDIDO_ENTREGADO.classList.remove('d-none');
+function mostrarPedidosEntregados() {
+    // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+    var colorActual = window.getComputedStyle(DIV_PEDIDO_ENTREGADO).backgroundColor;
+
+    // Verificar el color actual y ejecutar la lógica correspondiente
+    if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+        CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+        CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+        CARDS_PEDIDO_ENTREGADO.classList.add('d-none');
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#1591CC';
+    } else {
+        // si el color no es el esperado
+        CARDS_PEDIDO_PROGRESO.classList.add('d-none');
+        CARDS_NUEVOS_PEDIDOS.classList.add('d-none');
+        CARDS_PEDIDO_ENTREGADO.classList.remove('d-none');
+
+        DIV_PEDIDO_ENTREGADO.style.backgroundColor = '#146A93';
+        DIV_PEDIDO_PENDIENTE.style.backgroundColor = '#1591CC';
+        DIV_PEDIDO_PROGRESO.style.backgroundColor = '#1591CC';
+    }
 }
 
 // Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
@@ -229,6 +285,6 @@ function clearSearch() {
 }
 
 //Función asicronicaa de cambio de estado
-const cambioDeEstado = async () =>  {
+const cambioDeEstado = async () => {
     await sweetAlert(1, 'Se ha cambiado correctamente el estado del pedido', true);
 }
