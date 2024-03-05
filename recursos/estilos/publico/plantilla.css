@@ -1,0 +1,33 @@
+.space {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav-item.dropdown:hover .dropdown-menu .dropdown-item:hover {
+    background-color: #0D4560;
+    border-radius: 10px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+.contenedorMarcas {
+    min-width: 528px;
+    max-width: max-content;
+}
+
+@media screen and (max-width: 1134px) {
+    .contenedorMarcas {
+        min-width: 400px;
+        max-width: max-content;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .contenedorMarcas {
+        min-width: fit-content;
+        max-width: max-content;
+    }
+}
