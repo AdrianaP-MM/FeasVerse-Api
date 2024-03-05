@@ -1,0 +1,9 @@
+.contenedor {
+    background-image: url('../../imagenes/fondoVector.svg');
+    background-repeat:no-repeat;
+    background: cover; 
+    background-position: left center bottom;
+    max-width: 100%;
+    height: 100%;
+}
+  
