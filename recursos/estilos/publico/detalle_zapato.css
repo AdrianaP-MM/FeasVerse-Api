@@ -73,6 +73,7 @@
     padding-left: 45px;
 }
 
+
 @media screen and (max-width: 380px) {
     .comentarioBody {
         margin-left: 0px;
@@ -103,4 +104,10 @@
     height: 25px;
     margin: 10px;
     border-radius: 100px;
+}
+
+.contenedorTallas
+{
+    background-color: white;
+
 }
