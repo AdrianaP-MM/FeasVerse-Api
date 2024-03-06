@@ -45,12 +45,12 @@
     overflow-y: auto;
     min-height: 550px;
     max-height: 550px;
-    background-color: black;
 }
 
-.comentarioHeader
+.comentario
 {
-    background-color: aqua;
+    border-bottom: 0px solid gray;
+    border-radius: 15px;
 }
 
 .circuloColor {
