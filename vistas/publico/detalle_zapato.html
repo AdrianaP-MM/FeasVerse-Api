@@ -25,21 +25,23 @@
 <body>
     <!-- *Contenido principal del documento -->
     <main class="position-relative">
-        <div class="contenedorTotal d-flex flex-column">
-            <div class="contenedor1 d-flex flex-row flex-wrap">
-                <div class="columna1 d-flex flex-column col-lg-5 col-md-6 col-sm-12 col-12">
-                    <div class="contenedorImg mb-5">
+        <div class="contenedorTotal d-flex flex-column"> <!-- *Contenedor total -->
+            <div class="contenedor1 d-flex flex-row flex-wrap justify-content-between mt-5"> <!-- *Contenedor 1 -->
+                <div class="columna1 d-flex flex-column col-lg-5 col-md-6 col-sm-12 col-12 mb-5"> <!-- *Columna 1 -->
+                    <div class="contenedorImg mb-5"> <!-- *Contenedor de la img -->
                         <img src="../../recursos/imagenes/airJordan1.svg" class="imgShoe">
                     </div>
-                    <div class="contenedorReseñas d-flex flex-column">
+                    <div class="contenedorReseñas d-flex flex-column"> <!-- *Contenedor de las reseñas -->
                         <div
                             class="titleReseñas ps-5 pt-2 bg-color-1blue position-absolute col-12 col-sm-12 col-md-5 col-lg-5 ">
+                            <!-- *Contenedor del titulo de reseñas -->
                             <h2 class="titillium-web-semibold text-white">Reseñas</h2>
                         </div>
 
                         <div
                             class="contenedorComentarios p-2 d-flex flex-column mt-5 pt-4 col-12 col-sm-12 col-md-11 col-lg-11">
-                            <div class="comentario mt-5 shadow p-3">
+                            <!-- *Contenedor de los comentarios-->
+                            <div class="comentario mt-5 shadow p-3"> <!-- *Comentario 1-->
                                 <div
                                     class="comentarioHeader d-flex flex-row flex-wrap  justify-content-between align-items-center">
                                     <div class="comentarioUser">
@@ -89,11 +91,10 @@
                                             <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">5</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
-                            <div class="comentario mt-5 shadow p-3">
+                            <div class="comentario mt-5 shadow p-3"> <!-- *Comentario 2-->
                                 <div
                                     class="comentarioHeader d-flex flex-row flex-wrap  justify-content-between align-items-center">
                                     <div class="comentarioUser">
@@ -143,11 +144,10 @@
                                             <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">5</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
-                            <div class="comentario mt-5 shadow p-3">
+                            <div class="comentario mt-5 shadow p-3"> <!-- *Comentario 3-->
                                 <div
                                     class="comentarioHeader d-flex flex-row flex-wrap  justify-content-between align-items-center">
                                     <div class="comentarioUser">
@@ -197,11 +197,10 @@
                                             <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">5</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
-                            <div class="comentario mt-5 shadow p-3">
+                            <div class="comentario mt-5 shadow p-3"> <!-- *Comentario 4-->
                                 <div
                                     class="comentarioHeader d-flex flex-row flex-wrap  justify-content-between align-items-center">
                                     <div class="comentarioUser">
@@ -251,7 +250,6 @@
                                             <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">5</p>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -260,12 +258,57 @@
                     </div>
                 </div>
                 <div class="columna2 col-lg-7 col-md-6 col-sm-12">
+                    <div class="contenedorTitulo">
+                        <h1 class="m-0 p-0 titillium-web-regular">
+                            Nike Air Force 1'07
+                        </h1>
+                        <h6 class="m-0 p-0 titillium-web-regular clgr2">
+                            Zapatos tipo UNISEX
+                        </h6>
+                    </div>
+
+                    <div class="contenedorPrecioCalificacion d-flex flex-row justify-content-start mt-4 mb-5">
+                        <h3 class="m-0 p-0 titillium-web-bold">
+                            $120
+                        </h3>
+                        <div class="contenedorCalificacion d-flex flex-row align-items-center ms-4">
+                            <img src="/recursos/imagenes/icons/starFill.svg" alt="">
+                            <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">5</p>
+                        </div>
+                    </div>
+
+                    <div class="contenedorColoresTotal">
+                        <div class="contenedorTitulo">
+                            <h5 class="m-0 p-0 titillium-web-bold clgr2 mb-2">
+                                Colores disponibles
+                            </h5>
+                        </div>
+                        <div id="contenedorColores" class="d-flex flex-row flex-wrap"></div>
+                    </div>
+
+
+                    <div class="contenedorDescripcion mt-4">
+                        <div class="tituloDescripcion">
+                            <h4 class="m-0 p-0 titillium-web-bold">
+                                Descripción
+                            </h4>
+                            <p class="m-0 p-0 titillium-web-regular mt-2">
+                                Zapatos de tacón alto de alta calidad y atractivos. Nos especializamos en tallas
+                                grandes, llegando hasta la talla italiana 46. Diseñados para mujeres altas, hombres que
+                                disfrutan de usar tacones y cualquier persona que ame lucir zapatos de tacón alto.
+                                Nuestra colección ofrece elegancia y comodidad, con atención especial a los detalles y
+                                un enfoque inclusivo que celebra la diversidad de estilos y tallas. Descubre la moda sin
+                                límites con nuestros zapatos que combinan estilo y sofisticación, ideales para aquellos
+                                que desean destacar con confianza en cualquier ocasión.
+                            </p>
+                        </div>
+                    </div>
 
                 </div>
             </div>
 
             <div class="contenedor2 d-flex flex-row ">
-
+                <!--Aqui va el carrusel de recomendados-->
             </div>
         </div>
     </main>

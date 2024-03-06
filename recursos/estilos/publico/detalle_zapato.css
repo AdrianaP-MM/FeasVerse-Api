@@ -69,6 +69,10 @@
     display: none;
 }
 
+.columna2 {
+    padding-left: 45px;
+}
+
 @media screen and (max-width: 380px) {
     .comentarioBody {
         margin-left: 0px;
@@ -89,11 +93,14 @@
     .estrellasNum {
         display: block;
     }
+    .columna2 {
+        padding-left: 0px;
+    }
 }
 
 .circuloColor {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     margin: 10px;
     border-radius: 100px;
 }
