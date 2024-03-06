@@ -1,12 +1,15 @@
 .bg-color-1blue {
     background-color: #1591CC;
 }
+
 .bg-color-3blue {
     background-color: #0E72A1;
 }
+
 .bg-color-4blue {
     background-color: #146A93;
 }
+
 .bg-color-5blue {
     background-color: #0D4560;
 }
@@ -18,14 +21,21 @@
 .color-1blue {
     color: #1591CC;
 }
+
 .color-3blue {
     color: #0E72A1;
 }
+
 .color-4blue {
     color: #146A93;
 }
+
 .color-5blue {
     color: #0D4560;
+}
+
+.color-gray1 {
+    color: #8F8F8F;
 }
 
 .titillium-web-extralight {
@@ -133,12 +143,11 @@
     text-decoration: none;
 }
 
-.clYellowStar
-{
-    color: #FFA700;
+.clYellowStar2,.clYellowStar {
+    color: #FFC700;
 }
 
-.clgr3
-{
+
+.clgr3 {
     color: #7D7D7D;
 }
