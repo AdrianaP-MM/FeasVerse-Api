@@ -143,11 +143,7 @@
     text-decoration: none;
 }
 
-.clYellowStar {
-    color: #FFA700;
-}
-
-.clYellowStar2 {
+.clYellowStar2,.clYellowStar {
     color: #FFC700;
 }
 
