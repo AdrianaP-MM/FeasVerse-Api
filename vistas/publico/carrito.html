@@ -32,38 +32,89 @@ TODO importante // realtando algo
 
 <body>
     <!-- *Contenido principal del documento -->
-    <main> 
-        <!--fondo-->
-        <div class="col-lg-12 contenedor position-absolute z-n1"></div>
+    <main>
         <!--contenedor principal-->
-        <div class="col-lg-12 d-flex">
+        <div class="col-lg-12 d-flex flex-column align-items-center">
             <!--Encabezado-->
-            <div class="col-lg-12">
+            <div class="col-lg-10 d-flex mt-4">
                 <!--Foto de carrito-->
-                <div>
-
+                <div class="col-lg-1 d-flex justify-content-center align-items-center me-3">
+                    <img src="../../recursos/imagenes/carritoAzul.svg" width="100%" height="100%">
                 </div>
                 <!--Texto-->
-                <div>
-                    <div></div>
-                    <div></div>
+                <div class="col-lg-5 d-flex flex-column justify-content-center">
+                    <h1 class="titillium-web-bold mb-0">Tu carrito de compras</h1>
+                    <h5 class="titillium-web-light" id="cantidadZapato">Tienes 4 zapatos en tu carrito</h5>
                 </div>
             </div>
             <!--Contenedor de tabla y boton-->
-            <div class="col-lg-12">
+            <div class="col-lg-10 mt-3 mb-5">
                 <!--Tabla-->
-                <div>
-
+                <div class="Contenedor-tabla col-lg-12 table-responsive z-3">
+                    <!-- Tabla de carrito -->
+                    <table class="table table-hover" id="tablaCarrito">
+                        <!-- Cabecera de la tabla -->
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Zapato</th>
+                                <th scope="col">Talla</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Sub-total</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <!-- Cuerpo de la tabla -->
+                        <tbody class="text-center align-middle">
+                            <tr class="table-row">
+                                <td>
+                                    <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
+                                        height="50">
+                                </td>
+                                <td>Marca 1 Dunk bajo</td>
+                                <td>12</td>
+                                <td>Rosado</td>
+                                <td>$185</td>
+                                <td>1</td>
+                                <td>$185</td>
+                                <td>
+                                    <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura" width="50%"
+                                        height="50%">
+                                </td>
+                            </tr>
+                            <tr class="table-row">
+                                <td>
+                                    <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
+                                        height="50">
+                                </td>
+                                <td>Marca 1 Dunk bajo</td>
+                                <td>12</td>
+                                <td>Rosado</td>
+                                <td>$185</td>
+                                <td>1</td>
+                                <td>$185</td>
+                                <td>
+                                    <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura" width="50%"
+                                        height="50%">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <!--Div boton y precio-->
-                <div>
+                <div class="col-lg-12 d-flex justify-content-end">
                     <!--Precio-->
-                    <div>
-
+                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <h5 id="totalPedido" class="titillium-web color-5blue"><b>Total:</b> $370</h5>
                     </div>
                     <!--Boton-->
-                    <div>
-                        
+                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <button type="button" id="comprar"
+                            class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white"><i
+                                class="bi bi-send"></i>
+                            Comprar</button>
                     </div>
                 </div>
             </div>

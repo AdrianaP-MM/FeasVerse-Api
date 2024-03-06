@@ -1,9 +1,29 @@
-.contenedor {
-    background-image: url('../../imagenes/fondoVector.svg');
-    background-repeat:no-repeat;
-    background: cover; 
-    background-position: left center bottom;
-    max-width: 100%;
-    height: 100%;
+/* Estilos para las celdas de encabezado de la tabla */
+.table thead th {
+    background-color: #0D4560;
+    /* Color de fondo del encabezado de la tabla */
+    color: white;
+    /* Color del texto en el encabezado de la tabla */
+    border: 0;
+    /* Sin bordes en las celdas del encabezado */
+    text-align: center;
+    /* Alineación del texto al centro en el encabezado de la tabla */
 }
-  
+
+#tablaCarrito th,
+#tablaCarrito td {
+    border: none;
+    border-bottom: 1px solid #0D4560;
+    /* Añade una línea en la parte inferior de las celdas */
+}
+
+#tablaCarrito th {
+    border-top: 1px solid #0D4560;
+    /* Añade una línea en la parte superior de las celdas de encabezado */
+}
+
+/*BOTON*/
+#comprar{
+    width: 100%;
+    border-radius: 20px;
+}
