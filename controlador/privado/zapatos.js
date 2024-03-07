@@ -10,6 +10,7 @@ document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
 const COLORES_DIV = document.getElementById('colores');
 const AGREGAR_DIV = document.getElementById('agregar');
+const AGREGAR_PASO_DOS_DIV = document.getElementById('paso2');
 
 
 // *Método del evento para cuando el documento ha cargado.
@@ -31,22 +32,37 @@ function showColores(boton) {
     // Se oculta la visualizacion de agregar.
     AGREGAR_DIV.classList.add('d-none');
 
+    AGREGAR_PASO_DOS_DIV.classList.add('d-none');
+
     // Restablece el color de todos los botones
     var botones = document.querySelectorAll('.boton-cambiar-color');
     botones.forEach(function (b) {
         b.style.backgroundColor = '#146A93';
     });
 
+    
+
     // Cambia el color del botón clicado
     boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
 }
+
+function showPaso2(boton) {
+    // Se muestra el div para colores.
+    COLORES_DIV.classList.add('d-none');
+    // Se oculta la visualizacion de agregar.
+    AGREGAR_DIV.classList.add('d-none');
+
+    AGREGAR_PASO_DOS_DIV.classList.remove('d-none');
+    }
 
 function showAgregar(boton) {
     // Se muestra el div para agregar zapato.
     AGREGAR_DIV.classList.remove('d-none');
     // Se oculta la visualizacion de los colores.
     COLORES_DIV.classList.add('d-none');
+
+    AGREGAR_PASO_DOS_DIV.classList.addx('d-none');
 
     // Restablece el color de todos los botones
     var botones = document.querySelectorAll('.boton-cambiar-color');
