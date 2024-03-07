@@ -242,113 +242,104 @@
                     <!--Pagina para Agregar Zapato-->
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div class="form-floating  col-sm-12 col-md-6">
+                        <div class="ContenedorTotalA1 z-3 position-relative">
+                            <div class="ContenedorTituloA">
+                                <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Agregar Zapatos</h1>
+                            </div>
+                            <div class="ContenedorForm">
+                                <form class="row needs-validation form1" novalidate>
+                                    <div class="col-md-6">
+                                        <label for="nombreInput" class="form-label">Nombre del zapato</label>
+                                        <input type="text" class="form-control" id="nombreInput"
+                                            placeholder="Ingresa los nombres" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="marcaInput" class="form-label ">Marca del zapato</label>
+                                        <select class="form-select" aria-label="Marca" id="marcaInput" name="nivelInput"
+                                            required>
+                                            <option value="" disabled selected>Selecciona una marca</option>
+                                            <option value="1">Nike</option>
+                                            <option value="2">Adidas</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label for="generoInput" class="form-label ">Género del zapato</label>
+                                        <select class="form-select" aria-label="Genero" id="generoInput"
+                                            name="generoInput" required>
+                                            <option value="" disabled selected>Selecciona un género</option>
+                                            <option value="1">UNISEX</option>
+                                            <option value="2">Mujer</option>
+                                            <option value="3">Hombre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mt-3">
+                                        <label for="precioInput" class="form-label ">Precio del zapato</label>
+                                        <input type="number" class="form-control" id="precioInput" min="0"
+                                            placeholder="Ingresa el precio del producto" required>
+                                    </div>
+                                    <div class="col md-6 mt-3">
+                                        <label for="Descripcion" class="form-label">Descripcion del zapato</label>
+                                        <textarea class="form-control" id="Descripcion"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <div class="contenedorBotones1A">
+                                        <button type="button" onclick="returnBack()"
+                                            class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
+                                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                                            onclick="addSave()" type="submit">Agregar</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="ContenedorB2">
-                            <div class="ContenedorTotalA1 d-flex flex-column align-items-center">
-                                <div class="contenedor1A d-flex flex-column align-items-center justify-content-evenly">
-                                    <div class="col-12 d-flex align-items-center justify-content-center">
-                                        <label class="form-label text25 m-1 titillium-web-extralight">Agregar
-                                            Zapato</label>
-                                    </div>
-                                    <div class="ContenedorForm">
-                                        <form class="needs-validation form1" novalidate>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label for="nombreInput" class="form-label">Nombre del
-                                                        zapato</label>
-                                                    <input type="text" class="form-control" id="nombreInput"
-                                                        placeholder="Ingresa el nombre del zapato" required>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="apellidosInput" class="form-label ">Marca del
-                                                        zapato</label>
-                                                    <input type="text" class="form-control" id="apellidosInput"
-                                                        placeholder="Ingresa la marca del zapato" required>
-                                                </div>
-                                                <div class="col-md-6 mt-3">
-                                                    <label for="generoInput" class="form-label ">Genero del
-                                                        zapato</label>
-                                                    <input type="text" class="form-control" id="generoInput"
-                                                        placeholder="Ingresa el genero del zapato" required>
-                                                </div>
-                                                <div class="col-md-6 mt-3">
-                                                    <label for="precioInput" class="form-label ">Precio del
-                                                        zapato</label>
-                                                    <input type="text" class="form-control" id="precioInput"
-                                                        placeholder="Ingresa el precio del zapato" required>
-                                                </div>
-                                                <div class="col-md-6 mt-3">
-                                                    <label for="descInput" class="form-label ">Descripcion del
-                                                        producto</label>
-                                                    <input type="text" class="form-control" id="descInput"
-                                                        style="height: 100px;"
-                                                        placeholder="Ingresa la descripción del producto" required>
-                                                </div>
-                                            </div>
-                                            <div class="contenedorBotones1A col-md-12 mt-3">
-                                                <button
-                                                    class="btn btnCan btn-primary shadow text18 titillium-web-regular"
-                                                    type="submit">Cancelar</button>
-                                                <button
-                                                    class="btn btnAddD btn-primary shadow text18 titillium-web-regular"
-                                                    type="submit">Agregar</button>
-                                            </div>
-                                        </form>
-                                    </div>
+
+
+
+
+
+                    </div>
+
+                    <!-- Modal para COLORES -->
+                    <!-- TODO ----------------------------COLORES MODAL------------------------------------------>
+                    <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Encabezado del modal -->
+                                <div class="modal-header d-flex justify-content-center align-items-center">
+                                    <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
                                 </div>
+                                <!-- Formulario para crear o actualizar un registro -->
+                                <form id="updateFrom" name="updateFrom">
+                                    <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                                        <!-- Campo de nombres -->
+                                        <div class="col-sm-6 col-md-6">
+                                            <label for="nombreColor" class="form-label">Nombre del color</label>
+                                            <input id="nombreColor" type="text" name="nombreColor"
+                                                class="form-control editableInput" required readonly>
+                                        </div>
+
+                                        <!-- Botones en el pie del modal -->
+                                        <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                            <div class="contenedorBotones3">
+                                                <!-- Botón para cancelar la operación -->
+                                                <button type="button" id="cancelarBtn"
+                                                    class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                                    onclick="botonCancelar()">
+                                                    Cancelar
+                                                </button>
+                                                <!-- Botón para actualizar el registro -->
+                                                <button type="button" id="actualizarBtn"
+                                                    class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                                    onclick="botonActualizar()">
+                                                    Actualizar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
-
-        <!-- Modal para COLORES -->
-        <!-- TODO ----------------------------COLORES MODAL------------------------------------------>
-        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-            aria-labelledby="modalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <!-- Encabezado del modal -->
-                    <div class="modal-header d-flex justify-content-center align-items-center">
-                        <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
-                    </div>
-                    <!-- Formulario para crear o actualizar un registro -->
-                    <form id="updateFrom" name="updateFrom">
-                        <div class="modal-body row g-3 d-flex flex-column align-items-center">
-                            <!-- Campo de nombres -->
-                            <div class="col-sm-6 col-md-6">
-                                <label for="nombreColor" class="form-label">Nombre del color</label>
-                                <input id="nombreColor" type="text" name="nombreColor"
-                                    class="form-control editableInput" required readonly>
-                            </div>
-
-                            <!-- Botones en el pie del modal -->
-                            <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
-                                <div class="contenedorBotones3">
-                                    <!-- Botón para cancelar la operación -->
-                                    <button type="button" id="cancelarBtn"
-                                        class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
-                                        onclick="botonCancelar()">
-                                        Cancelar
-                                    </button>
-                                    <!-- Botón para actualizar el registro -->
-                                    <button type="button" id="actualizarBtn"
-                                        class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
-                                        onclick="botonActualizar()">
-                                        Actualizar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </main>
     <footer id="footer"></footer>
     <!-- *Llamada a las hojas de estilos del framework e iconos -->
