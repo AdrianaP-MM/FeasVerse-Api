@@ -1,7 +1,12 @@
 const NOMBREC_INPUT = document.getElementById('nombreColor');
 
-const DATA_MODAL = new bootstrap.Modal('#dataModal'),
-    MODAL_TITLE = document.getElementById('modalTitle'),
+const DATA_MODAL = new bootstrap.Modal('#dataModal');
+const DATA_TALLAS_MODAL = new bootstrap.Modal('#dataModalT');
+MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
+
+
+
+MODAL_TITLE = document.getElementById('modalTitle'),
     UPDATE_FORM = document.getElementById('updateFrom');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
@@ -40,7 +45,7 @@ function showColores(boton) {
         b.style.backgroundColor = '#146A93';
     });
 
-    
+
 
     // Cambia el color del botón clicado
     boton.style.backgroundColor = '#1A89BD';
@@ -54,7 +59,7 @@ function showPaso2(boton) {
     AGREGAR_DIV.classList.add('d-none');
 
     AGREGAR_PASO_DOS_DIV.classList.remove('d-none');
-    }
+}
 
 function showAgregar(boton) {
     // Se muestra el div para agregar zapato.
@@ -76,39 +81,39 @@ function showAgregar(boton) {
 }
 
 
-function App(){}
-    window.onload = function(event){
-        var app = new App();
-        window.app = app;
+function App() { }
+window.onload = function (event) {
+    var app = new App();
+    window.app = app;
+}
+
+App.prototype.processingButton = function (event) {
+
+    const btn = event.currentTarget;
+    const carruselList = event.currentTarget.parentNode;
+    const track = event.currentTarget.parentNode.querySelector("#track");
+    const carrusel = track.querySelectorAll('.carrusel');
+
+    const carruselWidth = carrusel[0].offsetWidth;
+
+    const trackWidth = track.offsetWidth;
+    const listWidth = carruselList.offsetWidth;
+
+    track.style.left == "" ? leftPosition = track.style.left = 0 : leftPosition = parseFloat(track.style.left.slice(0, -2) * -1);
+    btn.dataset.button == "button-prev" ? prevAction(leftPosition, carruselWidth, track) : nextAction(leftPosition, trackWidth, listWidth, carruselWidth, track);
+}
+
+let prevAction = (leftPosition, carruselWidth, track) => {
+    if (leftPosition > 0) {
+        track.style.left = `${-1 * (leftPosition - carruselWidth)}px`;
     }
+}
 
-    App.prototype.processingButton = function(event){
-
-        const btn = event.currentTarget;
-        const carruselList = event.currentTarget.parentNode;
-        const track = event.currentTarget.parentNode.querySelector("#track");
-        const carrusel = track.querySelectorAll('.carrusel');
-
-        const carruselWidth = carrusel[0].offsetWidth;
-
-        const trackWidth = track.offsetWidth;
-        const listWidth = carruselList.offsetWidth;
-
-        track.style.left == "" ? leftPosition = track.style.left = 0 :leftPosition = parseFloat(track.style.left.slice(0,-2) * -1);
-        btn.dataset.button == "button-prev" ? prevAction(leftPosition,carruselWidth,track) : nextAction(leftPosition, trackWidth, listWidth, carruselWidth, track);
+let nextAction = (leftPosition, trackWidth, listWidth, carruselWidth, track) => {
+    if (leftPosition < (trackWidth - listWidth)) {
+        track.style.left = `${-1 * (leftPosition + carruselWidth)}px`;
     }
-
-    let prevAction = (leftPosition, carruselWidth, track) => {
-        if(leftPosition > 0){
-            track.style.left = `${-1 * (leftPosition - carruselWidth)}px`;
-        }
-    }
-
-    let nextAction = (leftPosition, trackWidth, listWidth, carruselWidth, track) => {
-        if(leftPosition < (trackWidth - listWidth)){
-            track.style.left = `${-1 * (leftPosition + carruselWidth)}px`;
-        }
-    }
+}
 
 
 // Se agrega un evento al elemento subyacente del modal que se dispara después de que se haya ocultado.
@@ -124,13 +129,13 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
 const openDetails = async () => {
     // Muestra la caja de diálogo modal con su título.
     DATA_MODAL.show();
-    
+
     // Prepara el formulario de actualización reseteándolo a sus valores por defecto.
     UPDATE_FORM.reset();
-    
+
     // Establece valores predeterminados en algunos campos del formulario.
     NOMBREC_INPUT.value = "Rojo";
-    
+
     // Cambia el contenido del elemento con ID 'modalTitle' a 'Cplores'.
     MODAL_TITLE.textContent = 'Detalles Color: Rojo';
 }
@@ -165,7 +170,7 @@ const botonCancelar = async () => {
     if (textoBoton == 'Actualizar') {
         // Si es 'Actualizar', llama a una función para mostrar un mensaje de confirmación y captura la respuesta en una constante llamada 'RESPONSE'.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
-        
+
         // Verifica si el usuario ha confirmado la acción y, si es así, oculta el modal.
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
@@ -175,10 +180,18 @@ const botonCancelar = async () => {
     else if (textoBoton == 'Guardar') {
         // Si es 'Guardar', llama a una función para mostrar un mensaje de confirmación y captura la respuesta en una constante llamada 'RESPONSE'.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardará');
-        
+
         // Verifica si el usuario ha confirmado la acción y, si es así, oculta el modal.
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
         }
     }
+}
+
+const openTallas = async () => {
+    // Muestra la caja de diálogo modal con su título.
+    DATA_TALLAS_MODAL.show();
+
+    // Cambia el contenido del elemento con ID 'modalTitle' a 'Cplores'.
+    MODAL_TITLE_TALLA.textContent = 'Tallas y Stock del Producto';
 }

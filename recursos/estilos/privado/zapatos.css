@@ -566,16 +566,82 @@ h4 {
 }
 
 .contenedorBotones1A {
-    
+
     left: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
+
 .contenedorBotones1A {
     width: 100%;
     min-height: fit-content;
     max-height: fit-content;
     position: absolute;
     bottom: -1%;
+}
+
+.btnA {
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+
+}
+
+.labelT {
+    color: black;
+
+}
+
+.tallasC {
+    width: 35px;
+    background-color: #fff;
+    color: black;
+    border-radius: 5px;
+}
+
+.contenedorFilaTallas {
+    border-radius: 5px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: min-content;
+    max-height: 150px;
+    overflow-y: auto;   
+    overflow-x: hidden;
+}
+
+.cuadradoTalla {
+    background-color: white;
+    border: 1px solid #5F5F5F;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    transition: .3s ease-in-out;
+    color: black;
+}
+
+.cuadradoTalla:hover {
+    transform: translateY(-5px);
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+}
+
+.contenedorTallas {
+    background-color: white;
+
+}
+
+.as {
+    background-color: white;
+    width: 200px;
+    height: 200px;
 }
