@@ -34,8 +34,10 @@ TODO importante // realtando algo
     <!-- *Contenido principal del documento -->
     <main>
         <!--contenedor principal-->
-        <div class="col-lg-12 d-flex flex-column align-items-center">
-            <div class="col-lg-12 d-none d-flex align-items-center justify-content-center flex-column" id="carritoDeCompras">
+        <div class="col-lg-12 d-flex flex-column align-items-center position-relative z-3">
+            <!--Carrito-->
+            <div class="col-lg-12 d-none d-flex align-items-center justify-content-center flex-column"
+                id="carritoDeCompras">
                 <!--Encabezado-->
                 <div class="col-lg-10 d-flex mt-4">
                     <!--Foto de carrito-->
@@ -49,79 +51,83 @@ TODO importante // realtando algo
                     </div>
                 </div>
                 <!--Contenedor de tabla y boton-->
-                <div class="col-lg-10 mt-3 mb-5">
+                <div class="col-lg-10 mt-3 mb-5 z-3 table-responsive ">
                     <!--Tabla-->
-                    <div class="Contenedor-tabla col-lg-12 table-responsive z-3">
-                        <!-- Tabla de carrito -->
-                        <table class="table table-hover" id="tablaCarrito">
-                            <!-- Cabecera de la tabla -->
-                            <thead class="thead">
-                                <tr>
-                                    <th scope="col">Imagen</th>
-                                    <th scope="col">Zapato</th>
-                                    <th scope="col">Talla</th>
-                                    <th scope="col">Color</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Cantidad</th>
-                                    <th scope="col">Sub-total</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <!-- Cuerpo de la tabla -->
-                            <tbody class="text-center align-middle">
-                                <tr class="table-row">
-                                    <td>
-                                        <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
-                                            height="50">
-                                    </td>
-                                    <td>Marca 1 Dunk bajo</td>
-                                    <td>12</td>
-                                    <td>Rosado</td>
-                                    <td>$185</td>
-                                    <td>1</td>
-                                    <td>$185</td>
-                                    <td>
-                                        <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura" width="50%"
-                                            height="50%">
-                                    </td>
-                                </tr>
-                                <tr class="table-row">
-                                    <td>
-                                        <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
-                                            height="50">
-                                    </td>
-                                    <td>Marca 1 Dunk bajo</td>
-                                    <td>12</td>
-                                    <td>Rosado</td>
-                                    <td>$185</td>
-                                    <td>1</td>
-                                    <td>$185</td>
-                                    <td>
-                                        <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura" width="50%"
-                                            height="50%">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="col-lg-12 z-3 table-responsive">
+                        <div class="table-responsive ">
+                            <!-- Tabla de carrito -->
+                            <table class="table table-hover table-responsive" id="tablaCarrito">
+                                <!-- Cabecera de la tabla -->
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Zapato</th>
+                                        <th scope="col">Talla</th>
+                                        <th scope="col">Color</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Sub-total</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <!-- Cuerpo de la tabla -->
+                                <tbody class="text-center align-middle">
+                                    <tr class="table-row">
+                                        <td>
+                                            <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
+                                                height="50">
+                                        </td>
+                                        <td>Marca 1 Dunk bajo</td>
+                                        <td>12</td>
+                                        <td>Rosado</td>
+                                        <td>$185</td>
+                                        <td>1</td>
+                                        <td>$185</td>
+                                        <td>
+                                            <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura"
+                                                class="imgBasura">
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td>
+                                            <img src="../../recursos/imagenes/sneakersExample.svg" alt="Foto zapato"
+                                                height="50">
+                                        </td>
+                                        <td>Marca 1 Dunk bajo</td>
+                                        <td>12</td>
+                                        <td>Rosado</td>
+                                        <td>$185</td>
+                                        <td>1</td>
+                                        <td>$185</td>
+                                        <td>
+                                            <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura"
+                                                class="imgBasura">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <!--Div boton y precio-->
                     <div class="col-lg-12 d-flex justify-content-end">
                         <!--Precio-->
-                        <div class="col-lg-2 d-flex align-items-center justify-content-center">
+                        <div class="col-lg-2 d-flex align-items-center justify-content-center me-2">
                             <h5 id="totalPedido" class="titillium-web color-5blue"><b>Total:</b> $370</h5>
                         </div>
                         <!--Boton-->
                         <div class="col-lg-2 d-flex align-items-center justify-content-center">
                             <button type="button" id="comprar"
-                                class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white" onclick="botonComprar()"><i
-                                    class="bi bi-send"></i>
+                                class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white"
+                                onclick="botonComprar()"><i class="bi bi-send"></i>
                                 Comprar</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!--FINALIZAICON DE LA COMPRA-->
-            <div class="col-lg-12 d-flex flex-column mb-3 d-none" id="compraDatos">
+            <div class="col-lg-12 mb-3 d-none" id="compraDatos">
+                <img src="/recursos/imagenes/figuraIrregular1.svg" class="position-absolute figuraI1 z-0">
+                <img src="/recursos/imagenes/figuraIrregular2.svg" class="position-absolute figuraI2 z-0">
                 <!--Encabezado-->
                 <div class="col-lg-12 d-flex justify-content-center align-items-center">
                     <div class="col-lg-10 mt-4 mb-4 d-flex align-items-center">
@@ -133,101 +139,108 @@ TODO importante // realtando algo
                 </div>
                 <!--Cuerpo-->
                 <!--Div Revision-->
-                <div class="col-lg-12 d-flex justify-content-start">
-                    <div class="col-lg-6 d-flex flex-column justify-content-center ms-4">
-                        <!--LETRAS-->
-                        <h4 class="titillium-web-bold">Datos personales - Revisión</h4>
-                        <h6 class="titillium-web">Datos para la entrega</h6>
-                        <!--FORMULARIO-->
-                        <div class="ContenedorForm col-lg-12 mt-3 mb-3">
-                            <form class="row needs-validation form1" novalidate>
-                                <div class="col-md-6 mt-3">
-                                    <input type="text" class="form-control" id="nombreInput"
-                                        placeholder="Ingresa los nombres" value="Adriana Paola" required>
+                <div class="col-lg-12 d-flex flex-column justify-content-center align-items-center">
+                    <div class="col-lg-12 d-flex justify-content-start">
+                        <div class="col-lg-6 d-flex flex-column justify-content-center">
+                            <div class="col-lg-12 ms-5">
+                                <!--LETRAS-->
+                                <h4 class="titillium-web-bold">Datos personales - Revisión</h4>
+                                <h6 class="titillium-web">Datos para la entrega</h6>
+                                <!--FORMULARIO-->
+                                <div class="ContenedorForm col-lg-12 mt-3 mb-3">
+                                    <form class="row needs-validation form1 col-lg-12" novalidate>
+                                        <div class="col-md-6 mt-3">
+                                            <input type="text" class="form-control" id="nombreInput"
+                                                placeholder="Ingresa los nombres" value="Adriana Paola" required>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <input type="text" class="form-control" id="apellidosInput"
+                                                placeholder="Ingresa los apellidos" value="Menjía" required>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <input type="text" class="form-control" id="direccion"
+                                                placeholder="Ingres la direccion" value="mi casita" required>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <input type="email" class="form-control" id="correoInput"
+                                                placeholder="Ingresa el correo electronico"
+                                                value="adrigol.lola@gmail.com" required>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <input type="text" class="form-control" id="telefonoInput"
+                                                placeholder="Ingresa el número telefonico" value="+503 7084 2281"
+                                                required>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="col-md-6 mt-3">
-                                    <input type="text" class="form-control" id="apellidosInput"
-                                        placeholder="Ingresa los apellidos" value="Menjía" required>
-                                </div>
-                                <div class="col-md-12 mt-3">
-                                    <input type="text" class="form-control" id="direccion"
-                                        placeholder="Ingres la direccion" value="mi casita" required>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <input type="email" class="form-control" id="correoInput"
-                                        placeholder="Ingresa el correo electronico" value="adrigol.lola@gmail.com"
-                                        required>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                    <input type="text" class="form-control" id="telefonoInput"
-                                        placeholder="Ingresa el número telefonico" value="+503 7084 2281" required>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!--DIV metodo de pago-->
-                <div class="col-lg-12 d-flex justify-content-end mb-5">
-                    <div class="col-lg-6 d-flex flex-column mt-5 me-4 mb-2">
-                        <div class="col-lg-12">
-                            <!--LETRAS-->
-                            <h4 class="titillium-web-bold">Método de pago</h4>
-                            <h6 class="titillium-web">Selecciona el método de pago</h6>
-                            <!--METOOD DE PAGA-->
-                            <div class="ContenedorForm col-lg-12 mt-3 mb-4">
-                                <div class="form-check col-lg-12">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="bitcoin">
-                                    <label class="form-check-label" for="bitcoin">
-                                        Bitcoin
-                                    </label>
-                                </div>
-                                <div class="form-check col-lg-12">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="efectivo" checked>
-                                    <label class="form-check-label" for="efectivo">
-                                        Efectivo
-                                    </label>
-                                </div>
-                                <div class="form-check col-lg-12">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="paypal" checked>
-                                    <label class="form-check-label" for="paypal">
-                                        Paypal
-                                    </label>
-                                </div>
-                                <div class="form-check col-lg-12">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="tarjeta" checked>
-                                    <label class="form-check-label" for="tarjeta">
-                                        Tarjeta de credito/debito
-                                    </label>
-                                </div>
-                            </div>
-                            <!--Total-->
-                            <div class="col-lg-12 d-flex flex-column align-items-center justify-content-center mt-4">
-                                <h6 class="titillium-web-extralight">Total + envio = Total final</h6>
-                                <h4 class="titillium-web-light">$490 + $10 = $500</h4>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-12 d-flex justify-content-center align-items-center mb-5">
-                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
-                        <div class="col-lg-12 d-flex justify-content-center align-items-center">
-                            <!--Boton regresar-->
-                            <div class="col-lg-6" onclick="regresar()">
-                                <div class="col-lg-12 d-flex" id="botonRegresar">
-                                    <img src="../../recursos/imagenes/flechita_atras.svg" alt="Flechita atras" class="me-2">
-                                    <h6 class="titillium-web">Regresar a tu carrito</h6>
+                    <!--DIV metodo de pago-->
+                    <div class="col-lg-12 d-flex justify-content-end mb-5">
+                        <div class="col-lg-6 d-flex flex-column mt-5 mb-2">
+                            <div class="col-lg-12">
+                                <!--LETRAS-->
+                                <h4 class="titillium-web-bold">Método de pago</h4>
+                                <h6 class="titillium-web">Selecciona el método de pago</h6>
+                                <!--METOOD DE PAGA-->
+                                <div class="ContenedorForm col-lg-12 mt-3 mb-4">
+                                    <div class="form-check col-lg-12">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="bitcoin">
+                                        <label class="form-check-label" for="bitcoin">
+                                            Bitcoin
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-lg-12">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="efectivo" checked>
+                                        <label class="form-check-label" for="efectivo">
+                                            Efectivo
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-lg-12">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="paypal"
+                                            checked>
+                                        <label class="form-check-label" for="paypal">
+                                            Paypal
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-lg-12">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                            id="tarjeta" checked>
+                                        <label class="form-check-label" for="tarjeta">
+                                            Tarjeta de credito/debito
+                                        </label>
+                                    </div>
+                                </div>
+                                <!--Total-->
+                                <div
+                                    class="col-lg-12 d-flex flex-column align-items-center justify-content-center mt-4">
+                                    <h6 class="titillium-web-extralight">Total + envio = Total final</h6>
+                                    <h4 class="titillium-web-light">$490 + $10 = $500</h4>
                                 </div>
                             </div>
-                            <!--Boton pagar-->
-                            <div class="col-lg-3">
-                                <button type="button" id="Botoncomprar"
-                                class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white" onclick="paga()"><i
-                                    class="bi bi-send"></i>
-                                Pagar</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 d-flex justify-content-center align-items-center mb-5">
+                        <div class="col-lg-6 d-flex justify-content-center align-items-center">
+                            <div class="col-lg-12 d-flex justify-content-center align-items-center">
+                                <!--Boton regresar-->
+                                <div class="col-lg-6" onclick="regresar()">
+                                    <div class="col-lg-12 d-flex" id="botonRegresar">
+                                        <img src="../../recursos/imagenes/flechita_atras.svg" alt="Flechita atras"
+                                            class="me-2">
+                                        <h6 class="titillium-web">Regresar a tu carrito</h6>
+                                    </div>
+                                </div>
+                                <!--Boton pagar-->
+                                <div class="col-lg-3">
+                                    <button type="button" id="Botoncomprar"
+                                        class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white"
+                                        onclick="paga()"><i class="bi bi-send"></i>
+                                        Pagar</button>
+                                </div>
                             </div>
                         </div>
                     </div>

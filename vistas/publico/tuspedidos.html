@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- Declaración del idioma para el documento -->
+<html lang="es">
+
+<!-- ESTILOS DE DOCUMENTACIÓN DEL CODIGO
+* Comentario claro
+! Alerta
+? Pregunta
+TODO importante // realtando algo
+// Comentario tachado
+-->
+
+<head>
+    <!-- TODO Título del documento -->
+    <title>Historial de pedidos - FeasVerse</title>
+    <!-- Metadatos de la página web -->
+    <meta charset="utf-8">
+    <meta name="author" content="FeasVerseCompany">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- *IMPORTACIÓN DE RECURSOS EXTERNOS -->
+    <!-- TODO Llamada al icono de la página web -->
+    <link type="image/png" rel="icon" href="../../recursos/imagenes/icono.svg">
+    <!-- *Llamada a las hojas de estilos del framework -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <!-- *Llamada a las hojas de estilos propios de css -->
+    <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
+    <link href="../../recursos/estilos/publico/plantilla.css" rel="stylesheet">
+    <link href="../../recursos/estilos/publico/tuspedidos.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- *Contenido principal del documento -->
+    <main>
+        <!--Contenedor Principal-->
+        <div class="col-lg-12 d-flex flex-column">
+            <div class="col-lg-12 mt-4">
+                <div class="titleReseñas ps-5 pt-2 rounded-end-4 bg-color-4blue col-12 col-sm-6 col-md-5 col-lg-4">
+                    <!-- *Contenedor del titulo de historial -->
+                    <div class="d-flex justify-content-end">
+                        <h3 class="titillium-web-semibold text-white pe-4 mx-5">Historial de pedidos</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 mt-5 mb-4">
+                <div class="col-lg-10 offset-lg-2 d-flex flex-column">
+                    <h3 class="titillium-web">
+                        Tus pedidos
+                    </h3>
+                    <div class="col-lg-12 d-flex">
+                        <div class="col-lg-6">
+                            <h5 class="titillium-web-extralight" id="pedidosHechos">
+                                X Pedidos realizados hasta el momento
+                            </h5>
+                        </div>
+                        <div class="col-lg-2">
+                            <select class="form-select rounded-3 text-center text-white bg-color-1gray"
+                                id="buscadorInput" required>
+                                <option value="1">Pendiente</option>
+                                <option value="2">En camino</option>
+                                <option value="3">Entregado</option>
+                                <option value="4">Más reciente</option>
+                                <option value="5">Antiguo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-lg-1 col-lg-10">
+                    <div class="cuadradox"></div>
+                </div>
+            </div>
+            <!--Contenedor para visualizar los pedidos realizados-->
+            <div class="col-lg-12 d-flex justify-content-center align-items-center">
+                <div class="col-lg-10">
+                    <!--Comienzo de cards de zapatos-->
+                    <div id="cardsDeZapato" class="col-lg-12">
+                        <div class="accordion mt-3 mb-4" id="detalleInformacionPedido">
+                            <div class="accordion-item">
+                                <!--HEADER del accordion-->
+                                <div id="detalleInformacionHeaderRepatidor" class="accordion-header"
+                                    data-bs-parent="#detalleInformacionPedido">
+                                    <!--Etiqueta del pedido-->
+                                    <div class="col-lg-3">
+                                        <p id="idPedidoNum2"
+                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
+                                            Pedido N# 4322
+                                        </p>
+                                    </div>
+                                    <!--Contenedor del cuerpo-->
+                                    <div id="contenedorDelAcordionSoloHeaderAndBody2">
+                                        <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
+                                            id="header">
+                                            <!--Contenedor de la etiqueta del pedido-->
+                                            <div class="d-none offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div"
+                                                id="colorDelEstadoDelPedido">
+                                                <h6 class="text-white skew-text text-center"
+                                                    id="nombreDelEstadoDelPedido">
+                                                    Pendiente
+                                                </h6>
+                                            </div>
+                                            <!-- Detalles del Más Pedido (Body) del acordion-->
+                                            <div id="collapseOnePedido"
+                                                class="accordion-collapse collapse show col-lg-12">
+                                                <div class="accordion-body" id="detallesDeMasPedidoRepartidor">
+                                                    <div class="col-lg-12">
+                                                        <div class="container d-flex align-items-center justify-content-center">
+                                                            <!--Comienzo de cards de zapato-->
+                                                            <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
+                                                                <div class="containerCard col-lg-12 flex-wrap"
+                                                                    id="cardPedido">
+                                                                    <div class="card">
+                                                                        <!--Contenedor de la imagen-->
+                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
+                                                                            class="card-img-top img-fluid"
+                                                                            alt="Imagen de zapato">
+                                                                        <!--Contenedor del cuerpo de la card-->
+                                                                        <div class="card-body">
+                                                                            <!--Contenedor de nombre zapato-->
+                                                                            <div
+                                                                                class="ContenedorNombreZapato col-lg-12">
+                                                                                <h4 class="titillium-web-semibold text-center"
+                                                                                    id="nombreZapato">
+                                                                                    Nike
+                                                                                    Air
+                                                                                    Force 1'07
+                                                                                </h4>
+                                                                            </div>
+                                                                            <!--Contenedor del color y talla-->
+                                                                            <div
+                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
+                                                                                    id="contenedorColor">
+                                                                                    <h6
+                                                                                        class="titillium-web-extralight me-1">
+                                                                                        Color
+                                                                                    </h6>
+                                                                                    <div id="color" class="mb-2">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
+                                                                                    id="contenedorTalla">
+                                                                                    <h6
+                                                                                        class="titillium-web-extralight me-1">
+                                                                                        Talla:
+                                                                                    </h6>
+                                                                                    <div id="talla">
+                                                                                        <h6 id="tallaPedido">
+                                                                                            32
+                                                                                        </h6>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--Contenedor de la cantidad-->
+                                                                            <div
+                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                                                <h6 class="titillium-web-extralight text-center"
+                                                                                    id="cantidadPedido">
+                                                                                    Cantidad:
+                                                                                    12
+                                                                                </h6>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--Contenedor del footer-->
+                                                                        <div class="card-footer bg-color-4blue">
+                                                                            <!--Contenedor del precio-->
+                                                                            <div
+                                                                                class="d-flex contenedorPrecios col-lg-12">
+                                                                                <div
+                                                                                    class="col-lg-6 d-flex justify-content-start">
+                                                                                    <h6 class="titillium-web-bold text-white"
+                                                                                        id="precioZapato">
+                                                                                        $120
+                                                                                    </h6>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-lg-6 d-flex justify-content-end">
+                                                                                    <h6 class="titillium-web-extralight text-white"
+                                                                                        id="cantidadTotal">
+                                                                                        Total:
+                                                                                        $1,440
+                                                                                    </h6>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Botón (Footer) -->
+                                    <div class="offset-lg-9 col-lg-3">
+                                        <button id="accordionButtonPrecioTotal"
+                                            class="accordion-button rounded-bottom rounded-top-0" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseOnePedido"
+                                            aria-expanded="true" aria-controls="collapseOnePedido">
+                                            Total del pedido: $1,440
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- *Llamada a las hojas de estilos del framework e iconos -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!--*Libreria de mensajes-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- *Llamada al controlador del sitio publico -->
+    <script type="text/javascript" src="/controlador/utilidades/publico.js"></script>
+    <!-- *Llamada al controlador de la página web -->
+    <script type="text/javascript" src="/controlador/publico/tuspedidos.js"></script>
+</body>
+
+</html>
