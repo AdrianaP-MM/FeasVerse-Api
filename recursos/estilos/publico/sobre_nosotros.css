@@ -1,0 +1,33 @@
+.containerHeader {
+    width: 100%;
+    min-height: 450px;
+}
+
+.lineab1 {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background-color: white;
+}
+
+.triangulo {
+    width: 0;
+    height: 0;
+    border-left: 1050px solid #1A89BD;
+    border-top: 0;
+    border-bottom: 1050px solid transparent;
+}
+
+.titleWho {
+    text-align: center;
+}
+.containerHoWeAre
+{
+    background-color: white;
+    border-top: gray 3px solid;
+    border-bottom: gray 3px solid;
+}
+.containerMembers
+{
+   height: fit-content;
+}

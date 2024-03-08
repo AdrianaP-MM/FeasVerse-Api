@@ -52,7 +52,7 @@ const loadTemplate = async () => {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link space" aria-current="page" href="#">
+                            <a class="nav-link space" aria-current="page" href="/vistas/publico/sobre_nosotros.html">
                                 <h5 class="text-white titillium-web-regular m-0 p-0">Sobre Nosotros</h5>
                             </a>
                         </li>
@@ -97,7 +97,7 @@ const loadTemplate = async () => {
 
                     </ul>
                     <div class="d-flex">
-                        <button class="btn btn-outline-primary" type="button">
+                        <button class="btn btn-outline-primary" type="button" onclick="gotoCarrito()" >
                             <img src="../../recursos/imagenes/carrito.svg" width="50px" height="50">
                         </button>
                     </div>
@@ -178,7 +178,7 @@ const loadTemplate = async () => {
                         <h6 class="titillium-web-regular">
                             Norte y, 83 Avenida Sur, San Salvador
                         </h6>
-                        <button type="button"
+                        <button type="button" onclick="gotoAboutUs()"
                             class="btn border shadow bg-color-4blue col-10 rounded-pill p-3 text15 titillium-web-semibold text-white mt-4">
                             Más Sobre Nosotros</button>
                     </div>
@@ -230,4 +230,12 @@ const loadTemplate = async () => {
     </footer>
     <!-- Footer -->
 `);
+}
+
+function gotoAboutUs() {
+    location.href = "/vistas/publico/sobre_nosotros.html";
+}
+
+function gotoCarrito() {
+    location.href = "/vistas/publico/carrito.html";
 }
