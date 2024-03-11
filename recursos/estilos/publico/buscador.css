@@ -1,11 +1,11 @@
-#imagenMarca{
+#imagenMarca {
     width: 100%;
     height: 80%;
 }
 
-#encabezadoBuscador{
-    border-top: 2px solid  #146A93;
-    border-bottom: 2px solid  #146A93;
+#encabezadoBuscador {
+    border-top: 2px solid #146A93;
+    border-bottom: 2px solid #146A93;
 }
 
 /* Estilos para un select personalizado */
@@ -52,11 +52,13 @@
     right: 10px;
     transform: translateY(-50%);
     cursor: pointer;
-    z-index: 1; /* Asegura que el ícono esté sobre el input */
+    z-index: 1;
+    /* Asegura que el ícono esté sobre el input */
 }
 
 #buscadorInputZapatos {
-    padding-right: 30px; /* Ajusta el espacio a la derecha del input para el ícono */
+    padding-right: 30px;
+    /* Ajusta el espacio a la derecha del input para el ícono */
 }
 
 /* Estilos específicos para el ícono de limpieza */
@@ -66,17 +68,207 @@
     display: none;
 }
 
-#buscadorInputZapatos{
+#buscadorInputZapatos {
     width: 100%;
 }
 
-.contendorFiltroHeader{
+.contendorFiltroHeader {
     background-color: #F4F2F2;
 }
 
-.x-icon, .bi-x{
-    font-size: 25px; 
+.x-icon,
+.bi-x {
+    font-size: 25px;
     width: 100%;
     height: 100%;
     color: #0D4560;
+}
+
+/* Estilos para el botón del accordion extendido */
+.accordion-button:not(.collapsed) {
+    background-color: #E7E7E3;
+    /* Cambia este valor al color que desees */
+    color: #0D4560;
+}
+
+/* Estilos para el botón del accordion colapsado */
+.accordion-button.collapsed {
+    background-color: #E7E7E3;
+    /* Cambia este valor al color que desees */
+    color: #0D4560;
+}
+
+#coloresSelect {
+    background-color: #F4F2F2;
+}
+
+/* Ocultar la flecha predeterminada */
+#coloresSelect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Agregar un fondo transparente para que el icono personalizado pueda superponerse */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="%230D4560" d="M5 5L0 0h10z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.9em top 50%, 0 0;
+    background-size: 10px auto;
+    /* Ajustar el padding para dar espacio al icono */
+    padding-right: 1.5em;
+}
+
+/* Estilo para el texto seleccionado */
+#coloresSelect option {
+    color: #146A93;
+    /* Cambia el color del texto según sea necesario */
+}
+
+/* Estilo para el icono */
+#coloresSelect::-ms-expand {
+    display: none;
+    /* Ocultar el icono de la flecha en IE 10 y versiones anteriores */
+}
+
+.price-input {
+    width: 100%; /* Ancho completo */
+    display: flex; /* Elementos en línea */
+    margin: 30px 0 35px; /* Margen superior e inferior de 30px, margen inferior de 35px */
+}
+
+.price-input .field {
+    display: flex; /* Elementos en línea */
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    align-items: center; /* Alinea verticalmente los elementos */
+}
+
+.field input {
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    outline: none; /* Sin contorno al enfocar */
+    font-size: 19px; /* Tamaño de fuente */
+    margin-left: 6px; /* Margen izquierdo de 6px */
+    border-radius: 5px; /* Bordes redondeados de 5px */
+    text-align: center; /* Texto centrado */
+    border: 3px solid #E7E7E3; /* Borde sólido de 3px de color #E7E7E3 */
+    border-radius: 10px; /* Bordes redondeados de 10px */
+    -moz-appearance: textfield; /* Estilo de apariencia de texto de Mozilla */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Elimina los botones de aumento y disminución en WebKit */
+}
+
+.price-input .separator {
+    width: 130px; /* Ancho de 130px */
+    display: flex; /* Elementos en línea */
+    font-size: 19px; /* Tamaño de fuente */
+    align-items: center; /* Alinea verticalmente los elementos */
+    justify-content: center; /* Centra horizontalmente los elementos */
+}
+
+.slider {
+    height: 5px; /* Altura de 5px */
+    position: relative; /* Posición relativa */
+    background: #000000; /* Fondo negro */
+    border-radius: 5px; /* Bordes redondeados de 5px */
+}
+
+.slider .progress {
+    height: 100%; /* Altura del 100% */
+    left: 25%; /* 25% de distancia desde la izquierda */
+    right: 25%; /* 25% de distancia desde la derecha */
+    position: absolute; /* Posición absoluta */
+    border-radius: 5px; /* Bordes redondeados de 5px */
+    background: #0D4560; /* Fondo de color #0D4560 */
+}
+
+.range-input {
+    position: relative; /* Posición relativa */
+}
+
+.range-input input {
+    position: absolute; /* Posición absoluta */
+    width: 100%; /* Ancho completo */
+    height: 5px; /* Altura de 5px */
+    top: -5px; /* 5px por encima */
+    background: none; /* Sin fondo */
+    pointer-events: none; /* Eventos de puntero desactivados */
+    -webkit-appearance: none; /* Estilo de apariencia en WebKit */
+    -moz-appearance: none; /* Estilo de apariencia en Mozilla */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    height: 17px; /* Altura de 17px */
+    width: 17px; /* Ancho de 17px */
+    border-radius: 50%; /* Bordes redondeados de 50% (círculo) */
+    background: #0D4560; /* Fondo de color #0D4560 */
+    pointer-events: auto; /* Eventos de puntero activados */
+    -webkit-appearance: none; /* Estilo de apariencia en WebKit */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05); /* Sombra */
+}
+
+input[type="range"]::-moz-range-thumb {
+    height: 17px; /* Altura de 17px */
+    width: 17px; /* Ancho de 17px */
+    border: none; /* Sin borde */
+    border-radius: 50%; /* Bordes redondeados de 50% (círculo) */
+    background: #0D4560; /* Fondo de color #0D4560 */
+    pointer-events: auto; /* Eventos de puntero activados */
+    -moz-appearance: none; /* Estilo de apariencia en Mozilla */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05); /* Sombra */
+}
+
+/* Estilo para los checkboxes */
+.form-check-input {
+    /* Borde del checkbox */
+    border: 1px solid #0D4560;
+}
+
+.contenedorTallas {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedorFilaTallas {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: min-content;
+    max-height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Ocultar la apariencia de la barra de desplazamiento */
+    scrollbar-width: none; /* Para Firefox */
+    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+/* Estilo específico para WebKit (Chrome, Safari) */
+.contenedorFilaTallas::-webkit-scrollbar {
+    display: none;
+}
+
+
+.cuadradoTalla {
+    background-color: white;
+    color: #0D4560;
+    border: 1px solid #5F5F5F;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: 10px;
+    width: 60px;
+    height: 60px;
+    transition: .3s ease-in-out;
+}
+
+.cuadradoTalla:hover {
+    transform: translateY(-5px);
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    background-color: #0D4560;
+    color: white;
 }

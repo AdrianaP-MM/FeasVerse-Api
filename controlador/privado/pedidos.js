@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
         const detallesDeMasPedido = document.getElementById('infoDeRepartidor');
         if (isExpanded) {
-            console.log('Hola')
             detallesDeMasPedido.classList.remove('d-none');
         } else {
             detallesDeMasPedido.classList.add('d-none');

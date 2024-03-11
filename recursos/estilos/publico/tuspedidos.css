@@ -33,6 +33,17 @@
     z-index: 0;
 }
 
+/* Estilos para el botón del accordion extendido */
+.accordion-button:not(.collapsed) {
+    background-color: #EDEDED; /* Cambia este valor al color que desees */
+}
+
+/* Estilos para el botón del accordion colapsado */
+.accordion-button.collapsed {
+    background-color: #EDEDED; /* Cambia este valor al color que desees */
+}
+
+
 /* Estilos para un botón de acordeón */
 .accordion-button {
     border-left: 1px solid #0D4560;
