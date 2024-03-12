@@ -27,21 +27,23 @@
 <body>
     <main> <!-- Contenido principal del documento -->
         <!-- Contenedor principal -->
-        <div class="col-lg-12">
+        <div class="col-lg-12 col-sm-12">
             <!-- Encabezado del buscador -->
-            <div class="col-lg-12 d-flex justify-content-center mt-3" id="encabezadoBuscador">
+            <div class="col-lg-12 col-sm-12 d-flex justify-content-center mt-3 flex-lg-row flex-sm-column"
+                id="encabezadoBuscador">
                 <!-- Div de la imagen -->
-                <div class="col-lg-2 col-sm-3 d-flex justify-content-center align-items-center">
+                <div class="col-lg-2 col-sm-12 d-flex justify-content-center align-items-center">
                     <img src="/recursos/imagenes/marcas/adidas.svg" alt="Foto de la marca" id="imagenMarca"
-                        class="col-lg-8">
+                        class="col-lg-8 col-sm-8">
                 </div>
                 <!-- Div del texto -->
-                <div class="col-lg-8 col-sm-7 d-flex justify-content-center align-items-center ms-5">
-                    <div class="col-lg-12 d-flex flex-column justify-content-center align-items-center">
-                        <h1 class="titillium-web-bold col-lg-12 pb-0 mb-0" id="nombreDeLaMarca">
+                <div
+                    class="col-lg-8 col-sm-12 d-flex flex-sm-column flex-lg-row justify-content-center align-items-center ms-5 ms-sm-0">
+                    <div class="col-lg-12 col-sm-12 d-flex flex-column justify-content-center align-items-center">
+                        <h1 class="titillium-web-bold col-lg-12 pb-0 mb-0 mt-sm-3" id="nombreDeLaMarca">
                             Adidas <!-- Título de la marca -->
                         </h1>
-                        <h6 class="titillium-web col-lg-12" id="descripcionDeLaMarca">
+                        <h6 class="titillium-web col-lg-12 col-sm-12 mt-sm-3" id="descripcionDeLaMarca">
                             Zapatos de tacón alto de alta calidad y atractivos. Nos especializamos en tallas grandes,
                             llegando hasta la talla italiana 46. Diseñados para mujeres altas, hombres que disfrutan de
                             usar tacones y cualquier persona que ame lucir zapatos de tacón alto. Nuestra colección
@@ -56,10 +58,11 @@
             <!-- Contenedor del buscador y resultados -->
             <div class="col-log-12 d-flex flex-column justify-content-center align-items-center mt-5 mb-4">
                 <!-- Contenedor de select y buscador -->
-                <div class="col-lg-12 d-flex flex-row justify-content-center align-items-center">
+                <div class="col-lg-12 d-flex flex-row flex-md-column flex-sm-column justify-content-center align-items-center"
+                    id="contenedorSelectBuscado">
                     <!-- Contenedor del buscador input -->
-                    <div class="col-lg-6">
-                        <div class="col-lg-12">
+                    <div class="col-lg-6 col-md-12 col-sm-12 contenedorSelectBuscado">
+                        <div class="col-lg-12 col-sm-12 contenedorSelectBuscado">
                             <div class="search-container me-5">
                                 <input class="form-control" type="search" name="search" placeholder="Buscar...."
                                     id="buscadorInputZapatos" required>
@@ -69,16 +72,17 @@
                         </div>
                     </div>
                     <!-- Contenedor del select -->
-                    <div class="col-lg-4">
-                        <div class="col-lg-12 d-flex flex-column">
-                            <div class="col-lg-12 d-flex flex-row justify-content-center align-items-center">
+                    <div class="col-lg-4 col-md-12 col-sm-12 contenedorSelectBuscado">
+                        <div class="col-lg-12 col-md-12 d-flex flex-column">
+                            <div
+                                class="col-lg-12 col-md-12 d-flex flex-row justify-content-center align-items-center mt-md-3 mt-sm-3">
                                 <!-- Título del select -->
                                 <h6
-                                    class="titillium-web col-lg-3 d-flex justify-content-end align-items-center pt-1 me-2">
+                                    class="titillium-web col-lg-3 col-md-3 col-sm-3 d-flex justify-content-end align-items-center pt-1 me-2 ordenarPor">
                                     Ordenar por:
                                 </h6>
                                 <!-- Div para el SELECT -->
-                                <div class="custom-select col-lg-6">
+                                <div class="custom-select col-lg-6 col-md-8 col-sm-8">
                                     <select class="form-select" aria-label="Default select example">
                                         <option selected>Selecciona una opción</option>
                                         <option value="1">Recientes</option>
@@ -92,17 +96,19 @@
                     </div>
                 </div>
                 <!-- Contenedor del filtro del buscador -->
-                <div class="col-lg-10 d-flex justify-content-center align-items-center mt-4">
+                <div class="col-lg-10 d-flex justify-content-center align-items-start mt-4">
                     <div class="col-lg-3 d-flex flex-column align-items-center justify-content-center">
                         <!-- Encabezado de filtros -->
-                        <div class="col-lg-12 contendorFiltroHeader d-flex flex-row align-items-center pt-2 ps-1">
+                        <div
+                            class="col-lg-12 col-md-12 contendorFiltroHeader d-flex flex-row align-items-center pt-2 ps-1">
                             <div class="col-lg-6">
-                                <div class="col-lg-11 ms-3">
+                                <div class="col-lg-11 ms-3 d-flex justify-content-md-start">
                                     <h4 class="titillium-web color-5blue">FILTROS</h4>
                                 </div>
                             </div>
                             <div class="col-lg-6 pb-2">
-                                <div class="col-lg-12 d-flex justify-content-end">
+                                <div
+                                    class="col-lg-12 d-flex justify-content-end justify-content-md-end justify-content-sm-end">
                                     <div class="col-lg-2 me-3 pe-4">
                                         <span class="x-icon" onclick=""><i class="bi bi-x"></i></span>
                                     </div>
@@ -110,9 +116,9 @@
                             </div>
                         </div>
                         <!-- Accordion de los filtros -->
-                        <div class="accordion col-lg-12 rounded-0 border border-0 bg-color-0gray"
+                        <div class="accordion col-lg-12 col-md-12 rounded-0 border border-0 bg-color-0gray"
                             id="accordionDeFiltros">
-                            <div class="accordion-item rounded-0 border border-0 bg-color-0gray">
+                            <div class="accordion-item col-md-12 rounded-0 border border-0 bg-color-0gray">
                                 <h2 class="accordion-header">
                                     <button class="accordion-button color-5blue titillium-web-bold bg-color-0gray"
                                         id="accordionTallas" type="button" data-bs-toggle="collapse"
@@ -123,8 +129,9 @@
                                 </h2>
                                 <div id="panelTallasAccordionAlwaysOpen" class="accordion-collapse collapse show">
                                     <div class="accordion-body">
-                                        <div class="tallasScroll col-lg-12 d-flex justify-content-center">
-                                            <div class="contenedorFilaTallas d-flex flex-row flex-wrap justify-content-center">
+                                        <div class="tallasScroll col-lg-12 col-md-12 d-flex justify-content-center">
+                                            <div
+                                                class="contenedorFilaTallas d-flex flex-row flex-wrap justify-content-center">
                                                 <div class="cuadradoTalla">
                                                     <h5 class="titillium-web-regular m-0 p-0">
                                                         8
@@ -195,7 +202,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded-0 border border-0 bg-color-0gray">
+                            <div class="accordion-item col-md-12 rounded-0 border border-0 bg-color-0gray">
                                 <h2 class="accordion-header">
                                     <button
                                         class="accordion-button collapsed color-5blue titillium-web-bold bg-color-0gray"
@@ -207,9 +214,9 @@
                                 </h2>
                                 <div id="panelColorAccordionAlwaysOpen" class="accordion-collapse collapse">
                                     <div
-                                        class="accordion-body col-lg-12 d-flex justify-content-center align-items-center">
-                                        <div class="col-lg-10">
-                                            <div class="col-lg-12">
+                                        class="accordion-body col-lg-12 col-md-12 d-flex justify-content-center align-items-center">
+                                        <div class="col-lg-10 col-md-10">
+                                            <div class="col-lg-12 col-md-12">
                                                 <select class="form-select color-5blue" id="coloresSelect">
                                                     <option disabled selected>Selecciona un color</option>
                                                     <option value="1">Rojo</option>
@@ -220,7 +227,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded-0 border border-0 bg-color-0gray">
+                            <div class="accordion-item rounded-0 col-md-12 border border-0 bg-color-0gray">
                                 <h2 class="accordion-header">
                                     <button
                                         class="accordion-button collapsed color-5blue titillium-web-bold bg-color-0gray"
@@ -258,7 +265,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item rounded-0 border border-0">
+                            <div class="accordion-item rounded-0 border col-md-12 border-0">
                                 <h2 class="accordion-header">
                                     <button
                                         class="accordion-button collapsed color-5blue titillium-web-bold bg-color-0gray"
@@ -270,7 +277,7 @@
                                 </h2>
                                 <div id="precioPanelAccordionAlwaysOpen" class="accordion-collapse collapse">
                                     <div class="accordion-body bg-color-0gray">
-                                        <div class="col-lg-12 mt-4 container2">
+                                        <div class="col-lg-12 col-md-12 mt-4 container2">
                                             <div class="slider">
                                                 <div class="progress"></div>
                                             </div>
@@ -298,10 +305,142 @@
                         </div>
                     </div>
                     <!--Contenedor del resultado y select-->
-                    <div class="col-lg-9">
+                    <div class="col-lg-9 d-flex flex-column">
                         <!--Contenedor del resultado de las cardse2-->
-                        <div class="col-lg-12">
+                        <div class="col-lg-12 d-flex flex-row" id="cardsZapato">
+                            <div class="card col-lg-3" id="cardC">
+                                <a href="/vistas/publico/detalle_zapato.html" class="text15">
+                                    <div class="image-wrapper2">
+                                        <img src="../../recursos/imagenes/airJordan1.svg" alt="...">
+                                    </div>
+                                    <div class="lineImgC"></div>
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <div class="column1 ps-3">
+                                                <h1 class="titillium-web-bold text25 text-black">Air Jordan 3
+                                                    <p class="titillium-web-extralight text18 clgr3 mt-2">Zapato UNISEX
+                                                    </p>
+                                                </h1>
 
+                                                <div class="d-flex flex-row align-items-center mt-2 ">
+                                                    <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">
+                                                        5</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="column2 align-items-center">
+                                                <p class="titillium-web-extralight text18 mb-5 clgr3">5 colores</p>
+                                                <h1 class="titillium-web-bold text25 text-black"> $285</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="card col-lg-3" id="cardC">
+                                <a href="/vistas/publico/detalle_zapato.html" class="text15">
+                                    <div class="image-wrapper2">
+                                        <img src="../../recursos/imagenes/airJordan1.svg" alt="...">
+                                    </div>
+                                    <div class="lineImgC"></div>
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <div class="column1 ps-3">
+                                                <h1 class="titillium-web-bold text25 text-black">Air Jordan 3
+                                                    <p class="titillium-web-extralight text18 clgr3 mt-2">Zapato UNISEX
+                                                    </p>
+                                                </h1>
+
+                                                <div class="d-flex flex-row align-items-center mt-2 ">
+                                                    <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">
+                                                        5</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="column2 align-items-center">
+                                                <p class="titillium-web-extralight text18 mb-5 clgr3">5 colores</p>
+                                                <h1 class="titillium-web-bold text25 text-black"> $285</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="card col-lg-3" id="cardC">
+                                <a href="/vistas/publico/detalle_zapato.html" class="text15">
+                                    <div class="image-wrapper2">
+                                        <img src="../../recursos/imagenes/airJordan1.svg" alt="...">
+                                    </div>
+                                    <div class="lineImgC"></div>
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <div class="column1 ps-3">
+                                                <h1 class="titillium-web-bold text25 text-black">Air Jordan 3
+                                                    <p class="titillium-web-extralight text18 clgr3 mt-2">Zapato UNISEX
+                                                    </p>
+                                                </h1>
+
+                                                <div class="d-flex flex-row align-items-center mt-2 ">
+                                                    <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">
+                                                        5</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="column2 align-items-center">
+                                                <p class="titillium-web-extralight text18 mb-5 clgr3">5 colores</p>
+                                                <h1 class="titillium-web-bold text25 text-black"> $285</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="card col-lg-3" id="cardC">
+                                <a href="/vistas/publico/detalle_zapato.html" class="text15">
+                                    <div class="image-wrapper2">
+                                        <img src="../../recursos/imagenes/airJordan1.svg" alt="...">
+                                    </div>
+                                    <div class="lineImgC"></div>
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <div class="column1 ps-3">
+                                                <h1 class="titillium-web-bold text25 text-black">Air Jordan 3
+                                                    <p class="titillium-web-extralight text18 clgr3 mt-2">Zapato UNISEX
+                                                    </p>
+                                                </h1>
+
+                                                <div class="d-flex flex-row align-items-center mt-2 ">
+                                                    <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">
+                                                        5</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="column2 align-items-center">
+                                                <p class="titillium-web-extralight text18 mb-5 clgr3">5 colores</p>
+                                                <h1 class="titillium-web-bold text25 text-black"> $285</h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12 d-flex justify-content-center" id="pagination">
+                            <nav aria-label="Page navigation col-lg-10">
+                                <ul class="pagination">
+                                    <li class="page-item backNext"><a class="page-link" href="#" aria-label="ANTERIOR">&laquo;
+                                            ANTERIOR</a></li>
+                                    <li class="page-item num"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item num"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item num"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item backNext"><a class="page-link" href="#" aria-label="SIGUIENTE">SIGUIENTE
+                                            &raquo;</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

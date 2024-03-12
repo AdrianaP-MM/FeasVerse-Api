@@ -129,94 +129,151 @@
 }
 
 .price-input {
-    width: 100%; /* Ancho completo */
-    display: flex; /* Elementos en línea */
-    margin: 30px 0 35px; /* Margen superior e inferior de 30px, margen inferior de 35px */
+    width: 100%;
+    /* Ancho completo */
+    display: flex;
+    /* Elementos en línea */
+    margin: 30px 0 35px;
+    /* Margen superior e inferior de 30px, margen inferior de 35px */
 }
 
 .price-input .field {
-    display: flex; /* Elementos en línea */
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    align-items: center; /* Alinea verticalmente los elementos */
+    display: flex;
+    /* Elementos en línea */
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    align-items: center;
+    /* Alinea verticalmente los elementos */
 }
 
 .field input {
-    width: 100%; /* Ancho completo */
-    height: 100%; /* Altura completa */
-    outline: none; /* Sin contorno al enfocar */
-    font-size: 19px; /* Tamaño de fuente */
-    margin-left: 6px; /* Margen izquierdo de 6px */
-    border-radius: 5px; /* Bordes redondeados de 5px */
-    text-align: center; /* Texto centrado */
-    border: 3px solid #E7E7E3; /* Borde sólido de 3px de color #E7E7E3 */
-    border-radius: 10px; /* Bordes redondeados de 10px */
-    -moz-appearance: textfield; /* Estilo de apariencia de texto de Mozilla */
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    outline: none;
+    /* Sin contorno al enfocar */
+    font-size: 19px;
+    /* Tamaño de fuente */
+    margin-left: 6px;
+    /* Margen izquierdo de 6px */
+    border-radius: 5px;
+    /* Bordes redondeados de 5px */
+    text-align: center;
+    /* Texto centrado */
+    border: 3px solid #E7E7E3;
+    /* Borde sólido de 3px de color #E7E7E3 */
+    border-radius: 10px;
+    /* Bordes redondeados de 10px */
+    -moz-appearance: textfield;
+    /* Estilo de apariencia de texto de Mozilla */
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none; /* Elimina los botones de aumento y disminución en WebKit */
+    -webkit-appearance: none;
+    /* Elimina los botones de aumento y disminución en WebKit */
 }
 
 .price-input .separator {
-    width: 130px; /* Ancho de 130px */
-    display: flex; /* Elementos en línea */
-    font-size: 19px; /* Tamaño de fuente */
-    align-items: center; /* Alinea verticalmente los elementos */
-    justify-content: center; /* Centra horizontalmente los elementos */
+    width: 130px;
+    /* Ancho de 130px */
+    display: flex;
+    /* Elementos en línea */
+    font-size: 19px;
+    /* Tamaño de fuente */
+    align-items: center;
+    /* Alinea verticalmente los elementos */
+    justify-content: center;
+    /* Centra horizontalmente los elementos */
 }
 
 .slider {
-    height: 5px; /* Altura de 5px */
-    position: relative; /* Posición relativa */
-    background: #000000; /* Fondo negro */
-    border-radius: 5px; /* Bordes redondeados de 5px */
+    height: 5px;
+    /* Altura de 5px */
+    position: relative;
+    /* Posición relativa */
+    background: #000000;
+    /* Fondo negro */
+    border-radius: 5px;
+    /* Bordes redondeados de 5px */
 }
 
 .slider .progress {
-    height: 100%; /* Altura del 100% */
-    left: 25%; /* 25% de distancia desde la izquierda */
-    right: 25%; /* 25% de distancia desde la derecha */
-    position: absolute; /* Posición absoluta */
-    border-radius: 5px; /* Bordes redondeados de 5px */
-    background: #0D4560; /* Fondo de color #0D4560 */
+    height: 100%;
+    /* Altura del 100% */
+    left: 25%;
+    /* 25% de distancia desde la izquierda */
+    right: 25%;
+    /* 25% de distancia desde la derecha */
+    position: absolute;
+    /* Posición absoluta */
+    border-radius: 5px;
+    /* Bordes redondeados de 5px */
+    background: #0D4560;
+    /* Fondo de color #0D4560 */
 }
 
 .range-input {
-    position: relative; /* Posición relativa */
+    position: relative;
+    /* Posición relativa */
 }
 
 .range-input input {
-    position: absolute; /* Posición absoluta */
-    width: 100%; /* Ancho completo */
-    height: 5px; /* Altura de 5px */
-    top: -5px; /* 5px por encima */
-    background: none; /* Sin fondo */
-    pointer-events: none; /* Eventos de puntero desactivados */
-    -webkit-appearance: none; /* Estilo de apariencia en WebKit */
-    -moz-appearance: none; /* Estilo de apariencia en Mozilla */
+    position: absolute;
+    /* Posición absoluta */
+    width: 100%;
+    /* Ancho completo */
+    height: 5px;
+    /* Altura de 5px */
+    top: -5px;
+    /* 5px por encima */
+    background: none;
+    /* Sin fondo */
+    pointer-events: none;
+    /* Eventos de puntero desactivados */
+    -webkit-appearance: none;
+    /* Estilo de apariencia en WebKit */
+    -moz-appearance: none;
+    /* Estilo de apariencia en Mozilla */
 }
 
 input[type="range"]::-webkit-slider-thumb {
-    height: 17px; /* Altura de 17px */
-    width: 17px; /* Ancho de 17px */
-    border-radius: 50%; /* Bordes redondeados de 50% (círculo) */
-    background: #0D4560; /* Fondo de color #0D4560 */
-    pointer-events: auto; /* Eventos de puntero activados */
-    -webkit-appearance: none; /* Estilo de apariencia en WebKit */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05); /* Sombra */
+    height: 17px;
+    /* Altura de 17px */
+    width: 17px;
+    /* Ancho de 17px */
+    border-radius: 50%;
+    /* Bordes redondeados de 50% (círculo) */
+    background: #0D4560;
+    /* Fondo de color #0D4560 */
+    pointer-events: auto;
+    /* Eventos de puntero activados */
+    -webkit-appearance: none;
+    /* Estilo de apariencia en WebKit */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    /* Sombra */
 }
 
 input[type="range"]::-moz-range-thumb {
-    height: 17px; /* Altura de 17px */
-    width: 17px; /* Ancho de 17px */
-    border: none; /* Sin borde */
-    border-radius: 50%; /* Bordes redondeados de 50% (círculo) */
-    background: #0D4560; /* Fondo de color #0D4560 */
-    pointer-events: auto; /* Eventos de puntero activados */
-    -moz-appearance: none; /* Estilo de apariencia en Mozilla */
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05); /* Sombra */
+    height: 17px;
+    /* Altura de 17px */
+    width: 17px;
+    /* Ancho de 17px */
+    border: none;
+    /* Sin borde */
+    border-radius: 50%;
+    /* Bordes redondeados de 50% (círculo) */
+    background: #0D4560;
+    /* Fondo de color #0D4560 */
+    pointer-events: auto;
+    /* Eventos de puntero activados */
+    -moz-appearance: none;
+    /* Estilo de apariencia en Mozilla */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    /* Sombra */
 }
 
 /* Estilo para los checkboxes */
@@ -239,8 +296,10 @@ input[type="range"]::-moz-range-thumb {
     overflow-y: auto;
     overflow-x: hidden;
     /* Ocultar la apariencia de la barra de desplazamiento */
-    scrollbar-width: none; /* Para Firefox */
-    -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+    scrollbar-width: none;
+    /* Para Firefox */
+    -ms-overflow-style: none;
+    /* Para Internet Explorer y Edge */
 }
 
 /* Estilo específico para WebKit (Chrome, Safari) */
@@ -271,4 +330,135 @@ input[type="range"]::-moz-range-thumb {
     transition-delay: 0s;
     background-color: #0D4560;
     color: white;
+}
+
+
+/* Estilos para dispositivos con pantalla menor o igual a 767px */
+@media screen and (max-width: 1221px) {
+    .custom-select select {
+        width: 100%;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    #contenedorSelectBuscador {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .ordenarPor {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+
+    .custom-select select {
+        background-image: none;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #cardC {
+        margin: 15px;
+        margin-left: 30px;
+        width: calc(80%/1);
+    }
+
+    .image-wrapper2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image-wrapper2 {
+        height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ADAFAB;
+    }
+}
+
+@media screen and (min-width: 1101px) {
+    #cardC {
+        margin: 15px;
+        margin-left: 30px;
+        width: calc(90%/3);
+    }
+
+
+    .image-wrapper2 img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .image-wrapper2 {
+        background-color: #F6F6F6;
+        height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.lineImgC {
+    background-color: #1591CC;
+    width: 100%;
+    height: 4px;
+}
+
+/* Estilo personalizado para los enlaces de paginación */
+.page-link {
+    color: #0D4560;
+    /* Color del texto */
+    background-color: transparent;
+    /* Fondo transparente */
+    border: 1px solid #0D4560;
+    /* Borde con el color especificado */
+}
+
+
+/* Estilo personalizado para los enlaces de paginación */
+.pagination {
+    margin-top: 10px;
+    /* Espacio superior */
+    margin-bottom: 10px;
+    /* Espacio inferior */
+}
+
+.page-item {
+    margin-right: 20px;
+    /* Espacio entre elementos */
+}
+
+
+/* Estilo personalizado para los enlaces de paginación */
+.page-link {
+    color: #0D4560; /* Color del texto */
+    background-color: transparent; /* Fondo transparente */
+    border: 1px solid #0D4560; /* Borde con el color especificado */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.num{
+    width: 40px;
+    text-align: center;
+    height: 20px;
+}
+
+/* Estilo para los enlaces de paginación cuando están seleccionados */
+.page-item.active .page-link {
+    color: #ffffff; /* Color del texto cuando está seleccionado */
+    background-color: #0D4560; /* Fondo cuando está seleccionado */
+    border-color: #0D4560; /* Color del borde cuando está seleccionado */
+}
+
+/* Estilo de hover para los enlaces de paginación */
+.page-link:hover {
+    background-color: #0D4560; /* Color de fondo al hacer hover */
+    color: #ffffff; /* Color del texto al hacer hover */
+    border-color: #0D4560; /* Color del borde al hacer hover */
 }
