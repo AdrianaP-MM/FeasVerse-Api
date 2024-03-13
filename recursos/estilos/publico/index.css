@@ -98,7 +98,7 @@
 }
 
 @media screen and (max-width: 1100px) {
-    #cardC {
+    .cardC {
         margin: 15px;
         margin-left: 30px;
         width: calc(80%/1);
@@ -120,7 +120,7 @@
 }
 
 @media screen and (min-width: 1101px) {
-    #cardC {
+    .cardC {
         margin: 15px;
         margin-left: 30px;
         width: calc(90%/3);

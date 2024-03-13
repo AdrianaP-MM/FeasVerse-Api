@@ -13,21 +13,29 @@
 .triangulo {
     width: 0;
     height: 0;
-    border-left: 1050px solid #1A89BD;
+    border-left: 50vw solid #1A89BD;
     border-top: 0;
-    border-bottom: 1050px solid transparent;
+    border-bottom: 100vh solid transparent;
 }
+
 
 .titleWho {
     text-align: center;
 }
-.containerHoWeAre
-{
+
+.containerHoWeAre {
     background-color: white;
     border-top: gray 3px solid;
     border-bottom: gray 3px solid;
 }
-.containerMembers
-{
-   height: fit-content;
+
+.containerMembers {
+    height: fit-content;
+}
+
+.imguser {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: bottom;
 }
