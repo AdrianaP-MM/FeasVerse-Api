@@ -605,6 +605,7 @@ h4 {
 
 .ContedorTabla {
     width: 80%;
+    height: 30%;
 
 }
 
@@ -619,12 +620,12 @@ thead {
 
 table {
     width: 80%;
-    margin-top: 15px;
-    margin-left: 60px;
     border: 1px solid #ccc;
     color: black;
     table-layout: fixed;
     border-collapse: collapse;
+    height: 30%;
+    margin: 0 auto;
 }
 
 table tr{
@@ -654,4 +655,34 @@ table tbody tr :hover{
 
 table tbody td :hover{
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Verde{
+    border: none;
+}
+
+.Rojo{
+    border: none;
+}
+
+.note{
+    background-color: none;
+}
+
+.sizeCard{
+    width: 25rem; 
+    height: 17rem;
+}
+
+.borderImage{
+    border-radius: 10px;
+}
+
+.lineaS{
+    width: 90%;
+    height: 3px;
+    border: #0D4560;
+    background-color: #0D4560;
+    color: #0D4560;
+    margin: 0 auto;
 }

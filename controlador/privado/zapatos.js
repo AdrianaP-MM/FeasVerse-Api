@@ -80,42 +80,6 @@ function showAgregar(boton) {
     boton.style.color = 'white';
 }
 
-
-function App() { }
-window.onload = function (event) {
-    var app = new App();
-    window.app = app;
-}
-
-App.prototype.processingButton = function (event) {
-
-    const btn = event.currentTarget;
-    const carruselList = event.currentTarget.parentNode;
-    const track = event.currentTarget.parentNode.querySelector("#track");
-    const carrusel = track.querySelectorAll('.carrusel');
-
-    const carruselWidth = carrusel[0].offsetWidth;
-
-    const trackWidth = track.offsetWidth;
-    const listWidth = carruselList.offsetWidth;
-
-    track.style.left == "" ? leftPosition = track.style.left = 0 : leftPosition = parseFloat(track.style.left.slice(0, -2) * -1);
-    btn.dataset.button == "button-prev" ? prevAction(leftPosition, carruselWidth, track) : nextAction(leftPosition, trackWidth, listWidth, carruselWidth, track);
-}
-
-let prevAction = (leftPosition, carruselWidth, track) => {
-    if (leftPosition > 0) {
-        track.style.left = `${-1 * (leftPosition - carruselWidth)}px`;
-    }
-}
-
-let nextAction = (leftPosition, trackWidth, listWidth, carruselWidth, track) => {
-    if (leftPosition < (trackWidth - listWidth)) {
-        track.style.left = `${-1 * (leftPosition + carruselWidth)}px`;
-    }
-}
-
-
 // Se agrega un evento al elemento subyacente del modal que se dispara después de que se haya ocultado.
 DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
     // Después de que el modal se haya ocultado, realiza la siguiente acción:
@@ -194,4 +158,27 @@ const openTallas = async () => {
 
     // Cambia el contenido del elemento con ID 'modalTitle' a 'Cplores'.
     MODAL_TITLE_TALLA.textContent = 'Tallas y Stock del Producto';
+}
+
+// Función para mostrar la imagen seleccionada en un elemento de imagen.
+function displaySelectedImage(event, elementId) {
+    // Obtiene el elemento de imagen según su ID.
+    const selectedImage = document.getElementById(elementId);
+    // Obtiene el elemento de entrada de archivo del evento.
+    const fileInput = event.target;
+
+    // Verifica si hay archivos seleccionados y al menos uno.
+    if (fileInput.files && fileInput.files[0]) {
+        // Crea una instancia de FileReader para leer el contenido del archivo.
+        const reader = new FileReader();
+
+        // Define el evento que se ejecutará cuando la lectura sea exitosa.
+        reader.onload = function (e) {
+            // Establece la fuente de la imagen como el resultado de la lectura (base64).
+            selectedImage.src = e.target.result;
+        };
+
+        // Inicia la lectura del contenido del archivo como una URL de datos.
+        reader.readAsDataURL(fileInput.files[0]);
+    }
 }
