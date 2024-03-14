@@ -1,6 +1,8 @@
 #imagenMarca {
-    width: 100%;
-    height: 80%;
+    min-width: 100%;
+    min-height: fit-content;
+    object-fit: cover;
+    object-position: bottom;
 }
 
 #encabezadoBuscador {
@@ -332,6 +334,20 @@ input[type="range"]::-moz-range-thumb {
     color: white;
 }
 
+@media screen and (max-width: 575px) {
+    #imagenZapato {
+        max-width: fit-content;
+    }
+}
+
+@media screen and (max-width: 651px) {
+
+    .num,
+    .num2 {
+        display: none;
+        position: absolute;
+    }
+}
 
 /* Estilos para dispositivos con pantalla menor o igual a 767px */
 @media screen and (max-width: 1221px) {
@@ -404,28 +420,43 @@ input[type="range"]::-moz-range-thumb {
 
 /* Estilo personalizado para los enlaces de paginación */
 .page-link {
-    color: #0D4560; /* Color del texto */
-    background-color: transparent; /* Fondo transparente */
-    border: 1px solid #0D4560; /* Borde con el color especificado */
-    border-radius: 10px; /* Bordes redondeados */
+    color: #0D4560;
+    /* Color del texto */
+    background-color: transparent;
+    /* Fondo transparente */
+    border: 1px solid #0D4560;
+    /* Borde con el color especificado */
+    border-radius: 10px;
+    /* Bordes redondeados */
 }
 
-.num{
+.num {
     width: 40px;
     text-align: center;
     height: 20px;
+    display: block;
 }
 
 /* Estilo para los enlaces de paginación cuando están seleccionados */
 .page-item.active .page-link {
-    color: #ffffff; /* Color del texto cuando está seleccionado */
-    background-color: #0D4560; /* Fondo cuando está seleccionado */
-    border-color: #0D4560; /* Color del borde cuando está seleccionado */
+    color: #ffffff;
+    /* Color del texto cuando está seleccionado */
+    background-color: #0D4560;
+    /* Fondo cuando está seleccionado */
+    border-color: #0D4560;
+    /* Color del borde cuando está seleccionado */
 }
 
 /* Estilo de hover para los enlaces de paginación */
 .page-link:hover {
-    background-color: #0D4560; /* Color de fondo al hacer hover */
-    color: #ffffff; /* Color del texto al hacer hover */
-    border-color: #0D4560; /* Color del borde al hacer hover */
+    background-color: #0D4560;
+    /* Color de fondo al hacer hover */
+    color: #ffffff;
+    /* Color del texto al hacer hover */
+    border-color: #0D4560;
+    /* Color del borde al hacer hover */
+}
+
+.A {
+    max-width: 100%;
 }
