@@ -111,7 +111,7 @@ const returnBack = async () => {
         DESC_INPUT.value = ' ';
         IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
         
-        // Simula un clic en la primera pestaña (posiblemente un tab) para cambiar a la vista de tabla.
+        // Simula un clic en la primera pestaña para cambiar a la vista de tabla.
         primeraPestana.click();
         
         // Muestra el div de la tabla y oculta el div de agregar.

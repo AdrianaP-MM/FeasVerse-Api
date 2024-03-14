@@ -136,3 +136,55 @@
     border-radius: 6px;
     /* Ajusta el radio de la esquina del thumb */
 }
+
+#botonAgregarComentario{
+    border-color: #5F5F5F;
+    width: 100%;
+}
+
+#botonAgregarComentario:hover{
+    background-color: #5F5F5F;
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #1A89BD;
+    color: white;
+}
+
+/* Estilo para elementos con clases .btn3 y .btn2 */
+.btn3,
+.btn2 {
+    border: solid 0px;
+}
+
+/* Estilo específico para .btn3 */
+.btn3 {
+    background-color: #146A93;
+}
+
+/* Estilo específico para .btn2 */
+.btn2 {
+    background-color: white;
+    color: black;
+    border: #8F8F8F solid 1px;
+}
+
+#cancelarBtn, #agregarBtn{
+    width: 100%;
+}
+
+.container1, .star{
+    display: flex;
+    grid-gap: 20px;
+}
+
+.container1, .star, a{
+    transition: .6s;
+    color: #333;
+    font-size: 20px;
+}
+
+.container1, .star, a.active{
+    color: #FFC700;
+}

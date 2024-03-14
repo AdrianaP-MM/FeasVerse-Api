@@ -57,3 +57,22 @@ h6 {
     background-color: #1591CC;
     height: 30px;
 }
+
+
+/* Sweet alert */
+.swal2-popup {
+    font-family: "Titillium Web", sans-serif; /* Estilo de fuente para el popup de SweetAlert */
+}
+
+.swal2-title {
+    font-family: "Titillium Web", sans-serif; /* Estilo de fuente para el título de SweetAlert */
+}
+
+.swal2-content {
+    font-family: "Titillium Web", sans-serif; /* Estilo de fuente para el contenido de SweetAlert */
+}
+
+.swal2-actions button {
+    margin: 10px; /* Margen alrededor de los botones de SweetAlert */
+    width: 100px; /* Ancho de los botones de SweetAlert */
+}
