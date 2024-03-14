@@ -182,9 +182,13 @@
 .container1, .star, a{
     transition: .6s;
     color: #333;
-    font-size: 20px;
+    font-size: 45px;
 }
 
 .container1, .star, a.active{
     color: #FFC700;
+}
+
+@media screen and (max-width: 332px) {
+    
 }
