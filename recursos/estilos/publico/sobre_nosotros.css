@@ -92,3 +92,20 @@
         margin-top: 0px;
     }
 }
+
+.lineah1,
+.lineah2 {
+    width: 3px;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: -5%;
+}
+
+
+@media screen and (max-width: 991px) {
+    .lineah2 {
+        width: 0px;
+    }
+}
