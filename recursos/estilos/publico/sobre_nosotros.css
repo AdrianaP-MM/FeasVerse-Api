@@ -39,3 +39,50 @@
     object-fit: cover;
     object-position: bottom;
 }
+
+.containerMision,
+.containerVision,
+.containerValores,
+.containerComienzo {
+    border: 2px solid gray;
+    height: 90vh;
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .containerMision {
+        border-bottom-right-radius: 500px;
+    }
+
+    .containerVision {
+        border-bottom-left-radius: 500px;
+    }
+
+    .containerValores {
+        border-top-right-radius: 500px;
+    }
+
+    .containerComienzo {
+        border-top-left-radius: 500px;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .containerMision {
+        border-bottom-right-radius: 500px;
+        border-top-right-radius: 500px;
+    }
+
+    .containerVision,
+    .containerValores,
+    .containerComienzo {
+        margin-top: 35px;
+        border-bottom-right-radius: 500px;
+        border-top-right-radius: 500px;
+    }
+
+
+}
