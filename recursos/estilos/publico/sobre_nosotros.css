@@ -18,7 +18,6 @@
     border-bottom: 100vh solid transparent;
 }
 
-
 .titleWho {
     text-align: center;
 }
@@ -45,44 +44,51 @@
 .containerValores,
 .containerComienzo {
     border: 2px solid gray;
-    height: 90vh;
+    height: fit-content;
+    padding: 30px;
 }
 
-
+.r2 {
+    margin-top: 100px;
+}
 
 @media screen and (min-width: 768px) {
     .containerMision {
-        border-bottom-right-radius: 500px;
+        border-bottom-right-radius: 300px;
     }
 
     .containerVision {
-        border-bottom-left-radius: 500px;
+        border-bottom-left-radius: 300px;
     }
 
     .containerValores {
-        border-top-right-radius: 500px;
+        border-top-right-radius: 300px;
     }
 
     .containerComienzo {
-        border-top-left-radius: 500px;
+        border-top-left-radius: 300px;
     }
 
+    .cntnrtxt {
+        padding: 60px;
+        padding-right: 70px;
+    }
 }
 
 @media screen and (max-width: 767px) {
 
     .containerMision {
-        border-bottom-right-radius: 500px;
-        border-top-right-radius: 500px;
+        padding-top: 30px;
     }
 
     .containerVision,
     .containerValores,
     .containerComienzo {
         margin-top: 35px;
-        border-bottom-right-radius: 500px;
-        border-top-right-radius: 500px;
+        padding-top: 30px;
     }
 
-
+    .r2 {
+        margin-top: 0px;
+    }
 }
