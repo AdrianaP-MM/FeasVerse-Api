@@ -707,3 +707,29 @@ table tbody td :hover{
 .input-group-text{
     margin: 0 auto;
 }
+
+.formGenero{
+    margin: 0 auto;
+}
+
+.sizeCard1{
+    margin: 0 auto;
+    width: 40%;
+    height: 10%;
+}
+
+.botonD{
+    
+}
+
+.btn4{
+    width: 170px;
+    height: 50px;
+    
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: solid 0px;
+    background-color: #0D4560;
+
+}
