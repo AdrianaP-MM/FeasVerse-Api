@@ -78,7 +78,8 @@
                                             <div>
                                                 <h4> <small>Nike Dunk Low</small> UNISEX </h4>
                                                 <picture>
-                                                    <img src="/recursos/imagenes/NikeP.png" class="rounded">
+                                                    <img src="/recursos/imagenes/NikeP.png" class="rounded"
+                                                        onclick="openDetalles()">
                                                 </picture>
                                                 </a>
                                             </div>
@@ -450,7 +451,8 @@
                                     </div>
                                     <div class="lineaS align-items-center mt-4"></div>
                                     <div class="contenedorImagen d-flex flex-column align-items-center">
-                                        <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto del zapato
+                                        <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto del
+                                            zapato
                                         </h1>
                                         <!-- Imagen seleccionada y botón para elegir imagen -->
                                         <img id="selectedImageD " class="sizeCard borderImage"
@@ -485,8 +487,75 @@
                             </form>
                         </div>
                     </div>
+                    <!-- TODO ----------------------------DETALLES ZAPATO MODAL------------------------------------------>
+                    <div class="modal fade" id="dataModalD" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="modalTitleD" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Encabezado del modal -->
+                                <div class="modal-header d-flex justify-content-center align-items-center">
+                                    <h1 class="modal-title fs-5 text-center" id="modalTitleD"></h1>
+                                </div>
+                                <!-- Formulario para crear o actualizar un registro -->
+                                <div class="ContenedorTotalD d-flex flex-column flex-wrap">
+                                    <div class="ContenedorForms row flex-wrap">
+                                        <div class="formZapato mt-2 col-md-5">
+                                            <label for="exampleFormControlInput1" class="formNombre">Nombre del
+                                                zapato</label>
+                                            <input type="text" class="form-control" id="floatingInputDisabled"
+                                                placeholder="Nike Dunk Low" disabled>
+                                        </div>
+                                        <div class="formZapato mt-2  col-md-5">
+                                            <label for="exampleFormControlInput1" class="formMarca">Género del
+                                                zapato</label>
+                                            <input type="text" class="form-control" id="floatingInputDisabled"
+                                                placeholder="UNISEX" disabled>
+                                        </div>
+                                        <div class="formZapato mt-2  col-md-5">
+                                            <label for="exampleFormControlInput1" class="formMarca">Marca del
+                                                zapato</label>
+                                            <input type="text" class="form-control" id="floatingInputDisabled"
+                                                placeholder="Nike" disabled>
+                                        </div>
+                                        <div class="formZapato mt-2 col-md-5">
+                                            <label for="exampleFormControlInput1" class="formMarca">Precio del
+                                                zapato</label>
+                                            <input type="text" class="form-control" id="floatingInputDisabled"
+                                                placeholder="$90" disabled>
+                                        </div>
+                                        <div class="formZapato mt-2 col-md-11">
+                                            <label for="exampleFormControlInput1" class="formMarca">Descripcion del zapato</label>
+                                            <input type="text" class="form-control" id="floatingInputDisabled"
+                                                placeholder="Buen zapato" disabled>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- Botones en el pie del modal -->
+                                <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                    <div class="contenedorBotones3">
+                                        <!-- Botón para cancelar la operación -->
+                                        <button type="button" id="cancelarBtn"
+                                            class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="botonCancelar()">
+                                            Cancelar
+                                        </button>
+                                        <!-- Botón para actualizar el registro -->
+                                        <button type="button" id="actualizarBtn"
+                                            class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="botonActualizar()">
+                                            Actualizar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
         </div>

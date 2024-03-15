@@ -686,3 +686,24 @@ table tbody td :hover{
     color: #0D4560;
     margin: 0 auto;
 }
+
+.formMarca, .formNombre{
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.ContenedorTotalD{
+    height: 150%;
+}
+
+.formZapato{
+    margin: 0 auto;
+}
+
+.input-group {
+    width: 80%;
+}
+
+.input-group-text{
+    margin: 0 auto;
+}

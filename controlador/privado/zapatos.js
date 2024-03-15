@@ -2,7 +2,11 @@ const NOMBREC_INPUT = document.getElementById('nombreColor');
 
 const DATA_MODAL = new bootstrap.Modal('#dataModal');
 const DATA_TALLAS_MODAL = new bootstrap.Modal('#dataModalT');
+const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
 MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
+MODAL_TITLE_DETALLE = document.getElementById('modalTitleD');
+
+
 
 
 
@@ -156,9 +160,19 @@ const openTallas = async () => {
     // Muestra la caja de diálogo modal con su título.
     DATA_TALLAS_MODAL.show();
 
+    UPDATE_FORM.reset();
+
     // Cambia el contenido del elemento con ID 'modalTitle' a 'Cplores'.
     MODAL_TITLE_TALLA.textContent = 'Tallas y Stock del Producto';
 }
+
+const openDetalles = async () => {
+    DATA_DETALLES_MODAL.show();
+
+    MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato';
+}
+
+
 
 // Función para mostrar la imagen seleccionada en un elemento de imagen.
 function displaySelectedImage(event, elementId) {
