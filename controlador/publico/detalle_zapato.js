@@ -1,9 +1,10 @@
-// *Método del evento para cuando el documento ha cargado.
+// Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
-    // *Llamada a la función para mostrar el encabezado y pie del documento.
+    // Llama a una función para cargar el encabezado y el pie de página del documento
     loadTemplate();
 });
 
+// Función para mostrar una notificación de éxito cuando se agrega un artículo al carrito
 function AddCarrito() {
     Swal.fire({
         title: false,
@@ -40,10 +41,13 @@ function AddCarrito() {
     `,
     });
 }
+
+// Función para cerrar la notificación
 function closeSweet() {
     Swal.close();
 }
+
+// Función para redirigir al usuario al carrito de compras
 function gotoCar() {
     location.href = "/vistas/publico/carrito.html";
 }
-

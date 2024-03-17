@@ -1,12 +1,20 @@
+/* Estilos para la imagen con ID "imagenMarca" */
 #imagenMarca {
+    /* La imagen debe tener un ancho mínimo del 100% del contenedor */
     min-width: 100%;
+    /* La altura mínima de la imagen debe ajustarse automáticamente al contenido */
     min-height: fit-content;
+    /* La imagen debe cubrir todo el contenedor, manteniendo la relación de aspecto */
     object-fit: cover;
+    /* La imagen se posiciona en la parte inferior del contenedor */
     object-position: bottom;
 }
 
+/* Estilos para el elemento con ID "encabezadoBuscador" */
 #encabezadoBuscador {
+    /* Borde superior de 2 píxeles de grosor y color sólido #146A93 */
     border-top: 2px solid #146A93;
+    /* Borde inferior de 2 píxeles de grosor y color sólido #146A93 */
     border-bottom: 2px solid #146A93;
 }
 
@@ -70,19 +78,28 @@
     display: none;
 }
 
+/* Estilos para el input de búsqueda con ID "buscadorInputZapatos" */
 #buscadorInputZapatos {
+    /* El ancho del input de búsqueda será del 100% de su contenedor */
     width: 100%;
 }
 
+/* Estilos para el contenedor del filtro de encabezado */
 .contendorFiltroHeader {
+    /* Fondo del contenedor del filtro con color #F4F2F2 */
     background-color: #F4F2F2;
 }
 
+/* Estilos para los iconos "x" */
 .x-icon,
 .bi-x {
+    /* Tamaño de fuente de 25px para los iconos "x" */
     font-size: 25px;
+    /* El ancho de los iconos "x" será del 100% */
     width: 100%;
+    /* La altura de los iconos "x" será del 100% */
     height: 100%;
+    /* Color de los iconos "x" en #0D4560 */
     color: #0D4560;
 }
 
@@ -284,9 +301,13 @@ input[type="range"]::-moz-range-thumb {
     border: 1px solid #0D4560;
 }
 
+/* Estilos para el contenedor de tallas */
 .contenedorTallas {
+    /* Fondo blanco para el contenedor de tallas */
     background-color: white;
+    /* Los elementos hijos se mostrarán en línea */
     display: flex;
+    /* Los elementos hijos se centrarán horizontalmente */
     justify-content: center;
 }
 
@@ -309,45 +330,68 @@ input[type="range"]::-moz-range-thumb {
     display: none;
 }
 
-
+/* Estilos para los cuadrados de talla */
 .cuadradoTalla {
+    /* Fondo blanco para los cuadrados de talla */
     background-color: white;
+    /* Color del texto en #0D4560 */
     color: #0D4560;
+    /* Borde de 1px sólido en #5F5F5F */
     border: 1px solid #5F5F5F;
+    /* Borde redondeado de 5px */
     border-radius: 5px;
+    /* Los elementos se alinearán y justificarán al centro */
     align-items: center;
     justify-content: center;
+    /* Los elementos se muestran como una fila */
     display: flex;
+    /* Margen de 10px en todos los lados */
     margin: 10px;
+    /* Ancho de 60px */
     width: 60px;
+    /* Alto de 60px */
     height: 60px;
+    /* Transición con duración de 0.3s con efecto ease-in-out */
     transition: .3s ease-in-out;
 }
 
+/* Estilos para los cuadrados de talla cuando se hace hover */
 .cuadradoTalla:hover {
+    /* Traslación de -5px hacia arriba en el eje Y */
     transform: translateY(-5px);
+    /* Propiedad de transición solo para transformar */
     transition-property: transform;
+    /* Duración de la transición de 0.5s */
     transition-duration: 0.5s;
+    /* Función de temporización de la transición: ease */
     transition-timing-function: ease;
+    /* Retraso de la transición: 0s */
     transition-delay: 0s;
+    /* Fondo en #0D4560 al hacer hover */
     background-color: #0D4560;
+    /* Color del texto en blanco al hacer hover */
     color: white;
 }
 
+/* Estilos para el media query con ancho máximo de 575px */
 @media screen and (max-width: 575px) {
+    /* Estilos para el elemento con ID "imagenZapato" */
     #imagenZapato {
+        /* Ancho máximo ajustado al contenido */
         max-width: fit-content;
     }
 }
 
+/* Estilos para el media query con ancho máximo de 651px */
 @media screen and (max-width: 651px) {
-
+    /* Ocultar elementos con clase "num" y "num2" y posicionarlos absolutamente */
     .num,
     .num2 {
         display: none;
         position: absolute;
     }
 }
+
 
 /* Estilos para dispositivos con pantalla menor o igual a 767px */
 @media screen and (max-width: 1221px) {
@@ -357,39 +401,53 @@ input[type="range"]::-moz-range-thumb {
     }
 }
 
+/* Media query para pantallas con ancho máximo de 575px */
 @media screen and (max-width: 575px) {
+    /* Estilos para el contenedor del selector de búsqueda */
     #contenedorSelectBuscador {
+        /* Cambia la disposición a columna */
         display: flex;
         flex-direction: column;
     }
 
-
+    /* Estilos para el texto de "Ordenar por" dentro del contenedor del selector */
     .ordenarPor {
+        /* Tamaño de fuente de 12px */
         font-size: 12px;
+        /* Margen a la izquierda de 10px */
         margin-left: 10px;
     }
 
+    /* Estilos para ocultar la imagen de fondo del selector personalizado */
     .custom-select select {
         background-image: none;
     }
 }
 
-
+/* Estilos para la imagen dentro del contenedor */
 .image-wrapper2 img {
+    /* La imagen se ajusta al 100% del ancho y alto del contenedor */
     width: 100%;
     height: 100%;
 }
 
+/* Estilos para el contenedor de la imagen */
 .image-wrapper2 {
+    /* Los elementos hijos se centran horizontal y verticalmente */
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Fondo con color #ADAFAB */
     background-color: #ADAFAB;
 }
 
+/* Estilos para la línea de imagen */
 .lineImgC {
+    /* Fondo con color #1591CC */
     background-color: #1591CC;
+    /* Ancho del 100% */
     width: 100%;
+    /* Altura de 4px */
     height: 4px;
 }
 
@@ -430,10 +488,15 @@ input[type="range"]::-moz-range-thumb {
     /* Bordes redondeados */
 }
 
+/* Estilos para los elementos con clase "num" */
 .num {
+    /* Ancho de 40px */
     width: 40px;
+    /* Texto centrado horizontalmente */
     text-align: center;
+    /* Altura de 20px */
     height: 20px;
+    /* Elemento mostrado como bloque */
     display: block;
 }
 

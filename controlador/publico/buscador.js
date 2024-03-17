@@ -23,17 +23,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Hace clic automáticamente en el botón del accordion para ocultar los detalles por defecto.
     ACCORDION_BUTTON_TALLAS.click();
 });
-
 // Función para mostrar/ocultar el icono de limpiar según si hay texto en el input
 document.getElementById('buscadorInputZapatos').addEventListener('input', function () {
     var searchIcon = document.querySelector('.search-icon');
     var clearIcon = document.querySelector('.clear-icon');
 
     if (this.value.length > 0) {
-        clearIcon.style.display = 'block';
+        clearIcon.style.display = 'block'; // Muestra el icono de limpiar si hay texto en el input
     } else {
-        searchIcon.style.display = 'block';
-        clearIcon.style.display = 'none';
+        searchIcon.style.display = 'block'; // Muestra el icono de búsqueda si no hay texto en el input
+        clearIcon.style.display = 'none'; // Oculta el icono de limpiar si no hay texto en el input
     }
 });
 
@@ -43,11 +42,11 @@ function clearSearch() {
     var searchIcon = document.querySelector('.search-icon');
     var clearIcon = document.querySelector('.clear-icon');
 
-    input.value = '';
-    input.focus();
+    input.value = ''; // Limpia el contenido del input
+    input.focus(); // Coloca el foco en el input para seguir escribiendo
 
-    searchIcon.style.display = 'block';
-    clearIcon.style.display = 'none';
+    searchIcon.style.display = 'block'; // Muestra el icono de búsqueda
+    clearIcon.style.display = 'none'; // Oculta el icono de limpiar
 }
 
 // Agregar un event listener a cada input de precio
@@ -60,11 +59,11 @@ PRICE_INPUT.forEach(input => {
         // Verificar si la diferencia de precio es mayor o igual a la brecha de precio y si el precio máximo está dentro del rango
         if ((maxPrice - minPrice >= priceGap) && maxPrice <= RANGE_INPUT[1].max) {
             if (e.target.className === "input-min") {
-                RANGE_INPUT[0].value = minPrice;
-                RANGE.style.left = ((minPrice / RANGE_INPUT[0].max) * 100) + "%";
+                RANGE_INPUT[0].value = minPrice; // Asigna el valor mínimo al input de rango mínimo
+                RANGE.style.left = ((minPrice / RANGE_INPUT[0].max) * 100) + "%"; // Actualiza visualmente la posición del rango
             } else {
-                RANGE_INPUT[1].value = maxPrice;
-                RANGE.style.right = 100 - (maxPrice / RANGE_INPUT[1].max) * 100 + "%";
+                RANGE_INPUT[1].value = maxPrice; // Asigna el valor máximo al input de rango máximo
+                RANGE.style.right = 100 - (maxPrice / RANGE_INPUT[1].max) * 100 + "%"; // Actualiza visualmente la posición del rango
             }
         }
     });
@@ -80,9 +79,9 @@ RANGE_INPUT.forEach(input => {
         // Verificar si la diferencia entre los valores de rango es menor que la brecha de precio
         if ((maxVal - minVal) < priceGap) {
             if (e.target.className === "RANGE-min") {
-                RANGE_INPUT[0].value = maxVal - priceGap;
+                RANGE_INPUT[0].value = maxVal - priceGap; // Ajusta el valor mínimo del rango
             } else {
-                RANGE_INPUT[1].value = minVal + priceGap;
+                RANGE_INPUT[1].value = minVal + priceGap; // Ajusta el valor máximo del rango
             }
         } else {
             // Asignar los valores de rango a los inputs de precio
