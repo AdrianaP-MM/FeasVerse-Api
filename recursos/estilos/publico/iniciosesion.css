@@ -66,19 +66,11 @@ body{
     width: 100%;
 }
 
-.contenedorBotones{
-    width: 100%;
-    min-height: fit-content;
-    max-height: fit-content;
-    position: absolute;
-    bottom: -10%;
+.botonIngreso1{
+    width: 80%;
 }
 
-/* Estilos para contenedorBotones2 */
-.contenedorBotones{
-    bottom: 2%;
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.botonIngreso{
+    color: white;
+    background-color: #0D4560;
 }

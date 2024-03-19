@@ -137,12 +137,27 @@
                         <input type="email" class="form-control bordesAzul" id="correoInput"
                             placeholder="Ingresa el correo electronico" required>
                     </div>
-                    <div class="contenedorBotones">
-                        <button type="button" onclick=""
-                            class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
-                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
-                            onclick="" type="submit">Confirmar</button>
+                    <div class="row gx-5 ">
+                    <div class="col">
+                        <div class="text-center d-flex justify-content-center mt-3 ms-5">
+                            <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso"
+                                onclick="showInicio()"><i class="bi bi-send"></i>
+                                Cancelar</button>
+                        </div>
                     </div>
+                    <div class="col">
+                        <div class="text-center d-flex justify-content-center mt-3">
+                            <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso1 "
+                                onclick="showInicio()"><i class="bi bi-send"></i>
+                                Iniciar Sesion</button>
+                        </div>
+                    </div>
+                    </div>
+    
+                    </div>
+                    <label class="text-center col-11 mt-3 mb-2 ms-3" for="olvidaste_clave"> ¿Ya tienes cuenta? 
+                        <a class="color-5blue" onclick="">Inicia Sesion</a>
+                    </label>
                 </form>
             </div>
         </div>
