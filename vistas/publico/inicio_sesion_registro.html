@@ -3,7 +3,7 @@
 
 <head>
     <!-- TODO Título del documento -->
-    <title></title>
+    <title>Inicio de sesion</title>
     <!-- Metadatos de la página web -->
     <meta charset="utf-8">
     <meta name="author" content="FeasVerseCompany">
@@ -23,18 +23,24 @@
 </head>
 
 <body>
-    <main class="d-flex align-items-center justify-content-center flex-column min-vh-100">
-        <div class="ContenedorForm">
-            <div class="ContenedorImg d-flex justify-content-center align-items-center mt-5 mb-4" widht =>
+    <!--Pagina de Inicio de Sesion-->
+    <main class="d-flex align-items-center justify-content-center flex-column position-relative mainContent">
+        <!--Contenedor para formulario de Inicio de Sesion-->
+        <div class="ContenedorForm d-none" id="loginForm">
+            <!--Contenedor para imagen-->
+            <div class="ContenedorImg d-flex justify-content-center align-items-center mt-5 mb-4" widht=>
                 <img src="../../recursos/imagenes/Group.svg">
             </div>
+            <!--Contenedor para titulo y texto de bienvenida-->
             <div
                 class="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-4">
                 <h3 class="titulo titillium-web-regular">¡Mucho tiempo sin verte!</h3>
                 <h6 class="textoBienvenida titillium-web-regular">Inicia sesión en tu cuenta de FEASVERSE</h6>
                 <h6 class="textoBienvenida titillium-web-regular">ingresando la información solicitada debajo</h6>
             </div>
+            <!--Formulario de inicio de sesion-->
             <div class="row g-3">
+                <!--Contenedor del Input de correo-->
                 <div class="correo col-11 ms-4">
                     <div class="d-flex align-items-start">
                         <img src="../../recursos/imagenes/correo.svg" class="me-1" width="20" alt="candado">
@@ -51,30 +57,101 @@
                         <img src="../../recursos/imagenes/candado2.svg" class="me-1" width="20" alt="candado">
                         <label for="clave" class="form-label titillium-web-regular">Contraseña</label>
                     </div>
-                    <input id="clave" type="password" name="clave" class="form-control contraseña titillium-web-regular bordesAzul"
+                    <input id="clave" type="password" name="clave"
+                        class="form-control contraseña titillium-web-regular bordesAzul"
                         placeholder="Ingrese su contraseña" required>
                 </div>
+                <!--Texto para llevar al formulario de Recuperacion de Contraseña-->
                 <label class="text-end col-11 mb-2 ms-3" for="olvidaste_clave">
                     <a class="color-5blue" onclick="">¿Olvidaste tu
                         contraseña?</a>
                 </label>
+                <!--Boton para ingresar-->
                 <div class="d-flex justify-content-center">
                     <div class="text-center col-sm-12 col-md-6">
                         <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso"
-                            onclick=""><i class="bi bi-send"></i>
+                            onclick="showInicio()"><i class="bi bi-send"></i>
                             Ingresar</button>
                     </div>
                 </div>
+                <!--Texto para llevar al formulario de creacion de cuenta-->
                 <label class="text-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
-                                for="olvidaste_clave">
-                                ¿No tienes una cuenta?
-                                <a class="color-5blue" onclick="">Registrate GRATIS </a>
-                            </label>
+                    for="olvidaste_clave">
+                    ¿No tienes una cuenta?
+                    <a class="color-5blue" onclick="Registro()">Registrate GRATIS </a>
+                </label>
             </div>
         </div>
+        <!-- *Pagina de Registro -->
+        <div class="ContenedorRegistro d-none position-relative" id="registro">
+            <!--Contenedor para imagen-->
+            <div class="ContenedorImg d-flex align-items-start " widht=20px>
+                <img src="../../recursos/imagenes/Group.svg">
+            </div>
+            <!--Contenedor para titulo y texto de bienvenida-->
+            <div
+                class="d-flex flex-column justify-content-start align-items-start texto">
+                <h3 class="titulo titillium-web-regular">Registro</h3>
+                <h6 class="textoBienvenida titillium-web-regular">Ingresa tu información solicitada a continuación para
+                    crear tu cuenta e iniciar</h6>
+            </div>
+            <div class="ContenedorForms">
+                <form class="row needs-validation form1" novalidate>
+                    <div class="col-md-5 ms-5">
+                        <label for="nombreInput" class="form-label">Nombres</label>
+                        <input type="text" class="form-control bordesAzul" id="nombreInput"
+                            placeholder="Ingresa los nombres" required>
+                    </div>
+                    <div class="col-md-5 ms-5">
+                        <label for="apellidosInput" class="form-label ">Apellidos</label>
+                        <input type="text" class="form-control bordesAzul" id="apellidosInput"
+                            placeholder="Ingresa los apellidos" required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="duiInput" class="form-label ">DUI</label>
+                        <input type="text" class="form-control bordesAzul" id="duiInput" placeholder="Ingresa el dui"
+                            required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="telefonoInput" class="form-label ">Teléfono</label>
+                        <input type="text" class="form-control bordesAzul" id="telefonoInput"
+                            placeholder="Ingresa el número telefonico" required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="correoInput" class="form-label ">Correo electrónico</label>
+                        <input type="email" class="form-control bordesAzul" id="correoInput"
+                            placeholder="Ingresa el correo electrónico" required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="fechanInput" class="form-label ">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control bordesAzul" id="fechanInput"
+                            placeholder="Ingresa la fecha de nacimiento" required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="correoInput" class="form-label ">Dirección</label>
+                        <input type="email" class="form-control bordesAzul" id="correoInput"
+                            placeholder="Ingresa la dirección" required>
+                    </div>
+                    <div class="col-md-5 mt-3 ms-5">
+                        <label for="correoInput" class="form-label ">Contraseña</label>
+                        <input type="email" class="form-control bordesAzul" id="correoInput"
+                            placeholder="Ingresa el correo electronico" required>
+                    </div>
+                    <div class="contenedorBotones">
+                        <button type="button" onclick=""
+                            class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
+                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
+                            onclick="" type="submit">Confirmar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </main>
     <!-- *Llamada al framework de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- *Llamada al controlador del sitio público -->
+    <script type="text/javascript" src="../../controlador/publico/inicio_sesion.js"></script>
 </body>
 
 </html>
