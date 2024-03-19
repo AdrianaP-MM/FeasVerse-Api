@@ -1,0 +1,41 @@
+body{
+    background-image:url('../../imagenes/1FONDO.svg');
+    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+    background-repeat: no-repeat; /* No se repite la imagen de fondo */
+    background-attachment: fixed; /* Fija la imagen de fondo al desplazarse */
+}
+
+
+.ContenedorForm{
+    background-color: white;
+    border-radius: 20px;
+    width: 35%;
+    height: 800px;
+}
+
+
+.titulo{
+    font-size: 36px;
+}
+
+.textoBienvenida{
+    font-size: 16px;
+    color: #5F5F5F;
+}
+
+.botonIngreso{
+    background-color: #0D4560; 
+    width: 100%;
+}
+
+
+.bordesAzul{
+    border-color: #146A93;
+}
+
+.contraseña, .correo{
+    padding: 15px;
+
+}
+
+
