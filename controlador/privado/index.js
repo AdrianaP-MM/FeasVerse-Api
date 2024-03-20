@@ -31,7 +31,19 @@ function showLoginForm() {
     FORGOT_PASSWORD_STEP_THREE_FORM.classList.add('d-none');
 }
 
-function showForgotPasswordForm() {
+const showLoginFormRestablecer = async () => {
+    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
+    // Se muestra el formulario para iniciar sesión.
+    LOGIN_FORM.classList.remove('d-none');
+    // Se establece el título del contenido principal.
+    MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
+    // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2 y 3).
+    FORGOT_PASSWORD_FORM.classList.add('d-none');
+    FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
+    FORGOT_PASSWORD_STEP_THREE_FORM.classList.add('d-none');
+}
+
+const showForgotPasswordForm = async () => {
     // Se oculta el formulario para iniciar sesión y paso 2, 3.
     LOGIN_FORM.classList.add('d-none');
     FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
@@ -42,7 +54,8 @@ function showForgotPasswordForm() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-function showForgotPasswordStepTwoForm() {
+const showForgotPasswordStepTwoForm = async () => {
+    await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 3
     LOGIN_FORM.classList.add('d-none');
     FORGOT_PASSWORD_FORM.classList.add('d-none');
@@ -53,7 +66,8 @@ function showForgotPasswordStepTwoForm() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-function showForgotPasswordStepThreeForm() {
+const showForgotPasswordStepThreeForm = async () => {
+    await sweetAlert(1, 'Código ingresado correctamente', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 2
     LOGIN_FORM.classList.add('d-none');
     FORGOT_PASSWORD_FORM.classList.add('d-none');
@@ -62,6 +76,7 @@ function showForgotPasswordStepThreeForm() {
     FORGOT_PASSWORD_STEP_THREE_FORM.classList.remove('d-none');
     // Se establece el título del contenido principal.
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
+
 }
 
 function handleLoginFormSubmission(event) {
@@ -69,7 +84,8 @@ function handleLoginFormSubmission(event) {
 }
 
 //Funcion de mostrar la dashboard
-function showDashboard()
+const showDashboard = async () =>
 {
+    await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
     location.href = '/vistas/privado/panel_principal.html';
 }
