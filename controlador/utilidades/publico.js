@@ -48,6 +48,10 @@ const loadTemplate = async () => {
                                         <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Registrarse</h6>
                                     </a>
                                 </li>
+                                <li><a class="dropdown-item my-2" href="/vistas/publico/configuraciones.html">
+                                <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
+                            </a>
+                        </li>
                             </ul>
                         </li>
 
