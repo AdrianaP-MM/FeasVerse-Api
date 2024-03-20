@@ -74,3 +74,11 @@ body{
     color: white;
     background-color: #0D4560;
 }
+
+.textoT{
+    font-size: 40px;
+}
+
+#password1{
+    width: 50vw;
+}
