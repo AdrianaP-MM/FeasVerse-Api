@@ -13,8 +13,9 @@ body{
 .ContenedorForm{
     background-color: white;
     border-radius: 20px;
-    width: 35%;
-    height: 750px;
+    /*width: 35%;*/
+    height: fit-content;
+    padding-bottom: 20px;
 }
 
 
