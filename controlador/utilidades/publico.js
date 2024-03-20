@@ -39,13 +39,9 @@ const loadTemplate = async () => {
                                 <h5 class="text-white titillium-web-regular m-0 p-0">Ingresar</h5>
                             </a>
                             <ul class="dropdown-menu bg-color-4blue">
-                                <li><a class="dropdown-item my-2" href="#">
+                                <li><a class="dropdown-item my-2" href="/vistas/publico/inicio_sesion_registro.html">
                                         <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Iniciar Sesión
                                         </h6>
-                                    </a>
-                                </li>
-                                <li><a class="dropdown-item my-2" href="#">
-                                        <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Registrarse</h6>
                                     </a>
                                 </li>
                                 <li><a class="dropdown-item my-2" href="/vistas/publico/configuraciones.html">
@@ -225,7 +221,6 @@ const loadTemplate = async () => {
             </div>
         </section>
         <!-- Section: Links  -->
-
         <!-- Copyright -->
         <div class="text-center p-3 btmFooter">
             Copyright © 2024 FeasVerseCompany. All rights reserved

@@ -31,7 +31,7 @@ const returnBack = async () => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Los datos modificados no serán guardados');
     if (RESPONSE.isConfirmed) {
-        location.href = '/vistas/publico/index.html'
+        location.href = '/vistas/publico/configuraciones.html'
     }
 }
 
