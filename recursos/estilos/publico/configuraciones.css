@@ -130,7 +130,7 @@
     /* Alineación en la parte izquierda */
     display: flex;
     /* Establecer como contenedor flexible */
-    flex-direction: column;
+    flex-direction: row;
     /* Dirección de diseño flexible en fila */
     justify-content: center;
     /* Alineación central del contenido */
@@ -150,7 +150,7 @@
     /* Espaciado interno en la parte superior */
     padding-bottom: 10px;
     /* Espaciado interno en la parte inferior */
-    background-color: #146A93;
+    background-color: #0D4560;
     /* Color de fondo para btn3 */
     border: solid 0px;
     /* Borde sólido con grosor 0px (sin borde) */
@@ -160,10 +160,12 @@
 .btn2 {
     background-color: white;
     /* Color de fondo para btn2 (blanco) */
-    color: black;
-    /* Color del texto para btn2 (negro) */
     border: solid 1px #8F8F8F;
     /* Borde sólido con grosor 1px y color #8F8F8F para btn2 */
+}
+
+.text19{
+    color: black;
 }
 
 .contenedorForm {
