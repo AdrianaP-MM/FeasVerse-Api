@@ -66,25 +66,25 @@ const loadTemplate = async () => {
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row flex-wrap contenedorMarcas">
                                         <li> <!--*Elemento 1-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="#">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 2-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="#">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 3-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="#">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 4-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="#">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
