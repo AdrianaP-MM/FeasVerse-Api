@@ -45,7 +45,7 @@ body{
 .ContenedorRegistro{
     background-color: white;
     border-radius: 20px;
-    width: 50%;
+    /*width: 50%;*/
     display: flex;
     flex: 1;
     flex-direction: column;
