@@ -1,13 +1,13 @@
 .ContenedorT {
     min-height: 100%;
     max-height: 100%;
-    width: fit-content;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-self: center;
     padding: 30px;
 }
+
 
 .ContenedorTitulo {
     max-height: fit-content;
@@ -68,14 +68,12 @@
 }
 
 .contenedor1 {
-    width: 70%;
-    padding: 20px;
+    cursor: pointer;
     /* Relleno interno de 20 píxeles en todos los lados del contenedor */
     background-color: #EDEDED;
     /* Color de fondo del contenedor en tono gris claro */
     border-radius: 10px;
     /* Radio de borde de 10 píxeles, proporcionando esquinas redondeadas */
-
     /* Transiciones */
     transition-property: transform;
     /* Propiedad que sufre transición */
@@ -99,11 +97,9 @@
 }
 
 .contenedor2 {
-    width: 70%;
-    padding: 20px;
+    cursor: pointer;
     background-color: #EDEDED;
     border-radius: 10px;
-    margin-left: 30%;
 
     /* Transiciones */
     transition-property: transform;

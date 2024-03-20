@@ -23,15 +23,17 @@
 
 <body>
     <main>
-        <div class="ContenedorT" id="ContenedorMain">
+        <div class="ContenedorT col-12 mb-5 pb-5
+        " id="ContenedorMain">
             <!-- Contenedor principal con título -->
             <div class="ContenedorTitulo position-relative mb-5">
                 <h2 class="titillium-web-semibold textTitulo"> Tu cuenta </h2>
                 <div class="linea1"></div>
             </div>
-            <a>
+            <div class="px-0 col-12 d-flex flex-row flex-wrap align-items-center justify-content-around mt-5">
                 <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
-                <div class="contenedor1 flex-row align-items-center" onclick="showPedidos()">
+                <div class="contenedor1 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3
+                " onclick="showPedidos()">
                     <img src="/recursos/imagenes/Quick delivery.svg" width="130px" height="130px" class="me-2">
                     <!--Contenedor de perfil y descripcion-->
                     <div class="d-flex flex-column mt-3 ms-4">
@@ -44,10 +46,9 @@
                             que has hechos e igualmente podras visiualizar el estado del pedido</p>
                     </div>
                 </div>
-            </a>
-            <a>
                 <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
-                <div class="contenedor2 flex-row align-items-center mt-5" onclick="showFormUser()">
+                <div class="contenedor2 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3 mt-5 mt-sm-5 mt-lg-0 mt-md-0
+                " onclick="showFormUser()">
                     <img src="/recursos/imagenes/icons/UserIconG.svg" width="100px" height="100px" class="ms-3">
                     <!--Contenedor de perfil y descripcion-->
                     <div class="d-flex flex-column mt-3 ms-4">
@@ -59,7 +60,7 @@
                             podras modificarla por si un dato esta incorrecto o si requiere un actualización</p>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
         <div class="d-none" id="formDiv">
             <div class="contenedorTotalForm d-flex flex-column justify-content-center align-items-center flex-wrap p-5">
