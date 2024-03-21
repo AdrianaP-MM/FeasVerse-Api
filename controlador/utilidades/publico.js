@@ -231,10 +231,12 @@ const loadTemplate = async () => {
 `);
 }
 
+// Función para redirigir a la página "Sobre Nosotros"
 function gotoAboutUs() {
     location.href = "/vistas/publico/sobre_nosotros.html";
 }
 
+// Función para redirigir a la página del "Carrito"
 function gotoCarrito() {
     location.href = "/vistas/publico/carrito.html";
 }
