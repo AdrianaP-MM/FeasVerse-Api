@@ -192,19 +192,19 @@ const loadTemplate = async () => {
 
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="#">
+                            <a class="text-white titillium-web-light" href="https://www.facebook.com/?stype=lo&deoia=1&jlou=Afev9j6TwIbqGlq3pC3TJFOEgpVyZc0FD4GvIH0yYnDIgTJDd8zk-ZlflWtCikMD9jmoqcxd5gwbRHmDyfN6nf27upA7VGqe1gIix7RZzM-Zvw&smuh=20562&lh=Ac8NW3AeKbHyIUp5gTo">
                                 <h6>FEASVerse</h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="">
+                            <a class="text-white titillium-web-light" href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi5mYSgkIaFAxWpRTABHUzqAMYQFnoECAcQAQ&url=https%3A%2F%2Fwww.instagram.com%2F&usg=AOvVaw1cBeRoOpMhZ3-x5M1sA3Fm&opi=89978449">
                                 <h6>FEAS.VERSE.SV </h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="">
+                            <a class="text-white titillium-web-light" href=" https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjmxp-NkIaFAxWaSDABHTxpC0AQFnoECAcQAQ&url=https%3A%2F%2Ftwitter.com%2F%3Flang%3Des&usg=AOvVaw3YX5z3gmuFXXOazOkLuKS1&opi=89978449">
                                 <h6>FEASVerse</h6>
                             </a>
                         </div>
