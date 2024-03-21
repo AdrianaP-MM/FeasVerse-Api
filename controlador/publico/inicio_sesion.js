@@ -9,7 +9,6 @@ const REGISTRO_FORM = document.getElementById('registro');
 document.addEventListener('DOMContentLoaded', async () => {
     // Se muestra el formulario para iniciar sesión.
     LOGIN_FORM.classList.remove('d-none');
-    // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2).
 });
 
 function Registro() {
