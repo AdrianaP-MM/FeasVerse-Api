@@ -192,25 +192,25 @@ const loadTemplate = async () => {
 
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="#">
+                            <a class="text-white titillium-web-light" href="https://m.facebook.com/login/?locale=es_LA&refsrc=deprecated">
                                 <h6>FEASVerse</h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="">
+                            <a class="text-white titillium-web-light" href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2F&hl=es-es&aa_click=8891933284028179">
                                 <h6>FEAS.VERSE.SV </h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="">
+                            <a class="text-white titillium-web-light" href="https://twitter.com/i/flow/login">
                                 <h6>FEASVerse</h6>
                             </a>
                         </div>
                         <div class="d-flex flex-row align-items-center mb-3">
                             <img class="me-2" src="../../recursos/imagenes/icons//gmlIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="">
+                            <a class="text-white titillium-web-light" href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ddm=0&emr=1&flowEntry=ServiceLogin&flowName=GlifWebSignIn&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ifkv=ARZ0qKLk-_9PH-CNHmkMfHqPte6zFFvxKPPoiWa4KBmdLsXbfhmM9TThRGCrIuuIqnBDCyaH7r6veg&osid=1&passive=1209600&service=mail&theme=mn">
                                 <h6>feasverse.sv@gmail.com</h6>
                             </a>
                         </div>
