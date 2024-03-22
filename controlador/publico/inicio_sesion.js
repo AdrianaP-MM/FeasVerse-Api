@@ -9,7 +9,6 @@ const REGISTRO_FORM = document.getElementById('registro');
 document.addEventListener('DOMContentLoaded', async () => {
     // Se muestra el formulario para iniciar sesión.
     LOGIN_FORM.classList.remove('d-none');
-    // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2).
 });
 
 function Registro() {
@@ -36,7 +35,8 @@ function showPass1() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-function showPass2() {
+const showPass2 = async () => {
+    await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 3
     LOGIN_FORM.classList.add('d-none');
     PASSWORD1_FORM.classList.add('d-none');
@@ -47,7 +47,8 @@ function showPass2() {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-function showPass3() {
+const showPass3 = async () => {
+    await sweetAlert(1, 'Código ingresado correctamente', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 2
     LOGIN_FORM.classList.add('d-none');
     PASSWORD1_FORM.classList.add('d-none');
@@ -64,7 +65,6 @@ function showLogIn() {
     REGISTRO_FORM.classList.add('d-none');
     // Se muestra el formulario de recuperación de contraseña (paso 3).
     // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
 function handleLoginFormSubmission(event) {
@@ -72,8 +72,9 @@ function handleLoginFormSubmission(event) {
 }
 
 //Funcion de mostrar la dashboard
-function showInicio()
+const showInicio = async () =>
 {
+    await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
     location.href = '/vistas/publico/index.html';
 }
 
