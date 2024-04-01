@@ -157,6 +157,7 @@
     background-color: white;
     /* Color de fondo para btn2 (blanco) */
     border: solid 1px #8F8F8F;
+    color: #0D4560;
     /* Borde sólido con grosor 1px y color #8F8F8F para btn2 */
 }
 
@@ -183,3 +184,12 @@
     /* Borde sólido con color #1A89BD y grosor de 1px */
 }
 
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #1A89BD;
+    color: white;
+}
+
+#cancelarBtn, #agregarBtn{
+    width: 100%;
+}

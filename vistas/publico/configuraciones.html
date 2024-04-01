@@ -16,9 +16,9 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <!-- *Llamada a las hojas de estilos propios de css -->
-    <link href="../../recursos/estilos/publico/configuraciones.css" rel="stylesheet">
     <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
     <link href="../../recursos/estilos/publico/plantilla.css" rel="stylesheet">
+    <link href="../../recursos/estilos/publico/configuraciones.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
             </div>
             <div class="px-0 col-12 d-flex flex-row flex-wrap align-items-center justify-content-around mt-5">
                 <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
-                <div class="contenedor1 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3
+                <div class="contenedor1 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3 mb-5
                 " onclick="showPedidos()">
                     <img src="/recursos/imagenes/Quick delivery.svg" width="130px" height="130px" class="me-2">
                     <!--Contenedor de perfil y descripcion-->
@@ -47,17 +47,30 @@
                     </div>
                 </div>
                 <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
-                <div class="contenedor2 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3 mt-5 mt-sm-5 mt-lg-0 mt-md-0
+                <div class="contenedor2 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3 mt-5 mt-sm-5 mt-lg-0 mb-5 mt-md-0
                 " onclick="showFormUser()">
                     <img src="/recursos/imagenes/icons/UserIconG.svg" width="100px" height="100px" class="ms-3">
                     <!--Contenedor de perfil y descripcion-->
                     <div class="d-flex flex-column mt-3 ms-4">
                         <div class="ContenedorTitulo position-relative">
-                            <h3 class="titillium-web-regular "> Tu perfil </h3>
+                            <h3 class="titillium-web-regular ">Tu perfil</h3>
                             <div class="linea1"></div>
                         </div>
                         <p class="textoD titillium-web-bold mt-2">En este aparatado podras visualizar tu información y
                             podras modificarla por si un dato esta incorrecto o si requiere un actualización</p>
+                    </div>
+                </div>
+                <div class="contenedor2 d-flex flex-sm-column flex-lg-row flex-md-row flex-column align-items-center col-lg-5 col-md-8 col-sm-11 col-11 shadow align-self-stretch p-3 mt-5 mt-sm-5 mt-lg-0 mt-md-0
+                " onclick="openDetails()">
+                    <img src="/recursos/imagenes/Vector (1).svg" width="100px" height="100px" class="ms-3">
+                    <!--Contenedor de perfil y descripcion-->
+                    <div class="d-flex flex-column mt-3 ms-4">
+                        <div class="ContenedorTitulo position-relative">
+                            <h3 class="titillium-web-regular ">Restablecer contraseña</h3>
+                            <div class="linea1"></div>
+                        </div>
+                        <p class="textoD titillium-web-bold mt-2">
+                            En este aparatado podras restablecer tu contraseña si te has olvidado de ella</p>
                     </div>
                 </div>
             </div>
@@ -123,9 +136,9 @@
                         </div>
                         <!--Formulario de contraseña-->
                         <div class="col-md-6 mt-3">
-                            <label for="contraInput" class="form-label ">Contraseña</label>
-                            <input type="password" class="form-control" id="contraInput" required readonly
-                                value="**********">
+                            <label for="direccion" class="form-label ">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" required readonly
+                                value="Mi casita :D">
                         </div>
                         <!--contenedores de los botones-->
                         <div class="contenedorBotones2">
@@ -135,6 +148,58 @@
                             <!--boton de guardar-->
                             <button class="btn btn3 btn-primary shadow ms-5 text18 titillium-web-regular" id="btnUpdate"
                                 onclick="addSave()" type="button">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para actualizar contraseña-->
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header d-flex justify-content-center align-items-center">
+                        <h1 class="modal-title fs-5 text-center" id="modalTitle">Restablecer contraseña</h1>
+                    </div>
+                    <!-- Formulario para actualizar contraseña -->
+                    <form id="passwordForm" name="passwordForm">
+                        <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                            <!-- Campos -->
+                            <div class="col-sm-12 col-md-12">
+                                <label for="contraActual" class="form-label">Contraseña actual:</label>
+                                <input id="contraActual" type="password" name="contraActual"
+                                    class="form-control editableInput" required>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <label for="newContra" class="form-label">Nueva contraseña:</label>
+                                <input id="newContra" type="password" name="newContra"
+                                    class="form-control editableInput" required>
+                            </div>
+                            <div class="col-sm-12 col-md-12">
+                                <label for="confirContra" class="form-label">Confirmar contraseña:</label>
+                                <input id="confirContra" type="password" name="confirContra"
+                                    class="form-control editableInput" required>
+                            </div>
+                            <!-- Botones en el pie del modal -->
+                            <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                <div class="contenedorBotones3 offset-lg-3 col-6">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <!-- Botón para cancelar la operación -->
+                                        <button type="button" id="cancelarBtn"
+                                            class="btn btn2 btn-primary me-2 shadow text18 titillium-web-regular col-4"
+                                            onclick="botonCancelar()">
+                                            Cancelar
+                                        </button>
+                                        <!-- Botón para actualizar el registro -->
+                                        <button type="button" id="agregarBtn"
+                                            class="btn btn3 btn-primary shadow text18 titillium-web-regular col-4"
+                                            onclick="botonAgregar()">
+                                            Restablecer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

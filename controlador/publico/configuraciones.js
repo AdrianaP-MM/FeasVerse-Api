@@ -4,7 +4,14 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     TEL_INPUT = document.getElementById('telefonoInput'),
     CORREO_INPUT = document.getElementById('correoInput'),
     FECHAN_INPUT = document.getElementById('fechanInput'),
-    CONTRA_INPUT = document.getElementById('contraInput');
+    DIRECCION_INPUT = document.getElementById('direccion');    
+const forms = document.querySelectorAll('form');
+const PASSWORD_FORM = document.getElementById('passwordForm');
+
+// Declaración de constantes para el modal, el título del modal y el formulario de comentario.
+const DATA_MODAL = new bootstrap.Modal('#dataModal'),
+    MODAL_TITLE = document.getElementById('modalTitle'),
+    COMMENT_FORM = document.getElementById('comentarioForm'); 
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -60,7 +67,7 @@ function makeFieldsReadOnly(isReadOnly) {
     TEL_INPUT.readOnly = isReadOnly;
     CORREO_INPUT.readOnly = isReadOnly;
     FECHAN_INPUT.readOnly = isReadOnly;
-    CONTRA_INPUT.readOnly = isReadOnly;
+    DIRECCION_INPUT.readOnly = isReadOnly;
 }
 
 Array.from(forms).forEach(form => {
@@ -72,3 +79,54 @@ Array.from(forms).forEach(form => {
         form.classList.add('was-validated')
     }, false)
 })
+
+
+document.getElementById('duiInput').addEventListener('input', function (event) {
+    // Obtener el valor actual del campo de texto
+    let inputValue = event.target.value;
+
+    // Limpiar el valor de cualquier carácter que no sea un número
+    inputValue = inputValue.replace(/\D/g, '');
+
+    // Asegurar que no haya más de 9 dígitos
+    inputValue = inputValue.slice(0, 9);
+
+    // Formatear el número agregando el guión antes del último dígito si hay al menos dos dígitos
+    if (inputValue.length > 1) {
+        inputValue = inputValue.slice(0, -1) + '-' + inputValue.slice(-1);
+    }
+
+    // Actualizar el valor del campo de texto con la entrada formateada
+    event.target.value = inputValue;
+});
+
+document.getElementById('telefonoInput').addEventListener('input', function () {
+    var telefonoInput = this.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+    if (telefonoInput.length > 4) {
+        telefonoInput = telefonoInput.substring(0, 4) + '-' + telefonoInput.substring(4, 8);
+    }
+    this.value = telefonoInput;
+});
+
+// Definición de la función asíncrona para abrir los detalles en el modal.
+const openDetails = async () => {
+    // Muestra el modal y resetea el formulario de comentario.
+    DATA_MODAL.show();
+    PASSWORD_FORM.reset();
+}
+
+// Definición de la función asíncrona para cancelar y cerrar el modal.
+const botonCancelar = async () => {
+    // Muestra una confirmación y, si el usuario confirma, oculta el modal.
+    const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
+    if (RESPONSE.isConfirmed) {
+        DATA_MODAL.hide();
+    }
+}
+
+// Definición de la función asíncrona para agregar y cerrar el modal.
+const botonAgregar = async () => {
+    // Muestra una alerta de éxito y oculta el modal.
+    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
+    DATA_MODAL.hide();
+}
