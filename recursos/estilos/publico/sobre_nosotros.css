@@ -76,7 +76,7 @@
 }
 
 /* Estilos específicos para pantallas con un ancho mínimo de 768px */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 763px) {
     /* Estilos para el contenedor de Misión */
     .containerMision {
         /* Borde inferior derecho redondeado */
