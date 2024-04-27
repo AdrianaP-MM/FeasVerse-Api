@@ -138,12 +138,16 @@ class TrabajadorData extends TrabajadorHandler
 
     public function setEstado($value)
     {
-        if($)
+        if($value == 1)
         {
-
+            $this->estado_trabajador = 'Activo';
+            return true;
         }
-        elseif()
-    else
+        else
+        {
+            $this->estado_trabajador = 'Desactivo';
+            return true;
+        }
 
     }
 
