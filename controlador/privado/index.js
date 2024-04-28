@@ -1,5 +1,3 @@
-//* Constante para establecer el elemento del contenido principal.
-const MAIN = document.querySelector('main');
 // Se establece el título de la página web.
 document.querySelector('title').textContent = 'FeasVerse - Admin';
 const MAIN_TITLE = document.getElementById('mainTitle');
@@ -11,13 +9,26 @@ const FORGOT_PASSWORD_STEP_TWO_FORM = document.getElementById('forgetpasswordste
 const FORGOT_PASSWORD_STEP_THREE_FORM = document.getElementById('forgetPasswordStepThree');
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Se muestra el formulario para iniciar sesión.
-    LOGIN_FORM.classList.remove('d-none');
-    // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'FEASVERSE';
-    // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2).
-    FORGOT_PASSWORD_FORM.classList.add('d-none');
-    FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
+    
+    loadTemplate();
+
+    const DATA = await fetchData(USER_API, 'getUser');
+
+
+    if (DATA.session) {
+        // Se direcciona a la página web de bienvenida.
+        location.href = 'dashboard.html';
+    } else {
+        // Se establece el título del contenido principal.
+        MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
+        // Se muestra el formulario para iniciar sesión.
+        LOGIN_FORM.classList.remove('d-none');
+        // Se establece el título del contenido principal.
+        MAIN_TITLE.textContent = 'FEASVERSE';
+        // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2).
+        FORGOT_PASSWORD_FORM.classList.add('d-none');
+        FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
+    }
 });
 
 function showLoginForm() {
@@ -84,8 +95,23 @@ function handleLoginFormSubmission(event) {
 }
 
 //Funcion de mostrar la dashboard
-const showDashboard = async () =>
-{
+const showDashboard = async () => {
     await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
     location.href = '/vistas/privado/panel_principal.html';
 }
+
+// Método del evento para cuando se envía el formulario de inicio de sesión.
+LOGIN_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(LOGIN_FORM);
+    // Petición para iniciar sesión.
+    const DATA = await fetchData(USER_API, 'logIn', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true, 'panel_principal.html');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});

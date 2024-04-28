@@ -7,13 +7,13 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $administrador = new TrabajadorData;
+    $trabajador = new TrabajadorData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['idAdministrador'])) {
+    // Se verifica si existe una sesión iniciada como trabajador, de lo contrario se finaliza el script con un mensaje de error.
+    if (isset($_SESSION['idTrabajador'])) {
         $result['session'] = 1;
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
                 break;
@@ -28,6 +28,12 @@ if (isset($_GET['action'])) {
             case 'deleteRow':
                 break;
             case 'getUser':
+                if (isset($_SESSION['nombreTrabajador'])) {
+                    $result['status'] = 1;
+                    $result['nombre_trabajador'] = $_SESSION['nombreTrabajador'];
+                } else {
+                    $result['error'] = 'Alias de trabajador indefinido';
+                }
                 break;
             case 'logOut':
                 break;
@@ -41,11 +47,11 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
-        // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
+        // Se compara la acción a realizar cuando el trabajador no ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
-                if ($administrador->checkUser($_POST['correo_trabajador'], $_POST['clave_trabajador'])) {
+                if ($trabajador->checkUser($_POST['correo_electronico'], $_POST['clave'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Autenticación correcta';
                 } else {

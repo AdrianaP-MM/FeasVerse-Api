@@ -32,8 +32,8 @@ class TrabajadorHandler
         $params = array($mail);
         $data = Database::getRow($sql, $params);
         if (password_verify($password, $data['clave_trabajador'])) {
-            $_SESSION['id_trabajador'] = $data['id_trabajador'];
-            $_SESSION['nombre_trabajador'] = $data['nombre_trabajador'];
+            $_SESSION['idTrabajador'] = $data['id_trabajador'];
+            $_SESSION['nombreTrabajador'] = $data['nombre_trabajador'];
             return true;
         } else {
             return false;
@@ -45,7 +45,7 @@ class TrabajadorHandler
         $sql = 'SELECT clave_trabajador
                 FROM tb_trabajadores
                 WHERE id_trabajador = ?';
-        $params = array($_SESSION['id_trabajador']);
+        $params = array($_SESSION['idTrabajador']);
         $data = Database::getRow($sql, $params);
         // Se verifica si la contraseña coincide con el hash almacenado en la base de datos.
         if (password_verify($password, $data['clave_trabajador'])) {

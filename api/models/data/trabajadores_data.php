@@ -20,7 +20,7 @@ class TrabajadorData extends TrabajadorHandler
             $this->id_trabajador = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del administrador es incorrecto';
+            $this->data_error = 'El identificador del trabajador es incorrecto';
             return false;
         }
     }
@@ -131,7 +131,7 @@ class TrabajadorData extends TrabajadorHandler
             $this->id_nivel = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del administrador es incorrecto';
+            $this->data_error = 'El identificador del trabajador es incorrecto';
             return false;
         }
     }

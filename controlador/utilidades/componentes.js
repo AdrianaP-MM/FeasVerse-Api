@@ -3,6 +3,9 @@
 *   Parámetros: message (mensaje de confirmación).
 *   Retorno: resultado de la promesa.
 */
+// Constante para establecer la ruta base del servidor.
+const SERVER_URL = 'http://localhost/Tienda_online/FEASVERSE/FeasVerse/api/';
+
 const confirmAction = (title, message) => {
     // Crea una instancia personalizada de SweetAlert con estilos Bootstrap.
     const swalWithBootstrapButtons = Swal.mixin({
@@ -33,7 +36,7 @@ const confirmAction = (title, message) => {
 *   Retorno: ninguno.
 */
 // Función para mostrar mensajes de alerta personalizados.
-const sweetAlert = async (type, text, timer) => {
+const sweetAlert = async (type, text, timer, url = null) => {
     let title, icon;
     // Se compara el tipo de mensaje a mostrar y se asignan valores correspondientes a título e ícono.
     switch (type) {
@@ -68,6 +71,8 @@ const sweetAlert = async (type, text, timer) => {
     options.timer = timer ? 3000 : null;
     // Se muestra el mensaje utilizando SweetAlert.
     await Swal.fire(options);
+    // Se direcciona a una página web si se indica.
+    (url) ? location.href = url : undefined;
 };
 
 /*
@@ -130,4 +135,35 @@ const logOut = async () => {
         DATA_MODAL.hide();
     }
 
+}
+
+
+/*
+*   Función asíncrona para intercambiar datos con el servidor.
+*   Parámetros: filename (nombre del archivo), action (accion a realizar) y form (objeto opcional con los datos que serán enviados al servidor).
+*   Retorno: constante tipo objeto con los datos en formato JSON.
+*/
+const fetchData = async (filename, action, form = null) => {
+    // Se define una constante tipo objeto para establecer las opciones de la petición.
+    const OPTIONS = {};
+    // Se determina el tipo de petición a realizar.
+    if (form) {
+        OPTIONS.method = 'post';
+        OPTIONS.body = form;
+    } else {
+        OPTIONS.method = 'get';
+    }
+    try {
+        // Se declara una constante tipo objeto con la ruta específica del servidor.
+        const PATH = new URL(SERVER_URL + filename);
+        // Se agrega un parámetro a la ruta con el valor de la acción solicitada.
+        PATH.searchParams.append('action', action);
+        // Se define una constante tipo objeto con la respuesta de la petición.
+        const RESPONSE = await fetch(PATH.href, OPTIONS);
+        // Se retorna el resultado en formato JSON.
+        return await RESPONSE.json();
+    } catch (error) {
+        // Se muestra un mensaje en la consola del navegador web cuando ocurre un problema.
+        console.log(error);
+    }
 }
