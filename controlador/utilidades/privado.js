@@ -173,11 +173,6 @@ const loadTemplate = async () => {
         }
     }
     else {
-        // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
-        if (location.pathname.endsWith('index.html')) {
-            await sweetAlert(4, 'Inicia sesión para poder continuar', false);
-        } else {
-            location.href = 'index.html';
-        }
+        
     }
 }
