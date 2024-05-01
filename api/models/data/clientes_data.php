@@ -144,14 +144,27 @@ class ClienteData extends ClienteHandler
 
     public function setEstado($value)
     {
-        if (Validator::validateBoolean($value)) {
-            $this->estado_cliente = $value;
-            return true;
-        } else {
-            $this->data_error = 'Estado incorrecto';
+        if (Validator::validateNaturalNumber($value)) {
+            if ($value == 1) {
+                $this->estado_cliente = 'Activo';
+                return true;
+            } elseif ($value == 2) {
+                $this->estado_cliente = 'Desactivo';
+                return true;
+            }
+            else{    
+                // Si la validación falla o el valor no coincide con 1 o 2
+                $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
+                return false;
+            }
+        }
+        else{    
+            // Si la validación falla o el valor no coincide con 1 o 2
+            $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
             return false;
         }
     }
+
 
     // Método para obtener el error de los datos.
     public function getDataError()

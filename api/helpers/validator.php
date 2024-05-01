@@ -67,7 +67,7 @@ class Validator
         // Se verifica que el valor sea un número entero mayor o igual a uno.
         if (filter_var($value, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1)))) {
             return true;
-        } else {
+        } else {    
             return false;
         }
     }

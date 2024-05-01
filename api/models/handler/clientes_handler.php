@@ -128,6 +128,15 @@ class ClienteHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateStatus()
+    {
+        $sql = 'UPDATE tb_clientes
+                SET estado_cliente = ?
+                WHERE id_cliente = ?';
+        $params = array($this->estado_cliente, $this->id_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
     public function updatePassword()
     {
         $sql = 'UPDATE tb_clientes
