@@ -58,7 +58,30 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
+            case 'searchMail':
+                if (!$trabajador->setCorreo($_POST['correo'])) {
+                    $result['error'] = 'Correo electrónico incorrecto';
+                } elseif ($result['dataset'] = $trabajador->checkMail()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Usuario inexistente';
+                }
+                break;
             case 'changePasswordLogin':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setClave($_POST['claveTrabajador']) or
+                    !$trabajador->setId($_POST['idTrabajador'])
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($_POST['claveTrabajador'] != $_POST['confirmarTrabajador']) {
+                    $result['error'] = 'Contraseñas diferentes';
+                }elseif ($trabajador->updatePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha actualizado correctamente la contraseña';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el la contraseña';
+                }
                 break;
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión';

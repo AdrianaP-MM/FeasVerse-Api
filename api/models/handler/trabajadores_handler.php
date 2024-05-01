@@ -40,6 +40,15 @@ class TrabajadorHandler
         }
     }
 
+    public function checkMail()
+    {
+        $sql = 'SELECT id_trabajador, nombre_trabajador, correo_trabajador
+                FROM tb_trabajadores
+                WHERE  correo_trabajador = ?';
+        $params = array($this->correo_trabajador);
+        return Database::getRow($sql, $params);
+    }
+
     public function checkPassword($password)
     {
         $sql = 'SELECT clave_trabajador
@@ -53,6 +62,15 @@ class TrabajadorHandler
         } else {
             return false;
         }
+    }
+
+    public function updatePassword()
+    {
+        $sql = 'UPDATE tb_trabajadores
+                SET clave_trabajador = ?
+                WHERE id_trabajador = ?';
+        $params = array($this->clave_trabajador, $this->id_trabajador);
+        return Database::executeRow($sql, $params);
     }
 
 }

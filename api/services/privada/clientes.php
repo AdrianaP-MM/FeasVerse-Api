@@ -16,17 +16,23 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
+                // Verificar si el valor de búsqueda es válido
                 if (!Validator::validateSearch($_POST['search'])) {
+                    // Si no es válido, se asigna un mensaje de error
                     $result['error'] = Validator::getSearchError();
                 } elseif ($result['dataset'] = $cliente->searchRows()) {
+                    // Si la búsqueda es válida y se encuentran resultados, se establece el estado como éxito y se crea un mensaje
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
                 } else {
+                    // Si la búsqueda es válida pero no se encuentran resultados, se asigna un mensaje de error
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
             case 'createRow':
+                // Validar y procesar los datos del formulario para crear un nuevo registro
                 $_POST = Validator::validateForm($_POST);
+                // Verificar si todos los datos necesarios son válidos
                 if (
                     !$cliente->setNombre($_POST['nombreCliente']) or
                     !$cliente->setApellido($_POST['apellidoCliente']) or
@@ -39,14 +45,18 @@ if (isset($_GET['action'])) {
                     !$cliente->setClave($_POST['claveCliente']) or
                     !$cliente->setEstado($_POST['estadoCliente'])
                 ) {
+                    // Si algún dato no es válido, se asigna un mensaje de error
                     $result['error'] = $cliente->getDataError();
                 } elseif ($_POST['claveCliente'] != $_POST['confirmarCliente']) {
+                    // Si las contraseñas no coinciden, se asigna un mensaje de error
                     $result['error'] = 'Contraseñas diferentes';
                 } elseif ($cliente->createRow()) {
+                    // Si se crea el registro correctamente, se establece el estado como éxito y se crea un mensaje
                     $result['status'] = 1;
                     $result['message'] = 'Cliente creado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al crear el administrador';
+                    // Si ocurre un problema al crear el cliente, se asigna un mensaje de error
+                    $result['error'] = 'Ocurrió un problema al crear el cliente';
                 }
                 break;
             case 'readAll':
@@ -76,21 +86,34 @@ if (isset($_GET['action'])) {
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDUI($_POST['duiCliente']) or
                     !$cliente->setNacimiento($_POST['fechaNacimiento']) or
-                    !$cliente->setDireccion($_POST['direccionCliente']) or
-                    !$cliente->setClave($_POST['claveCliente'])
+                    !$cliente->setDireccion($_POST['direccionCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'clinete modificado correctamente';
+                    $result['message'] = 'Cliente modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el clinete';
+                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
+                }
+                break;
+            case 'updatePassword':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$cliente->setClave($_POST['claveCliente']) or
+                    !$cliente->setId($_POST['idCliente'])
+                ) {
+                    $result['error'] = $cliente->getDataError();
+                } elseif ($_POST['claveCliente'] != $_POST['confirmarCliente']) {
+                    $result['error'] = 'Contraseñas diferentes';
+                }elseif ($cliente->updatePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha actualizado correctamente la contraseña';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el la contraseña';
                 }
                 break;
             case 'deleteRow':
-                if ($_POST['idAdministrador'] == $_SESSION['idAdministrador']) {
-                    $result['error'] = 'No se puede eliminar a sí mismo';
-                } elseif (!$cliente->setId($_POST['idCliente'])) {
+                if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->deleteRow()) {
                     $result['status'] = 1;
@@ -100,18 +123,18 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
+                // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
-    } 
-    else {
+        // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
+        $result['exception'] = Database::getException();
+        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+        header('Content-type: application/json; charset=utf-8');
+        // Se imprime el resultado en formato JSON y se retorna al controlador.
+        print(json_encode($result));
+    }else {
         print(json_encode('Acceso denegado'));
     }
-    // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
-    $result['exception'] = Database::getException();
-    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-    header('Content-type: application/json; charset=utf-8');
-    // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
 } else {
     print(json_encode('Recurso no disponible'));
 }

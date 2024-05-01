@@ -76,7 +76,7 @@ class ClienteData extends ClienteHandler
             $this->telefono_cliente = $value;
             return true;
         } else {
-            $this->data_error = 'El teléfono debe tener el formato (2, 6, 7)###-####';
+            $this->data_error = 'El teléfono debe tener el formato (2, 6, 7)####-####';
             return false;
         }
     }
