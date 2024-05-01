@@ -4,7 +4,7 @@
 *   Retorno: resultado de la promesa.
 */
 // Constante para establecer la ruta base del servidor.
-const SERVER_URL = 'http://localhost/Tienda_online/FEASVERSE/FeasVerse/api/';
+const SERVER_URL = 'http://localhost/FeasVerse/api/';
 
 const confirmAction = (title, message) => {
     // Crea una instancia personalizada de SweetAlert con estilos Bootstrap.

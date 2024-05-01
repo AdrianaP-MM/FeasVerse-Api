@@ -19,9 +19,9 @@ const loadTemplate = async () => {
     const DATA = await fetchData(USER_API, 'getUser');
     console.log(DATA)
     // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
-    if (DATA.session) {
+    //if (DATA.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
-        if (DATA.status) {
+        //if (DATA.status) {
             const header = document.createElement('header');
             header.innerHTML = `
             <nav class="navbar bg-color-5blue fixed-top position-relative">
@@ -167,17 +167,17 @@ const loadTemplate = async () => {
             // Obtener el contenedor del pie de página y agregar el elemento de pie de página.
             var contenedorFooter = document.getElementById("footer");
             contenedorFooter.appendChild(footer);
-        }
-        else {
-            sweetAlert(4, DATA.error, false, 'index.html');
-        }
-    }
-    else {
+        //}
+        //else {
+        //    sweetAlert(4, DATA.error, false, 'index.html');
+        //}
+    //}
+    //else {
         // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
-        if (location.pathname.endsWith('index.html')) {
-            await sweetAlert(4, 'Inicia sesión para poder continuar', false);
-        } else {
-            location.href = 'index.html';
-        }
-    }
+       // if (location.pathname.endsWith('index.html')) {
+       //     await sweetAlert(4, 'Inicia sesión para poder continuar', false);
+        //} else {
+        //    location.href = 'index.html';
+        //}
+    //}
 }
