@@ -7,7 +7,7 @@
 const MAIN = document.querySelector('#mainContent');
 
 // Constante para completar la ruta de la API.
-const USER_API = 'services/privada/trabajadores.php';
+const USER_API = '../../api/services/privada/trabajadores.php';
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
