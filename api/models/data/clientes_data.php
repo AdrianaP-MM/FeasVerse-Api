@@ -165,7 +165,6 @@ class ClienteData extends ClienteHandler
         }
     }
 
-
     // Método para obtener el error de los datos.
     public function getDataError()
     {
