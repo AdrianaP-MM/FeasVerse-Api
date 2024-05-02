@@ -33,9 +33,8 @@
                 <div class="linea1"></div>
             </div>
             <a>
-                <!--Contenedor de informacion del perfil para que eedite y que funcinoa como un redirreccionar-->
-                <div class="contenedor d-flex flex-row justify-content-around flex-wrap shadow"
-                    onclick="showFormUser()">
+                <!--Contenedor de informacion del perfil para que edite y que funcinoa como un redirreccionar-->
+                <div class="contenedor d-flex flex-row justify-content-start flex-wrap shadow" onclick="showFormUser()">
                     <img src="/recursos/imagenes/icons/UserIconG.svg" width="100px" height="100px" class="me-2">
                     <!--Contenedor de perfil y descripcion-->
                     <div class="d-flex flex-column mt-3">
@@ -49,6 +48,24 @@
                     </div>
                 </div>
             </a>
+
+            <a class="col-12">
+                <!--Contenedor de informacion del perfil para que edite y que funcinoa como un redirreccionar-->
+                <div class="contenedor d-flex flex-row justify-content-start flex-wrap shadow mt-5 col-12"
+                    onclick="showConDetails()">
+                    <img src="/recursos/imagenes/Vector (1).svg" width="100px" height="100px" class="me-2">
+                    <!--Contenedor de perfil y descripcion-->
+                    <div class="d-flex flex-column mt-3">
+                        <div class="ContenedorTitulo2 position-relative">
+                            <h3 class="titillium-web-regular">Restablecer contraseña </h3>
+                            <div class="linea1"></div>
+                        </div>
+                        <p class="titillium-web-regula mt-2"> En este aparatado podras restablecer tu contraseña si te
+                            has olvidado de ella</p>
+                    </div>
+                </div>
+            </a>
+
             <!--Contenedor del cerrar sesion para que tenga el shadow-->
             <div class="contenedor d-flex flex-column justify-content-center flex-wrap shadow mt-4 ms-auto">
                 <a onclick="logOut()">
@@ -62,7 +79,8 @@
         </div>
         <!--Contenedor del div de visualizacion toda la informacion del usuario estando oculto por el momento-->
         <div class="d-none" id="formDiv">
-            <div class="contenedorTotalForm d-flex flex-column justify-content-center align-items-center flex-wrap p-5">
+            <div
+                class="contenedorTotalForm d-flex flex-column justify-content-center align-items-center flex-wrap p-lg-5 p-2 p-md-4">
                 <!--Contenedor de la informacion del usuario, nombres y correo-->
                 <div class="contenedorCabecera d-flex flex-row align-items-center flex-wrap mb-2">
                     <div class="contenedorImg">
@@ -120,26 +138,78 @@
                             <input type="date" class="form-control" id="fechanInput" required readonly
                                 value="2001-07-07">
                         </div>
-                        <!--Formulario de contraseña-->
+                        <!--Formulario de contraseña
                         <div class="col-md-6 mt-3">
                             <label for="contraInput" class="form-label ">Contraseña</label>
                             <input type="password" class="form-control" id="contraInput" required readonly
                                 value="**********">
                         </div>
-                        <!--Formulario de confirmar contraseña-->
+                        Formulario de confirmar contraseña
                         <div class="col-md-6 mt-3">
                             <label for="contraCInput" class="form-label ">Confirmar Contraseña</label>
                             <input type="password" class="form-control" id="contraCInput" required readonly
                                 value="**********">
-                        </div>
+                        </div>-->
                         <!--contenedores de los botones-->
-                        <div class="contenedorBotones2">
+                        <div class="contenedorBotones2 d-flex flex-wrap row-gap-3 p-0">
                             <!--boton de regresar-->
                             <button type="button" onclick="returnBack()"
-                                class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Regresar</button>
+                                class="btn btn2 btn-primary mx-2 shadow text18 titillium-web-regular">Regresar</button>
                             <!--boton de guardar-->
-                            <button class="btn btn3 btn-primary shadow ms-5 text18 titillium-web-regular" id="btnUpdate"
-                                onclick="addSave()" type="button">Actualizar</button>
+                            <button class="btn btn3 btn-primary mx-2 shadow  text18 titillium-web-regular"
+                                id="btnUpdate" onclick="addSave()" type="button">Actualizar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para actualizar contraseña-->
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header d-flex justify-content-center align-items-center">
+                        <h1 class="modal-title fs-5 text-center" id="modalTitle">Restablecer contraseña</h1>
+                    </div>
+                    <!-- Formulario para actualizar contraseña -->
+                    <form id="passwordForm" name="passwordForm">
+                        <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                            <div class="offset-col-1 col-10">
+                                <!-- Campos -->
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="contraActual" class="form-label">Contraseña actual:</label>
+                                    <input id="contraActual" type="password" name="contraActual"
+                                        class="form-control editableInput" required>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="newContra" class="form-label">Nueva contraseña:</label>
+                                    <input id="newContra" type="password" name="newContra"
+                                        class="form-control editableInput" required>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="confirContra" class="form-label">Confirmar contraseña:</label>
+                                    <input id="confirContra" type="password" name="confirContra"
+                                        class="form-control editableInput" required>
+                                </div>
+                            </div>
+                            <!-- Botones en el pie del modal -->
+                            <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                <div class="d-flex justify-content-center flex-wrap flex-lg-nowrap flex-md-nowrap gap-3">
+                                    <!-- Botón para cancelar la operación -->
+                                    <button type="button" id="cancelarBtn"
+                                        class="btn btn2 btn-primary shadow text18 titillium-web-regular"
+                                        onclick="botonCancelar()">
+                                        Cancelar
+                                    </button>
+                                    <!-- Botón para actualizar el registro -->
+                                    <button type="button" id="agregarBtn"
+                                        class="btn btn3 btn-primary shadow text18 titillium-web-regular"
+                                        onclick="botonAgregar()">
+                                        Restablecer
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

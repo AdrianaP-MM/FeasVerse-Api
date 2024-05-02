@@ -23,7 +23,8 @@
 
 /* Estilos para el contenedor de la pestaña */
 .ContenedorPestaña {
-    height: 100%;
+    min-height: 100%;
+    max-height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -100,10 +101,8 @@
 
 /* Estilos para el contenedor de la tabla */
 .Contenedor-tabla {
-    padding-left: 20px;
-    padding-right: 20px;
     margin-bottom: 20px;
-    height: 50vh;
+    height: 48vh;
 }
 
 /* Estilos para los contenedores de botones */
@@ -113,8 +112,7 @@
     width: 100%;
     min-height: fit-content;
     max-height: fit-content;
-    position: absolute;
-    bottom: -10%;
+    margin-top: -5px;
 }
 
 /* Estilos para contenedorBotones2 */
@@ -124,6 +122,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
 }
 
 /* Estilos para contenedorBotones3 */

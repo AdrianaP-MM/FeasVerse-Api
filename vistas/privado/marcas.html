@@ -26,7 +26,7 @@
     <div id="slide"></div>
     <main id="mainContent">
         <!--Contenedor principal-->
-        <div class="ContenedorT">
+        <div class="ContenedorT gap-3">
             <!--Contenedor del titulo-->
             <div class="ContenedorTitulo position-relative">
                 <h3 class="titillium-web-semibold textP"> Marcas </h3>
@@ -35,7 +35,7 @@
             <!--Contenedor de las pestaña-->
             <div class="ContenedorPestaña">
                 <!--Comienzo de las pestañas-->
-                <ul class="nav nav-tabs ms-5">
+                <ul class="nav nav-tabs ms-lg-5 ms-md-4 ms-0 column-gap-3">
                     <!--Etiqueta de marcas registradas-->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="marcas-tab" type="button"
@@ -45,7 +45,7 @@
                         </button>
                     </li>
                     <!--Etiqueta de agregar-->
-                    <li class="nav-item ms-3" role="presentation">
+                    <li class="nav-item" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="agregar-tab" type="button"
                             data-bs-target="#agregar" role="tab" aria-controls="agregar" aria-selected="true"
                             onclick="showAddDiv(this)">
@@ -62,20 +62,20 @@
                         aria-labelledby="agregar-tab">
                         <!-- Contenedor total de ingreso de datos -->
                         <div
-                            class="ContenedorTotalA d-flex flex-column justify-content-around align-items-center flex-wrap">
+                            class="ContenedorTotalA pt-4 d-flex flex-column justify-content-around align-items-center w-100">
                             <!-- Contenedor de datos de la marca -->
-                            <div class="contenedorDatos d-flex flex-column align-items-center">
+                            <div class="contenedorDatos d-flex flex-column align-items-center col-12">
                                 <h1 class="text-white titillium-web-regular text25 text-white mt-3 mb-3">Ingreso de
                                     datos</h1>
                                 <!-- Campo de ingreso del nombre de la marca -->
-                                <div class="col-md-12 col-lg-12 col-sm-6 mb-4">
+                                <div class="col-md-12 col-lg-12 col-sm-12 mb-4">
                                     <label for="nombreMarca" class="form-label text-white text18">Nombre de la
                                         marca</label>
                                     <input type="text" class="form-control" id="nombreMarca"
                                         placeholder="Ingresa el nombre" required>
                                 </div>
                                 <!-- Campo de ingreso de la descripción de la marca -->
-                                <div class="input-group">
+                                <div class="input-group responsiveG">
                                     <span class="input-group-text">Descripción de la marca</span>
                                     <textarea class="form-control" aria-label="With textarea" id="descripcionMarca"
                                         required></textarea>
@@ -90,9 +90,9 @@
                                     src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
                                     alt="example placeholder" />
                                 <div class="btn btn-primary btn-rounded mt-3">
-                                    <label class="form-label text-white m-1" for="customFile1">Seleccionar
+                                    <label class="form-label text-white m-1" for="customFile2">Seleccionar
                                         imagen</label>
-                                    <input type="file" class="form-control d-none" id="customFile1"
+                                    <input type="file" class="form-control d-none" id="customFile2"
                                         onchange="displaySelectedImage(event, 'selectedImage')" />
                                 </div>
                             </div>
@@ -109,8 +109,8 @@
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="marcas"
                         aria-labelledby="marcas-tab">
                         <!-- Contenedor de tarjetas de marcas -->
-                        <div class="d-flex flex-column mb-3 justify-content-center flex-wrap">
-                            <div class="cardContainer d-flex flex-row justify-content-around m-5 flex-wrap">
+                        <div class="d-flex flex-column mb-3 justify-content-center">
+                            <div class="cardContainer m-5 d-flex flex-wrap gap-5">
                                 <!-- Tarjetas de marcas con imágenes -->
                                 <div class="card sizeCard" ondblclick="openDetails()">
                                     <img src="/recursos/imagenes/marcas/adidas.svg" class="card-img-top" />
@@ -165,7 +165,7 @@
                                 <h1 class="text-white titillium-web-regular text25 text-white mt-3">Foto de la marca
                                 </h1>
                                 <!-- Imagen seleccionada y botón para elegir imagen -->
-                                <img id="selectedImageD sizeCard borderImage"
+                                <img id="selectedImageD" class="sizeCard borderImage"
                                     src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
                                     alt="example placeholder" />
                                 <div class="btn btn-primary btn-rounded mt-3">
@@ -175,20 +175,19 @@
                                         onchange="displaySelectedImage(event, 'selectedImageD')" />
                                 </div>
                             </div>
-                            +
 
                             <!-- Botones en el pie del modal -->
                             <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
-                                <div class="contenedorBotones3">
+                                <div class="contenedorBotones3 gap-3 d-flex align-items-center justify-content-center flex-wrap">
                                     <!-- Botón para cancelar la operación -->
                                     <button type="button" id="cancelarBtn"
-                                        class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        class="btn btn2 btn-primary mx-2 my-0 shadow text18 titillium-web-regular"
                                         onclick="botonCancelar()">
                                         Cancelar
                                     </button>
                                     <!-- Botón para actualizar el registro -->
                                     <button type="button" id="actualizarBtn"
-                                        class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                        class="btn btn3 btn-primary mx-2 my-0 shadow text18 titillium-web-regular"
                                         onclick="botonActualizar()">
                                         Actualizar
                                     </button>

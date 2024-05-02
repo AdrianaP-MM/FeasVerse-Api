@@ -25,14 +25,14 @@
     <div id="slide"></div>
     <main id="mainContent">
 
-        <div class="ContenedorT">
+        <div class="ContenedorT gap-3">
             <div class="ContenedorTitulo position-relative">
                 <h3 class="titillium-web-semibold textP"> Trabajadores </h3>
                 <div class="linea1"></div>
             </div>
 
             <div class="ContenedorPestaña">
-                <ul class="nav nav-tabs ms-5">
+                <ul class="nav nav-tabs ms-lg-5 ms-md-4 ms-0">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="tabla-tab" type="button"
                             data-bs-target="#tabla" role="tab" aria-controls="tabla" aria-selected="true"
@@ -54,7 +54,7 @@
                     <div class="rectangle z-0"></div>
                     <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div class="ContenedorTotal z-3 position-relative">
+                        <div class="ContenedorTotal z-3 position-relative pb-5 pb-lg-0 pb-md-3">
                             <div class="ContenedorTituloA">
                                 <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Agregar Trabajador</h1>
                             </div>
@@ -120,29 +120,28 @@
                                         <input type="password" class="form-control" id="contraInput"
                                             placeholder="Ingresa la contraseña" required>
                                     </div>
-                                    <div class="contenedorBotones2">
-                                        <button type="button" onclick="returnBack()"
-                                            class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
-                                        <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
-                                            onclick="addSave()" type="submit">Agregar</button>
-                                    </div>
+                                    
                                 </form>
+                            </div>
+                            <div class="contenedorBotones2 d-flex flex-wrap">
+                                <button type="button" onclick="returnBack()"
+                                    class="btn btn2 btn-primary mx-3 my-2 shadow text18 titillium-web-regular">Cancelar</button>
+                                <button class="btn btn3 btn-primary shadow my-2 text18 titillium-web-regular"
+                                    onclick="addSave()" type="submit">Agregar</button>
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="tabla"
+                    <div class="tab-pane1 fade z-2 position-relative d-none pt-5 d-flex flex-column align-items-center" role="tabpanel" id="tabla"
                         aria-labelledby="tabla-tab">
 
-                        <div class="col-lg-10 col-md-8">
-                            <div class="search-container me-5">
+                            <div class="search-container col-11">
                                 <input type="search" class="form-control" name="search" placeholder="Buscar....."
                                     id="buscadorInputPedidos" required>
                                 <span class="search-icon"><i class="bi bi-search"></i></span>
                                 <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
                             </div>
-                        </div>
 
-                        <div class="Contenedor-tabla z-3 mt-5 table-responsive">
+                        <div class="Contenedor-tabla z-3 mt-4 table-responsive col-11">
                             <table class="table table-hover table-bordered" id="tablaTrabajadores">
                                 <thead class="thead">
                                     <tr>
@@ -190,11 +189,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="contenedorBotones z-0">
+                        <div class="contenedorBotones col-11 z-0 d-flex flex-wrap justify-content-center justify-content-lg-start justify-content-md-start">
                             <button type="button"
-                                class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
+                                class="btn btn3 btn-primary mx-4 my-2 shadow text18 titillium-web-regular
+                                ">Bloquear</button>
                             <button type="button"
-                                class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular">Desbloquear</button>
+                                class="btn btn3 btn-primary my-2 shadow text18 titillium-web-regular
+                                ">Desbloquear</button>
                         </div>
                     </div>
                 </div>

@@ -4,9 +4,14 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     DUI_INPUT = document.getElementById('duiInput'),
     TEL_INPUT = document.getElementById('telefonoInput'),
     CORREO_INPUT = document.getElementById('correoInput'),
-    FECHAN_INPUT = document.getElementById('fechanInput'),
-    CONTRA_INPUT = document.getElementById('contraInput'),
-    CONTRAC_INPUT = document.getElementById('contraCInput');
+    FECHAN_INPUT = document.getElementById('fechanInput');
+
+const forms = document.querySelectorAll('form');
+const PASSWORD_FORM = document.getElementById('passwordForm');
+
+// Declaración de constantes para el modal, el título del modal y el formulario de comentario.
+const DATA_MODAL = new bootstrap.Modal('#dataModal'),
+    MODAL_TITLE = document.getElementById('modalTitle');
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -75,3 +80,26 @@ Array.from(forms).forEach(form => {
         form.classList.add('was-validated')
     }, false)
 })
+
+
+// Definición de la función asíncrona para abrir los detalles en el modal.
+const showConDetails = async () => {
+    // Muestra el modal y resetea el formulario de comentario.
+    DATA_MODAL.show();
+    PASSWORD_FORM.reset();
+}
+// Definición de la función asíncrona para cancelar y cerrar el modal.
+const botonCancelar = async () => {
+    // Muestra una confirmación y, si el usuario confirma, oculta el modal.
+    const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
+    if (RESPONSE.isConfirmed) {
+        DATA_MODAL.hide();
+    }
+}
+
+// Definición de la función asíncrona para agregar y cerrar el modal.
+const botonAgregar = async () => {
+    // Muestra una alerta de éxito y oculta el modal.
+    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
+    DATA_MODAL.hide();
+}

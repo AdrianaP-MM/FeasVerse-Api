@@ -41,8 +41,7 @@
 }
 
 /* Estilos para contenedor con clase .contenedor */
-.contenedor {
-    max-width: fit-content;  /* Ancho máximo ajustado al contenido */
+.contenedor { /* Ancho máximo ajustado al contenido */
     min-width: fit-content;  /* Ancho mínimo ajustado al contenido */
     padding: 20px;  /* Relleno interno de 20 píxeles en todos los lados del contenedor */
     background-color: #EDEDED;  /* Color de fondo del contenedor en tono gris claro */
@@ -108,7 +107,7 @@ a {
 
 /* Estilo para el formulario con un espacio de relleno en la parte inferior */
 .form1 {
-    padding-bottom: 100px; /* Espacio de relleno en la parte inferior del formulario */
+    padding-bottom: 140px; /* Espacio de relleno en la parte inferior del formulario */
 }
 
 /* Estilo para los controles de formulario con borde sólido de color #1A89BD */
@@ -144,4 +143,36 @@ a {
     background-color: white;    /* Color de fondo para btn2 (blanco) */
     color: black;               /* Color del texto para btn2 (negro) */
     border: solid 1px #8F8F8F;  /* Borde sólido con grosor 1px y color #8F8F8F para btn2 */
+}
+
+
+
+
+.contenedorForm {
+    width: 60vw;
+    /* Ancho del 60% del ancho visible */
+    height: 100%;
+    /* Altura del 100% */
+}
+
+/* Estilo para el formulario con un espacio de relleno en la parte inferior */
+.form1 {
+    padding-bottom: 100px;
+    /* Espacio de relleno en la parte inferior del formulario */
+}
+
+/* Estilo para los controles de formulario con borde sólido de color #1A89BD */
+.form-control {
+    border: #1A89BD solid 1px;
+    /* Borde sólido con color #1A89BD y grosor de 1px */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #1A89BD;
+    color: white;
+}
+
+#cancelarBtn, #agregarBtn{
+    width: 100%;
 }
