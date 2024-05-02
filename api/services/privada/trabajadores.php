@@ -30,7 +30,7 @@ if (isset($_GET['action'])) {
             case 'getUser':
                 if (isset($_SESSION['nombreTrabajador'])) {
                     $result['status'] = 1;
-                    $result['nombre_trabajador'] = $_SESSION['nombreTrabajador'];
+                    $result['username'] = $_SESSION['nombreTrabajador'];
                 } else {
                     $result['error'] = 'Alias de trabajador indefinido';
                 }

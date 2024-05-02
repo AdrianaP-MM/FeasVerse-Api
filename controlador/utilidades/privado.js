@@ -7,7 +7,7 @@
 const MAIN = document.querySelector('#mainContent');
 
 // Constante para completar la ruta de la API.
-const USER_API = '../../api/services/privada/trabajadores.php';
+const USER_API = 'services/privada/trabajadores.php';
 
 /*  Función asíncrona para cargar el encabezado y pie del documento.
 *   Parámetros: ninguno.
@@ -16,12 +16,12 @@ const USER_API = '../../api/services/privada/trabajadores.php';
 
 const loadTemplate = async () => {
     // Crear el elemento de encabezado con una barra de navegación.
-    //const DATA = await fetchData(USER_API, 'getUser');
-    //console.log(DATA)
+    const DATA = await fetchData(USER_API, 'getUser');
+    console.log(DATA)
     // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
-    //if (DATA.session) {
+    if (DATA.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.
-        //if (DATA.status) {
+        if (DATA.status) {
             const header = document.createElement('header');
             header.innerHTML = `
             <nav class="navbar bg-color-5blue fixed-top position-relative">
@@ -32,10 +32,10 @@ const loadTemplate = async () => {
                     </div>
                     <div class="linea"></div>
                     <form class="d-flex align-items-center">
-                        <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">xd</h1>
+                        <h1 class="navbar-brand text-white titillium-web-semibold margin-user me-3">${DATA.username}</h1>
                         <a href="/vistas/privado/detalles_usuario.html">
                             <button class="btn btn-outline-primary" type="button">
-                                <img src="/recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
+                                <img src="../../recursos/imagenes/icons/exitUser.svg" width="50px" height="50">
                             </button>
                         </a>
                     </form>
@@ -58,9 +58,9 @@ const loadTemplate = async () => {
                     </div>
                     <ul class="sidebar-nav">
                         <li class="sidebar-item marg1">
-                            <a href="/vistas/privado/panel_principal.html" class="sidebar-link">
+                            <a href="panel_principal.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/houseIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/houseIcon.svg"
                                             width="40" height="40" class="imgIcon"></i>
                                     <span class="text-nav text20 titillium-web-regular">Inicio</span>
                                 </div>
@@ -68,9 +68,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                            <a href="/vistas/privado/trabajadores.html" class="sidebar-link">
+                            <a href="trabajadores.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/workersIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/workersIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Trabajadores</span>
                                 </div>
@@ -78,9 +78,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                            <a href="/vistas/privado/clientes.html" class="sidebar-link">
+                            <a href="clientes.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/clientIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/clientIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Clientes</span>
                                 </div>
@@ -88,9 +88,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                            <a href="/vistas/privado/zapatos.html" class="sidebar-link">
+                            <a href="zapatos.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/shoesIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/shoesIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Zapatos</span>
                                 </div>
@@ -98,9 +98,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                            <a href="/vistas/privado/pedidos.html" class="sidebar-link">
+                            <a href="pedidos.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/pedidoIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/pedidoIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Pedidos</span>
                                 </div>
@@ -108,9 +108,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                            <a href="/vistas/privado/marcas.html" class="sidebar-link">
+                            <a href="marcas.html" class="sidebar-link">
                                 <div class="contenedorItemNav">
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/marcaIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/marcaIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Marcas</span>
                                 </div>
@@ -118,9 +118,9 @@ const loadTemplate = async () => {
                         </li>
         
                         <li class="sidebar-item">
-                        <a href="/vistas/privado/comentarios.html" class="sidebar-link">
+                        <a href="comentarios.html" class="sidebar-link">
                                 <div class="contenedorItemNav" >
-                                    <i class="lni lni-user img"> <img src="/recursos/imagenes/icons/comentIcon.svg"
+                                    <i class="lni lni-user img"> <img src="../../recursos/imagenes/icons/comentIcon.svg"
                                             width="40" height="40"></i>
                                     <span class="text-nav text20 titillium-web-regular">Comentarios</span>
                                 </div>
@@ -167,17 +167,17 @@ const loadTemplate = async () => {
             // Obtener el contenedor del pie de página y agregar el elemento de pie de página.
             var contenedorFooter = document.getElementById("footer");
             contenedorFooter.appendChild(footer);
-        //}
-        //else {
-        //    sweetAlert(4, DATA.error, false, 'index.html');
-        //}
-    //}
-    //else {
+        }
+        else {
+            sweetAlert(4, DATA.error, false, 'index.html');
+        }
+    }
+    else {
         // Se comprueba si la página web es la principal, de lo contrario se direcciona a iniciar sesión.
-       // if (location.pathname.endsWith('index.html')) {
-       //     await sweetAlert(4, 'Inicia sesión para poder continuar', false);
-        //} else {
-        //    location.href = 'index.html';
-        //}
-    //}
+        if (location.pathname.endsWith('index.html')) {
+            await sweetAlert(4, 'Inicia sesión para poder continuar', false);
+        } else {
+            location.href = 'index.html';
+        }
+    }
 }

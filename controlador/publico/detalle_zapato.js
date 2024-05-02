@@ -14,7 +14,7 @@ function AddCarrito() {
         html: `
         <div class="lineaIzq bg-color-1blue"></div>
         <div class="contenedorImg">
-            <img src="/recursos/imagenes/pngHombreFeliz.svg" class="imgHombre">
+            <img src="../../recursos/imagenes/pngHombreFeliz.svg" class="imgHombre">
         </div>
         <div class="contenedorCuerpo mt-4 d-flex flex-column ">
             <h2 class="titillium-web-regular m-0 p-0 title">
