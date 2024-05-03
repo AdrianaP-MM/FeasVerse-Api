@@ -22,10 +22,11 @@ class PedidosHandler
     protected $cantidad_pedido = null;
     protected $precio_del_zapato = null;
 
-    //SELECT PARA LEER TODOS LOS PEDIDOS REALIZADOS
+    //!METODOS DE BUSQUEDA
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
     public function readAllOrders()
     {
-        $sql = 'SELECT tb_pedidos_clientes.id_pedido_cliente, 
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, 
         CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
         correo_cliente,
@@ -41,7 +42,7 @@ class PedidosHandler
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
-        ';
+        ";
         return Database::getRows($sql);
     }
 
@@ -105,7 +106,7 @@ class PedidosHandler
         ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
         WHERE id_pedido_cliente = ?';
         $params = array($this->id_pedido_cliente);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
     //SELECT DE LOS TRABAJADORES PARA SABER LAS CLASES DE PEDIDOS QUE TIENEN O REALIZARON
@@ -126,7 +127,7 @@ class PedidosHandler
         id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador';
 
         $params = array('Entregado', 'En Proceso', 'Pendiente');
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 
     //SELECT PARA MOSTRAR LOS DIFERENTES workers 
@@ -149,6 +150,61 @@ class PedidosHandler
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
         WHERE id_trabajador = ? AND estado_pedido = ?';
         $params = array($this->id_repartidor, $this->estado_pedido);
-        return Database::getRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
+
+    //!CREATE UPDATE DELETE
+    //CUD DE TBPEDIDOSCLIENTES
+    
+    public function createRowPedidos()
+    {
+        $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->id_cliente, $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateRowPedidos()
+    {
+        $sql = 'UPDATE tb_pedidos_clientes
+                SET id_cliente = ?, id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
+                WHERE id_pedido_cliente = ?';
+        $params = array($this->id_cliente, $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRowPedidos()
+    {
+        $sql = 'DELETE FROM tb_pedidos_clientes
+                WHERE id_pedido_cliente = ?';
+        $params = array($this->id_pedido_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
+    //CUD DE TBDETALLES
+    public function createRowDetalle()
+    {
+        $sql = 'INSERT INTO tb_detalles_pedidos (id_pedido_cliente, id_detalle_zapato, cantidad_pedido, precio_del_zapato)
+                VALUES (?, ?, ?, ?)';
+        $params = array($this->id_pedido_cliente, $this->id_detalle_zapato, $this->cantidad_pedido, $this->precio_del_zapato);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateRowDetalle()
+    {
+        $sql = 'UPDATE tb_detalles_pedidos
+                SET id_pedido_cliente = ?, id_detalle_zapato = ?, cantidad_pedido = ?, precio_del_zapato = ?
+                WHERE id_detalles_pedido = ?';
+        $params = array($this->id_pedido_cliente, $this->id_detalle_zapato, $this->cantidad_pedido, $this->precio_del_zapato, $this->id_detalles_pedido);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteRowDetalle()
+    {
+        $sql = 'DELETE FROM tb_detalles_pedidos
+                WHERE id_detalles_pedido = ?';
+        $params = array($this->id_detalles_pedido);
+        return Database::executeRow($sql, $params);
+    }
+
 }

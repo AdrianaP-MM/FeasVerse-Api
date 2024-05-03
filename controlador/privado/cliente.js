@@ -3,19 +3,22 @@ document.querySelector('title').textContent = 'Feasverse - Clientes';
 
 //declaracion de las variables
 const NOMBRES_INPUT = document.getElementById('nombreCliente'),
-APELLIDOS_INPUT = document.getElementById('apellidosCliente'),
-DUI_INPUT = document.getElementById('duiCliente'),
-TEL_INPUT = document.getElementById('telefonoCliente'),
-CORREO_INPUT = document.getElementById('correoCliente'),
-FECHAN_INPUT = document.getElementById('fechaDeNacimientoCliente'),
-FECHAR_INPUT = document.getElementById('fechaDeRegistroCliente'),
-ESTADO_INPUT = document.getElementById('estadoCliente');
+    APELLIDOS_INPUT = document.getElementById('apellidosCliente'),
+    DUI_INPUT = document.getElementById('duiCliente'),
+    TEL_INPUT = document.getElementById('telefonoCliente'),
+    CORREO_INPUT = document.getElementById('correoCliente'),
+    FECHAN_INPUT = document.getElementById('fechaDeNacimientoCliente'),
+    FECHAR_INPUT = document.getElementById('fechaDeRegistroCliente'),
+    ESTADO_INPUT = document.getElementById('estadoCliente');
+const TABLE_BODY = document.getElementById('tableBody');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 
 const DATA_MODAL = new bootstrap.Modal('#dataModal');
 const MODAL_TITLE = document.getElementById('modalTitle');
 const UPDATE_FORM = document.getElementById('detailUpdateForm');
+
+const CLIENTES_API = 'services/privada/clientes.php';
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -27,6 +30,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('tabla-tab').click();
     // Bloquear el botón
     document.getElementById('tabla-tab').setAttribute('disabled', 'disabled');
+
+    fillTable();
 });
 
 //Constante para abrir detalles cuando se le de doble click a la tabla
@@ -43,39 +48,34 @@ const openDetails = async (row) => {
     for (var i = 0; i < cells.length; i++) {
         values.push(cells[i].innerText);
     }
+    // Deshabilitar la edición de los campos de entrada
+    NOMBRES_INPUT.readOnly = true;
+    APELLIDOS_INPUT.readOnly = true;
+    DUI_INPUT.readOnly = true;
+    TEL_INPUT.readOnly = true;
+    CORREO_INPUT.readOnly = true;
+    FECHAN_INPUT.readOnly = true;
+    FECHAR_INPUT.readOnly = true;
+    ESTADO_INPUT.disabled = true;
 
-    
-        // Deshabilitar la edición de los campos de entrada
-        NOMBRES_INPUT.readOnly = true;
-        APELLIDOS_INPUT.readOnly = true;
-        DUI_INPUT.readOnly = true;
-        TEL_INPUT.readOnly = true;
-        CORREO_INPUT.readOnly = true;
-        FECHAN_INPUT.readOnly = true;
-        FECHAR_INPUT.readOnly = true;
-        ESTADO_INPUT.disabled = true;
+    // Se coloca los valores en el input
+    NOMBRES_INPUT.value = values[2];
+    APELLIDOS_INPUT.value = values[1];
+    DUI_INPUT.value = values[3];
+    TEL_INPUT.value = values[4];
+    CORREO_INPUT.value = values[5];
+    FECHAN_INPUT.value = '2024-09-03';
+    FECHAR_INPUT.value = '2024-03-04';
 
-        // Se coloca los valores en el input
-        NOMBRES_INPUT.value = values[2];
-        APELLIDOS_INPUT.value = values[1];
-        DUI_INPUT.value = values[3];
-        TEL_INPUT.value =  values[4];
-        CORREO_INPUT.value = values[5] ;
-        FECHAN_INPUT.value = '2024-09-03';
-        FECHAR_INPUT.value = '2024-03-04';
-
-    if (values[6] === 'Vigente'){
+    if (values[6] === 'Vigente') {
         ESTADO_INPUT.value = 1;
     }
-    else{
+    else {
         ESTADO_INPUT.value = 2;
     }
-
-    
-
     //Titulo del modal con el id del cliente
     var idCliente = values[0];
-    MODAL_TITLE.textContent = 'Detalles de Clientes #'+idCliente;
+    MODAL_TITLE.textContent = 'Detalles de Clientes #' + idCliente;
 };
 
 //Funcion cuando se muestre la pestaña de la tabla
@@ -90,13 +90,14 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
     BOTON_ACTUALIZAR.textContent = "Actualizar";
 });
 
+
 //Funcion del boton actualizar
-const botonActualizar = async () =>  {
+const botonActualizar = async () => {
     //se obtiene el texto del boton sin espacios
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-    
+
     if (textoBoton == 'Actualizar') {
-        
+
         // habilitar la edición de los campos de entrada
         NOMBRES_INPUT.readOnly = false;
         APELLIDOS_INPUT.readOnly = false;
@@ -108,7 +109,7 @@ const botonActualizar = async () =>  {
 
         BOTON_ACTUALIZAR.textContent = "Guardar";
     }
-    else if(textoBoton == 'Guardar'){
+    else if (textoBoton == 'Guardar') {
         // Deshabilitar la edición de los campos de entrada
         NOMBRES_INPUT.readOnly = true;
         APELLIDOS_INPUT.readOnly = true;
@@ -124,25 +125,25 @@ const botonActualizar = async () =>  {
 }
 
 //Funcion del boton cancelar
-const  botonCancelar = async () => {
+const botonCancelar = async () => {
     //se obtiene el texto del boton sin espacios
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-    
+
     if (textoBoton == 'Actualizar') {
         // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
-        if(RESPONSE.isConfirmed){
+        if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
         }
     }
-    else if(textoBoton == 'Guardar'){
+    else if (textoBoton == 'Guardar') {
         // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardara');
-        if(RESPONSE.isConfirmed){
-        DATA_MODAL.hide();
+        if (RESPONSE.isConfirmed) {
+            DATA_MODAL.hide();
+        }
     }
-    }
-    
+
 }
 
 document.getElementById('duiCliente').addEventListener('input', function (event) {
@@ -171,3 +172,39 @@ document.getElementById('telefonoCliente').addEventListener('input', function ()
     }
     this.value = telefonoInput;
 });
+
+/*
+*   Función asíncrona para llenar la tabla con los registros disponibles.
+*   Parámetros: form (objeto opcional con los datos de búsqueda).
+*   Retorno: ninguno.
+*/
+const fillTable = async (form = null) => {
+    // Se inicializa el contenido de la tabla.
+    TABLE_BODY.innerHTML = '';
+    // Se verifica la acción a realizar.
+    (form) ? action = 'searchRows' : action = 'readAll';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(CLIENTES_API, action, form);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros fila por fila.
+        DATA.dataset.forEach(row => {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            TABLE_BODY.innerHTML += `
+            <tr class="table-row" ondblclick="openDetails(this)">
+                <td>${row.id_cliente}</td>
+                <td>${row.apellido_cliente}</td>
+                <td>${row.nombre_cliente}</td>
+                <td>${row.dui_cliente}</td>
+                <td>${row.telefono_cliente}-3</td>
+                <td>${row.correo_cliente}</td>
+                <td>${row.estado_cliente}</td>
+            </tr>
+            `;
+        });
+        // Se muestra un mensaje de acuerdo con el resultado.
+        await sweetAlert(1, DATA.message, true); 
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
