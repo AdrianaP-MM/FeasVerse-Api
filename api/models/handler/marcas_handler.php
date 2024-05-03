@@ -17,7 +17,7 @@ class MarcasHandler
     const RUTA_IMAGEN = '../../images/marcas/';
 
     public function readAll(){
-        $sql = 'SELECT foto_marca FROM tb_marcas';
+        $sql = 'SELECT id_marca, foto_marca FROM tb_marcas';
         return Database::getRows($sql);
     }
     public function createRow()
@@ -35,6 +35,13 @@ class MarcasHandler
     {
         $sql = 'SELECT id_marca WHERE nombre_marca = ?';
         $params = array($value, $value);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT id_marca, nombre_marca, foto_marca, descripcion_marca FROM tb_marcas WHERE id_marca = ?';
+        $params = array($this->id_marca);
         return Database::getRow($sql, $params);
     }
 }

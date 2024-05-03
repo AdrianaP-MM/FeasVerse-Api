@@ -16,8 +16,10 @@ var primeraPestana = document.querySelector('#marcas-tab');
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const ADD_FORM = document.getElementById('AddForm');
 
-
 const MARCAS_API = 'services/privada/marcas.php';
+
+// Constantes para establecer el contenido de la tabla.
+const TABLE_BODY = document.getElementById('tableBody');
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -30,7 +32,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         MARCA_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
+    // Llamada a la función para llenar la tabla con los registros existentes.
+    fillTable();
 });
+
+/*
+*   Función asíncrona para llenar la tabla con los registros disponibles.
+*   Parámetros: form (objeto opcional con los datos de búsqueda).
+*   Retorno: ninguno.
+*/
+const fillTable = async (form = null) => {
+    TABLE_BODY.innerHTML = '';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(MARCAS_API, 'readAll');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            TABLE_BODY.innerHTML += `
+            <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
+                <img src="${SERVER_URL}images/marcas/${row.foto_marca}" />
+            </div>
+            `;
+        });
+
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+
+    } else {
+        /*
+        sweetAlert(4, DATA.error, true);*/
+        console.log('ERROR');
+    }
+}
 
 // Constante para establecer el espacio de tabla y el espacio de agregar.
 const MARCA_DIV = document.getElementById('marcas');
@@ -125,24 +160,29 @@ const returnBack = async () => {
 }
 
 // Definición de la función asíncrona llamada 'openDetails'.
-const openDetails = async () => {
-    // Muestra la caja de diálogo modal con su título.
-    DATA_MODAL.show();
+const openDetails = async (id) => {
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('IdMarca', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(MARCAS_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Muestra la caja de diálogo modal con su título.
+        DATA_MODAL.show();
+        MODAL_TITLE.textContent = 'Actualizar producto';
+        // Prepara el formulario de actualización reseteándolo a sus valores por defecto.
+        UPDATE_FORM.reset();
 
-    // Prepara el formulario de actualización reseteándolo a sus valores por defecto.
-    UPDATE_FORM.reset();
-
-    // Establece valores predeterminados en algunos campos del formulario.
-    NOMBRED_INPUT.value = "ADIDAS";
-    DESCD_INPUT.value = 'Buena marca de zapatos';
-
-    // Establece la fuente de la imagen en el campo IMG_INPUT con la ruta '/recursos/imagenes/marcas/adidas.svg'.
-    IMGD_INPUT.src = '../../recursos/imagenes/marcas/adidas.svg';
-
-    // Cambia el contenido del elemento con ID 'modalTitle' a 'Detalles Marca'.
-    MODAL_TITLE.textContent = 'Detalles Marca';
+        // Se inicializan los campos con los datos.
+        const ROW = DATA.dataset;
+        NOMBRED_INPUT.value = ROW.nombre_marca,
+        DESCD_INPUT.value = ROW.descripcion_marca,
+        IMGD_INPUT.src = `${SERVER_URL}images/marcas/${ROW.foto_marca}`;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
 }
-
 
 // Método del evento para cuando se envía el formulario de guardar. 
 const addSave = async () => {
@@ -161,6 +201,8 @@ const addSave = async () => {
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
         IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
+
+        fillTable();
     } else {
         await sweetAlert(2, DATA.error, false);
     }
