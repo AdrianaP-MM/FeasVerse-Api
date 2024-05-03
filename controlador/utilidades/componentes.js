@@ -128,8 +128,14 @@ const logOut = async () => {
 
     // Se verifica la respuesta del mensaje.
     if (RESPONSE.isConfirmed) {
-        // Si el usuario confirma, se redirige a la página de inicio de sesión.
-        location.href = '/vistas/privado/index.html';
+        // Petición para eliminar la sesión.
+        const DATA = await fetchData(USER_API, 'logOut');
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            sweetAlert(1, 'Se cerro sesión correctamente', true, 'index.html');
+        } else {
+            sweetAlert(2, DATA.exception, false);
+        }
     } else {
         // Si el usuario cancela, se oculta algún elemento modal (posiblemente DATA_MODAL).
         DATA_MODAL.hide();
