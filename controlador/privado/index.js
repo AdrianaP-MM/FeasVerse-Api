@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (DATA.session) {
         // Se direcciona a la página web de bienvenida.
-        location.href = 'dashboard.html';
+        location.href = 'panel_principal.html';
     } else {
         // Se establece el título del contenido principal.
         MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
@@ -97,7 +97,7 @@ function handleLoginFormSubmission(event) {
 //Funcion de mostrar la dashboard
 const showDashboard = async () => {
     await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
-    location.href = '/vistas/privado/panel_principal.html';
+    location.href = 'panel_principal.html';
 }
 
 // Método del evento para cuando se envía el formulario de inicio de sesión.

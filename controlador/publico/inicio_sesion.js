@@ -75,7 +75,7 @@ function handleLoginFormSubmission(event) {
 const showInicio = async () =>
 {
     await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
-    location.href = '/vistas/publico/index.html';
+    location.href = 'index.html';
 }
 
 

@@ -29,7 +29,7 @@ class ClienteHandler
         $sql = 'SELECT id_cliente, nombre_cliente, correo_cliente, clave_cliente, estado_cliente
                 FROM tb_clientes
                 WHERE correo_cliente = ?';
-        $params = array($mail);
+        $params = array($correo_cliente); //$mail----------------------------------------------------------------------
         $data = Database::getRow($sql, $params);
         if (password_verify($clave_cliente, $data['clave_cliente'])) {
             $this->id_cliente = $data['id_cliente'];
