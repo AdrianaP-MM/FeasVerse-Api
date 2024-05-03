@@ -18,6 +18,28 @@ if (isset($_GET['action'])) {
             case 'searchRows':
                 break;
             case 'createRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setNombre($_POST['nombreInput']) or
+                    !$trabajador->setApellido($_POST['apellidosInput']) or
+                    !$trabajador->setDUI($_POST['duiInput']) or
+                    !$trabajador->setTelefono($_POST['telefonoInput']) or
+                    !$trabajador->setCorreo($_POST['correoInput']) or
+                    !$trabajador->setClave($_POST['contraInput']) or
+                    !$trabajador->setRegistro($_POST['fecharInput']) or
+                    !$trabajador->setNacimiento($_POST['fechanInput']) or
+                    !$trabajador->setIdNivel($_POST['nivelInput.value']) or
+                    !$trabajador->setEstado($_POST['estadoInput.value']) 
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->createRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Trabajador creado correctamente';
+                    // Se asigna el estado del archivo después de insertar.
+                    $result['fileStatus'] = Validator::saveFile($_FILES['imagenProducto'], $producto::RUTA_IMAGEN);
+                } else {
+                    $result['error'] = 'Ocurrió un problema al crear el trabajador';
+                }
                 break;
                 case 'readAll':
                     if ($result['dataset'] = $trabajador->readAll()) {

@@ -16,7 +16,8 @@ const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
 // Selecciona elementos relacionados con el modal y el formulario de actualización.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
-    UPDATE_FORM = document.getElementById('updateFrom');
+    UPDATE_FORM = document.getElementById('updateFrom'),
+    ADD_FORM = document.getElementById('AddForm');
 
 // Constantes para establecer el espacio de tabla y el espacio de agregar.
 const TABLE_DIV = document.getElementById('tabla');
@@ -77,16 +78,32 @@ const fillTable = async (form = null) => {
             </tr>
             `;
         });
-        // Se muestra un mensaje de acuerdo con el resultado.
-        ROWS_FOUND.textContent = DATA.message;
     } else {
         /*
         sweetAlert(4, DATA.error, true);*/
-        console.log('El diavlo');
+        console.log('ERROR');
     }
 }
 
 
+// Método del evento para cuando se envía el formulario de guardar. 
+const addSave = async () => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(ADD_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(TRABAJADORES_API, 'createRow', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+         await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        fillTable();
+    } else {
+        /*sweetAlert(2, DATA.error, false);*/
+    }
+};
 
 // Función para abrir los detalles de un trabajador.
 const openDetails = async (row) => {
@@ -111,7 +128,6 @@ const openDetails = async (row) => {
     FECHAR_INPUT.value = '2024-12-08';
     CONTRA_INPUT.value = 'Hola123';
     var id = values[0];
-
 
     if (values[7] == 'Vigente') {
         ESTADO_INPUT.value = 1;

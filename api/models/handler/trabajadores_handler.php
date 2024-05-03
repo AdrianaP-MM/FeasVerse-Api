@@ -31,7 +31,10 @@ class TrabajadorHandler
                 WHERE  correo_trabajador = ?';
         $params = array($mail);
         $data = Database::getRow($sql, $params);
-        if (password_verify($password, $data['clave_trabajador'])) {
+        if (!($data = Database::getRow($sql, $params))) {
+            return false;
+        }
+        elseif (password_verify($password, $data['clave_trabajador'])) {
             $_SESSION['idTrabajador'] = $data['id_trabajador'];
             $_SESSION['nombreTrabajador'] = $data['nombre_trabajador'];
             return true;
@@ -80,5 +83,22 @@ class TrabajadorHandler
         return Database::getRows($sql);
     }
 
-}
 
+    public function createRow()
+    {
+        $sql = 'INSERT INTO  tb_trabajadores(nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador, clave_trabajador, fecha_de_registro, fecha_de_nacimiento, id_nivel, estado_trabajador)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+        $params = array(
+            $this->nombre_trabajador, 
+            $this->apellido_trabajador,
+            $this->dui_trabajador,
+            $this->telefono_trabajador,
+            $this->correo_trabajador,
+            $this->clave_trabajador,
+            $this->fecha_de_registro,
+            $this->fecha_de_nacimiento,
+            $this->id_nivel,
+            $this->estado_trabajador);
+        return Database::executeRow($sql, $params);
+    }
+}
