@@ -92,7 +92,7 @@ class PedidosHandler
 
     //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
     public function readShoesOfOrders(){
-        $sql = 'SELECT id_detalles_pedido, foto_detalle_zapato,
+        $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
         nombre_zapato, nombre_color, num_talla, cantidad_pedido, precio_unitario_zapato,
         precio_unitario_zapato * cantidad_pedido AS precio_total
         FROM tb_detalles_pedidos
@@ -104,7 +104,7 @@ class PedidosHandler
         ON tb_colores.id_color = tb_detalle_zapatos.id_color
         INNER JOIN tb_tallas
         ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
-        WHERE id_pedido_cliente = ?';
+        WHERE id_pedido_cliente = ?";
         $params = array($this->id_pedido_cliente);
         return Database::getRows($sql, $params);
     }
@@ -112,7 +112,7 @@ class PedidosHandler
     //SELECT DE LOS TRABAJADORES PARA SABER LAS CLASES DE PEDIDOS QUE TIENEN O REALIZARON
     public function readAllOrdersWorkers()
     {
-        $sql = 'SELECT id_trabajador, nombre_trabajador, 
+        $sql = "SELECT id_trabajador, nombre_trabajador, 
         apellido_trabajador, 
         dui_trabajador, 
         telefono_trabajador, 
@@ -124,7 +124,7 @@ class PedidosHandler
         INNER JOIN tb_pedidos_clientes 
         ON tb_pedidos_clientes.id_repartidor = tb_trabajadores.id_trabajador
         GROUP BY 
-        id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador';
+        id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador";
 
         $params = array('Entregado', 'En Proceso', 'Pendiente');
         return Database::getRows($sql, $params);
@@ -132,7 +132,7 @@ class PedidosHandler
 
     //SELECT PARA MOSTRAR LOS DIFERENTES workers 
     public function readOrdersOfWorkerCategories(){
-        $sql = 'SELECT 
+        $sql = "SELECT 
         tb_pedidos_clientes.id_pedido_cliente, 
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
         correo_cliente,
@@ -148,7 +148,7 @@ class PedidosHandler
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
-        WHERE id_trabajador = ? AND estado_pedido = ?';
+        WHERE id_trabajador = ? AND estado_pedido = ?";
         $params = array($this->id_repartidor, $this->estado_pedido);
         return Database::getRows($sql, $params);
     }

@@ -78,6 +78,11 @@ const fillTable = async (form = null) => {
             </tr>
             `;
         });
+
+        if(DATA.dataset == 0){
+            await sweetAlert(1, DATA.message, true); 
+        }
+        
     } else {
         /*
         sweetAlert(4, DATA.error, true);*/
