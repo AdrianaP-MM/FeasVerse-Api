@@ -33,8 +33,7 @@ class TrabajadorHandler
         $data = Database::getRow($sql, $params);
         if (!($data = Database::getRow($sql, $params))) {
             return false;
-        }
-        elseif (password_verify($password, $data['clave_trabajador'])) {
+        } elseif (password_verify($password, $data['clave_trabajador'])) {
             $_SESSION['idTrabajador'] = $data['id_trabajador'];
             $_SESSION['nombreTrabajador'] = $data['nombre_trabajador'];
             return true;
@@ -89,7 +88,7 @@ class TrabajadorHandler
         $sql = 'INSERT INTO  tb_trabajadores(nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador, clave_trabajador, fecha_de_registro, fecha_de_nacimiento, id_nivel, estado_trabajador)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
         $params = array(
-            $this->nombre_trabajador, 
+            $this->nombre_trabajador,
             $this->apellido_trabajador,
             $this->dui_trabajador,
             $this->telefono_trabajador,
@@ -98,7 +97,15 @@ class TrabajadorHandler
             $this->fecha_de_registro,
             $this->fecha_de_nacimiento,
             $this->id_nivel,
-            $this->estado_trabajador);
+            $this->estado_trabajador
+        );
         return Database::executeRow($sql, $params);
+    }
+
+    public function checkDuplicate($value)
+    {
+        $sql = 'SELECT id_trabajador FROM tb_trabajadores WHERE dui_trabajador = ? OR correo_trabajador = ?';
+        $params = array($value, $value);
+        return Database::getRow($sql, $params);
     }
 }

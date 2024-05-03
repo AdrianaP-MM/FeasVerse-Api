@@ -83,12 +83,15 @@ class TrabajadorData extends TrabajadorHandler
         if (!Validator::validateEmail($value)) {
             $this->data_error = 'El correo no es válido';
             return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->correo_trabajador = $value;
-            return true;
-        } else {
+        } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
+        } elseif($this->checkDuplicate($value)) {
+            $this->data_error = 'El correo ingresado ya existe';
+            return false;
+        } else {
+            $this->correo_trabajador = $value;
+            return true;
         }
     }
 

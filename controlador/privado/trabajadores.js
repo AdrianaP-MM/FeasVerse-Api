@@ -101,7 +101,7 @@ const addSave = async () => {
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
     } else {
-        /*sweetAlert(2, DATA.error, false);*/
+        await sweetAlert(2, DATA.error, false);
     }
 };
 
