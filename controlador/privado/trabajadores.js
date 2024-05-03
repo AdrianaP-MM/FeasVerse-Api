@@ -13,6 +13,8 @@ const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
     NIVEL_INPUT = document.getElementById('nivelTrabajador'),
     CONTRA_INPUT = document.getElementById('contraTrabajador');
 
+const INPUTDATENOW = document.getElementById('fecharInput');
+
 // Selecciona elementos relacionados con el modal y el formulario de actualización.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
@@ -44,6 +46,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
+
+    INPUTDATENOW.readOnly = true;
 
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
@@ -79,10 +83,10 @@ const fillTable = async (form = null) => {
             `;
         });
 
-        if(DATA.dataset == 0){
-            await sweetAlert(1, DATA.message, true); 
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
         }
-        
+
     } else {
         /*
         sweetAlert(4, DATA.error, true);*/
@@ -102,7 +106,7 @@ const addSave = async () => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
-         await sweetAlert(1, 'Se ha guardado correctamente', true);
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
         // Se carga nuevamente la tabla para visualizar los cambios.
         fillTable();
     } else {
@@ -217,6 +221,12 @@ const returnBack = async () => {
 function showAddDiv(boton) {
     ADD_DIV.classList.remove('d-none');
     TABLE_DIV.classList.add('d-none');
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+    // Formatear la fecha actual como YYYY-MM-DD
+    var fechaActualFormato = fechaActual.toISOString().split('T')[0];
+    // Establecer la fecha actual como el valor del campo de entrada de fecha
+    fecharInput.value = fechaActualFormato;
     updateButtonColors(boton);
 }
 
@@ -415,5 +425,28 @@ document.getElementById('telefonoInput').addEventListener('input', function () {
         telefonoInput = telefonoInput.substring(0, 4) + '-' + telefonoInput.substring(4, 8);
     }
     this.value = telefonoInput;
+});
+
+
+document.getElementById('fechanInput').addEventListener('change', function () {
+    // Obtener la fecha de nacimiento seleccionada por el usuario
+    var fechaNacimiento = new Date(this.value);
+
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+
+    // Calcular la diferencia de tiempo entre la fecha actual y la fecha de nacimiento
+    var edadMilisegundos = fechaActual - fechaNacimiento;
+
+    // Calcular la edad en años
+    var edad = Math.floor(edadMilisegundos / (365.25 * 24 * 60 * 60 * 1000));
+
+    // Comprobar si la edad es menor de 18 años
+    if (edad < 18) {
+        // Mostrar Sweet Alert con el mensaje de error
+        sweetAlert(2, 'Fecha incorrecta, debes ser mayor de 18 años para ingresar.', true);
+        // Limpiar el campo de entrada de fecha
+        this.value = '';
+    }
 });
 
