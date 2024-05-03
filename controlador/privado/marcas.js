@@ -14,6 +14,10 @@ const DATA_MODAL = new bootstrap.Modal('#dataModal'),
 var primeraPestana = document.querySelector('#marcas-tab');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
+const ADD_FORM = document.getElementById('AddForm');
+
+
+const MARCAS_API = 'services/privada/marcas.php';
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -103,53 +107,65 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
 const returnBack = async () => {
     // Llamada a una función para mostrar un mensaje de confirmación, capturando la respuesta en una constante llamada 'RESPONSE'.
     const RESPONSE = await confirmAction('¿Seguro qué quieres cancelar?', 'Los datos ingresados no serán guardados');
-    
+
     // Verifica si el usuario ha confirmado la acción.
     if (RESPONSE.isConfirmed) {
         // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
         IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
-        
+
         // Simula un clic en la primera pestaña para cambiar a la vista de tabla.
         primeraPestana.click();
-        
+
         // Muestra el div de la tabla y oculta el div de agregar.
         MARCA_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
 }
 
-// Definición de la función asíncrona llamada 'addSave'.
-const addSave = async () => {
-    // Llama a la función 'sweetAlert' con ciertos parámetros.
-    await sweetAlert(1, 'Se ha guardado correctamente', true);
-    
-    // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
-    NOMBRE_INPUT.value = ' ';
-    DESC_INPUT.value = ' ';
-    IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
-}
-
-
 // Definición de la función asíncrona llamada 'openDetails'.
 const openDetails = async () => {
     // Muestra la caja de diálogo modal con su título.
     DATA_MODAL.show();
-    
+
     // Prepara el formulario de actualización reseteándolo a sus valores por defecto.
     UPDATE_FORM.reset();
-    
+
     // Establece valores predeterminados en algunos campos del formulario.
     NOMBRED_INPUT.value = "ADIDAS";
     DESCD_INPUT.value = 'Buena marca de zapatos';
-    
+
     // Establece la fuente de la imagen en el campo IMG_INPUT con la ruta '/recursos/imagenes/marcas/adidas.svg'.
-    IMGD_INPUT.src = '/recursos/imagenes/marcas/adidas.svg';
-    
+    IMGD_INPUT.src = '../../recursos/imagenes/marcas/adidas.svg';
+
     // Cambia el contenido del elemento con ID 'modalTitle' a 'Detalles Marca'.
     MODAL_TITLE.textContent = 'Detalles Marca';
 }
+
+
+// Método del evento para cuando se envía el formulario de guardar. 
+const addSave = async () => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(ADD_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(MARCAS_API, 'createRow', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Llama a la función 'sweetAlert' con ciertos parámetros.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
+        NOMBRE_INPUT.value = ' ';
+        DESC_INPUT.value = ' ';
+        IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+};
+
 
 // Definición de la función asíncrona llamada 'botonActualizar'.
 const botonActualizar = async () => {
@@ -182,7 +198,7 @@ const botonCancelar = async () => {
     if (textoBoton == 'Actualizar') {
         // Si es 'Actualizar', llama a una función para mostrar un mensaje de confirmación y captura la respuesta en una constante llamada 'RESPONSE'.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
-        
+
         // Verifica si el usuario ha confirmado la acción y, si es así, oculta el modal.
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
@@ -192,7 +208,7 @@ const botonCancelar = async () => {
     else if (textoBoton == 'Guardar') {
         // Si es 'Guardar', llama a una función para mostrar un mensaje de confirmación y captura la respuesta en una constante llamada 'RESPONSE'.
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardará');
-        
+
         // Verifica si el usuario ha confirmado la acción y, si es así, oculta el modal.
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
