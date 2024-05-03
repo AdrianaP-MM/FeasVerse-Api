@@ -120,7 +120,7 @@
                                         <input type="password" class="form-control" id="contraInput"
                                             placeholder="Ingresa la contraseña" required>
                                     </div>
-                                    
+
                                 </form>
                             </div>
                             <div class="contenedorBotones2 d-flex flex-wrap">
@@ -131,15 +131,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane1 fade z-2 position-relative d-none pt-5 d-flex flex-column align-items-center" role="tabpanel" id="tabla"
-                        aria-labelledby="tabla-tab">
+                    <div class="tab-pane1 fade z-2 position-relative d-none pt-5 d-flex flex-column align-items-center"
+                        role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
 
-                            <div class="search-container col-11">
-                                <input type="search" class="form-control" name="search" placeholder="Buscar....."
-                                    id="buscadorInputPedidos" required>
-                                <span class="search-icon"><i class="bi bi-search"></i></span>
-                                <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
-                            </div>
+                        <div class="search-container col-11">
+                            <input type="search" class="form-control" name="search" placeholder="Buscar....."
+                                id="buscadorInputPedidos" required>
+                            <span class="search-icon"><i class="bi bi-search"></i></span>
+                            <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
+                        </div>
 
                         <div class="Contenedor-tabla z-3 mt-4 table-responsive col-11">
                             <table class="table table-hover table-bordered" id="tablaTrabajadores">
@@ -155,46 +155,14 @@
                                         <th scope="col">Estado</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr ondblclick="openDetails(this)">
-                                        <td>1</td>
-                                        <td>Mejia Mendez</td>
-                                        <td>Adriana Paola</td>
-                                        <td>12345678-9</td>
-                                        <td>1234-5678</td>
-                                        <td>correo@gmail.com</td>
-                                        <td>Empleado</td>
-                                        <td>Vigente</td>
-                                    </tr>
-                                    <tr ondblclick="openDetails(this)">
-                                        <td>2</td>
-                                        <td>Jacobo Hernandez</td>
-                                        <td>Jacobo Emiliano</td>
-                                        <td>09876543-2</td>
-                                        <td>0987-6543</td>
-                                        <td>correo@gmail.com</td>
-                                        <td>Empleado</td>
-                                        <td>Inactivo</td>
-                                    </tr>
-                                    <tr ondblclick="openDetails(this)">
-                                        <td>3</td>
-                                        <td>Gomez Martinez</td>
-                                        <td>Fernando José</td>
-                                        <td>36472893-0</td>
-                                        <td>1836-4783</td>
-                                        <td>correo@gmail.com</td>
-                                        <td>Empleado</td>
-                                        <td>Vigente</td>
-                                    </tr>
-                                </tbody>
+                                <tbody id="tableBody"></tbody>
                             </table>
                         </div>
-                        <div class="contenedorBotones col-11 z-0 d-flex flex-wrap justify-content-center justify-content-lg-start justify-content-md-start">
-                            <button type="button"
-                                class="btn btn3 btn-primary mx-4 my-2 shadow text18 titillium-web-regular
+                        <div
+                            class="contenedorBotones col-11 z-0 d-flex flex-wrap justify-content-center justify-content-lg-start justify-content-md-start">
+                            <button type="button" class="btn btn3 btn-primary mx-4 my-2 shadow text18 titillium-web-regular
                                 ">Bloquear</button>
-                            <button type="button"
-                                class="btn btn3 btn-primary my-2 shadow text18 titillium-web-regular
+                            <button type="button" class="btn btn3 btn-primary my-2 shadow text18 titillium-web-regular
                                 ">Desbloquear</button>
                         </div>
                     </div>

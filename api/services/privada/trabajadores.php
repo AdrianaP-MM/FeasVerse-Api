@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/trabajadores_data.php');
+require_once ('../../models/data/trabajadores_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -19,8 +19,14 @@ if (isset($_GET['action'])) {
                 break;
             case 'createRow':
                 break;
-            case 'readAll':
-                break;
+                case 'readAll':
+                    if ($result['dataset'] = $trabajador->readAll()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    } else {
+                        $result['error'] = 'No existen productos registrados';
+                    }
+                    break;
             case 'readOne':
                 break;
             case 'updateRow':
@@ -76,7 +82,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = $trabajador->getDataError();
                 } elseif ($_POST['claveTrabajador'] != $_POST['confirmarTrabajador']) {
                     $result['error'] = 'Contraseñas diferentes';
-                }elseif ($trabajador->updatePassword()) {
+                } elseif ($trabajador->updatePassword()) {
                     $result['status'] = 1;
                     $result['message'] = 'Se ha actualizado correctamente la contraseña';
                 } else {
@@ -92,7 +98,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }
