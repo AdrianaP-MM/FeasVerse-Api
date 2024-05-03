@@ -203,7 +203,9 @@ const fillTable = async (form = null) => {
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
-        await sweetAlert(1, DATA.message, true); 
+        if(DATA.dataset == 0){
+            await sweetAlert(1, DATA.message, true); 
+        }  
     } else {
         sweetAlert(4, DATA.error, true);
     }
