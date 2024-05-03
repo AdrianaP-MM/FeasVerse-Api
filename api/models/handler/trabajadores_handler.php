@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -73,4 +73,12 @@ class TrabajadorHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function readAll()
+    {
+        $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador FROM tb_trabajadores t
+        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel;';
+        return Database::getRows($sql);
+    }
+
 }
+

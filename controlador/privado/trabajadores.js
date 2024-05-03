@@ -25,6 +25,11 @@ const ADD_DIV = document.getElementById('agregar');
 // Selecciona todos los formularios con la clase 'needs-validation'.
 const forms = document.querySelectorAll('.needs-validation')
 
+// Constantes para establecer el contenido de la tabla.
+const TABLE_BODY = document.getElementById('tableBody');
+
+const TRABAJADORES_API = 'services/privada/trabajadores.php';
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -38,7 +43,50 @@ document.addEventListener('DOMContentLoaded', async () => {
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
+
+    // Llamada a la función para llenar la tabla con los registros existentes.
+    fillTable();
 });
+
+
+/*
+*   Función asíncrona para llenar la tabla con los registros disponibles.
+*   Parámetros: form (objeto opcional con los datos de búsqueda).
+*   Retorno: ninguno.
+*/
+const fillTable = async (form = null) => {
+    TABLE_BODY.innerHTML = '';
+    // Se verifica la acción a realizar.
+    (form) ? action = 'searchRows' : action = 'readAll';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(TRABAJADORES_API, action);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            TABLE_BODY.innerHTML += `
+            <tr class="table-row" ondblclick="openDetails(this)">
+                <td>${row.id_trabajador}</td>
+                <td>${row.apellido_trabajador}</td>
+                <td>${row.nombre_trabajador}</td>
+                <td>${row.dui_trabajador}</td>
+                <td>${row.telefono_trabajador}</td>
+                <td>${row.correo_trabajador}</td>
+                <td>${row.nivel}</td>
+                <td>${row.estado_trabajador}</td>
+            </tr>
+            `;
+        });
+        // Se muestra un mensaje de acuerdo con el resultado.
+        ROWS_FOUND.textContent = DATA.message;
+    } else {
+        /*
+        sweetAlert(4, DATA.error, true);*/
+        console.log('El diavlo');
+    }
+}
+
+
 
 // Función para abrir los detalles de un trabajador.
 const openDetails = async (row) => {
@@ -65,20 +113,20 @@ const openDetails = async (row) => {
     var id = values[0];
 
 
-    if(values[7] == 'Vigente'){
+    if (values[7] == 'Vigente') {
         ESTADO_INPUT.value = 1;
     }
-    else{
+    else {
         ESTADO_INPUT.value = 2;
     }
 
-    if(values[6] == 'Admin'){
+    if (values[6] == 'Admin') {
         NIVEL_INPUT.value = 1;
     }
-    else if(values[6] == 'Empleado'){
+    else if (values[6] == 'Empleado') {
         NIVEL_INPUT.value = 2;
     }
-    else{
+    else {
         NIVEL_INPUT.value = 3;
     }
 
@@ -347,3 +395,4 @@ document.getElementById('telefonoInput').addEventListener('input', function () {
     }
     this.value = telefonoInput;
 });
+

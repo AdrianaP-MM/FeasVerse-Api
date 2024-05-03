@@ -22,7 +22,7 @@ class PedidosHandler
     protected $cantidad_pedido = null;
     protected $precio_del_zapato = null;
 
-    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIZADOS
     public function readAllOrders()
     {
         $sql = 'SELECT tb_pedidos_clientes.id_pedido_cliente, 
