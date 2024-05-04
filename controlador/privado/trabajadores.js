@@ -95,24 +95,58 @@ const fillTable = async (form = null) => {
 }
 
 
-// Método del evento para cuando se envía el formulario de guardar. 
 const addSave = async () => {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
-    // Constante tipo objeto con los datos del formulario.
-    const FORM = new FormData(ADD_FORM);
-    // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(TRABAJADORES_API, 'createRow', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se muestra un mensaje de éxito.
-        await sweetAlert(1, 'Se ha guardado correctamente', true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillTable();
-    } else {
-        await sweetAlert(2, DATA.error, false);
+
+    // Validación de cada campo del formulario
+    const nombre = document.getElementById('nombreInput').value;
+    const apellidos = document.getElementById('apellidosInput').value;
+    const dui = document.getElementById('duiInput').value;
+    const telefono = document.getElementById('telefonoInput').value;
+    const correo = document.getElementById('correoInput').value;
+    const fechaNacimiento = document.getElementById('fechanInput').value;
+    const fechaRegistro = document.getElementById('fecharInput').value;
+    const estado = document.getElementById('estadoInput').value;
+    const nivel = document.getElementById('nivelInput').value;
+    const contrasena = document.getElementById('contraInput').value;
+
+    // Validación de nombre y apellidos (solo letras)
+    const nombreRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+    const apellidosRegex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
+
+    // Verificar que los campos no estén vacíos
+    if (nombre.trim() === '' || apellidos.trim() === '' || dui.trim() === '' || telefono.trim() === '' || correo.trim() === '' || fechaNacimiento.trim() === '' || fechaRegistro.trim() === '' || estado.trim() === '' || nivel.trim() === '' || contrasena.trim() === '') {
+        await sweetAlert(2, 'Debes de llenar todos los campos son obligatorios', false);
+        return;
     }
+    else if (!nombreRegex.test(nombre) || !apellidosRegex.test(apellidos)) {
+        await sweetAlert(2, 'El nombre y los apellidos solo pueden contener letras', false);
+        return;
+    }
+    else {
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(ADD_FORM);
+
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(TRABAJADORES_API, 'createRow', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha guardado correctamente', true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+            // Resetear el formulario
+            document.getElementById('AddForm').reset();
+        } else {
+            await sweetAlert(2, DATA.error, false);
+        }
+    }
+
 };
+
+
 
 // Función para abrir los detalles de un trabajador.
 const openDetails = async (row) => {

@@ -105,6 +105,29 @@
     height: 48vh;
 }
 
+/* Personalización del scrollbar dentro de .Contenedor-tabla */
+.Contenedor-tabla {
+    margin-bottom: 20px;
+    height: 48vh;
+    overflow-y: auto; /* Asegura que el scrollbar solo aparezca cuando sea necesario */
+}
+
+/* Estilo del track del scrollbar */
+.Contenedor-tabla::-webkit-scrollbar-track {
+    background-color: #1A89BD; /* Cambia el color de fondo del track del scrollbar */
+}
+
+/* Estilo del thumb (barra) del scrollbar */
+.Contenedor-tabla::-webkit-scrollbar-thumb {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar */
+    border-radius: 5px; /* Añade bordes redondeados al thumb */
+}
+
+/* Estilo del thumb (barra) del scrollbar cuando se desplaza */
+.Contenedor-tabla::-webkit-scrollbar-thumb:hover {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar al pasar el mouse */
+}
+
 /* Estilos para los contenedores de botones */
 .contenedorBotones,
 .contenedorBotones2,
@@ -244,9 +267,25 @@
     color: white;
 }
 
-/* Hacer que el encabezado de la tabla se mantenga fijo al hacer scroll en el cuerpo de la tabla */
+/* Personalización del scrollbar en la tabla */
 #tablaTrabajadores {
     overflow-y: auto;
+}
+
+/* Estilo del track del scrollbar */
+#tablaTrabajadores::-webkit-scrollbar-track {
+    background-color: #1A89BD; /* Cambia el color de fondo del track del scrollbar */
+}
+
+/* Estilo del thumb (barra) del scrollbar */
+#tablaTrabajadores::-webkit-scrollbar-thumb {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar */
+    border-radius: 5px; /* Añade bordes redondeados al thumb */
+}
+
+/* Estilo del thumb (barra) del scrollbar cuando se desplaza */
+#tablaTrabajadores::-webkit-scrollbar-thumb:hover {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar al pasar el mouse */
 }
 
 /* Hacer que el encabezado de la tabla se mantenga fijo al hacer scroll en el cuerpo de la tabla */
