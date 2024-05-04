@@ -136,3 +136,26 @@
     background-color: #1A89BD;  /* Color de fondo del contenido del modal */
     color: white;  /* Color del texto del contenido del modal */
 }
+
+/* Personalización del scrollbar dentro de .Contenedor-tabla */
+.Contenedor-tabla {
+    margin-bottom: 20px;
+    height: 48vh;
+    overflow-y: auto; /* Asegura que el scrollbar solo aparezca cuando sea necesario */
+}
+
+/* Estilo del track del scrollbar */
+.Contenedor-tabla::-webkit-scrollbar-track {
+    background-color: #1A89BD; /* Cambia el color de fondo del track del scrollbar */
+}
+
+/* Estilo del thumb (barra) del scrollbar */
+.Contenedor-tabla::-webkit-scrollbar-thumb {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar */
+    border-radius: 5px; /* Añade bordes redondeados al thumb */
+}
+
+/* Estilo del thumb (barra) del scrollbar cuando se desplaza */
+.Contenedor-tabla::-webkit-scrollbar-thumb:hover {
+    background-color: #1A89BD; /* Cambia el color de la barra del scrollbar al pasar el mouse */
+}

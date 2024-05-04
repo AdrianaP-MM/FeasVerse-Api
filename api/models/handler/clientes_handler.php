@@ -88,7 +88,7 @@ class ClienteHandler
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, fecha_de_nacimiento, fecha_de_registro, direccion_cliente, estado_cliente
                 FROM tb_clientes
                 WHERE apellido_cliente LIKE ? OR nombre_cliente LIKE ? OR correo_cliente LIKE ?
-                ORDER BY apellido_cliente';
+                ORDER BY id_cliente';
         $params = array($value, $value, $value);
         return Database::getRows($sql, $params);
     }
@@ -106,7 +106,7 @@ class ClienteHandler
     {
         $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, telefono_cliente, dui_cliente, estado_cliente
                 FROM tb_clientes
-                ORDER BY apellido_cliente';
+                ORDER BY id_cliente';
         return Database::getRows($sql);
     }
 
@@ -122,9 +122,9 @@ class ClienteHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, telefono_cliente = ?, fecha_de_nacimiento = ?, direccion_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, telefono_cliente = ?, fecha_de_nacimiento = ?, estado_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->direccion_cliente, $this->id_cliente);
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->estado_cliente, $this->id_cliente);
         return Database::executeRow($sql, $params);
     }
 

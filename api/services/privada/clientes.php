@@ -78,15 +78,16 @@ if (isset($_GET['action'])) {
                 break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
+                var_dump($_POST['estadoCliente']);
                 if (
                     !$cliente->setId($_POST['idCliente']) or
                     !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidoCliente']) or
+                    !$cliente->setApellido($_POST['apellidosCliente']) or
                     !$cliente->setCorreo($_POST['correoCliente']) or
                     !$cliente->setTelefono($_POST['telefonoCliente']) or
                     !$cliente->setDUI($_POST['duiCliente']) or
-                    !$cliente->setNacimiento($_POST['fechaNacimiento']) or
-                    !$cliente->setDireccion($_POST['direccionCliente'])
+                    !$cliente->setNacimiento($_POST['fechaDeNacimientoCliente']) or
+                    !$cliente->setEstado($_POST['estadoCliente'])
                 ) {
                     $result['error'] = $cliente->getDataError();
                 } elseif ($cliente->updateRow()) {

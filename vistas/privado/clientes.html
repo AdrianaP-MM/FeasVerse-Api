@@ -55,38 +55,52 @@
                     <!-- Contenido de la pestaña "Tabla" -->
                     <div class="tab-pane fade show z-3" role="tabpanel" id="tabla" aria-labelledby="tabla-tab">
                         <!-- Contenedor total de la tabla -->
-                        <div class="ContenedorTotal z-3 position-relative">
-                            <!-- Contenedor de la tabla -->
-                            <div class="col-lg-10 offset-lg-1">
-                                <div class="Contenedor-tabla z-3 mt-5 table-responsive">
-                                    <!-- Tabla de clientes -->
-                                    <table class="table table-hover table-bordered" id="tablaClientes">
-                                        <!-- Cabecera de la tabla -->
-                                        <thead class="thead">
-                                            <tr>
-                                                <th scope="col" class="cabecera-color text-white text-center">ID</th>
-                                                <th scope="col" class="cabecera-color text-white text-center">Apellidos
-                                                </th>
-                                                <th scope="col" class="cabecera-color text-white text-center">Nombres
-                                                </th>
-                                                <th scope="col" class="cabecera-color text-white text-center">DUI</th>
-                                                <th scope="col" class="cabecera-color text-white text-center">Teléfono
-                                                </th>
-                                                <th scope="col" class="cabecera-color text-white text-center">Correo
-                                                </th>
-                                                <th scope="col" class="cabecera-color text-white text-center">Estado
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <!-- Cuerpo de la tabla -->
-                                        <tbody class="text-center" id="tableBody">
-                                            
-                                        </tbody>
-                                    </table>
+                        <div class="ContenedorTotal z-3 position-relative flex-column">
+                            <div class="d-flex flex-column align-items-center">
+                                <div class="search-container col-11 mt-4">
+                                    <input type="search" class="form-control" name="search" placeholder="Buscar....."
+                                        id="buscadorInputPedidos" required>
+                                    <span class="search-icon"><i class="bi bi-search"></i></span>
+                                    <span class="clear-icon" onclick="clearSearch()"><i
+                                            class="bi clear-icon"></i></span>
+                                </div>
+                                <!-- Contenedor de la tabla -->
+                                <div class="col-lg-11">
+                                    <div class="Contenedor-tabla z-3 mt-4 table-responsive col-12">
+                                        <!-- Tabla de clientes -->
+                                        <table class="table table-hover table-bordered" id="tablaClientes">
+                                            <!-- Cabecera de la tabla -->
+                                            <thead class="thead">
+                                                <tr>
+                                                    <th scope="col" class="cabecera-color text-white text-center">ID
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">
+                                                        Apellidos
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">
+                                                        Nombres
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">DUI
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">
+                                                        Teléfono
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">Correo
+                                                    </th>
+                                                    <th scope="col" class="cabecera-color text-white text-center">Estado
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <!-- Cuerpo de la tabla -->
+                                            <tbody class="text-center" id="tableBody">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Contenedor de botones -->
-                            <div class="contenedorBotones z-0">
+                            <div class="contenedorBotones z-0 mb-4 mt-2">
                                 <button type="button"
                                     class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
                                 <button type="button"
@@ -112,6 +126,8 @@
                     <form id="detailUpdateForm" name="detailUpdateForm">
                         <div class="modal-body row g-3">
                             <!-- Campos del formulario -->
+                            <!-- Campo oculto para asignar el id del registro al momento de modificar -->
+                            <input type="number" class="d-none" id="idCliente" name="idCliente">
                             <!-- Campo de nombre -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="nombreCliente" class="form-label">Nombres</label>
@@ -157,7 +173,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <label for="estadoCliente" class="form-label">Estado</label>
                                 <select class="form-select form-control" id="estadoCliente" aria-label="estadoCliente">
-                                    <option selected value="1">Vigente</option>
+                                    <option value="1">Vigente</option>
                                     <option value="2">Inactivo</option>
                                 </select required>
                             </div>

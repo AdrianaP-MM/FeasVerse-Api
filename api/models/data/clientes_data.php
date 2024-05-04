@@ -16,8 +16,8 @@ class ClienteData extends ClienteHandler
     */
     public function setId($value)
     {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->id_cliente = $value;
+        if (Validator::validateNaturalNumber((int)$value)) {
+            $this->id_cliente = (int)$value;
             return true;
         } else {
             $this->data_error = 'El identificador del cliente es incorrecto';
@@ -117,7 +117,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
-    public function setDireccion($value, $min = 2, $max = 250)
+    public function setDireccion($value, $min = 2, $max = 100)
     {
         if (!Validator::validateString($value)) {
             $this->data_error = 'La dirección contiene caracteres prohibidos';

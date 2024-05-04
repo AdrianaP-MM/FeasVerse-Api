@@ -2,7 +2,8 @@
 document.querySelector('title').textContent = 'Feasverse - Clientes';
 
 //declaracion de las variables
-const NOMBRES_INPUT = document.getElementById('nombreCliente'),
+const ID_INPUT = document.getElementById('idCliente'),
+    NOMBRES_INPUT = document.getElementById('nombreCliente'),
     APELLIDOS_INPUT = document.getElementById('apellidosCliente'),
     DUI_INPUT = document.getElementById('duiCliente'),
     TEL_INPUT = document.getElementById('telefonoCliente'),
@@ -35,47 +36,49 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 //Constante para abrir detalles cuando se le de doble click a la tabla
-const openDetails = async (row) => {
-    // Se muestra la caja de diálogo con su título.
-    DATA_MODAL.show();
-    // Se prepara el formulario.
-    UPDATE_FORM.reset();
-    // Se inicializan los campos con los datos.
-    var cells = row.getElementsByTagName('td');
-    // Crea un array para almacenar los valores de las celdas
-    var values = [];
-    // Itera sobre las celdas y agrega sus valores al array
-    for (var i = 0; i < cells.length; i++) {
-        values.push(cells[i].innerText);
-    }
-    // Deshabilitar la edición de los campos de entrada
-    NOMBRES_INPUT.readOnly = true;
-    APELLIDOS_INPUT.readOnly = true;
-    DUI_INPUT.readOnly = true;
-    TEL_INPUT.readOnly = true;
-    CORREO_INPUT.readOnly = true;
-    FECHAN_INPUT.readOnly = true;
-    FECHAR_INPUT.readOnly = true;
-    ESTADO_INPUT.disabled = true;
+const openDetails = async (idCliente) => {
+    const FORM_ID = new FormData();
+    FORM_ID.append('idCliente', idCliente);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTES_API, 'readOne', FORM_ID);
+    if (DATA.status) {
+        // Se prepara el formulario.
+        UPDATE_FORM.reset();
+        // Se muestra la caja de diálogo con su título.
+        DATA_MODAL.show();
+        const ROW = DATA.dataset;
+        ID_INPUT.value = ROW.id_cliente;
+        NOMBRES_INPUT.value = ROW.nombre_cliente;
+        APELLIDOS_INPUT.value = ROW.apellido_cliente;
+        DUI_INPUT.value = ROW.dui_cliente;
+        TEL_INPUT.value = ROW.telefono_cliente;
+        CORREO_INPUT.value = ROW.correo_cliente;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+        FECHAR_INPUT.value = ROW.fecha_de_registro;
+        if (ROW.estado_cliente == 1) {
+            ESTADO_INPUT.value = 1;
+            ESTADO_INPUT.selectedIndex = 1;
+        }
+        else if (ROW.estado_cliente == 2) {
+            ESTADO_INPUT.value = 2;
+            ESTADO_INPUT.selectedIndex = 2;
+        }
 
-    // Se coloca los valores en el input
-    NOMBRES_INPUT.value = values[2];
-    APELLIDOS_INPUT.value = values[1];
-    DUI_INPUT.value = values[3];
-    TEL_INPUT.value = values[4];
-    CORREO_INPUT.value = values[5];
-    FECHAN_INPUT.value = '2024-09-03';
-    FECHAR_INPUT.value = '2024-03-04';
+        // Deshabilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        FECHAR_INPUT.readOnly = true;
+        ESTADO_INPUT.disabled = true;
 
-    if (values[6] === 'Vigente') {
-        ESTADO_INPUT.value = 1;
+        MODAL_TITLE.textContent = 'Detalles de Clientes #' + idCliente;
     }
     else {
-        ESTADO_INPUT.value = 2;
+        sweetAlert(2, DATA.error, false);
     }
-    //Titulo del modal con el id del cliente
-    var idCliente = values[0];
-    MODAL_TITLE.textContent = 'Detalles de Clientes #' + idCliente;
 };
 
 //Funcion cuando se muestre la pestaña de la tabla
@@ -110,17 +113,34 @@ const botonActualizar = async () => {
         BOTON_ACTUALIZAR.textContent = "Guardar";
     }
     else if (textoBoton == 'Guardar') {
-        // Deshabilitar la edición de los campos de entrada
-        NOMBRES_INPUT.readOnly = true;
-        APELLIDOS_INPUT.readOnly = true;
-        DUI_INPUT.readOnly = true;
-        TEL_INPUT.readOnly = true;
-        CORREO_INPUT.readOnly = true;
-        FECHAN_INPUT.readOnly = true;
-        FECHAR_INPUT.readOnly = true;
-        ESTADO_INPUT.disabled = true;
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        DATA_MODAL.hide();
+        // Se evita recargar la página web después de enviar el formulario.
+        event.preventDefault();
+        // Petición para ACTUALIZAR.
+        const UPDATE_FORM1 = document.getElementById('detailUpdateForm');
+        // Petición para ACTUALIZAR.
+        const FORM = new FormData(UPDATE_FORM1);
+        // Obtener el valor del campo de selección
+        const estadoClienteValue = FORM.get('estadoCliente');
+        console.log(estadoClienteValue);
+
+        console.log(FORM);
+        const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
+        if (DATA.status) {
+            // Deshabilitar la edición de los campos de entrada
+            NOMBRES_INPUT.readOnly = true;
+            APELLIDOS_INPUT.readOnly = true;
+            DUI_INPUT.readOnly = true;
+            TEL_INPUT.readOnly = true;
+            CORREO_INPUT.readOnly = true;
+            FECHAN_INPUT.readOnly = true;
+            FECHAR_INPUT.readOnly = true;
+            ESTADO_INPUT.disabled = true;
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            fillTable();
+            DATA_MODAL.hide();
+        } else {
+            await sweetAlert(2, DATA.error, false);
+        }
     }
 }
 
@@ -191,7 +211,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-            <tr class="table-row" ondblclick="openDetails(this)">
+            <tr class="table-row" ondblclick="openDetails(${row.id_cliente})">
                 <td>${row.id_cliente}</td>
                 <td>${row.apellido_cliente}</td>
                 <td>${row.nombre_cliente}</td>
@@ -203,9 +223,9 @@ const fillTable = async (form = null) => {
             `;
         });
         // Se muestra un mensaje de acuerdo con el resultado.
-        if(DATA.dataset == 0){
-            await sweetAlert(1, DATA.message, true); 
-        }  
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
     } else {
         sweetAlert(4, DATA.error, true);
     }
