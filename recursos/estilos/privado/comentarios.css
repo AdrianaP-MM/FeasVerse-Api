@@ -97,7 +97,7 @@ body {
 
 .comentarioT {
     color: #1591CC;
-
+    font-size: 25px;
 }
 
 .rectanguloP {
@@ -110,7 +110,8 @@ body {
 }
 
 .comentarioD {
-    padding-top: 5px;
+    padding-top: 30px;
+    font-size: 30px;
 }
 
 .sizedbox {
@@ -244,13 +245,6 @@ body {
     /* Centrar horizontalmente */
 }
 
-.contenedorComentario
-{
-    padding: 30px;
-    width: 100%;
-    background-color: white;
-    border-radius: 15px;
-}
 
 .detalleZapato
 {
