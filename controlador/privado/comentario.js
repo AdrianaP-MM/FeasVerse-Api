@@ -2,16 +2,16 @@
 document.querySelector('title').textContent = 'Feasverse - Comentarios';
 //Declaracion de variables
 
-    const COMENTARIOS_DIV = document.getElementById('rectanguloP'),
+const COMENTARIOS_DIV = document.getElementById('rectanguloP'),
     BOTON_RETIRAR = document.getElementById('btnRetirar'),
     DCOMENTARIOS_DIV = document.getElementById('rectanguloP1'),
     NUMBERCALIFICACION = document.getElementById('NumberCalificacion'),
     DESCRIPCIONCOMENTARIO = document.getElementById('DescripcionComentario'),
     TITULOCOMENTARIO = document.getElementById('TituloComentario');
 
-    const COMENTARIO_BODY = document.getElementById('ComentarioC');
+const COMENTARIO_BODY = document.getElementById('ComentarioC');
 
-    const COMENTARIOS_API = 'services/privada/comentarios.php';
+const COMENTARIOS_API = 'services/privada/comentarios.php';
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -34,7 +34,7 @@ const fillComents = async () => {
             // Manejar los datos de comentarios
             DATA.dataset.forEach(row => {
                 COMENTARIO_BODY.innerHTML += `
-                <div class="ComentarioC" data-bs-toggle="tab" id="ComentarioC" role="tab"
+                <div class="ComentarioC mt-3" data-bs-toggle="tab" id="ComentarioC" role="tab"
                                 data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
                                 <script>
                                     document.querySelector('.ComentarioC').addEventListener('click', function () {

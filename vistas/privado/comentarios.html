@@ -34,91 +34,76 @@
             <div class="container"> <!--div contenedor del texto de comentarios y linea-->
                 <div class="contenidoP">
                     <div class="nav-link rectanguloP z-0" id="rectanguloP"> <!--Contenedor con fondo gris-->
-                        <div class="comentario mt-1">
-                            <div class="ComentarioC" data-bs-toggle="tab" id="ComentarioC" role="tab"
-                                data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
-                                <script>
-                                    document.querySelector('.ComentarioC').addEventListener('click', function () {
-                                        ShowComentario(this);
-                                    });
-                                </script>
-                                
-
-
-
-
-                            </div>
+                        <div class="comentario mt-1" id="ComentarioC">
+                            <div class="sizedbox"></div>
                         </div>
                     </div>
-
-                </div>
-
-
-        </div>
-        <!--PAGINA DE DETALLE COMENTARIO-->
-        <div class="nav-link rectanguloP1 z-0 d-flex flex-column d-none " id="rectanguloP1">
-            <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
-                <div class="container p-0 m-0">
-                    <button class="btn" type="button" onclick="volver()">
-                        <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
-                    </button> <!--Boton para volver a la pagina de comentarios-->
-                </div>
-                <div
-                    class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
-                    <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
-                    <!--Contenedor de la informacion de Cliente-->
-                    <p class="titillium-web-regular">
-                        <span class="fw-bold">
-                            Nombre del cliente:
-                        </span> Emilianito
-                    </p> <!--Informacion del Cliente-->
-
-                    <p class=" titillium-web-regular">
-                        <span class="fw-bold">
-                            Correo del cliente:
-                        </span>
-                        Emilianito@gmail.com
-                    </p><!--Informacion del Cliente-->
-
-                    <p class="titillium-web-regular">
-                        <span class="fw-bold">
-                            Teléfono del cliente:
-                        </span>
-                        1234-5678
-                    </p>
-                </div> <!--Informacion del Cliente-->
-
-                <div class="d-flex flex-column contedorDataZapato flex-wrap">
-
-                    <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
-                        <!--Contenedor para mostrar el producto comentado-->
-                        <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
-                        <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="">
-                        <p class=" m-0 fw-semi-bold">Nike Dunk Low</p>
-                        <p class="m-0">Zapato Unisex</p>
-                        <p class="m-0">2 Colores</p>
-                        <p class=" m-0 fw-bold">$185</p>
-                    </div> <!--Informacion total del zapato comentado-->
                 </div>
             </div>
-            <!--Descripcion del comentario-->
-            <div class="d-flex flex-column contenedorElemento2 flex-wrap justify-content-center align-items-center">
-                <div class="d-flex flex-column flex-wrap contenedorComentario">
-                    <h6 class="titillium-web-semibold color-3blue">Descripcion del comentario:</h6>
-                    <p class=""> Un zapato que la verdad recomiendo mucho, me gustan sus colores y es
-                        muy comodo, lo recomiendo para
-                        fiestas por que es muy elegante.
-                    </p>
+            <!--PAGINA DE DETALLE COMENTARIO-->
+            <div class="nav-link rectanguloP1 z-0 d-flex flex-column d-none " id="rectanguloP1">
+                <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
+                    <div class="container p-0 m-0">
+                        <button class="btn" type="button" onclick="volver()">
+                            <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
+                        </button> <!--Boton para volver a la pagina de comentarios-->
+                    </div>
+                    <div
+                        class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
+                        <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
+                        <!--Contenedor de la informacion de Cliente-->
+                        <p class="titillium-web-regular">
+                            <span class="fw-bold">
+                                Nombre del cliente:
+                            </span> Emilianito
+                        </p> <!--Informacion del Cliente-->
 
-                    <!--Boton para retirar comentario-->
-                    <div class="container p-0 m-0 mt-4">
-                        <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarC()">
-                            Retirar comentario
-                        </button>
+                        <p class=" titillium-web-regular">
+                            <span class="fw-bold">
+                                Correo del cliente:
+                            </span>
+                            Emilianito@gmail.com
+                        </p><!--Informacion del Cliente-->
+
+                        <p class="titillium-web-regular">
+                            <span class="fw-bold">
+                                Teléfono del cliente:
+                            </span>
+                            1234-5678
+                        </p>
+                    </div> <!--Informacion del Cliente-->
+
+                    <div class="d-flex flex-column contedorDataZapato flex-wrap">
+
+                        <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
+                            <!--Contenedor para mostrar el producto comentado-->
+                            <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
+                            <img src="../../recursos/imagenes/zapato.png" alt="zapatoC" class="">
+                            <p class=" m-0 fw-semi-bold">Nike Dunk Low</p>
+                            <p class="m-0">Zapato Unisex</p>
+                            <p class="m-0">2 Colores</p>
+                            <p class=" m-0 fw-bold">$185</p>
+                        </div> <!--Informacion total del zapato comentado-->
+                    </div>
+                </div>
+                <!--Descripcion del comentario-->
+                <div class="d-flex flex-column contenedorElemento2 flex-wrap justify-content-center align-items-center">
+                    <div class="d-flex flex-column flex-wrap contenedorComentario">
+                        <h6 class="titillium-web-semibold color-3blue">Descripcion del comentario:</h6>
+                        <p class=""> Un zapato que la verdad recomiendo mucho, me gustan sus colores y es
+                            muy comodo, lo recomiendo para
+                            fiestas por que es muy elegante.
+                        </p>
+
+                        <!--Boton para retirar comentario-->
+                        <div class="container p-0 m-0 mt-4">
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarC()">
+                                Retirar comentario
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </main>
     <footer id="footer"></footer> <!--* Elemento de Plantilla-->
