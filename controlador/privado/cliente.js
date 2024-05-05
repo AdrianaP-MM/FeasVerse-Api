@@ -115,16 +115,21 @@ const botonActualizar = async () => {
     else if (textoBoton == 'Guardar') {
         // Se evita recargar la página web después de enviar el formulario.
         event.preventDefault();
-        // Petición para ACTUALIZAR.
-        const UPDATE_FORM1 = document.getElementById('detailUpdateForm');
-        // Petición para ACTUALIZAR.
-        const FORM = new FormData(UPDATE_FORM1);
-        // Obtener el valor del campo de selección
-        const estadoClienteValue = FORM.get('estadoCliente');
-        console.log(estadoClienteValue);
 
-        console.log(FORM);
+        const FORM = new FormData();
+
+        // Petición para ACTUALIZAR.
+        FORM.append('idCliente', ID_INPUT.value);
+        FORM.append('nombreCliente', NOMBRES_INPUT.value);
+        FORM.append('apellidosCliente', APELLIDOS_INPUT.value);
+        FORM.append('correoCliente', CORREO_INPUT.value);
+        FORM.append('telefonoCliente', TEL_INPUT.value);
+        FORM.append('duiCliente', DUI_INPUT.value);
+        FORM.append('fechaDeNacimientoCliente', FECHAN_INPUT.value);
+        FORM.append('estadoCliente', ESTADO_INPUT.value);
+
         const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
+        console.log(DATA);
         if (DATA.status) {
             // Deshabilitar la edición de los campos de entrada
             NOMBRES_INPUT.readOnly = true;
