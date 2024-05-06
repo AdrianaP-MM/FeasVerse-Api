@@ -173,6 +173,15 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateStatus()
+    {
+        $sql = 'UPDATE tb_pedidos_clientes
+                SET estado_pedido = ?
+                WHERE id_pedido_cliente = ?';
+        $params = array($this->estado_pedido, $this->id_pedido_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
     public function deleteRowPedidos()
     {
         $sql = 'DELETE FROM tb_pedidos_clientes
