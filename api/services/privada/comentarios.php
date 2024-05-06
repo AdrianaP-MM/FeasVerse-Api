@@ -7,7 +7,7 @@ if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
-    $trabajador = new ComentariosData;
+    $comentarios = new ComentariosData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como trabajador, de lo contrario se finaliza el script con un mensaje de error.
@@ -18,17 +18,19 @@ if (isset($_GET['action'])) {
             case 'searchRows':
                 break;
             case 'readAll':
-                if ($result['dataset'] = $trabajador->readComentarios()) {
+                if ($result['dataset'] = $comentarios->readComentarios()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen productos registrados';
+                    $result['error'] = 'No hay comentarios existentes';
                 }
                 break;
             case 'readOne':
                 break;
-            case 'updateRow':
-                break;
+                case 'updateEstado':
+                    
+                    break;
+                
             case 'deleteRow':
                 break;
             case 'getUser':

@@ -3,10 +3,11 @@ document.querySelector('title').textContent = 'Feasverse - Comentarios';
 //Declaracion de variables
 
 const COMENTARIOS_DIV = document.getElementById('rectanguloP'),
-    BOTON_RETIRAR = document.getElementById('btnRetirar'),
     DCOMENTARIOS_DIV = document.getElementById('rectanguloP1'),
     NUMBERCALIFICACION = document.getElementById('NumberCalificacion'),
     DESCRIPCIONCOMENTARIO = document.getElementById('DescripcionComentario'),
+    ID_COMENTARIO = document.getElementById('idComentario'),
+    BOTON_ESTADO = document.getElementById('btnRetirar'),
     TITULOCOMENTARIO = document.getElementById('TituloComentario');
 
 const COMENTARIO_BODY = document.getElementById('ComentarioC');
@@ -36,25 +37,18 @@ const fillComents = async () => {
                 COMENTARIO_BODY.innerHTML += `
                 <div class="ComentarioC mt-3" data-bs-toggle="tab" id="ComentarioC" role="tab"
                                 data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
-                                <script>
-                                    document.querySelector('.ComentarioC').addEventListener('click', function () {
-                                        ShowComentario(this);
-                                    });
-                                </script>
-                                <div class="Calificacion d-flex align-items: center; justify-content-end">
+                                
+                                <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario">
                                     <p style="font-size: 23px;" class=" d-flex justify-content-end flex-row"
                                         id="NumberCalificacion">${row.calificacion_comentario}</p>
                                     <a href="#" class="bi-star-fill estrella d-flex justify-content-end mt-2"></a>
                                 </div>
                                 <h5 class="comentarioT" id="TituloComentario">${row.titulo_comentario}</h5>
-                                <p class="comentarioD" id="DescripcionComentario">${row.descripcion_comentario}</p>
-`
+                                <p class="comentarioD" id="DescripcionComentario">${row.descripcion_comentario}</p>`
             });
-
             // Asignar un manejador de eventos
             document.querySelector('.ComentarioC').addEventListener('click', function () {
                 ShowComentario(this);
-                console.log("SI FUNCIONA");
             });
         }
     } else {
@@ -62,6 +56,27 @@ const fillComents = async () => {
         await sweetAlert(4, DATA.error, true);
     }
 };
+
+const updateEstado = async (idComentario) => {
+    try {
+        const DATA = await fetchData(COMENTARIOS_API, 'updateEstado');
+        console.log(DATA); // Verifica los datos devueltos
+
+        if (DATA && DATA.status !== undefined) {
+            if (DATA.status) {
+                await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            } else {
+                await sweetAlert(2, DATA.error || 'Error desconocido', false);
+            }
+        } else {
+            throw new Error("Respuesta de la API no válida");
+        }
+    } catch (error) {
+        console.error("Error al actualizar estado:", error);
+        await sweetAlert(2, "Error de conexión o procesamiento", false);
+    }
+};
+
 
 
 function ShowComentario(div) {
@@ -79,7 +94,7 @@ function volver() {
 }
 
 const RetirarC = async () => {
-    var textoBoton = BOTON_RETIRAR.textContent.trim();
+    var textoBoton = BOTON_ESTADO.textContent.trim();
 
     await sweetAlert(1, 'Se ha retirado el comentario correctamente', true);
 

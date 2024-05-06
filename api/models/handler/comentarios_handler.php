@@ -18,13 +18,36 @@ class ComentariosHandler
     protected $fecha_del_comentario = null;
     protected $id_detalles_pedido = null;
 
+    /*
+     *  Metodos
+     */
     public function readComentarios()
     {
         $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
         FROM tb_comentarios
-        ORDER BY fecha_del_comentario;';
+        WHERE estado_comentario = "Activo";';
         return Database::getRows($sql);
     }
+
+    public function updateEstado()
+    {
+        $sql = 'UPDATE tb_comentarios
+                SET estado_comentario = ?
+                WHERE id_comentario = ?';
+        $params = array($this->estado_comentario, $this->id_comentario);
+        return Database::executeRow($sql, $params);
+    }
+
+    
+    public function readComentario()
+    {
+        $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
+                FROM tb_comentarios
+                WHERE id_comentario = ?';
+        $params = array($this->id_comentario);
+        return Database::getRow($sql, $params);
+    }
+
 
 
 
