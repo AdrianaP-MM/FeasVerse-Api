@@ -116,35 +116,51 @@ const botonActualizar = async () => {
         // Se evita recargar la página web después de enviar el formulario.
         event.preventDefault();
 
-        const FORM = new FormData();
+        // Obtener los valores de los campos de nombre y apellido
+        var nombre = document.getElementById('nombreCliente').value.trim();
+        var apellido = document.getElementById('apellidosCliente').value.trim();
 
-        // Petición para ACTUALIZAR.
-        FORM.append('idCliente', ID_INPUT.value);
-        FORM.append('nombreCliente', NOMBRES_INPUT.value);
-        FORM.append('apellidosCliente', APELLIDOS_INPUT.value);
-        FORM.append('correoCliente', CORREO_INPUT.value);
-        FORM.append('telefonoCliente', TEL_INPUT.value);
-        FORM.append('duiCliente', DUI_INPUT.value);
-        FORM.append('fechaDeNacimientoCliente', FECHAN_INPUT.value);
-        FORM.append('estadoCliente', ESTADO_INPUT.value);
+        // Validar que se haya ingresado algo en los campos de nombre y apellido
+        if (nombre === '' || apellido === '') {
+            await sweetAlert(2,'Por favor, completa todos los campos.', true);
+        }
 
-        const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
-        console.log(DATA);
-        if (DATA.status) {
-            // Deshabilitar la edición de los campos de entrada
-            NOMBRES_INPUT.readOnly = true;
-            APELLIDOS_INPUT.readOnly = true;
-            DUI_INPUT.readOnly = true;
-            TEL_INPUT.readOnly = true;
-            CORREO_INPUT.readOnly = true;
-            FECHAN_INPUT.readOnly = true;
-            FECHAR_INPUT.readOnly = true;
-            ESTADO_INPUT.disabled = true;
-            await sweetAlert(1, 'Se ha actualizado correctamente', true);
-            fillTable();
-            DATA_MODAL.hide();
-        } else {
-            await sweetAlert(2, DATA.error, false);
+        // Validar que los campos de nombre y apellido no contengan números
+        else if (/\d/.test(nombre) || /\d/.test(apellido)) {
+            await sweetAlert(2, 'Los campos de nombre y apellido no pueden contener números.', true);
+        }
+
+        else {
+            const FORM = new FormData();
+
+            // Petición para ACTUALIZAR.
+            FORM.append('idCliente', ID_INPUT.value);
+            FORM.append('nombreCliente', NOMBRES_INPUT.value);
+            FORM.append('apellidosCliente', APELLIDOS_INPUT.value);
+            FORM.append('correoCliente', CORREO_INPUT.value);
+            FORM.append('telefonoCliente', TEL_INPUT.value);
+            FORM.append('duiCliente', DUI_INPUT.value);
+            FORM.append('fechaDeNacimientoCliente', FECHAN_INPUT.value);
+            FORM.append('estadoCliente', ESTADO_INPUT.value);
+
+            const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
+            console.log(DATA);
+            if (DATA.status) {
+                // Deshabilitar la edición de los campos de entrada
+                NOMBRES_INPUT.readOnly = true;
+                APELLIDOS_INPUT.readOnly = true;
+                DUI_INPUT.readOnly = true;
+                TEL_INPUT.readOnly = true;
+                CORREO_INPUT.readOnly = true;
+                FECHAN_INPUT.readOnly = true;
+                FECHAR_INPUT.readOnly = true;
+                ESTADO_INPUT.disabled = true;
+                await sweetAlert(1, 'Se ha actualizado correctamente', true);
+                fillTable();
+                DATA_MODAL.hide();
+            } else {
+                await sweetAlert(2, DATA.error, false);
+            }
         }
     }
 }
@@ -235,3 +251,95 @@ const fillTable = async (form = null) => {
         sweetAlert(4, DATA.error, true);
     }
 }
+
+document.getElementById('fechaDeNacimientoCliente').addEventListener('change', function () {
+    // Obtener la fecha de nacimiento seleccionada por el usuario
+    var fechaNacimiento = new Date(this.value);
+
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+
+    // Calcular la diferencia de tiempo entre la fecha actual y la fecha de nacimiento
+    var edadMilisegundos = fechaActual - fechaNacimiento;
+
+    // Calcular la edad en años
+    var edad = Math.floor(edadMilisegundos / (365.25 * 24 * 60 * 60 * 1000));
+
+    // Comprobar si la edad es menor de 18 años
+    if (edad < 18) {
+        // Mostrar Sweet Alert con el mensaje de error
+        sweetAlert(2, 'Fecha incorrecta, debes ser mayor de 18 años para ingresar.', true);
+        // Limpiar el campo de entrada de fecha
+        this.value = '';
+    }
+});
+
+// Método del evento para cuando se envía el formulario de guardar.
+UPDATE_FORM.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    //se obtiene el texto del boton sin espacios
+    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
+
+    if (textoBoton == 'Actualizar') {
+
+        // habilitar la edición de los campos de entrada
+        NOMBRES_INPUT.readOnly = false;
+        APELLIDOS_INPUT.readOnly = false;
+        DUI_INPUT.readOnly = false;
+        TEL_INPUT.readOnly = false;
+        CORREO_INPUT.readOnly = false;
+        FECHAN_INPUT.readOnly = false;
+        ESTADO_INPUT.disabled = false;
+
+        BOTON_ACTUALIZAR.textContent = "Guardar";
+    }
+    else if (textoBoton == 'Guardar') {
+
+        // Obtener los valores de los campos de nombre y apellido
+        var nombre = document.getElementById('nombreCliente').value.trim();
+        var apellido = document.getElementById('apellidosCliente').value.trim();
+
+        // Validar que se haya ingresado algo en los campos de nombre y apellido
+        if (nombre === '' || apellido === '') {
+            await sweetAlert(2,'Por favor, completa todos los campos.', true);
+        }
+
+        // Validar que los campos de nombre y apellido no contengan números
+        else if (/\d/.test(nombre) || /\d/.test(apellido)) {
+            await sweetAlert(2, 'Los campos de nombre y apellido no pueden contener números.', true);
+        }
+
+        else {
+            const FORM = new FormData();
+
+            // Petición para ACTUALIZAR.
+            FORM.append('idCliente', ID_INPUT.value);
+            FORM.append('nombreCliente', NOMBRES_INPUT.value);
+            FORM.append('apellidosCliente', APELLIDOS_INPUT.value);
+            FORM.append('correoCliente', CORREO_INPUT.value);
+            FORM.append('telefonoCliente', TEL_INPUT.value);
+            FORM.append('duiCliente', DUI_INPUT.value);
+            FORM.append('fechaDeNacimientoCliente', FECHAN_INPUT.value);
+            FORM.append('estadoCliente', ESTADO_INPUT.value);
+
+            const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
+            if (DATA.status) {
+                // Deshabilitar la edición de los campos de entrada
+                NOMBRES_INPUT.readOnly = true;
+                APELLIDOS_INPUT.readOnly = true;
+                DUI_INPUT.readOnly = true;
+                TEL_INPUT.readOnly = true;
+                CORREO_INPUT.readOnly = true;
+                FECHAN_INPUT.readOnly = true;
+                FECHAR_INPUT.readOnly = true;
+                ESTADO_INPUT.disabled = true;
+                await sweetAlert(1, 'Se ha actualizado correctamente', true);
+                fillTable();
+                DATA_MODAL.hide();
+            } else {
+                await sweetAlert(2, DATA.error, false);
+            }
+        }
+    }
+});

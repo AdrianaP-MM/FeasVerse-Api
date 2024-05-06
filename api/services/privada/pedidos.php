@@ -19,11 +19,34 @@ if (isset($_GET['action'])) {
                 break;
             case 'createRow':
                 break;
-            case 'readAll':
+            case 'readAllOrders':
+                if ($result['dataset'] = $pedidos->readAllOrders()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen clientes registrados';
+                }
                 break;
-            case 'updateRow':
+            case 'ReadAllShoesOfOneOrder':
+                if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readShoesOfOrders()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapatos inexistente';
+                }
                 break;
             case 'updateStatus':
+                $_POST = Validator::validateForm($_POST);
+                if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])
+                or !$pedidos->setEstadoPedido($_POST['estado'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->updateStatus()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha actualizado correctamente el estado';
+                } else {
+                    $result['error'] = 'No se pudo cambiar el estado del pedido';
+                }
                 break;
             case 'deleteRow':
                 break;

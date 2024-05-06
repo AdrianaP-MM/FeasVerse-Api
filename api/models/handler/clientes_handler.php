@@ -122,9 +122,9 @@ class ClienteHandler
     public function updateRow()
     {
         $sql = 'UPDATE tb_clientes
-                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, telefono_cliente = ?, fecha_de_nacimiento = ?, estado_cliente = ?
+                SET nombre_cliente = ?, apellido_cliente = ?, dui_cliente = ?, correo_cliente = ?, telefono_cliente = ?, fecha_de_nacimiento = ?, estado_cliente = ?
                 WHERE id_cliente = ?';
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->estado_cliente, $this->id_cliente);
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->dui_cliente, $this->correo_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->estado_cliente, $this->id_cliente);
         return Database::executeRow($sql, $params);
     }
 

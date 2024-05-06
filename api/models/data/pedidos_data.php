@@ -57,7 +57,7 @@ class PedidosData extends PedidosHandler
                 $this->estado_pedido = 'En camino';
                 return true;
             }
-            elseif ($value == 2) {
+            elseif ($value == 3) {
                 $this->estado_pedido = 'Entregado';
                 return true;
             }
