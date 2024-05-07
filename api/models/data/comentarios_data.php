@@ -53,7 +53,67 @@ class ComentariosData extends ComentariosHandler{
             return false;
         }
     }
+
+    public function setDescripcion($value, $min = 2, $max = 250)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'La descripción contiene caracteres prohibidos';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->descripcion_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setTitulo($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'El titulo debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->titulo_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El titulo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+    
+    public function setCalificacion($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->calificacion_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El valor de la calificacion debe ser numérico entero';
+            return false;
+        }
+    }
+
+    public function setFecha($value)
+    {
+        if (Validator::validateDate($value)) {
+            $this->fecha_del_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'La fecha del comentario es incorrecta';
+            return false;
+        }
+    }
+
+    public function setIdDetallesPedido($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_detalles_pedido = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador de los detalles del pedido es incorrecto';
+            return false;
+        }
+    
+    }
 }
-
-
 

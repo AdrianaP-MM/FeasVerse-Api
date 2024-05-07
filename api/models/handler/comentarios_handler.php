@@ -39,13 +39,22 @@ class ComentariosHandler
     }
 
     
-    public function readComentario()
+    public function readOneComentario()
     {
         $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
                 FROM tb_comentarios
-                WHERE id_comentario = ?';
+                WHERE id_comentario = ?;';
         $params = array($this->id_comentario);
         return Database::getRow($sql, $params);
+    }
+
+    public function updateRow()
+    {
+        $sql = 'UPDATE tb_comentarios
+                SET titulo_comentario = ?, descripcion_comentario = ?, calificacion_comentario = ?, estado_comentario = ?, fecha_del_comentario = ?
+                WHERE id_comentario = ?';
+        $params = array($this->titulo_comentario, $this->descripcion_comentario, $this->calificacion_comentario, $this->estado_comentario, $this->fecha_del_comentario, $this->id_comentario);
+        return Database::executeRow($sql, $params);
     }
 
 
