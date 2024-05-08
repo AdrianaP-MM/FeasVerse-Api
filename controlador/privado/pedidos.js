@@ -159,14 +159,6 @@ function mostrarPedidosEntregados() {
     }
 }
 
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!v//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
-//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
 //! Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
 const ShowRepartidor = async (boton) => {
     REPARTIDOR_DIV.classList.remove('d-none');
@@ -294,6 +286,7 @@ const ShowRepartidor = async (boton) => {
 
                     if (DATA3.status) {
                         const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDePedidoPendiente${row.id_trabajador}`);
+                        CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML = '';
 
                         const accordionButtons = {};
                         const infoRepartidors = {};
@@ -441,6 +434,8 @@ const ShowRepartidor = async (boton) => {
                             const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
                             if (DATA5.status) {
                                 const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                contenedorTarjetas.innerHTML = '';
+
                                 DATA5.dataset.forEach((row3) => {
                                     contenedorTarjetas.innerHTML += `
                                         <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
@@ -531,7 +526,7 @@ const ShowRepartidor = async (boton) => {
 
                     if (DATA3.status) {
                         const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDeZapatoProgeso${row.id_trabajador}`);
-
+                        CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML = '';
                         const accordionButtons = {};
                         const infoRepartidors = {};
                         const isExpandeds = {};
@@ -678,6 +673,7 @@ const ShowRepartidor = async (boton) => {
                             const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
                             if (DATA5.status) {
                                 const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                contenedorTarjetas.innerHTML = '';
                                 DATA5.dataset.forEach((row3) => {
                                     contenedorTarjetas.innerHTML += `
                                         <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
@@ -768,6 +764,7 @@ const ShowRepartidor = async (boton) => {
 
                     if (DATA3.status) {
                         const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDeZapatoEntregado${row.id_trabajador}`);
+                        CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML = '';
 
                         const accordionButtons = {};
                         const infoRepartidors = {};
@@ -915,6 +912,7 @@ const ShowRepartidor = async (boton) => {
                             const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
                             if (DATA5.status) {
                                 const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                contenedorTarjetas.innerHTML = '';
                                 DATA5.dataset.forEach((row3) => {
                                     contenedorTarjetas.innerHTML += `
                                         <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
@@ -1196,6 +1194,7 @@ const fillTable = async (form = null) => {
                                 <!--Comienzo de cards de zapato-->
                                 <div id="contenedorDeTarjetas${row.id_pedido_cliente}" class="col-lg-12 d-flex flex-wrap justify-content-center mt-3">
                                     <!-- Las tarjetas de zapato se insertarán aquí -->
+                                    
                                 </div>
                                 <!-- Detalles del Más Pedido (Body) del acordion-->
                                 <div id="collapse${row.id_pedido_cliente}Pedido" 
@@ -1251,6 +1250,7 @@ const fillTable = async (form = null) => {
             const DATA2 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
             if (DATA2.status) {
                 const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row.id_pedido_cliente}`);
+                contenedorTarjetas.innerHTML = '';
                 DATA2.dataset.forEach((row2) => {
                     contenedorTarjetas.innerHTML += `
                     <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
