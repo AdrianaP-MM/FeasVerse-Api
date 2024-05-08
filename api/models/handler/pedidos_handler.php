@@ -26,7 +26,7 @@ class PedidosHandler
     //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
     public function readAllOrders()
     {
-        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, 
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
         CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
         correo_cliente,
@@ -49,7 +49,7 @@ class PedidosHandler
     //BUSCAR de todos los pedidos
     public function searchOrders($searchTerm)
     {
-        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, 
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
         CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
         correo_cliente,
@@ -126,7 +126,7 @@ class PedidosHandler
         GROUP BY 
         id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador";
 
-        $params = array('Entregado', 'En Proceso', 'Pendiente');
+        $params = array('Entregado', 'En camino', 'Pendiente');
         return Database::getRows($sql, $params);
     }
 

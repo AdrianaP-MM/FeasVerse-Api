@@ -101,7 +101,7 @@
 }
 
 /* Estilos específicos para un detalle de información dentro de un acordeón */
-#detalleInformacion .accordion-item {
+.detalleInformacion .accordion-item {
     background-color: transparent;
     border: none;
 }
@@ -121,28 +121,14 @@
 }
 
 /* Estilos para la información de los pedidos de la info del repartidor */
-#infoDeRepartidor {
+.infoDeRepartidor {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-#infoDeRepartidor2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#infoDeRepartidor3 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-#infoDelClienteParaRepartidor {
+.infoDelClienteParaRepartidor {
     display: flex;
     flex-direction: row;
     justify-content: center;

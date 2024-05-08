@@ -36,6 +36,25 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapatos inexistente';
                 }
                 break;
+            case 'readAllOrdersDeliverys':
+                if ($result['dataset'] = $pedidos->readAllOrdersWorkers()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen clientes registrados';
+                }
+                break;
+            case 'ReadOrderOfDeliverys':
+                $_POST = Validator::validateForm($_POST);
+                if (!$pedidos->setIdRepartidor($_POST['idTrabajador']) or
+                !$pedidos->setEstadoPedido($_POST['estado'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->readOrdersOfWorkerCategories()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapatos inexistente';
+                }
+                break;
             case 'updateStatus':
                 $_POST = Validator::validateForm($_POST);
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])

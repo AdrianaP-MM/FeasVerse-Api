@@ -30,70 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         REPARTIDOR_DIV.classList.add('d-none');
     }
 
-
-
-    //Cambio del texto para la info del accordion
-    const accordionButtonRepartidorPedido = document.getElementById('accordionButtonRepartidorPedido');
-    accordionButtonRepartidorPedido.addEventListener('click', function () {
-
-        const isExpanded = accordionButtonRepartidorPedido.getAttribute('aria-expanded') === 'true';
-        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
-        const infoDelClienteParaRepartidor = document.getElementById('infoDelClienteParaRepartidor');
-        if (isExpanded) {
-            infoDelClienteParaRepartidor.classList.remove('d-none');
-        } else {
-            infoDelClienteParaRepartidor.classList.add('d-none');
-        }
-
-        //Cambio del texto del boton 
-        accordionButtonRepartidorPedido.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    })
-
-    const accordionButtonRepartidorPedido2 = document.getElementById('accordionButtonRepartidorPedido2');
-    accordionButtonRepartidorPedido2.addEventListener('click', function () {
-
-        const isExpanded = accordionButtonRepartidorPedido2.getAttribute('aria-expanded') === 'true';
-        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
-        const infoDelClienteParaRepartidor2 = document.getElementById('infoDelClienteParaRepartidor2');
-        if (isExpanded) {
-            infoDelClienteParaRepartidor2.classList.remove('d-none');
-        } else {
-            infoDelClienteParaRepartidor2.classList.add('d-none');
-        }
-
-        //Cambio del texto del boton 
-        accordionButtonRepartidorPedido2.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    })
-
-    const accordionButtonRepartidorPedido3 = document.getElementById('accordionButtonRepartidorPedido3');
-    accordionButtonRepartidorPedido3.addEventListener('click', function () {
-
-        const isExpanded = accordionButtonRepartidorPedido3.getAttribute('aria-expanded') === 'true';
-        // Cambia la visibilidad del contenedor de detalles según si está expandiendo o contrayendo
-        const infoDelClienteParaRepartidor3 = document.getElementById('infoDelClienteParaRepartidor3');
-        if (isExpanded) {
-            infoDelClienteParaRepartidor3.classList.remove('d-none');
-        } else {
-            infoDelClienteParaRepartidor3.classList.add('d-none');
-        }
-
-        //Cambio del texto del boton 
-        accordionButtonRepartidorPedido3.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    })
-
-    //Cambio del texto para la info del accordion
-    const accordionButtonRepartidor = document.getElementById('accordionButtonRepartidor');
-    accordionButtonRepartidor.addEventListener('click', function () {
-        const isExpanded = accordionButtonRepartidor.getAttribute('aria-expanded') === 'true';
-        //Cambio del texto del boton 
-        accordionButtonRepartidor.textContent = isExpanded ? 'Ver menos información' : 'Ver más información';
-    })
-
-    accordionButtonRepartidorPedido.click();
-    accordionButtonRepartidorPedido2.click();
-    accordionButtonRepartidorPedido3.click();
-    accordionButtonRepartidor.click();
-
     // Objeto para almacenar botones de acordeón y detalles correspondientes
     const accordionButtons = {};
     const infoRepartidors = {};
@@ -138,6 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     else {
         await sweetAlert(2, DATA.error, true);
     }
+
 });
 
 function regresar() {
@@ -222,8 +159,16 @@ function mostrarPedidosEntregados() {
     }
 }
 
-// Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
-function ShowRepartidor(boton) {
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!v//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!//!
+//! Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
+const ShowRepartidor = async (boton) => {
     REPARTIDOR_DIV.classList.remove('d-none');
     PEDIDOS_DIV.classList.add('d-none');
 
@@ -236,6 +181,831 @@ function ShowRepartidor(boton) {
     // Cambia el color del botón clicado
     boton.style.backgroundColor = '#1A89BD';
     boton.style.color = 'white';
+
+    fillTableRepartidors();
+
+    // Objeto para almacenar botones de acordeón y detalles correspondientes
+    const accordionButtonsRepartidors = {};
+    const isExpandedsReportidors = {};
+
+    const DATA = await fetchData(PEDIDOS_API, 'readAllOrdersDeliverys');
+
+    if (DATA.status) {
+
+        DATA.dataset.forEach(row => {
+            // Selecciona el botón de accordion correspondiente a este 'row'
+            const accordionButton = document.getElementById(`accordionButtonRepartidor${row.id_trabajador}`);
+            accordionButtonsRepartidors[row.id_trabajador] = accordionButton;
+
+            // Agrega un evento click al botón del accordion
+            accordionButtonsRepartidors[row.id_trabajador].addEventListener('click', function () {
+
+                const isExpanded = accordionButtonsRepartidors[row.id_trabajador].getAttribute('aria-expanded') === 'true';
+
+                // Cambia el estado del acordeón
+                isExpandedsReportidors[row.id_trabajador] = !isExpandedsReportidors[row.id_trabajador];
+
+                // Cambia el texto del botón según si está expandiendo o contrayendo
+                if (isExpandedsReportidors[row.id_trabajador]) {
+                    accordionButtonsRepartidors[row.id_trabajador].textContent = 'Ver más información';
+                } else {
+                    accordionButtonsRepartidors[row.id_trabajador].textContent = 'Ver menos información';
+                }
+
+            });
+
+            accordionButtonsRepartidors[row.id_trabajador].click();
+        });
+    }
+    else {
+        await sweetAlert(2, DATA.error, true);
+    }
+
+    const DATA2 = await fetchData(PEDIDOS_API, 'readAllOrdersDeliverys');
+    const actionButtonPendientes = {};
+    const actionButtonEnCaminos = {};
+    const actionButtonEntregados = {};
+    const actionBack = {};
+    const actionBack2 = {};
+    const actionBack3 = {};
+    const DIVPendientes = {};
+    const DIVEnCaminos = {};
+    const DIVEntregados = {};
+
+    if (DATA2.status) {
+
+        DATA2.dataset.forEach(row => {
+            // Selecciona el botón de accordion correspondiente a este 'row'
+            const actionButtonPendiente = document.getElementById(`divPedidosPendientes${row.id_trabajador}`);
+            actionButtonPendientes[row.id_trabajador] = actionButtonPendiente;
+
+            const divPendiente = document.getElementById(`cardsDeNuevosPedidos${row.id_trabajador}`);
+            DIVPendientes[row.id_trabajador] = divPendiente;
+
+            const actionButtonEnCamino = document.getElementById(`divPedidosProgreso${row.id_trabajador}`);
+            actionButtonEnCaminos[row.id_trabajador] = actionButtonEnCamino;
+
+            const divEnCamino = document.getElementById(`cardsDePedidosProgreso${row.id_trabajador}`);
+            DIVEnCaminos[row.id_trabajador] = divEnCamino;
+
+            const actionButtonEntregado = document.getElementById(`divPedidosEntregados${row.id_trabajador}`);
+            actionButtonEntregados[row.id_trabajador] = actionButtonEntregado;
+
+            const divEntregado = document.getElementById(`cardsDePedidosEntregado${row.id_trabajador}`);
+            DIVEntregados[row.id_trabajador] = divEntregado;
+
+            const buttonBack = document.getElementById(`botonRegresar${row.id_trabajador}`);
+            actionBack[row.id_trabajador] = buttonBack;
+
+            const buttonBack2 = document.getElementById(`botonRegresar2${row.id_trabajador}`);
+            actionBack2[row.id_trabajador] = buttonBack2;
+
+            const buttonBack3 = document.getElementById(`botonRegresar3${row.id_trabajador}`);
+            actionBack3[row.id_trabajador] = buttonBack3;
+
+            // Agrega un evento click al botón del accordion
+            actionButtonPendientes[row.id_trabajador].addEventListener('click', async () => {
+                // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+                var colorActual = window.getComputedStyle(actionButtonPendientes[row.id_trabajador]).backgroundColor;
+
+                // Verificar el color actual y ejecutar la lógica correspondiente
+                if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+                    DIVPendientes[row.id_trabajador].classList.add('d-none');
+                    DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                    DIVEntregados[row.id_trabajador].classList.add('d-none');
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                } else {
+                    // si el color no es el esperado
+                    DIVPendientes[row.id_trabajador].classList.remove('d-none');
+                    DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                    DIVEntregados[row.id_trabajador].classList.add('d-none');
+
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#146A93';
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+
+                    const FORMDATA = new FormData();
+                    FORMDATA.append('idTrabajador', row.id_trabajador);
+                    FORMDATA.append('estado', 1);
+
+                    const DATA3 = await fetchData(PEDIDOS_API, 'ReadOrderOfDeliverys', FORMDATA);
+
+                    if (DATA3.status) {
+                        const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDePedidoPendiente${row.id_trabajador}`);
+
+                        const accordionButtons = {};
+                        const infoRepartidors = {};
+                        const isExpandeds = {};
+
+                        DATA3.dataset.forEach(async (row2) => {
+                            var estado = row2.estado_pedido;
+                            CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML += `
+                            <div class="accordion detalleInformacion mt-3 mb-4" id="detalleInformacion">
+                                <div class="accordion-item">
+                                    <!--HEADER del accordion-->
+                                    <div id="detalleInformacionHeader" class="accordion-header" data-bs-parent="#detalleInformacion">
+                                        <!--Etiqueta del pedido-->
+                                        <div class="col-lg-3">
+                                            <p id="idPedidoNum" class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
+                                                Pedido N# ${row2.id_pedido_cliente}
+                                            </p>
+                                        </div>
+                                        <!--Contenedor del cuerpo-->
+                                        <div id="contenedorDelAcordionSoloHeaderAndBody">
+                                            <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center" id="detallesDelPedido">
+                                                ${row2.estado_pedido === 'Pendiente' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : row2.estado_pedido === 'En camino' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-warning pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-success pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                `}
+                                                <!--Info del repartidor y cliente-->
+                                                <div class="infoDeRepartidor container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor${row2.id_pedido_cliente}Repartidor">
+                                                    <div class="col-lg-3 img1">
+                                                        <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg" alt="Icono de usuario">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <h6 class="titillium-web" id="nombreCliente">
+                                                            <b>Nombre del cliente:</b> ${row2.nombre_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="correoCliente">
+                                                            <b>Correo del cliente:</b> ${row2.correo_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="telefonoCliente">
+                                                            <b>Teléfono del cliente:</b> ${row2.telefono_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="direccionCliente">
+                                                            <b>Dirección del cliente:</b> ${row2.direccion_cliente}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <!--Comienzo de cards de zapato-->
+                                                <div id="contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor" class="col-lg-12 d-flex flex-wrap justify-content-center mt-3">
+                                                    <!-- Las tarjetas de zapato se insertarán aquí -->
+
+                                                </div>
+                                                <!-- Detalles del Más Pedido (Body) del acordion-->
+                                                <div id="collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                                class="accordion-collapse collapse show col-lg-12">
+                                                    <div class="accordion-body" id="detallesDeMasPedido">
+                                                        <div class="col-lg-12">
+                                                            <div class="container">
+                                                                <!--Contenedor de boton de entrega y precio total-->
+                                                                <div class="row col-lg-12">
+                                                                    <!--Contenedor del boton de iniciar entrega -->
+                                                                    <div class="col-lg-6 d-flex justify-content-center">
+                                                                        ${row2.estado_pedido === 'Pendiente' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Iniciar entrega
+                                                                        </button>
+                                                                        ` : row2.estado_pedido === 'En camino' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Entregado
+                                                                        </button>
+                                                                        ` : `
+                                                                        `}
+                                                                    </div>
+                                                                    <!--Contenedor de los precios-->
+                                                                    <div class="col-lg-6" id="containerTotales">
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalPediod">Total del pedido: $${row2.precio_total}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="envio">Envío: $${row2.costo_de_envio}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalCobrar">Total a cobrar: $${row2.total_cobrar}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Botón (Footer) -->
+                                        <div class="offset-lg-9 col-lg-3">
+                                            <button id="accordionButton${row2.id_pedido_cliente}Repartidor" 
+                                            class="accordion-button rounded-bottom rounded-top-0" 
+                                            type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                            aria-expanded="true" aria-controls="collapse${row2.id_pedido_cliente}PedidoRepartidor">
+                                                Ver más información
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                            // Selecciona el botón de accordion correspondiente a este 'row'
+                            const accordionButton = document.getElementById(`accordionButton${row2.id_pedido_cliente}Repartidor`);
+                            accordionButtons[row2.id_pedido_cliente] = accordionButton;
+                            // Selecciona el contenedor de detalles correspondiente a este 'row'
+                            const detallesDeMasPedido = document.getElementById(`infoDeRepartidor${row2.id_pedido_cliente}Repartidor`);
+                            infoRepartidors[row2.id_pedido_cliente] = detallesDeMasPedido;
+
+                            // Agrega un evento click al botón del accordion
+                            accordionButtons[row2.id_pedido_cliente].addEventListener('click', function () {
+
+                                const isExpanded = accordionButtons[row2.id_pedido_cliente].getAttribute('aria-expanded') === 'true';
+
+                                // Inicializa el estado del acordeón como contraído
+                                isExpandeds[row2.id_pedido_cliente] = isExpanded;
+
+                                // Cambia el estado del acordeón
+                                isExpandeds[row2.id_pedido_cliente] = !isExpandeds[row2.id_pedido_cliente];
+
+                                // Cambia el texto del botón según si está expandiendo o contrayendo
+                                if (isExpandeds[row2.id_pedido_cliente]) {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver más información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.add('d-none');
+                                } else {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver menos información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.remove('d-none');
+                                }
+
+                            });
+
+                            accordionButtons[row2.id_pedido_cliente].click();
+
+                            const FORM_ID = new FormData();
+                            FORM_ID.append('idPedido', row2.id_pedido_cliente);
+                            const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
+                            if (DATA5.status) {
+                                const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                DATA5.dataset.forEach((row3) => {
+                                    contenedorTarjetas.innerHTML += `
+                                        <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
+                                            <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                <div class="card">
+                                                    <!--Contenedor de la imagen-->
+                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <!--Contenedor del cuerpo de la card-->
+                                                    <div class="card-body">
+                                                        <!--Contenedor de nombre zapato-->
+                                                        <div class="ContenedorNombreZapato col-lg-12">
+                                                            <h4 class="titillium-web-semibold text-center" id="nombreZapato">${row3.nombre_zapato}</h4>
+                                                        </div>
+                                                        <!--Contenedor del color y talla-->
+                                                        <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                <h6 class="titillium-web-extralight me-1">Color: ${row3.nombre_color}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                <div id="talla">
+                                                                    <h6 id="tallaPedido">${row3.num_talla}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Contenedor de la cantidad-->
+                                                        <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                            <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: ${row3.cantidad_pedido}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <!--Contenedor del footer-->
+                                                    <div class="card-footer bg-color-4blue">
+                                                        <!--Contenedor del precio-->
+                                                        <div class="d-flex contenedorPrecios col-lg-12">
+                                                            <div class="col-lg-6 d-flex justify-content-start">
+                                                                <h6 class="titillium-web-bold text-white" id="precioZapato">$${row3.precio_unitario_zapato}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex justify-content-end">
+                                                                <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $${row3.precio_total}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                });
+                            } else {
+                                await sweetAlert(2, DATA2.error, true);
+                            }
+
+                        });
+                    }
+                    else {
+                        await sweetAlert(2, DATA2.error, true);
+                    }
+                }
+            });
+
+            // Agrega un evento click al botón del accordion
+            actionButtonEnCaminos[row.id_trabajador].addEventListener('click', async () => {
+                // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+                var colorActual = window.getComputedStyle(actionButtonEnCaminos[row.id_trabajador]).backgroundColor;
+
+                // Verificar el color actual y ejecutar la lógica correspondiente
+                if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+                    DIVPendientes[row.id_trabajador].classList.add('d-none');
+                    DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                    DIVEntregados[row.id_trabajador].classList.add('d-none');
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                } else {
+                    // si el color no es el esperado
+                    DIVEnCaminos[row.id_trabajador].classList.remove('d-none');
+                    DIVPendientes[row.id_trabajador].classList.add('d-none');
+                    DIVEntregados[row.id_trabajador].classList.add('d-none');
+
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#146A93';
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+
+                    const FORMDATA = new FormData();
+                    FORMDATA.append('idTrabajador', row.id_trabajador);
+                    FORMDATA.append('estado', 2);
+
+                    const DATA3 = await fetchData(PEDIDOS_API, 'ReadOrderOfDeliverys', FORMDATA);
+
+                    if (DATA3.status) {
+                        const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDeZapatoProgeso${row.id_trabajador}`);
+
+                        const accordionButtons = {};
+                        const infoRepartidors = {};
+                        const isExpandeds = {};
+
+                        DATA3.dataset.forEach(async (row2) => {
+                            var estado = row2.estado_pedido;
+                            CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML += `
+                            <div class="accordion detalleInformacion mt-3 mb-4" id="detalleInformacion">
+                                <div class="accordion-item">
+                                    <!--HEADER del accordion-->
+                                    <div id="detalleInformacionHeader" class="accordion-header" data-bs-parent="#detalleInformacion">
+                                        <!--Etiqueta del pedido-->
+                                        <div class="col-lg-3">
+                                            <p id="idPedidoNum" class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
+                                                Pedido N# ${row2.id_pedido_cliente}
+                                            </p>
+                                        </div>
+                                        <!--Contenedor del cuerpo-->
+                                        <div id="contenedorDelAcordionSoloHeaderAndBody">
+                                            <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center" id="detallesDelPedido">
+                                                ${row2.estado_pedido === 'Pendiente' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : row2.estado_pedido === 'En camino' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-warning pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-success pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                `}
+                                                <!--Info del repartidor y cliente-->
+                                                <div class="infoDeRepartidor container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor${row2.id_pedido_cliente}Repartidor">
+                                                    <div class="col-lg-3 img1">
+                                                        <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg" alt="Icono de usuario">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <h6 class="titillium-web" id="nombreCliente">
+                                                            <b>Nombre del cliente:</b> ${row2.nombre_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="correoCliente">
+                                                            <b>Correo del cliente:</b> ${row2.correo_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="telefonoCliente">
+                                                            <b>Teléfono del cliente:</b> ${row2.telefono_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="direccionCliente">
+                                                            <b>Dirección del cliente:</b> ${row2.direccion_cliente}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <!--Comienzo de cards de zapato-->
+                                                <div id="contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor" class="col-lg-12 d-flex flex-wrap justify-content-center mt-3">
+                                                    <!-- Las tarjetas de zapato se insertarán aquí -->
+
+                                                </div>
+                                                <!-- Detalles del Más Pedido (Body) del acordion-->
+                                                <div id="collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                                class="accordion-collapse collapse show col-lg-12">
+                                                    <div class="accordion-body" id="detallesDeMasPedido">
+                                                        <div class="col-lg-12">
+                                                            <div class="container">
+                                                                <!--Contenedor de boton de entrega y precio total-->
+                                                                <div class="row col-lg-12">
+                                                                    <!--Contenedor del boton de iniciar entrega -->
+                                                                    <div class="col-lg-6 d-flex justify-content-center">
+                                                                        ${row2.estado_pedido === 'Pendiente' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Iniciar entrega
+                                                                        </button>
+                                                                        ` : row2.estado_pedido === 'En camino' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Entregado
+                                                                        </button>
+                                                                        ` : `
+                                                                        `}
+                                                                    </div>
+                                                                    <!--Contenedor de los precios-->
+                                                                    <div class="col-lg-6" id="containerTotales">
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalPediod">Total del pedido: $${row2.precio_total}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="envio">Envío: $${row2.costo_de_envio}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalCobrar">Total a cobrar: $${row2.total_cobrar}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Botón (Footer) -->
+                                        <div class="offset-lg-9 col-lg-3">
+                                            <button id="accordionButton${row2.id_pedido_cliente}Repartidor" 
+                                            class="accordion-button rounded-bottom rounded-top-0" 
+                                            type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                            aria-expanded="true" aria-controls="collapse${row2.id_pedido_cliente}PedidoRepartidor">
+                                                Ver más información
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                            // Selecciona el botón de accordion correspondiente a este 'row'
+                            const accordionButton = document.getElementById(`accordionButton${row2.id_pedido_cliente}Repartidor`);
+                            accordionButtons[row2.id_pedido_cliente] = accordionButton;
+                            // Selecciona el contenedor de detalles correspondiente a este 'row'
+                            const detallesDeMasPedido = document.getElementById(`infoDeRepartidor${row2.id_pedido_cliente}Repartidor`);
+                            infoRepartidors[row2.id_pedido_cliente] = detallesDeMasPedido;
+
+                            // Agrega un evento click al botón del accordion
+                            accordionButtons[row2.id_pedido_cliente].addEventListener('click', function () {
+
+                                const isExpanded = accordionButtons[row2.id_pedido_cliente].getAttribute('aria-expanded') === 'true';
+
+                                // Inicializa el estado del acordeón como contraído
+                                isExpandeds[row2.id_pedido_cliente] = isExpanded;
+
+                                // Cambia el estado del acordeón
+                                isExpandeds[row2.id_pedido_cliente] = !isExpandeds[row2.id_pedido_cliente];
+
+                                // Cambia el texto del botón según si está expandiendo o contrayendo
+                                if (isExpandeds[row2.id_pedido_cliente]) {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver más información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.add('d-none');
+                                } else {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver menos información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.remove('d-none');
+                                }
+
+                            });
+
+                            accordionButtons[row2.id_pedido_cliente].click();
+
+                            const FORM_ID = new FormData();
+                            FORM_ID.append('idPedido', row2.id_pedido_cliente);
+                            const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
+                            if (DATA5.status) {
+                                const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                DATA5.dataset.forEach((row3) => {
+                                    contenedorTarjetas.innerHTML += `
+                                        <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
+                                            <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                <div class="card">
+                                                    <!--Contenedor de la imagen-->
+                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <!--Contenedor del cuerpo de la card-->
+                                                    <div class="card-body">
+                                                        <!--Contenedor de nombre zapato-->
+                                                        <div class="ContenedorNombreZapato col-lg-12">
+                                                            <h4 class="titillium-web-semibold text-center" id="nombreZapato">${row3.nombre_zapato}</h4>
+                                                        </div>
+                                                        <!--Contenedor del color y talla-->
+                                                        <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                <h6 class="titillium-web-extralight me-1">Color: ${row3.nombre_color}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                <div id="talla">
+                                                                    <h6 id="tallaPedido">${row3.num_talla}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Contenedor de la cantidad-->
+                                                        <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                            <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: ${row3.cantidad_pedido}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <!--Contenedor del footer-->
+                                                    <div class="card-footer bg-color-4blue">
+                                                        <!--Contenedor del precio-->
+                                                        <div class="d-flex contenedorPrecios col-lg-12">
+                                                            <div class="col-lg-6 d-flex justify-content-start">
+                                                                <h6 class="titillium-web-bold text-white" id="precioZapato">$${row3.precio_unitario_zapato}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex justify-content-end">
+                                                                <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $${row3.precio_total}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                });
+                            } else {
+                                await sweetAlert(2, DATA2.error, true);
+                            }
+
+                        });
+                    }
+                    else {
+                        await sweetAlert(2, DATA2.error, true);
+                    }
+                }
+            });
+
+            // Agrega un evento click al botón del accordion
+            actionButtonEntregados[row.id_trabajador].addEventListener('click', async () => {
+                // Obtener el color actual del DIV_PEDIDO_PENDIENTE
+                var colorActual = window.getComputedStyle(actionButtonEntregados[row.id_trabajador]).backgroundColor;
+
+                // Verificar el color actual y ejecutar la lógica correspondiente
+                if (colorActual === 'rgb(20, 106, 147)') { // Color '#146A93' en formato RGB
+                    DIVPendientes[row.id_trabajador].classList.add('d-none');
+                    DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                    DIVEntregados[row.id_trabajador].classList.add('d-none');
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                } else {
+                    // si el color no es el esperado
+                    DIVEntregados[row.id_trabajador].classList.remove('d-none');
+                    DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                    DIVPendientes[row.id_trabajador].classList.add('d-none');
+
+                    actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#146A93';
+                    actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                    actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+
+                    const FORMDATA = new FormData();
+                    FORMDATA.append('idTrabajador', row.id_trabajador);
+                    FORMDATA.append('estado', 3);
+
+                    const DATA3 = await fetchData(PEDIDOS_API, 'ReadOrderOfDeliverys', FORMDATA);
+
+                    if (DATA3.status) {
+                        const CONTENEDOR_PEDIDOS_PENDIENTE = document.getElementById(`cardsDeZapatoEntregado${row.id_trabajador}`);
+
+                        const accordionButtons = {};
+                        const infoRepartidors = {};
+                        const isExpandeds = {};
+
+                        DATA3.dataset.forEach(async (row2) => {
+                            var estado = row2.estado_pedido;
+                            CONTENEDOR_PEDIDOS_PENDIENTE.innerHTML += `
+                            <div class="accordion detalleInformacion mt-3 mb-4" id="detalleInformacion">
+                                <div class="accordion-item">
+                                    <!--HEADER del accordion-->
+                                    <div id="detalleInformacionHeader" class="accordion-header" data-bs-parent="#detalleInformacion">
+                                        <!--Etiqueta del pedido-->
+                                        <div class="col-lg-3">
+                                            <p id="idPedidoNum" class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
+                                                Pedido N# ${row2.id_pedido_cliente}
+                                            </p>
+                                        </div>
+                                        <!--Contenedor del cuerpo-->
+                                        <div id="contenedorDelAcordionSoloHeaderAndBody">
+                                            <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center" id="detallesDelPedido">
+                                                ${row2.estado_pedido === 'Pendiente' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : row2.estado_pedido === 'En camino' ? `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-warning pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                ` : `
+                                                <!--Contenedor de la etiqueta del pedido-->
+                                                <div class="offset-lg-9 col-lg-3 bg-success pt-1 mb-3 rounded skew-div" id="colorDelEstadoDelPedido">
+                                                    <h6 class="text-white skew-text text-center" id="nombreDelEstadoDelPedido">${row2.estado_pedido}</h6>
+                                                </div>
+                                                `}
+                                                <!--Info del repartidor y cliente-->
+                                                <div class="infoDeRepartidor container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor${row2.id_pedido_cliente}Repartidor">
+                                                    <div class="col-lg-3 img1">
+                                                        <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg" alt="Icono de usuario">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <h6 class="titillium-web" id="nombreCliente">
+                                                            <b>Nombre del cliente:</b> ${row2.nombre_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="correoCliente">
+                                                            <b>Correo del cliente:</b> ${row2.correo_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="telefonoCliente">
+                                                            <b>Teléfono del cliente:</b> ${row2.telefono_cliente}
+                                                        </h6>
+                                                        <h6 class="titillium-web" id="direccionCliente">
+                                                            <b>Dirección del cliente:</b> ${row2.direccion_cliente}
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                                <!--Comienzo de cards de zapato-->
+                                                <div id="contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor" class="col-lg-12 d-flex flex-wrap justify-content-center mt-3">
+                                                    <!-- Las tarjetas de zapato se insertarán aquí -->
+
+                                                </div>
+                                                <!-- Detalles del Más Pedido (Body) del acordion-->
+                                                <div id="collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                                class="accordion-collapse collapse show col-lg-12">
+                                                    <div class="accordion-body" id="detallesDeMasPedido">
+                                                        <div class="col-lg-12">
+                                                            <div class="container">
+                                                                <!--Contenedor de boton de entrega y precio total-->
+                                                                <div class="row col-lg-12">
+                                                                    <!--Contenedor del boton de iniciar entrega -->
+                                                                    <div class="col-lg-6 d-flex justify-content-center">
+                                                                        ${row2.estado_pedido === 'Pendiente' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Iniciar entrega
+                                                                        </button>
+                                                                        ` : row2.estado_pedido === 'En camino' ? `
+                                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row2.id_pedido_cliente}, '${estado}')">
+                                                                            Entregado
+                                                                        </button>
+                                                                        ` : `
+                                                                        `}
+                                                                    </div>
+                                                                    <!--Contenedor de los precios-->
+                                                                    <div class="col-lg-6" id="containerTotales">
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalPediod">Total del pedido: $${row2.precio_total}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="envio">Envío: $${row2.costo_de_envio}</h6>
+                                                                        <h6 class="titillium-web-extralight d-flex justify-content-end" id="totalCobrar">Total a cobrar: $${row2.total_cobrar}</h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Botón (Footer) -->
+                                        <div class="offset-lg-9 col-lg-3">
+                                            <button id="accordionButton${row2.id_pedido_cliente}Repartidor" 
+                                            class="accordion-button rounded-bottom rounded-top-0" 
+                                            type="button" data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse${row2.id_pedido_cliente}PedidoRepartidor" 
+                                            aria-expanded="true" aria-controls="collapse${row2.id_pedido_cliente}PedidoRepartidor">
+                                                Ver más información
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+
+                            // Selecciona el botón de accordion correspondiente a este 'row'
+                            const accordionButton = document.getElementById(`accordionButton${row2.id_pedido_cliente}Repartidor`);
+                            accordionButtons[row2.id_pedido_cliente] = accordionButton;
+                            // Selecciona el contenedor de detalles correspondiente a este 'row'
+                            const detallesDeMasPedido = document.getElementById(`infoDeRepartidor${row2.id_pedido_cliente}Repartidor`);
+                            infoRepartidors[row2.id_pedido_cliente] = detallesDeMasPedido;
+
+                            // Agrega un evento click al botón del accordion
+                            accordionButtons[row2.id_pedido_cliente].addEventListener('click', function () {
+
+                                const isExpanded = accordionButtons[row2.id_pedido_cliente].getAttribute('aria-expanded') === 'true';
+
+                                // Inicializa el estado del acordeón como contraído
+                                isExpandeds[row2.id_pedido_cliente] = isExpanded;
+
+                                // Cambia el estado del acordeón
+                                isExpandeds[row2.id_pedido_cliente] = !isExpandeds[row2.id_pedido_cliente];
+
+                                // Cambia el texto del botón según si está expandiendo o contrayendo
+                                if (isExpandeds[row2.id_pedido_cliente]) {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver más información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.add('d-none');
+                                } else {
+                                    accordionButtons[row2.id_pedido_cliente].textContent = 'Ver menos información';
+                                    infoRepartidors[row2.id_pedido_cliente].classList.remove('d-none');
+                                }
+
+                            });
+
+                            accordionButtons[row2.id_pedido_cliente].click();
+
+                            const FORM_ID = new FormData();
+                            FORM_ID.append('idPedido', row2.id_pedido_cliente);
+                            const DATA5 = await fetchData(PEDIDOS_API, 'ReadAllShoesOfOneOrder', FORM_ID);
+                            if (DATA5.status) {
+                                const contenedorTarjetas = document.getElementById(`contenedorDeTarjetas${row2.id_pedido_cliente}Repartidor`);
+                                DATA5.dataset.forEach((row3) => {
+                                    contenedorTarjetas.innerHTML += `
+                                        <div class="containerCards col-lg-3 d-flex flex-wrap m-3">
+                                            <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
+                                                <div class="card">
+                                                    <!--Contenedor de la imagen-->
+                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <!--Contenedor del cuerpo de la card-->
+                                                    <div class="card-body">
+                                                        <!--Contenedor de nombre zapato-->
+                                                        <div class="ContenedorNombreZapato col-lg-12">
+                                                            <h4 class="titillium-web-semibold text-center" id="nombreZapato">${row3.nombre_zapato}</h4>
+                                                        </div>
+                                                        <!--Contenedor del color y talla-->
+                                                        <div class="ContenedorColorTalla col-lg-12 d-flex">
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorColor">
+                                                                <h6 class="titillium-web-extralight me-1">Color: ${row3.nombre_color}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center" id="contenedorTalla">
+                                                                <h6 class="titillium-web-extralight me-1">Talla</h6>
+                                                                <div id="talla">
+                                                                    <h6 id="tallaPedido">${row3.num_talla}</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--Contenedor de la cantidad-->
+                                                        <div class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
+                                                            <h6 class="titillium-web-extralight text-center" id="cantidadPedido">Cantidad: ${row3.cantidad_pedido}</h6>
+                                                        </div>
+                                                    </div>
+                                                    <!--Contenedor del footer-->
+                                                    <div class="card-footer bg-color-4blue">
+                                                        <!--Contenedor del precio-->
+                                                        <div class="d-flex contenedorPrecios col-lg-12">
+                                                            <div class="col-lg-6 d-flex justify-content-start">
+                                                                <h6 class="titillium-web-bold text-white" id="precioZapato">$${row3.precio_unitario_zapato}</h6>
+                                                            </div>
+                                                            <div class="col-lg-6 d-flex justify-content-end">
+                                                                <h6 class="titillium-web-extralight text-white" id="cantidadTotal">Total: $${row3.precio_total}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        `;
+                                });
+                            } else {
+                                await sweetAlert(2, DATA2.error, true);
+                            }
+
+                        });
+                    }
+                    else {
+                        await sweetAlert(2, DATA2.error, true);
+                    }
+                }
+            });
+
+            actionBack[row.id_trabajador].addEventListener('click', async () => {
+                DIVEntregados[row.id_trabajador].classList.add('d-none');
+                DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                DIVPendientes[row.id_trabajador].classList.add('d-none');
+                actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+            });
+
+            actionBack2[row.id_trabajador].addEventListener('click', async () => {
+                DIVEntregados[row.id_trabajador].classList.add('d-none');
+                DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                DIVPendientes[row.id_trabajador].classList.add('d-none');
+                actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+            });
+
+            actionBack3[row.id_trabajador].addEventListener('click', async () => {
+                DIVEntregados[row.id_trabajador].classList.add('d-none');
+                DIVEnCaminos[row.id_trabajador].classList.add('d-none');
+                DIVPendientes[row.id_trabajador].classList.add('d-none');
+                actionButtonEntregados[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonEnCaminos[row.id_trabajador].style.backgroundColor = '#1591CC';
+                actionButtonPendientes[row.id_trabajador].style.backgroundColor = '#1591CC';
+            });
+
+        });
+    }
+    else {
+        await sweetAlert(2, DATA.error, true);
+    }
 }
 
 // Definición de la función llamada 'ShowPedidos'.
@@ -330,17 +1100,17 @@ function clearSearch() {
 
 //Función asicronicaa de cambio de estado
 const cambioDeEstado = async (id_pedido_cliente, estado) => {
-    
+
     const FORM2 = new FormData();
     FORM2.append('idPedido', id_pedido_cliente);
-    if(estado.trim() === 'Pendiente'){
-        FORM2.append('estado', 1);  
+    if (estado.trim() === 'Pendiente') {
+        FORM2.append('estado', 1);
     }
-    else if(estado.trim() === 'En camino'){
+    else if (estado.trim() === 'En camino') {
         FORM2.append('estado', 2);
     }
-    else if(estado.trim() === 'Entregado'){
-        FORM2.append('estado', 3);  
+    else if (estado.trim() === 'Entregado') {
+        FORM2.append('estado', 3);
     }
     console.log(estado);
     // Petición para obtener los registros disponibles.
@@ -368,7 +1138,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(async (row) => {
             var estado = row.estado_pedido;
             CONTENEDOR_PEDIDOS.innerHTML += `
-            <div class="accordion mt-3 mb-4" id="detalleInformacion">
+            <div class="accordion detalleInformacion mt-3 mb-4" id="detalleInformacion">
                 <div class="accordion-item">
                     <!--HEADER del accordion-->
                     <div id="detalleInformacionHeader" class="accordion-header" data-bs-parent="#detalleInformacion">
@@ -398,11 +1168,14 @@ const fillTable = async (form = null) => {
                                 </div>
                                 `}
                                 <!--Info del repartidor y cliente-->
-                                <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor${row.id_pedido_cliente}">
+                                <div class="infoDeRepartidor container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2" id="infoDeRepartidor${row.id_pedido_cliente}">
                                     <div class="col-lg-3 img1">
                                         <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg" alt="Icono de usuario">
                                     </div>
                                     <div class="col-lg-4">
+                                        <h6 class="titillium-web" id="idRepartidor">
+                                            <b>ID del repartidor:</b> ${row.id_trabajador}
+                                        </h6>
                                         <h6 class="titillium-web" id="nombreRepartidor">
                                             <b>Nombre del repartidor:</b> ${row.nombre_repartidor}
                                         </h6>
@@ -539,20 +1312,20 @@ const fillTable = async (form = null) => {
     }
 }
 
-const fillTableRepartidors = async (form = null) =>{
+const fillTableRepartidors = async (form = null) => {
     CONTENEDOR_REPARTIDOR.innerHTML = '';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(PEDIDOS_API, 'readAllOrders');
+    const DATA = await fetchData(PEDIDOS_API, 'readAllOrdersDeliverys');
 
-    if(DATA.status){
+    if (DATA.status) {
 
         DATA.dataset.forEach(async (row) => {
             CONTENEDOR_REPARTIDOR.innerHTML += `
-            <div class="accordion mt-3 mb-4" id="detalleInformacion${row.id_trabajador}">
+            <div class="detalleInformacion accordion mt-3 mb-4" id="detalleInformacion${row.id_trabajador}">
                 <div class="accordion-item">
                     <!--HEADER del accordion-->
                     <div id="detalleInformacionHeader" class="accordion-header"
-                        data-bs-parent="#detalleInformacion">
+                        data-bs-parent="#detalleInformacion${row.id_trabajador}">
                         <!--Contenedor del cuerpo-->
                         <div id="contenedorDelAcordionSoloHeaderAndBody">
                             <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-cente flex-wrap"
@@ -599,7 +1372,7 @@ const fillTableRepartidors = async (form = null) =>{
                                                 <div id="contenedorCategoriaPedido"
                                                     class="col-lg-12 mt-5 mb-3 d-flex align-items-center">
                                                     <!--contenedor de Nuevos Pedidos-->
-                                                    <div id="divPedidosPendientes"
+                                                    <div id="divPedidosPendientes${row.id_trabajador}"
                                                         class="bg-color-1blue rounded-2 ms-2 col-lg-3 d-flex 
                                                         flex-column justify-content-center align-items-center nuevosPedidos"
                                                         onclick="mostrarNuevosPedidos()">
@@ -614,11 +1387,11 @@ const fillTableRepartidors = async (form = null) =>{
                                                                 Nuevos Pedidos</h6>
                                                             <h6 class="titillium-web-extralight text-white mb-4 text-center"
                                                                 id="cantidadNuevosPedidosRepartidor">
-                                                                ${row.entregado}</h6>
+                                                                ${row.pendiente}</h6>
                                                         </div>
                                                     </div>
                                                     <!--contenedor de Pedidos en progreso-->
-                                                    <div id="divPedidosProgreso"
+                                                    <div id="divPedidosProgreso${row.id_trabajador}"
                                                         class="bg-color-1blue rounded-2 col-lg-3 d-flex flex-column justify-content-center align-items-center pedidosProgreso"
                                                         onclick="mostrarPedidosProgreso()">
                                                         <div
@@ -636,7 +1409,7 @@ const fillTableRepartidors = async (form = null) =>{
                                                         </div>
                                                     </div>
                                                     <!--contenedor de Pedidos Entregados-->
-                                                    <div id="divPedidosEntregados"
+                                                    <div id="divPedidosEntregados${row.id_trabajador}"
                                                         class="bg-color-1blue rounded-2 col-lg-3 d-flex flex-column justify-content-center align-items-center pedidosEntregados"
                                                         onclick="mostrarPedidosEntregados()">
                                                         <div
@@ -658,7 +1431,7 @@ const fillTableRepartidors = async (form = null) =>{
                                                 </div>
                                                 <!--Contenedor para las card de pedidos-->
                                                 <!--!NUEVOS PEDIDIOS-->
-                                                <div id="cardsDeNuevosPedidos"
+                                                <div id="cardsDeNuevosPedidos${row.id_trabajador}"
                                                     class="mt-4 col-lg-12 d-none d-flex flex-column">
                                                     <div
                                                         class="contenedorDeNuevosPedidosImagenTexto offset-lg-2 col-lg-8 bg-color-4blue d-flex justify-content-center align-items-center rounded-3">
@@ -671,253 +1444,21 @@ const fillTableRepartidors = async (form = null) =>{
                                                             Nuevos Pedidos</h6>
                                                         <h6 class="titillium-web-extralight text-white me-1"
                                                             id="cantidadNuevosPedidosRepartidor">
-                                                            1</h6>
+                                                            ${row.pendiente}</h6>
                                                     </div>
                                                     <!--Comienzo de cards de zapatos-->
-                                                    <div id="cardsDeZapato"
+                                                    <div id="cardsDePedidoPendiente${row.id_trabajador}"
                                                         class="col-lg-12">
-                                                        <div class="accordion mt-3 mb-4"
-                                                            id="detalleInformacionRepartidor">
-                                                            <div class="accordion-item">
-                                                                <!--HEADER del accordion-->
-                                                                <div id="detalleInformacionHeaderRepatidor"
-                                                                    class="accordion-header"
-                                                                    data-bs-parent="#detalleInformacionRepartidor">
-                                                                    <!--Etiqueta del pedido-->
-                                                                    <div class="col-lg-3">
-                                                                        <p id="idPedidoNum2"
-                                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                                            Pedido N# 4322
-                                                                        </p>
-                                                                    </div>
-                                                                    <!--Contenedor del cuerpo-->
-                                                                    <div
-                                                                        id="contenedorDelAcordionSoloHeaderAndBody2">
-                                                                        <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
-                                                                            id="detallesDelPedidoRepartidor">
-                                                                            <!--Contenedor de la etiqueta del pedido-->
-                                                                            <div class="offset-lg-9 col-lg-3 bg-danger pt-1 mb-3 rounded skew-div"
-                                                                                id="colorDelEstadoDelPedido">
-                                                                                <h6 class="text-white skew-text text-center"
-                                                                                    id="nombreDelEstadoDelPedido">
-                                                                                    Pendiente
-                                                                                </h6>
-                                                                            </div>
-                                                                            <!--Info del cliente-->
-                                                                            <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2"
-                                                                                id="infoDelClienteParaRepartidor">
-                                                                                <div
-                                                                                    class="col-lg-3 img1">
-                                                                                    <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg"
-                                                                                        alt="Icono de usuario">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-4">
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="nombreClienteRepartidor">
-                                                                                        <b>Nombre
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Animalito
-                                                                                        Pollo
-                                                                                        Campero
-                                                                                        de
-                                                                                        Campero
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="correoClienteRepartidor">
-                                                                                        <b>Correo
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        PolloCampero@Pollo.com.sv
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="telefonoClienteRepartidor">
-                                                                                        <b>Teléfono
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        6543-4354
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="direccionClienteRepartidor">
-                                                                                        <b>Dirección
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Pollo
-                                                                                        campero
-                                                                                        S.V
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Comienzo de cards de zapato-->
-                                                                            <div
-                                                                                class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                                    id="cardPedido">
-                                                                                    <div
-                                                                                        class="card">
-                                                                                        <!--Contenedor de la imagen-->
-                                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                                            class="card-img-top img-fluid"
-                                                                                            alt="Imagen de zapato">
-                                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                                        <div
-                                                                                            class="card-body">
-                                                                                            <!--Contenedor de nombre zapato-->
-                                                                                            <div
-                                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                                    id="nombreZapato">
-                                                                                                    Nike
-                                                                                                    Air
-                                                                                                    Force 1'07
-                                                                                                </h4>
-                                                                                            </div>
-                                                                                            <!--Contenedor del color y talla-->
-                                                                                            <div
-                                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorColor">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Color
-                                                                                                    </h6>
-                                                                                                    <div id="color"
-                                                                                                        class="mb-2">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorTalla">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Talla
-                                                                                                    </h6>
-                                                                                                    <div
-                                                                                                        id="talla">
-                                                                                                        <h6
-                                                                                                            id="tallaPedido">
-                                                                                                            32
-                                                                                                        </h6>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <!--Contenedor de la cantidad-->
-                                                                                            <div
-                                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                                    id="cantidadPedido">
-                                                                                                    Cantidad:
-                                                                                                    12
-                                                                                                </h6>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!--Contenedor del footer-->
-                                                                                        <div
-                                                                                            class="card-footer bg-color-4blue">
-                                                                                            <!--Contenedor del precio-->
-                                                                                            <div
-                                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                                        id="precioZapato">
-                                                                                                        $120
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                                        id="cantidadTotal">
-                                                                                                        Total:
-                                                                                                        $1,440
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                                            <div id="collapseOnePedidoRepartidor"
-                                                                                class="accordion-collapse collapse show col-lg-12">
-                                                                                <div class="accordion-body"
-                                                                                    id="detallesDeMasPedidoRepartidor">
-                                                                                    <div
-                                                                                        class="col-lg-12">
-                                                                                        <div
-                                                                                            class="container">
-                                                                                            <!--Contenedor de boton de entrega y precio total-->
-                                                                                            <div
-                                                                                                class="row col-lg-12">
-                                                                                                <!--Contenedor del boton de iniciar entrega -->
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-center">
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue"
-                                                                                                        id="botonDePedido"
-                                                                                                        onclick="cambioDeEstado()">
-                                                                                                        Iniciar
-                                                                                                        entrega
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                                <!--Contenedor de los precios-->
-                                                                                                <div class="col-lg-6"
-                                                                                                    id="containerTotales">
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalPediod">
-                                                                                                        Total
-                                                                                                        del
-                                                                                                        pedido:
-                                                                                                        $4,310
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="envio">
-                                                                                                        Envío:
-                                                                                                        $10
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalCobrar">
-                                                                                                        Total
-                                                                                                        a
-                                                                                                        cobrar:
-                                                                                                        $4,320
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Botón (Footer) -->
-                                                                    <div
-                                                                        class="offset-lg-9 col-lg-3">
-                                                                        <button
-                                                                            id="accordionButtonRepartidorPedido"
-                                                                            class="accordion-button rounded-bottom rounded-top-0"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseOnePedidoRepartidor"
-                                                                            aria-expanded="true"
-                                                                            aria-controls="collapseOnePedidoRepartidor">
-                                                                            Ver más
-                                                                            información
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        
                                                     </div>
                                                     <div>
                                                         <button type="button"
                                                             class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular bg-color-5blue"
-                                                            onclick="regresar()">Regresar</button>
+                                                            onclick="regresar()" id="botonRegresar${row.id_trabajador}">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!--!Pedidos en progreso-->
-                                                <div id="cardsDePedidosProgreso"
+                                                <div id="cardsDePedidosProgreso${row.id_trabajador}"
                                                     class="mt-4 col-lg-12 d-none">
                                                     <div
                                                         class="contenedorDeNuevosPedidosImagenTexto offset-lg-2 col-lg-8 bg-color-4blue d-flex justify-content-center align-items-center rounded-3">
@@ -930,253 +1471,21 @@ const fillTableRepartidors = async (form = null) =>{
                                                             Pedidos en progreso</h6>
                                                         <h6 class="titillium-web-extralight text-white me-1"
                                                             id="cantidadNuevosPedidosRepartidor">
-                                                            1</h6>
+                                                            ${row.en_proceso}</h6>
                                                     </div>
                                                     <!--Comienzo de cards de zapatos-->
-                                                    <div id="cardsDeZapato"
-                                                        class="col-lg-12">
-                                                        <div class="accordion mt-3 mb-4"
-                                                            id="detalleInformacionRepartidor2">
-                                                            <div class="accordion-item">
-                                                                <!--HEADER del accordion-->
-                                                                <div id="detalleInformacionHeaderRepatidor"
-                                                                    class="accordion-header"
-                                                                    data-bs-parent="#detalleInformacionRepartidor2">
-                                                                    <!--Etiqueta del pedido-->
-                                                                    <div class="col-lg-3">
-                                                                        <p id="idPedidoNum2"
-                                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                                            Pedido N# 4322
-                                                                        </p>
-                                                                    </div>
-                                                                    <!--Contenedor del cuerpo-->
-                                                                    <div
-                                                                        id="contenedorDelAcordionSoloHeaderAndBody2">
-                                                                        <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
-                                                                            id="detallesDelPedidoRepartidor">
-                                                                            <!--Contenedor de la etiqueta del pedido-->
-                                                                            <div class="offset-lg-9 col-lg-3 bg-warning pt-1 mb-3 rounded skew-div"
-                                                                                id="colorDelEstadoDelPedido">
-                                                                                <h6 class="text-white skew-text text-center"
-                                                                                    id="nombreDelEstadoDelPedido">
-                                                                                    En
-                                                                                    camino
-                                                                                </h6>
-                                                                            </div>
-                                                                            <!--Info del cliente-->
-                                                                            <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2"
-                                                                                id="infoDelClienteParaRepartidor2">
-                                                                                <div
-                                                                                    class="col-lg-3 img1">
-                                                                                    <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg"
-                                                                                        alt="Icono de usuario">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-4">
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="nombreClienteRepartidor">
-                                                                                        <b>Nombre
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Animalito
-                                                                                        Pollo
-                                                                                        Campero
-                                                                                        de
-                                                                                        Campero
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="correoClienteRepartidor">
-                                                                                        <b>Correo
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        PolloCampero@Pollo.com.sv
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="telefonoClienteRepartidor">
-                                                                                        <b>Teléfono
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        6543-4354
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="direccionClienteRepartidor">
-                                                                                        <b>Dirección
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Pollo
-                                                                                        campero
-                                                                                        S.V
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Comienzo de cards de zapato-->
-                                                                            <div
-                                                                                class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                                    id="cardPedido">
-                                                                                    <div
-                                                                                        class="card">
-                                                                                        <!--Contenedor de la imagen-->
-                                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                                            class="card-img-top img-fluid"
-                                                                                            alt="Imagen de zapato">
-                                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                                        <div
-                                                                                            class="card-body">
-                                                                                            <!--Contenedor de nombre zapato-->
-                                                                                            <div
-                                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                                    id="nombreZapato">
-                                                                                                    Nike
-                                                                                                    Air
-                                                                                                    Force 1'07
-                                                                                                </h4>
-                                                                                            </div>
-                                                                                            <!--Contenedor del color y talla-->
-                                                                                            <div
-                                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorColor">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Color
-                                                                                                    </h6>
-                                                                                                    <div id="color"
-                                                                                                        class="mb-2">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorTalla">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Talla
-                                                                                                    </h6>
-                                                                                                    <div
-                                                                                                        id="talla">
-                                                                                                        <h6
-                                                                                                            id="tallaPedido">
-                                                                                                            32
-                                                                                                        </h6>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <!--Contenedor de la cantidad-->
-                                                                                            <div
-                                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                                    id="cantidadPedido">
-                                                                                                    Cantidad:
-                                                                                                    12
-                                                                                                </h6>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!--Contenedor del footer-->
-                                                                                        <div
-                                                                                            class="card-footer bg-color-4blue">
-                                                                                            <!--Contenedor del precio-->
-                                                                                            <div
-                                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                                        id="precioZapato">
-                                                                                                        $120
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                                        id="cantidadTotal">
-                                                                                                        Total:
-                                                                                                        $1,440
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                                            <div id="collapseTwoPedidoRepartidor"
-                                                                                class="accordion-collapse collapse show col-lg-12">
-                                                                                <div class="accordion-body"
-                                                                                    id="detallesDeMasPedidoRepartidor2">
-                                                                                    <div
-                                                                                        class="col-lg-12">
-                                                                                        <div
-                                                                                            class="container">
-                                                                                            <!--Contenedor de boton de entrega y precio total-->
-                                                                                            <div
-                                                                                                class="row col-lg-12">
-                                                                                                <!--Contenedor del boton de iniciar entrega -->
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-center">
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue"
-                                                                                                        id="botonDePedido"
-                                                                                                        onclick="cambioDeEstado()">
-                                                                                                        Entregado
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                                <!--Contenedor de los precios-->
-                                                                                                <div class="col-lg-6"
-                                                                                                    id="containerTotales">
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalPediod">
-                                                                                                        Total
-                                                                                                        del
-                                                                                                        pedido:
-                                                                                                        $4,310
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="envio">
-                                                                                                        Envío:
-                                                                                                        $10
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalCobrar">
-                                                                                                        Total
-                                                                                                        a
-                                                                                                        cobrar:
-                                                                                                        $4,320
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Botón (Footer) -->
-                                                                    <div
-                                                                        class="offset-lg-9 col-lg-3">
-                                                                        <button
-                                                                            id="accordionButtonRepartidorPedido2"
-                                                                            class="accordion-button rounded-bottom rounded-top-0"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseTwoPedidoRepartidor"
-                                                                            aria-expanded="true"
-                                                                            aria-controls="collapseTwoPedidoRepartidor">
-                                                                            Ver más
-                                                                            información
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <button type="button"
-                                                                class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular bg-color-5blue"
-                                                                onclick="regresar()">Regresar</button>
-                                                        </div>
+                                                    <div id="cardsDeZapatoProgeso${row.id_trabajador}"
+                                                    class="col-lg-12">
+                                                
+                                                    </div>
+                                                    <div>
+                                                        <button type="button"
+                                                            class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular bg-color-5blue"
+                                                            onclick="regresar()" id="botonRegresar2${row.id_trabajador}">Regresar</button>
                                                     </div>
                                                 </div>
                                                 <!--!Apartado de entregado-->
-                                                <div id="cardsDePedidosEntregado"
+                                                <div id="cardsDePedidosEntregado${row.id_trabajador}"
                                                     class="mt-4 col-lg-12 d-none">
                                                     <div
                                                         class="contenedorDeNuevosPedidosImagenTexto offset-lg-2 col-lg-8 bg-color-4blue d-flex justify-content-center align-items-center rounded-3">
@@ -1190,240 +1499,17 @@ const fillTableRepartidors = async (form = null) =>{
                                                             Entregado</h6>
                                                         <h6 class="titillium-web-extralight text-white me-1"
                                                             id="cantidadNuevosPedidosRepartidor">
-                                                            1</h6>
+                                                            ${row.entregado}</h6>
                                                     </div>
                                                     <!--Comienzo de cards de zapatos-->
-                                                    <div id="cardsDeZapato"
+                                                    <div id="cardsDeZapatoEntregado${row.id_trabajador}"
                                                         class="col-lg-12">
-                                                        <div class="accordion mt-3 mb-4"
-                                                            id="detalleInformacionRepartidor3">
-                                                            <div class="accordion-item">
-                                                                <!--HEADER del accordion-->
-                                                                <div id="detalleInformacionHeaderRepatidor"
-                                                                    class="accordion-header"
-                                                                    data-bs-parent="#detalleInformacionRepartidor3">
-                                                                    <!--Etiqueta del pedido-->
-                                                                    <div class="col-lg-3">
-                                                                        <p id="idPedidoNum2"
-                                                                            class="rounded-top text-center pt-2 pb-2 titillium-web-bold color-5blue">
-                                                                            Pedido
-                                                                            N#
-                                                                            4322
-                                                                        </p>
-                                                                    </div>
-                                                                    <!--Contenedor del cuerpo-->
-                                                                    <div
-                                                                        id="contenedorDelAcordionSoloHeaderAndBody2">
-                                                                        <div class="col-lg-12 container mt-3 d-flex flex-wrap m-3 justify-content-center align-items-center"
-                                                                            id="detallesDelPedidoRepartidor">
-                                                                            <!--Contenedor de la etiqueta del pedido-->
-                                                                            <div class="offset-lg-9 col-lg-3 bg-success pt-1 mb-3 rounded skew-div"
-                                                                                id="colorDelEstadoDelPedido">
-                                                                                <h6 class="text-white skew-text text-center"
-                                                                                    id="nombreDelEstadoDelPedido">
-                                                                                    Entregado
-                                                                                </h6>
-                                                                            </div>
-                                                                            <!--Info del cliente-->
-                                                                            <div class="container d-none col-lg-12 d-flex justify-content-center mt-4 mb-2"
-                                                                                id="infoDelClienteParaRepartidor3">
-                                                                                <div
-                                                                                    class="col-lg-3 img1">
-                                                                                    <img src="../../recursos/imagenes/icons/iconodeusuarioblancoyfondoazul.svg"
-                                                                                        alt="Icono de usuario">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="col-lg-4">
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="nombreClienteRepartidor">
-                                                                                        <b>Nombre
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Animalito
-                                                                                        Pollo
-                                                                                        Campero
-                                                                                        de
-                                                                                        Campero
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="correoClienteRepartidor">
-                                                                                        <b>Correo
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        PolloCampero@Pollo.com.sv
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="telefonoClienteRepartidor">
-                                                                                        <b>Teléfono
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        6543-4354
-                                                                                    </h6>
-                                                                                    <h6 class="titillium-web"
-                                                                                        id="direccionClienteRepartidor">
-                                                                                        <b>Dirección
-                                                                                            del
-                                                                                            cliente:</b>
-                                                                                        Pollo
-                                                                                        campero
-                                                                                        S.V
-                                                                                    </h6>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--Comienzo de cards de zapato-->
-                                                                            <div
-                                                                                class="containerCards col-lg-3 d-flex flex-wrap m-3">
-                                                                                <div class="containerCard col-lg-12 flex-wrap"
-                                                                                    id="cardPedido">
-                                                                                    <div
-                                                                                        class="card">
-                                                                                        <!--Contenedor de la imagen-->
-                                                                                        <img src="../../recursos/imagenes/sneakersExample.svg"
-                                                                                            class="card-img-top img-fluid"
-                                                                                            alt="Imagen de zapato">
-                                                                                        <!--Contenedor del cuerpo de la card-->
-                                                                                        <div
-                                                                                            class="card-body">
-                                                                                            <!--Contenedor de nombre zapato-->
-                                                                                            <div
-                                                                                                class="ContenedorNombreZapato col-lg-12">
-                                                                                                <h4 class="titillium-web-semibold text-center"
-                                                                                                    id="nombreZapato">
-                                                                                                    Nike
-                                                                                                    Air
-                                                                                                    Force 1'07
-                                                                                                </h4>
-                                                                                            </div>
-                                                                                            <!--Contenedor del color y talla-->
-                                                                                            <div
-                                                                                                class="ContenedorColorTalla col-lg-12 d-flex">
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorColor">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Color
-                                                                                                    </h6>
-                                                                                                    <div id="color"
-                                                                                                        class="mb-2">
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="col-lg-6 d-flex mt-3 justify-content-center align-items-center"
-                                                                                                    id="contenedorTalla">
-                                                                                                    <h6
-                                                                                                        class="titillium-web-extralight me-1">
-                                                                                                        Talla
-                                                                                                    </h6>
-                                                                                                    <div
-                                                                                                        id="talla">
-                                                                                                        <h6
-                                                                                                            id="tallaPedido">
-                                                                                                            32
-                                                                                                        </h6>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <!--Contenedor de la cantidad-->
-                                                                                            <div
-                                                                                                class="contenedorCantidad col-lg-12 justify-content-center align-items-center mt-2">
-                                                                                                <h6 class="titillium-web-extralight text-center"
-                                                                                                    id="cantidadPedido">
-                                                                                                    Cantidad:
-                                                                                                    12
-                                                                                                </h6>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!--Contenedor del footer-->
-                                                                                        <div
-                                                                                            class="card-footer bg-color-4blue">
-                                                                                            <!--Contenedor del precio-->
-                                                                                            <div
-                                                                                                class="d-flex contenedorPrecios col-lg-12">
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-start">
-                                                                                                    <h6 class="titillium-web-bold text-white"
-                                                                                                        id="precioZapato">
-                                                                                                        $120
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                                <div
-                                                                                                    class="col-lg-6 d-flex justify-content-end">
-                                                                                                    <h6 class="titillium-web-extralight text-white"
-                                                                                                        id="cantidadTotal">
-                                                                                                        Total:
-                                                                                                        $1,440
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- Detalles del Más Pedido (Body) del acordion-->
-                                                                            <div id="collapseThreePedidoRepartidor"
-                                                                                class="accordion-collapse collapse show col-lg-12">
-                                                                                <div class="accordion-body"
-                                                                                    id="detallesDeMasPedidoRepartidor3">
-                                                                                    <div
-                                                                                        class="col-lg-12">
-                                                                                        <div
-                                                                                            class="container">
-                                                                                            <!--Contenedor de boton de entrega y precio total-->
-                                                                                            <div
-                                                                                                class="row col-lg-12">
-                                                                                                <!--Contenedor de los precios-->
-                                                                                                <div class="col-lg-6"
-                                                                                                    id="containerTotales">
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalPediod">
-                                                                                                        Total
-                                                                                                        del
-                                                                                                        pedido:
-                                                                                                        $4,310
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="envio">
-                                                                                                        Envío:
-                                                                                                        $10
-                                                                                                    </h6>
-                                                                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                                                                        id="totalCobrar">
-                                                                                                        Total
-                                                                                                        a
-                                                                                                        cobrar:
-                                                                                                        $4,320
-                                                                                                    </h6>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- Botón (Footer) -->
-                                                                    <div
-                                                                        class="offset-lg-9 col-lg-3">
-                                                                        <button
-                                                                            id="accordionButtonRepartidorPedido3"
-                                                                            class="accordion-button rounded-bottom rounded-top-0"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#collapseThreePedidoRepartidor"
-                                                                            aria-expanded="true"
-                                                                            aria-controls="collapseThreePedidoRepartidor">
-                                                                            Ver
-                                                                            más
-                                                                            información
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+
                                                     </div>
                                                     <div>
                                                         <button type="button"
                                                             class="btn btn3 btn-primary ms-2 shadow text18 titillium-web-regular bg-color-5blue"
-                                                            onclick="regresar()">Regresar</button>
+                                                            onclick="regresar()" id="botonRegresar3${row.id_trabajador}">Regresar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1444,9 +1530,10 @@ const fillTableRepartidors = async (form = null) =>{
                         </div>
                     </div>
                 </div>
-            </div>`
+            </div>`;
+
         });
-        
+
         if (DATA.dataset == 0) {
             await sweetAlert(1, DATA.message, true);
         }
@@ -1455,3 +1542,4 @@ const fillTableRepartidors = async (form = null) =>{
         await sweetAlert(2, DATA.error, true);
     }
 }
+
