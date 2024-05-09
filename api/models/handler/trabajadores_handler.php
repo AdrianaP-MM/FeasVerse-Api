@@ -78,7 +78,7 @@ class TrabajadorHandler
     public function readAll()
     {
         $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador FROM tb_trabajadores t
-        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel;';
+        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel ORDER BY t.id_trabajador ASC;';
         return Database::getRows($sql);
     }
 
@@ -106,6 +106,14 @@ class TrabajadorHandler
     {
         $sql = 'SELECT id_trabajador FROM tb_trabajadores WHERE dui_trabajador = ? OR correo_trabajador = ?';
         $params = array($value, $value);
+        return Database::getRow($sql, $params);
+    }
+
+    public function readOne()
+    {
+        $sql = 'SELECT id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador, clave_trabajador, fecha_de_registro, fecha_de_nacimiento, id_nivel, estado_trabajador
+        FROM tb_trabajadores WHERE id_trabajador = ?;';
+        $params = array($this->id_trabajador);
         return Database::getRow($sql, $params);
     }
 }

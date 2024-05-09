@@ -46,9 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         TABLE_DIV.classList.remove('d-none');
         ADD_DIV.classList.add('d-none');
     }
-
     INPUTDATENOW.readOnly = true;
-
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 });
@@ -70,7 +68,7 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
-            <tr class="table-row" ondblclick="openDetails(this)">
+            <tr class="table-row" ondblclick="openDetails(${ROW.id_trabajador})">
                 <td>${row.id_trabajador}</td>
                 <td>${row.apellido_trabajador}</td>
                 <td>${row.nombre_trabajador}</td>
@@ -149,60 +147,46 @@ const addSave = async () => {
 
 
 // Función para abrir los detalles de un trabajador.
-const openDetails = async (row) => {
-    // Muestra la caja de diálogo con su título.
-    DATA_MODAL.show();
-    // Prepara el formulario de actualización.
-    UPDATE_FORM.reset();
-    // Inicializa los campos con los datos de la fila seleccionada.
-    var cells = row.getElementsByTagName('td');
-    var values = [];
-    for (var i = 0; i < cells.length; i++) {
-        values.push(cells[i].innerText);
-    }
+const openDetails = async (id) => {
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_trabajador', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(TRABAJADORES_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        DATA_MODAL.show();
+        // Se prepara el formulario.
+        UPDATE_FORM.reset();
 
-    // Asigna los valores a los campos del formulario.
-    NOMBRES_INPUT.value = values[2];
-    APELLIDOS_INPUT.value = values[1];
-    DUI_INPUT.value = values[3];
-    TEL_INPUT.value = values[4];
-    CORREO_INPUT.value = values[5];
-    FECHAN_INPUT.value = '2001-08-12';
-    FECHAR_INPUT.value = '2024-12-08';
-    CONTRA_INPUT.value = 'Hola123';
-    var id = values[0];
+        const ROW = DATA.dataset;
+        NOMBRES_INPUT.value = ROW.nombre_trabajador;
+        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
+        DUI_INPUT.value = ROW.dui_trabajador;
+        TEL_INPUT.value = ROW.telefono_trabajador;
+        CORREO_INPUT.value = ROW.correo_trabajador;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+        FECHAR_INPUT.value = ROW.fecha_de_registro;
+        fillSelect(TRABAJADORES_API, 'readAll', 'estadoInputD', ROW.estado_trabajador);
+        fillSelect(TRABAJADORES_API, 'readAll', 'nivelInputD', ROW.id_nivel);
 
-    if (values[7] == 'Vigente') {
-        ESTADO_INPUT.value = 1;
+        // Deshabilita la edición de los campos de entrada.
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        FECHAR_INPUT.readOnly = true;
+        ESTADO_INPUT.disabled = true;
+        NIVEL_INPUT.disabled = true;
+        CONTRA_INPUT.readOnly = true;
+        // Actualiza el título del modal con el ID del trabajador.
+        MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
+    } else {
+        sweetAlert(2, DATA.error, false);
     }
-    else {
-        ESTADO_INPUT.value = 2;
-    }
-
-    if (values[6] == 'Admin') {
-        NIVEL_INPUT.value = 1;
-    }
-    else if (values[6] == 'Empleado') {
-        NIVEL_INPUT.value = 2;
-    }
-    else {
-        NIVEL_INPUT.value = 3;
-    }
-
-    // Deshabilita la edición de los campos de entrada.
-    NOMBRES_INPUT.readOnly = true;
-    APELLIDOS_INPUT.readOnly = true;
-    DUI_INPUT.readOnly = true;
-    TEL_INPUT.readOnly = true;
-    CORREO_INPUT.readOnly = true;
-    FECHAN_INPUT.readOnly = true;
-    FECHAR_INPUT.readOnly = true;
-    ESTADO_INPUT.disabled = true;
-    NIVEL_INPUT.disabled = true;
-    CONTRA_INPUT.readOnly = true;
-
-    // Actualiza el título del modal con el ID del trabajador.
-    MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
 }
 
 // Evento cuando se oculta el modal.
@@ -253,6 +237,8 @@ const returnBack = async () => {
 
 // Función para mostrar el div de agregar trabajador y ocultar el div de la tabla.
 function showAddDiv(boton) {
+    fillSelect(TRABAJADORES_API, 'readAll', 'estadoInput');
+    fillSelect(TRABAJADORES_API, 'readAll', 'nivelInput');
     ADD_DIV.classList.remove('d-none');
     TABLE_DIV.classList.add('d-none');
     // Obtener la fecha actual
