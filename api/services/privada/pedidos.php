@@ -57,8 +57,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'updateStatus':
                 $_POST = Validator::validateForm($_POST);
-                if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])
-                or !$pedidos->setEstadoPedido($_POST['estado'])) {
+                if (!$pedidos->setIdPedidoCliente($_POST['idPedido']) or !$pedidos->setEstadoPedido($_POST['estado'])) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($result['dataset'] = $pedidos->updateStatus()) {
                     $result['status'] = 1;

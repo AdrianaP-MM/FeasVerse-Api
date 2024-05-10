@@ -179,6 +179,7 @@ class PedidosHandler
                 SET estado_pedido = ?
                 WHERE id_pedido_cliente = ?';
         $params = array($this->estado_pedido, $this->id_pedido_cliente);
+        //print_r($params);
         return Database::executeRow($sql, $params);
     }
 

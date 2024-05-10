@@ -1098,19 +1098,9 @@ function clearSearch() {
 
 //Función asicronicaa de cambio de estado
 const cambioDeEstado = async (id_pedido_cliente, estado) => {
-
     const FORM2 = new FormData();
     FORM2.append('idPedido', id_pedido_cliente);
-    if (estado.trim() === 'Pendiente') {
-        FORM2.append('estado', 1);
-    }
-    else if (estado.trim() === 'En camino') {
-        FORM2.append('estado', 2);
-    }
-    else if (estado.trim() === 'Entregado') {
-        FORM2.append('estado', 3);
-    }
-    console.log(estado);
+    FORM2.append('estado', estado.trim());
     // Petición para obtener los registros disponibles.
     const DATA3 = await fetchData(PEDIDOS_API, 'updateStatus', FORM2);
 
@@ -1207,11 +1197,11 @@ const fillTable = async (form = null) => {
                                                     <!--Contenedor del boton de iniciar entrega -->
                                                     <div class="col-lg-6 d-flex justify-content-center">
                                                         ${row.estado_pedido === 'Pendiente' ? `
-                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row.id_pedido_cliente}, '${estado}')">
+                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row.id_pedido_cliente}, 'En camino')">
                                                             Iniciar entrega
                                                         </button>
                                                         ` : row.estado_pedido === 'En camino' ? `
-                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row.id_pedido_cliente}, '${estado}')">
+                                                        <button type="button" class="col-lg-4 btn btn-primary shadow text18 titillium-web-regular bg-color-5blue" id="botonDePedido" onclick="cambioDeEstado(${row.id_pedido_cliente}, 'Entregado')">
                                                             Entregado
                                                         </button>
                                                         ` : `
