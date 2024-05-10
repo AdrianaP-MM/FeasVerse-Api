@@ -48,6 +48,14 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOne':
+                if (!$trabajador->setId($_POST['id_trabajador'])) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($result['dataset'] = $trabajador->readOne()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Trabajador inexistente';
+                }
+                break;
                 break;
             case 'updateRow':
                 break;

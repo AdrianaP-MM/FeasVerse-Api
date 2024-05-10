@@ -67,12 +67,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="apellidosInput" class="form-label ">Apellidos</label>
-                                        <input type="text" class="form-control" id="apellidosInput" name="apellidosInput"
-                                            placeholder="Ingresa los apellidos" required>
+                                        <input type="text" class="form-control" id="apellidosInput"
+                                            name="apellidosInput" placeholder="Ingresa los apellidos" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="duiInput" class="form-label ">DUI</label>
-                                        <input type="text" class="form-control" id="duiInput"  name="duiInput"
+                                        <input type="text" class="form-control" id="duiInput" name="duiInput"
                                             placeholder="Ingresa el dui" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
@@ -82,37 +82,27 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="correoInput" class="form-label ">Correo electrónico</label>
-                                        <input type="email" class="form-control" id="correoInput" name="correoInput" 
+                                        <input type="email" class="form-control" id="correoInput" name="correoInput"
                                             placeholder="Ingresa el correo electronico" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="fechanInput" class="form-label ">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" id="fechanInput" name="fechanInput" 
+                                        <input type="date" class="form-control" id="fechanInput" name="fechanInput"
                                             placeholder="Ingresa la fecha de nacimiento" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="fecharInput" class="form-label">Fecha de Registro</label>
                                         <input type="date" class="form-control" id="fecharInput" name="fecharInput"
-                                        placeholder="21/2/2024" required>
+                                            placeholder="21/2/2024" required>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        <label for="estadoInput" class="form-label">Estado del
-                                            Trabajador</label>
-                                        <select class="form-label form-select" id="estadoInput" name="estadoInput"
-                                            aria-label="Estado de usuario" required>
-                                            <option value="" disabled selected>Selecciona un estado</option>
-                                            <option value="1">Activo</option>
-                                            <option value="2">Desactivo</option>
+                                        <label for="estadoInput" class="form-label">Estado del trabajador</label>
+                                        <select id="estadoInput" name="estadoInput" class="form-select" required>
                                         </select>
                                     </div>
                                     <div class="col-md-6 mt-3">
-                                        <label for="nivelInput" class="form-label">Nivel de Usuario</label>
-                                        <select class="form-label form-select" id="nivelInput" name="nivelInput"
-                                            aria-label="Nivel de usuario" required>
-                                            <option value="" disabled selected>Selecciona un nivel</option>
-                                            <option value="1">Admin</option>
-                                            <option value="2">Empleado</option>
-                                            <option value="3">Repartidor</option>
+                                        <label for="nivelInput" class="form-label">Nivel de usuario</label>
+                                        <select id="nivelInput" name="nivelInput" class="form-select" required>
                                         </select>
                                     </div>
                                     <div class="col-md-6 mt-3">
@@ -223,23 +213,15 @@
                                         class="form-control editableInput" required>
                                 </div>
                                 <!--Campo del estado del trabajador-->
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="estadoTrabajador" class="form-label">Estado</label>
-                                    <select class="form-select form-control" id="estadoTrabajador"
-                                        aria-label="estadoTrabajador">
-                                        <option selected value="1">Vigente</option>
-                                        <option value="2">Inactivo</option>
-                                    </select required>
+                                <div class="col-md-6 mt-3">
+                                    <label for="estadoInputD" class="form-label">Estado del trabajador</label>
+                                    <select id="estadoInputD" name="estadoInputD" class="form-select" required>
+                                    </select>
                                 </div>
-                                <!--Campo del nivel del trabajador-->
-                                <div class="col-sm-12 col-md-6">
-                                    <label for="nivelTrabajador" class="form-label">Nivel</label>
-                                    <select class="form-select form-control" id="nivelTrabajador"
-                                        aria-label="nivelTrabajador">
-                                        <option selected value="1">Admin</option>
-                                        <option value="2">Empleado</option>
-                                        <option value="2">Repartidor</option>
-                                    </select required>
+                                <div class="col-md-6 mt-3">
+                                    <label for="nivelInputD" class="form-label">Nivel de usuario</label>
+                                    <select id="nivelInputD" name="nivelInputD" class="form-select" required>
+                                    </select>
                                 </div>
                                 <!--Campo del contraseña del trabajador-->
                                 <div class="col-sm-12 col-md-6">
