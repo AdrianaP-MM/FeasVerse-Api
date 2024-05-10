@@ -124,31 +124,41 @@ const showForgotPasswordStepThreeForm = async () => {
     FORGOT_PASSWORD_STEP_THREE_FORM.classList.remove('d-none');
     // Se establece el título del contenido principal.
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
+}
 
+function validatePassword(password) {
+    // Expresión regular para validar que la contraseña cumpla con los requisitos
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{":;'?/>.<,])[A-Za-z\d!@#$%^&*()_+}{":;'?/>.<,]{8,}$/;
+    return regex.test(password);
 }
 
 document.getElementById("forgetPasswordStepThree").addEventListener("submit", async function (event) {
     event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
-    INPUTCONTRA = document.getElementById("clavePaso3").value;
-    INPUTCONFIRMARCONTRA = document.getElementById("clave2_paso3").value;
-    
-    if(INPUTCONTRA.trim() === INPUTCONFIRMARCONTRA.trim()){
-        FORM1 = new FormData();
-        FORM1.append('claveTrabajador', INPUTCONTRA);
-        FORM1.append('confirmarTrabajador', INPUTCONFIRMARCONTRA);
-        FORM1.append('idTrabajador', id);
+    const INPUTCONTRA = document.getElementById("clavePaso3").value.trim();
+    const INPUTCONFIRMARCONTRA = document.getElementById("clave2_paso3").value.trim();
 
-        const DATA = await fetchData(USER_API, 'changePasswordLogin', FORM1);
-        if (DATA.status) {
-            sweetAlert(1, 'La contraseña ha sido restablecida correctamente', true);
-            showLoginForm();
+    // Validar que las contraseñas coincidan
+    if (INPUTCONTRA === INPUTCONFIRMARCONTRA) {
+        // Validar que la contraseña cumpla con los requisitos
+        if (validatePassword(INPUTCONTRA)) {
+            const FORM1 = new FormData();
+            FORM1.append('claveTrabajador', INPUTCONTRA);
+            FORM1.append('confirmarTrabajador', INPUTCONFIRMARCONTRA);
+            FORM1.append('idTrabajador', id);
+
+            const DATA = await fetchData(USER_API, 'changePasswordLogin', FORM1);
+            if (DATA.status) {
+                sweetAlert(1, 'La contraseña ha sido restablecida correctamente', true);
+                showLoginForm();
+            } else {
+                sweetAlert(2, DATA.error, false);
+            }
         } else {
-            sweetAlert(2, DATA.error, false);
+            sweetAlert(2, 'La contraseña debe tener al menos 8 caracteres, incluir letras mayúsculas y minúsculas, dígitos y caracteres especiales.', true);
         }
+    } else {
+        sweetAlert(2, 'Los campos de contraseña no coinciden.', true);
     }
-    else{
-        await sweetAlert(2, 'Los campos de contraseña no coinciden.', true);
-    }   
 });
 
 function handleLoginFormSubmission(event) {
