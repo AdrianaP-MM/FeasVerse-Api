@@ -8,6 +8,7 @@ const FORGOT_PASSWORD_FORM = document.getElementById('forgetpasswordstepone');
 const FORGOT_PASSWORD_STEP_TWO_FORM = document.getElementById('forgetpasswordsteptwo');
 const FORGOT_PASSWORD_STEP_THREE_FORM = document.getElementById('forgetPasswordStepThree');
 
+
 document.addEventListener('DOMContentLoaded', async () => {
     
     loadTemplate();
@@ -65,8 +66,41 @@ const showForgotPasswordForm = async () => {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-const showForgotPasswordStepTwoForm = async () => {
-    await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico', true);
+document.getElementById("forgetpasswordstepone").addEventListener("submit", async function(event){
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+    
+    const INPUTCONTRA = document.getElementById("correo_electronico_paso1");
+
+    FORM1 = new FormData();
+    FORM1.append('correo_electronico_paso1', INPUTCONTRA.value);
+
+    // Lógica asíncrona para obtener los datos del usuario
+    const DATA = await fetchData(USER_API, 'searchMail', FORM1);
+    if (DATA.status) {
+        FORM2 = new FormData();
+        FORM2.append('correo_electronico_paso1', INPUTCONTRA.value);
+        FORM2.append('nombre_destinatario', DATA.nombre_trabajador);
+
+        const DATA2 = await fetchData(USER_API, 'enviarCodigoRecuperacion', FORM2)
+        console.log(DATA2);
+
+        if (DATA2.status) {
+            await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico, ingrese el código enviado', true);
+            showForgotPasswordStepTwoForm(DATA2);
+        } else {
+            sweetAlert(2, DATA2.error, false);
+        }
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+        
+    }
+
+});
+
+
+
+const showForgotPasswordStepTwoForm = async (DATA2) => {
     // Se oculta el formulario para iniciar sesión y paso 1, 3
     LOGIN_FORM.classList.add('d-none');
     FORGOT_PASSWORD_FORM.classList.add('d-none');

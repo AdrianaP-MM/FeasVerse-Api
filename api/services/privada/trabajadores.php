@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/trabajadores_data.php');
+require_once('../../services/mandar_correo.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -8,6 +9,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $trabajador = new TrabajadorData;
+    $mandarCorreo = new mandarCorreo;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como trabajador, de lo contrario se finaliza el script con un mensaje de error.
@@ -99,12 +101,36 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'searchMail':
-                if (!$trabajador->setCorreo($_POST['correo'])) {
+                $_POST = Validator::validateForm($_POST);
+                if (!$trabajador->setPasswordCorreo($_POST['correo_electronico_paso1'])) {
                     $result['error'] = 'Correo electrónico incorrecto';
                 } elseif ($result['dataset'] = $trabajador->checkMail()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Usuario inexistente';
+                    $result['error'] = 'Correo electrónico inexistente';
+                }
+                break;
+            case 'enviarCodigoRecuperacion':
+                // Generar un código de recuperación
+                $codigoRecuperacion = $mandarCorreo->generarCodigoRecuperacion();
+
+                // Guardar el código de recuperación en la sesión del usuario
+                $_SESSION['codigo_recuperacion'] = $codigoRecuperacion;
+
+                // Preparar el cuerpo del correo electrónico
+                $correoDestino = $_POST['correo_electronico_paso1'];
+                $nombreDestinatario =  $_POST['nombre_destinatario']; // Puedes personalizar este valor si lo necesitas
+                $asunto = 'Código de recuperación';
+
+                // Enviar el correo electrónico y verificar si hubo algún error
+                $envioExitoso = $mandarCorreo->enviarCorreoPassword($correoDestino, $nombreDestinatario, $asunto, $codigoRecuperacion);
+                
+                if ($envioExitoso === true) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Código de recuperación enviado correctamente';
+                } else {
+                    $result['status'] = 0;
+                    $result['error'] = 'Error al enviar el correo: ' . $envioExitoso;
                 }
                 break;
             case 'changePasswordLogin':
