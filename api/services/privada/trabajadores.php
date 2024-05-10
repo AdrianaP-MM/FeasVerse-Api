@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
     $trabajador = new TrabajadorData;
     $mandarCorreo = new mandarCorreo;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
-    $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
+    $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null, 'codigo' => null);
     // Se verifica si existe una sesión iniciada como trabajador, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idTrabajador'])) {
         $result['session'] = 1;
@@ -114,19 +114,16 @@ if (isset($_GET['action'])) {
                 // Generar un código de recuperación
                 $codigoRecuperacion = $mandarCorreo->generarCodigoRecuperacion();
 
-                // Guardar el código de recuperación en la sesión del usuario
-                $_SESSION['codigo_recuperacion'] = $codigoRecuperacion;
-
                 // Preparar el cuerpo del correo electrónico
                 $correoDestino = $_POST['correo_electronico_paso1'];
                 $nombreDestinatario =  $_POST['nombre_destinatario']; // Puedes personalizar este valor si lo necesitas
                 $asunto = 'Código de recuperación';
-
                 // Enviar el correo electrónico y verificar si hubo algún error
                 $envioExitoso = $mandarCorreo->enviarCorreoPassword($correoDestino, $nombreDestinatario, $asunto, $codigoRecuperacion);
                 
                 if ($envioExitoso === true) {
                     $result['status'] = 1;
+                    $result['codigo'] = $codigoRecuperacion;
                     $result['message'] = 'Código de recuperación enviado correctamente';
                 } else {
                     $result['status'] = 0;

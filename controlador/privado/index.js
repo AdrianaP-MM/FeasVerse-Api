@@ -8,9 +8,8 @@ const FORGOT_PASSWORD_FORM = document.getElementById('forgetpasswordstepone');
 const FORGOT_PASSWORD_STEP_TWO_FORM = document.getElementById('forgetpasswordsteptwo');
 const FORGOT_PASSWORD_STEP_THREE_FORM = document.getElementById('forgetPasswordStepThree');
 
-
 document.addEventListener('DOMContentLoaded', async () => {
-    
+
     loadTemplate();
 
     const DATA = await fetchData(USER_API, 'getUser');
@@ -43,18 +42,6 @@ function showLoginForm() {
     FORGOT_PASSWORD_STEP_THREE_FORM.classList.add('d-none');
 }
 
-const showLoginFormRestablecer = async () => {
-    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
-    // Se muestra el formulario para iniciar sesión.
-    LOGIN_FORM.classList.remove('d-none');
-    // Se establece el título del contenido principal.
-    MAIN_TITLE.textContent = 'FEASVERSE - Inicio de sesión';
-    // Se oculta el formulario de restablecimiento de contraseña (paso 1 y 2 y 3).
-    FORGOT_PASSWORD_FORM.classList.add('d-none');
-    FORGOT_PASSWORD_STEP_TWO_FORM.classList.add('d-none');
-    FORGOT_PASSWORD_STEP_THREE_FORM.classList.add('d-none');
-}
-
 const showForgotPasswordForm = async () => {
     // Se oculta el formulario para iniciar sesión y paso 2, 3.
     LOGIN_FORM.classList.add('d-none');
@@ -66,9 +53,12 @@ const showForgotPasswordForm = async () => {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
 
-document.getElementById("forgetpasswordstepone").addEventListener("submit", async function(event){
+let DATA2; // Declara DATA2 en un ámbito más amplio para que sea accesible desde ambos eventos
+let id;
+
+document.getElementById("forgetpasswordstepone").addEventListener("submit", async function (event) {
     event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
-    
+
     const INPUTCONTRA = document.getElementById("correo_electronico_paso1");
 
     FORM1 = new FormData();
@@ -78,29 +68,30 @@ document.getElementById("forgetpasswordstepone").addEventListener("submit", asyn
     const DATA = await fetchData(USER_API, 'searchMail', FORM1);
     if (DATA.status) {
         FORM2 = new FormData();
+        var resultado = DATA.dataset;
         FORM2.append('correo_electronico_paso1', INPUTCONTRA.value);
-        FORM2.append('nombre_destinatario', DATA.nombre_trabajador);
+        FORM2.append('nombre_destinatario', resultado.nombre_trabajador);
 
-        const DATA2 = await fetchData(USER_API, 'enviarCodigoRecuperacion', FORM2)
-        console.log(DATA2);
+        id = resultado.id_trabajador;
+
+        DATA2 = await fetchData(USER_API, 'enviarCodigoRecuperacion', FORM2); // Asigna el valor de DATA2 aquí
+        console.log(DATA2.codigo);
 
         if (DATA2.status) {
             await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico, ingrese el código enviado', true);
-            showForgotPasswordStepTwoForm(DATA2);
+            showForgotPasswordStepTwoForm();
         } else {
             sweetAlert(2, DATA2.error, false);
         }
 
     } else {
         sweetAlert(2, DATA.error, false);
-        
     }
-
 });
 
 
 
-const showForgotPasswordStepTwoForm = async (DATA2) => {
+const showForgotPasswordStepTwoForm = async () => {
     // Se oculta el formulario para iniciar sesión y paso 1, 3
     LOGIN_FORM.classList.add('d-none');
     FORGOT_PASSWORD_FORM.classList.add('d-none');
@@ -110,6 +101,18 @@ const showForgotPasswordStepTwoForm = async (DATA2) => {
     // Se establece el título del contenido principal.
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 }
+
+
+document.getElementById("forgetpasswordsteptwo").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+
+    const INPUTCODIGO = document.getElementById("codigoPaso2").value;
+    if (INPUTCODIGO.trim() === DATA2.codigo) {
+        showForgotPasswordStepThreeForm();
+    } else {
+        await sweetAlert(2, 'El código no coincide con el que se le envió en el correo.', true);
+    }
+});
 
 const showForgotPasswordStepThreeForm = async () => {
     await sweetAlert(1, 'Código ingresado correctamente', true);
@@ -123,6 +126,30 @@ const showForgotPasswordStepThreeForm = async () => {
     MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
 
 }
+
+document.getElementById("forgetPasswordStepThree").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+    INPUTCONTRA = document.getElementById("clavePaso3").value;
+    INPUTCONFIRMARCONTRA = document.getElementById("clave2_paso3").value;
+    
+    if(INPUTCONTRA.trim() === INPUTCONFIRMARCONTRA.trim()){
+        FORM1 = new FormData();
+        FORM1.append('claveTrabajador', INPUTCONTRA);
+        FORM1.append('confirmarTrabajador', INPUTCONFIRMARCONTRA);
+        FORM1.append('idTrabajador', id);
+
+        const DATA = await fetchData(USER_API, 'changePasswordLogin', FORM1);
+        if (DATA.status) {
+            sweetAlert(1, 'La contraseña ha sido restablecida correctamente', true);
+            showLoginForm();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+    else{
+        await sweetAlert(2, 'Los campos de contraseña no coinciden.', true);
+    }   
+});
 
 function handleLoginFormSubmission(event) {
     event.preventDefault(); // Evita la recarga de la página por defecto

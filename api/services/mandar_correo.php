@@ -47,18 +47,17 @@ class mandarCorreo
                         background-color: #1A89BD; /* Color principal */
                         padding: 10px;
                         text-align: center;
+                        border-radius: 10px 10px 0 0; /* Redondear bordes superiores */
                     }
                     .content {
                         padding: 20px;
                         background-color: #FFFFFF; /* Fondo blanco */
                         color: #000000; /* Texto negro */
+                        border-radius: 0 0 10px 10px; /* Redondear bordes inferiores */
+                        border: 1px solid #1A89BD; /* Borde con color principal */
                     }
-                    .logo {
-                        text-align: center;
+                    .card {
                         margin-bottom: 20px;
-                    }
-                    .logo img {
-                        max-width: 150px;
                     }
                     .company-name {
                         color: #FFFFFF; /* Nombre de la empresa en blanco */
@@ -71,12 +70,14 @@ class mandarCorreo
                         <h1 class="company-name">FEASVERSE . SV</h1>
                     </div>
                     <div class="content">
-                        <p>Hola ' . $nombreDestinatario . ',</p>
-                        <p>Recibiste este correo electrónico porque solicitaste un código de recuperación para restablecer tu contraseña en FEASVERSE.SV.</p>
-                        <p>Tu código de recuperación es: <strong>' . $codigoRecuperacion . '</strong></p>
-                        <p>Por favor, guarda este código de forma segura y no lo compartas con nadie.</p>
-                        <p>Si no solicitaste este código, puedes ignorar este correo electrónico de manera segura.</p>
-                        <p>¡Gracias!</p>
+                        <div class="card">
+                            <p>Hola ' . $nombreDestinatario . ',</p>
+                            <p>Recibiste este correo electrónico porque solicitaste un código de recuperación para restablecer tu contraseña en FEASVERSE.SV.</p>
+                            <p>Tu código de recuperación es: <strong>' . $codigoRecuperacion . '</strong></p>
+                            <p>Por favor, guarda este código de forma segura y no lo compartas con nadie.</p>
+                            <p>Si no solicitaste este código, puedes ignorar este correo electrónico de manera segura.</p>
+                            <p>¡Gracias!</p>
+                        </div>
                     </div>
                 </div>
             </body>
@@ -95,6 +96,7 @@ class mandarCorreo
             return $mail->ErrorInfo;
         }
     }
+
 
 
 
