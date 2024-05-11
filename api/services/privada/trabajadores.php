@@ -60,6 +60,25 @@ if (isset($_GET['action'])) {
                 break;
                 break;
             case 'updateRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setId($_POST['id_trabajador']) or
+                    !$trabajador->setNombre($_POST['nombreTrabajador']) or
+                    !$trabajador->setApellido($_POST['nombreTrabajador']) or
+                    !$trabajador->setDUI($_POST['duiTrabajador']) or
+                    !$trabajador->setTelefono($_POST['telefonoTrabajador']) or
+                    !$trabajador->setCorreo($_POST['correoTrabajador']) or
+                    !$trabajador->setNacimiento($_POST['fechanTrabajador']) or
+                    !$trabajador->setIdNivel($_POST['nivelInputD']) or
+                    !$trabajador->setEstado($_POST['estadoInputD'])
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Trabajador modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el trabajador';
+                }
                 break;
             case 'deleteRow':
                 break;
@@ -77,6 +96,14 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Sesión eliminada correctamente';
                 } else {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
+                }
+                break;
+            case 'readNivel':
+                if ($result['dataset'] = $trabajador->readNiveles()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen niveles registrados';
                 }
                 break;
             case 'readProfile':

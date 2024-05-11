@@ -102,10 +102,44 @@ class TrabajadorHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function updateRow()
+    {
+        $sql = 'UPDATE tb_trabajadores SET 
+        nombre_trabajador = ?,
+        apellido_trabajador = ?,
+        dui_trabajador = ?,
+        telefono_trabajador = ?,
+        correo_trabajador = ?,
+        fecha_de_nacimiento = ?,
+        id_nivel = ?,
+        estado_trabajador = ? WHERE id_trabajador = ?;';
+        $params = array(
+            $this->nombre_trabajador,
+            $this->apellido_trabajador,
+            $this->dui_trabajador,
+            $this->telefono_trabajador,
+            $this->correo_trabajador,
+            $this->fecha_de_nacimiento,
+            $this->id_nivel,
+            $this->estado_trabajador,
+            $this->id_trabajador
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readNiveles()
+    {
+        $sql = 'SELECT id_nivel, nivel from tb_niveles; ';
+        return Database::getRows($sql);
+    }
+
     public function checkDuplicate($value)
     {
-        $sql = 'SELECT id_trabajador FROM tb_trabajadores WHERE dui_trabajador = ? OR correo_trabajador = ?';
-        $params = array($value, $value);
+        $sql = 'SELECT id_trabajador 
+        FROM tb_trabajadores 
+        WHERE (dui_trabajador = ? OR correo_trabajador = ?)
+        AND id_trabajador <> ?;';
+        $params = array($value, $value, $this->id_trabajador);
         return Database::getRow($sql, $params);
     }
 

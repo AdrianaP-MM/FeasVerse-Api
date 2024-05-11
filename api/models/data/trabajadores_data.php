@@ -28,7 +28,7 @@ class TrabajadorData extends TrabajadorHandler
     public function setNombre($value, $min = 2, $max = 20)
     {
         if (!Validator::validateAlphabetic($value)) {
-            $this->data_error = 'El nombre debe ser un valor alfabético';
+            $this->data_error = 'El nombre debe ser un valor alfabetico';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombre_trabajador = $value;
@@ -149,7 +149,7 @@ class TrabajadorData extends TrabajadorHandler
             $this->id_nivel = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del trabajador es incorrecto';
+            $this->data_error = 'El nivel es incorrecto';
             return false;
         }
     }

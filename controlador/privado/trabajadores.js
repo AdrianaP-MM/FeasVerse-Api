@@ -9,9 +9,8 @@ const NOMBRES_INPUT = document.getElementById('nombreTrabajador'),
     CORREO_INPUT = document.getElementById('correoTrabajador'),
     FECHAN_INPUT = document.getElementById('fechanTrabajador'),
     FECHAR_INPUT = document.getElementById('fecharTrabajador'),
-    ESTADO_INPUT = document.getElementById('estadoTrabajador'),
-    NIVEL_INPUT = document.getElementById('nivelTrabajador'),
-    CONTRA_INPUT = document.getElementById('contraTrabajador');
+    ESTADO_INPUT = document.getElementById('estadoInputD'),
+    NIVEL_INPUT = document.getElementById('nivelInputD');
 
 const INPUTDATENOW = document.getElementById('fecharInput');
 
@@ -32,7 +31,6 @@ const forms = document.querySelectorAll('.needs-validation')
 const TABLE_BODY = document.getElementById('tableBody');
 
 const TRABAJADORES_API = 'services/privada/trabajadores.php';
-
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -68,7 +66,7 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
-            <tr class="table-row" ondblclick="openDetails(${ROW.id_trabajador})">
+            <tr class="table-row" ondblclick="openDetails(${row.id_trabajador})">
                 <td>${row.id_trabajador}</td>
                 <td>${row.apellido_trabajador}</td>
                 <td>${row.nombre_trabajador}</td>
@@ -91,7 +89,6 @@ const fillTable = async (form = null) => {
         console.log('ERROR');
     }
 }
-
 
 const addSave = async () => {
     // Se evita recargar la página web después de enviar el formulario.
@@ -144,13 +141,18 @@ const addSave = async () => {
 
 };
 
+function findNumberValue(value) {
+    if (value == 'Activo') { return 1; }
+    else { return 2; }
+}
 
-
+let id_worker = null;
 // Función para abrir los detalles de un trabajador.
 const openDetails = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('id_trabajador', id);
+    id_worker = id;
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(TRABAJADORES_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -168,8 +170,8 @@ const openDetails = async (id) => {
         CORREO_INPUT.value = ROW.correo_trabajador;
         FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
         FECHAR_INPUT.value = ROW.fecha_de_registro;
-        fillSelect(TRABAJADORES_API, 'readAll', 'estadoInputD', ROW.estado_trabajador);
-        fillSelect(TRABAJADORES_API, 'readAll', 'nivelInputD', ROW.id_nivel);
+        fillSelect(TRABAJADORES_API, 'readNivel', 'nivelInputD', ROW.id_nivel);
+        ESTADO_INPUT.value = findNumberValue(ROW.estado_trabajador);
 
         // Deshabilita la edición de los campos de entrada.
         NOMBRES_INPUT.readOnly = true;
@@ -181,7 +183,6 @@ const openDetails = async (id) => {
         FECHAR_INPUT.readOnly = true;
         ESTADO_INPUT.disabled = true;
         NIVEL_INPUT.disabled = true;
-        CONTRA_INPUT.readOnly = true;
         // Actualiza el título del modal con el ID del trabajador.
         MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
     } else {
@@ -198,7 +199,8 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
 // Función que se ejecuta al hacer clic en el botón de actualizar.
 const botonActualizar = async () => {
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
     if (textoBoton == 'Actualizar') {
         // Habilita la edición de los campos de entrada.
         enableFormFields();
@@ -207,10 +209,25 @@ const botonActualizar = async () => {
     } else if (textoBoton == 'Guardar') {
         // Deshabilita la edición de los campos de entrada.
         disableFormFields();
-        // Muestra una alerta de actualización exitosa.
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        // Oculta el modal.
-        DATA_MODAL.hide();
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(UPDATE_FORM);
+        FORM.append('nivelInputD', NIVEL_INPUT.value);
+        FORM.append('estadoInputD', ESTADO_INPUT.value);
+        FORM.append('id_trabajador', id_worker);
+
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(TRABAJADORES_API, 'updateRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            // Se cierra la caja de diálogo.
+            DATA_MODAL.hide();
+            fillTable();
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }
 
@@ -237,8 +254,7 @@ const returnBack = async () => {
 
 // Función para mostrar el div de agregar trabajador y ocultar el div de la tabla.
 function showAddDiv(boton) {
-    fillSelect(TRABAJADORES_API, 'readAll', 'estadoInput');
-    fillSelect(TRABAJADORES_API, 'readAll', 'nivelInput');
+    fillSelect(TRABAJADORES_API, 'readNivel', 'nivelInput');
     ADD_DIV.classList.remove('d-none');
     TABLE_DIV.classList.add('d-none');
     // Obtener la fecha actual
@@ -284,7 +300,6 @@ function enableFormFields() {
     FECHAN_INPUT.readOnly = false;
     ESTADO_INPUT.disabled = false;
     NIVEL_INPUT.disabled = false;
-    CONTRA_INPUT.readOnly = false;
 }
 
 // Función para deshabilitar la edición de campos del formulario.
@@ -296,7 +311,6 @@ function disableFormFields() {
     CORREO_INPUT.readOnly = true;
     FECHAN_INPUT.readOnly = true;
     ESTADO_INPUT.disabled = true;
-    CONTRA_INPUT.readOnly = true;
     NIVEL_INPUT.disabled = true;
 }
 
@@ -447,7 +461,6 @@ document.getElementById('telefonoInput').addEventListener('input', function () {
     this.value = telefonoInput;
 });
 
-
 document.getElementById('fechanInput').addEventListener('change', function () {
     // Obtener la fecha de nacimiento seleccionada por el usuario
     var fechaNacimiento = new Date(this.value);
@@ -469,4 +482,3 @@ document.getElementById('fechanInput').addEventListener('change', function () {
         this.value = '';
     }
 });
-
