@@ -66,7 +66,7 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
-            <tr class="table-row" ondblclick="openDetails(${row.id_trabajador})">
+            <tr class="table-row" ondblclick="openDetails(${row.id_trabajador})" onclick="rowSelected(${row.id_trabajador}, '${row.estado_trabajador}')">
                 <td>${row.id_trabajador}</td>
                 <td>${row.apellido_trabajador}</td>
                 <td>${row.nombre_trabajador}</td>
@@ -224,6 +224,7 @@ const botonActualizar = async () => {
             // Se carga nuevamente la tabla para visualizar los cambios.
             // Se cierra la caja de diálogo.
             DATA_MODAL.hide();
+            restoreEvrPS();
             fillTable();
         } else {
             sweetAlert(2, DATA.error, false);
@@ -482,3 +483,65 @@ document.getElementById('fechanInput').addEventListener('change', function () {
         this.value = '';
     }
 });
+
+let idT = null;
+let estadoT = null;
+
+const boton = document.getElementById('btnBloq');
+const texto = document.getElementById('textoInfo');
+
+const rowSelected = async (id, estado) => {
+    var variante;
+    if (estado == 'Activo') {
+        boton.textContent = "Bloquear";
+        variante = 'NO ha sido bloqueado'
+    } else if (estado == 'Desactivo') {
+        boton.textContent = "Desbloquear";
+        variante = 'HA sido bloqueado'
+    }
+    texto.textContent = `El trabajador de ID ${id} está ${estado}, ${variante}`;
+    idT = id;
+    estadoT = estado;
+}
+
+const botonBloquear = async () => {
+    let estadoC;
+    if (idT == null) {
+        sweetAlert(3, 'Selecciona a un trabajador', true);
+    }
+    else {
+        const RESPONSE = await confirmAction('¿Seguro qué quieres realizar la acción?', 'Se modificará el estado al trabajador');
+        if (RESPONSE.isConfirmed) {
+            if (estadoT == 'Activo') {
+                estadoC = 'Desactivo';
+            }
+            else if (estadoT == 'Desactivo') {
+                estadoC = 'Activo';
+            }
+            const FORM = new FormData();
+            FORM.append('id_trabajador', parseInt(idT));
+            FORM.append('estado', findNumberValue(estadoC));
+
+            // Petición para guardar los datos del formulario.
+            const DATA = await fetchData(TRABAJADORES_API, 'bloq-desbloq-Row', FORM);
+            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            if (DATA.status) {
+                // Se muestra un mensaje de éxito.
+                await sweetAlert(1, 'Se ha actualizado correctamente', true);
+                // Se carga nuevamente la tabla para visualizar los cambios.
+                fillTable();
+                restoreEvrPS();
+            } else {
+                sweetAlert(2, DATA.error, false);
+            }
+        }
+        else { }
+    }
+}
+
+function restoreEvrPS() {
+    idT = null;
+    estadoT = null;
+    boton.textContent = "Bloquear";
+    texto.textContent = '';
+}

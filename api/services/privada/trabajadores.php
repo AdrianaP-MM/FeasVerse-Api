@@ -80,7 +80,19 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el trabajador';
                 }
                 break;
-            case 'deleteRow':
+            case 'bloq-desbloq-Row':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$trabajador->setId($_POST['id_trabajador']) or
+                        !$trabajador->setEstado($_POST['estado'])
+                    ) {
+                        $result['error'] = $trabajador->getDataError();
+                    } elseif ($trabajador->bloq_desbloq_Row()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Trabajador modificado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar el trabajador';
+                    }
                 break;
             case 'getUser':
                 if (isset($_SESSION['nombreTrabajador'])) {

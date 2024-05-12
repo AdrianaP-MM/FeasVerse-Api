@@ -150,4 +150,13 @@ class TrabajadorHandler
         $params = array($this->id_trabajador);
         return Database::getRow($sql, $params);
     }
+
+    public function bloq_desbloq_Row()
+    {
+        $sql = 'UPDATE tb_trabajadores SET
+        estado_trabajador = ?
+        WHERE id_trabajador = ?;';
+        $params = array($this->estado_trabajador, $this->id_trabajador);
+        return Database::executeRow($sql, $params);
+    }
 }
