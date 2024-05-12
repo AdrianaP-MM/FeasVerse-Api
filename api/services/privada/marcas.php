@@ -51,6 +51,20 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'updateRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setId($_POST['id_marca']) or
+                    !$marca->setNombreMarca($_POST['']) or
+                    !$marca->setDescripcionMarca($_POST['']) or
+                    !$marca->setFotoMarca($_FILES[''])
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->updateRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Trabajador modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el trabajador';
+                }
                 break;
             case 'deleteRow':
                 break;

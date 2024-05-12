@@ -219,7 +219,6 @@ const botonActualizar = async () => {
         // Si es 'Actualizar', habilita la edición de ciertos campos del formulario.
         NOMBRED_INPUT.readOnly = false;
         DESCD_INPUT.readOnly = false;
-
         // Cambia el texto del botón a 'Guardar'.
         BOTON_ACTUALIZAR.textContent = "Guardar";
     }

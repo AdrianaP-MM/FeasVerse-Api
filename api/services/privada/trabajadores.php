@@ -64,7 +64,7 @@ if (isset($_GET['action'])) {
                 if (
                     !$trabajador->setId($_POST['id_trabajador']) or
                     !$trabajador->setNombre($_POST['nombreTrabajador']) or
-                    !$trabajador->setApellido($_POST['nombreTrabajador']) or
+                    !$trabajador->setApellido($_POST['apellidosTrabajador']) or
                     !$trabajador->setDUI($_POST['duiTrabajador']) or
                     !$trabajador->setTelefono($_POST['telefonoTrabajador']) or
                     !$trabajador->setCorreo($_POST['correoTrabajador']) or

@@ -108,6 +108,12 @@
                     <!-- Pestaña de visualización de marcas -->
                     <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="marcas"
                         aria-labelledby="marcas-tab">
+                        <div class="search-container col-11 ms-auto me-auto pt-5">
+                            <input type="search" class="form-control" name="search" placeholder="Buscar....."
+                                id="inputBusqueda" required>
+                            <span class="search-icon"><i class="bi bi-search"></i></span>
+                            <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
+                        </div>
                         <!-- Contenedor de tarjetas de marcas -->
                         <div class="d-flex flex-column mb-3 justify-content-center">
                             <div class="cardContainer m-5 d-flex flex-wrap gap-5 justify-content-lg-center

@@ -31,6 +31,7 @@ const forms = document.querySelectorAll('.needs-validation')
 const TABLE_BODY = document.getElementById('tableBody');
 
 const TRABAJADORES_API = 'services/privada/trabajadores.php';
+const inputBusqueda = document.getElementById('inputBusqueda');
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -48,7 +49,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 
-    const inputBusqueda = document.getElementById('inputBusqueda');
     const filtrarRegistros = (texto) => {
         const filas = document.querySelectorAll("#tableBody tr");
         filas.forEach(fila => {
@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.querySelector(".buscar").addEventListener("click", restaurarVisibilidad);
 });
-
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -250,6 +249,7 @@ const botonActualizar = async () => {
             restoreEvrPS();
             fillTable();
         } else {
+            enableFormFields();
             sweetAlert(2, DATA.error, false);
         }
     }
