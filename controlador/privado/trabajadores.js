@@ -47,6 +47,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     INPUTDATENOW.readOnly = true;
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+
+    const inputBusqueda = document.getElementById('inputBusqueda');
+    const filtrarRegistros = (texto) => {
+        const filas = document.querySelectorAll("#tableBody tr");
+        filas.forEach(fila => {
+            let coincidencia = false;
+            fila.querySelectorAll("td").forEach(columna => {
+                const valorColumna = columna.textContent.toLowerCase();
+                if (valorColumna.includes(texto.toLowerCase())) {
+                    coincidencia = true;
+                }
+            });
+            fila.style.display = coincidencia ? "table-row" : "none";
+        });
+    };
+    const restaurarVisibilidad = () => {
+        filtrarRegistros("");
+        inputBusqueda.value = "";
+    };
+    inputBusqueda.addEventListener("input", function (event) {
+        filtrarRegistros(event.target.value);
+    });
+    document.querySelector(".buscar").addEventListener("click", restaurarVisibilidad);
 });
 
 
@@ -331,6 +354,7 @@ async function showCancelConfirmation(message, submessage) {
     const RESPONSE = await confirmAction(message, submessage);
     if (RESPONSE.isConfirmed) {
         DATA_MODAL.hide();
+        restoreEvrPS();
     }
 }
 
