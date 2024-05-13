@@ -16,6 +16,14 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRows':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $marca->searchRows()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
                 break;
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);

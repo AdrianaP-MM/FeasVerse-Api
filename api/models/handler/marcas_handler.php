@@ -69,4 +69,15 @@ class MarcasHandler
         $params = array($this->id_marca);
         return Database::getRow($sql, $params);
     }
+
+    public function searchRows()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT id_marca, nombre_marca, foto_marca, descripcion_marca
+        FROM tb_marcas
+        WHERE nombre_marca LIKE ? OR descripcion_marca LIKE ?;';
+        $params = array($value, $value);
+        return Database::getRows($sql, $params);
+    }
+
 }

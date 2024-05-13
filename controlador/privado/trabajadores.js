@@ -62,14 +62,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             fila.style.display = coincidencia ? "table-row" : "none";
         });
     };
-    const restaurarVisibilidad = () => {
-        filtrarRegistros("");
-        inputBusqueda.value = "";
-    };
     inputBusqueda.addEventListener("input", function (event) {
         filtrarRegistros(event.target.value);
     });
-    document.querySelector(".buscar").addEventListener("click", restaurarVisibilidad);
 });
 
 /*

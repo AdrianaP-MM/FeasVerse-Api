@@ -20,6 +20,8 @@ const MARCAS_API = 'services/privada/marcas.php';
 
 // Constantes para establecer el contenido de la tabla.
 const TABLE_BODY = document.getElementById('tableBody');
+const inputBusqueda = document.getElementById('inputBusqueda');
+let textoIngresado;
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -34,7 +36,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+    inputBusqueda.addEventListener("input", function (event) {
+        textoIngresado = event.target.value.trim();
+        search();
+    });
+
 });
+
+const search = async () => {
+    TABLE_BODY.innerHTML = '';
+    const FORM = new FormData();
+    FORM.append('search', textoIngresado);
+    const DATA = await fetchData(MARCAS_API, 'searchRows', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            TABLE_BODY.innerHTML += `
+            <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
+                <img src="${SERVER_URL}images/marcas/${row.foto_marca}" />
+            </div>
+            `;
+        });
+    } else {
+        sweetAlert(2, 'No se han encontrado coincidencias', false);
+        inputBusqueda.value = '';
+        fillTable();
+    }
+}
 
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
@@ -61,9 +90,7 @@ const fillTable = async (form = null) => {
         }
 
     } else {
-        /*
-        sweetAlert(4, DATA.error, true);*/
-        console.log('ERROR');
+        sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -204,7 +231,7 @@ const addSave = async () => {
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
         IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
-
+        inputBusqueda.value = '';
         fillTable();
     } else {
         await sweetAlert(2, DATA.error, false);
@@ -241,6 +268,7 @@ const botonActualizar = async () => {
             // Se carga nuevamente la tabla para visualizar los cambios.
             // Se cierra la caja de diálogo.
             DATA_MODAL.hide();
+            inputBusqueda.value = '';
             fillTable();
         } else {
             NOMBRED_INPUT.readOnly = false;
