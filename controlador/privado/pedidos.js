@@ -378,13 +378,13 @@ const ShowRepartidor = async (boton) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -616,13 +616,13 @@ const ShowRepartidor = async (boton) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -855,13 +855,13 @@ const ShowRepartidor = async (boton) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -1542,7 +1542,6 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
         });
     }
     else {
-        await sweetAlert(2, DATA.error, true);
     }
 
     const DATA2 = await fetchData(PEDIDOS_API, 'searchOrdersWorkers', FORM1);
@@ -1816,13 +1815,13 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -2054,13 +2053,13 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -2293,13 +2292,13 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                         `;
                                 });
                             } else {
-                                await sweetAlert(2, DATA2.error, true);
+                                await sweetAlert(2, DATA5.error, true);
                             }
 
                         });
                     }
                     else {
-                        await sweetAlert(2, DATA2.error, true);
+                        await sweetAlert(2, DATA3.error, true);
                     }
                 }
             });
@@ -2334,6 +2333,5 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
         });
     }
     else {
-        await sweetAlert(2, DATA.error, true);
     }
 });

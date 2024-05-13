@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen clientes registrados';
+                    $result['error'] = 'No existen pedidos registrados';
                 }
                 break;
             case 'ReadAllShoesOfOneOrder':
@@ -48,7 +48,7 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen clientes registrados';
+                    $result['error'] = 'No existen repartidores registrados';
                 }
                 break;
             case 'searchOrdersWorkers':
@@ -56,20 +56,20 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen clientes registrados';
+                    $result['error'] = 'No existen repartidores con esa búqueda';
                 }
                 break;
             case 'ReadOrderOfDeliverys':
                 $_POST = Validator::validateForm($_POST);
                 if (
                     !$pedidos->setIdRepartidor($_POST['idTrabajador']) or
-                    !$pedidos->setEstadoPedido($_POST['estado'])
+                    !$pedidos->setEstadoPedido2($_POST['estado'])
                 ) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($result['dataset'] = $pedidos->readOrdersOfWorkerCategories()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Zapatos inexistente';
+                    $result['error'] = 'Pedidos inexistente';
                 }
                 break;
             case 'updateStatus':

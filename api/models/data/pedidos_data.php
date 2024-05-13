@@ -52,7 +52,31 @@ class PedidosData extends PedidosHandler
         if (Validator::validateAlphabetic($value)) {
             $this->estado_pedido = $value;
             return true;
-        } else{    
+        } else {
+            // Si la validación falla o el valor no coincide con 1 o 2
+            $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
+            return false;
+        }
+    }
+
+    public function setEstadoPedido2($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            if ($value == 1) {
+                $this->estado_pedido = 'Pendiente';
+                return true;
+            } elseif ($value == 2) {
+                $this->estado_pedido = 'En camino';
+                return true;
+            } elseif ($value == 3) {
+                $this->estado_pedido = 'Entregado';
+                return true;
+            } else {
+                // Si la validación falla o el valor no coincide con 1 o 2
+                $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
+                return false;
+            }
+        } else {
             // Si la validación falla o el valor no coincide con 1 o 2
             $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
             return false;
