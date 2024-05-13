@@ -32,6 +32,7 @@ const TABLE_BODY = document.getElementById('tableBody');
 
 const TRABAJADORES_API = 'services/privada/trabajadores.php';
 const inputBusqueda = document.getElementById('inputBusqueda');
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
@@ -49,22 +50,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
 
+    // Función para filtrar los registros de la tabla según el texto de búsqueda
     const filtrarRegistros = (texto) => {
+        // Seleccionar todas las filas de la tabla
         const filas = document.querySelectorAll("#tableBody tr");
+        
+        // Iterar sobre cada fila
         filas.forEach(fila => {
-            let coincidencia = false;
+            let coincidencia = false; // Inicializar la variable coincidencia como false
+            
+            // Iterar sobre cada columna de la fila
             fila.querySelectorAll("td").forEach(columna => {
-                const valorColumna = columna.textContent.toLowerCase();
+                const valorColumna = columna.textContent.toLowerCase(); // Obtener el texto de la columna en minúsculas
+                // Verificar si el texto de la columna incluye el texto de búsqueda
                 if (valorColumna.includes(texto.toLowerCase())) {
-                    coincidencia = true;
+                    coincidencia = true; // Si hay coincidencia, establecer coincidencia como true
                 }
             });
+            
+            // Establecer el estilo de visualización de la fila
             fila.style.display = coincidencia ? "table-row" : "none";
         });
     };
+
+    // Obtener el elemento de entrada de búsqueda
+    const inputBusqueda = document.getElementById("inputBusqueda");
+
+    // Agregar un controlador de eventos de entrada al campo de búsqueda
     inputBusqueda.addEventListener("input", function (event) {
-        filtrarRegistros(event.target.value);
+        filtrarRegistros(event.target.value); // Llamar a la función filtrarRegistros con el valor del campo de búsqueda
     });
+
 });
 
 /*
@@ -151,6 +167,8 @@ const addSave = async () => {
             fillTable();
             // Resetear el formulario
             document.getElementById('AddForm').reset();
+            //EVENTO DE LLENAR FECHA ACTUAL
+            llenarFechaActual();
         } else {
             await sweetAlert(2, DATA.error, false);
         }
@@ -158,12 +176,27 @@ const addSave = async () => {
 
 };
 
+// Función para encontrar el valor numérico correspondiente a un texto dado
 function findNumberValue(value) {
-    if (value == 'Activo') { return 1; }
-    else { return 2; }
+    // Comprobar si el valor es 'Activo'
+    if (value == 'Activo') {
+        return 1; // Si es 'Activo', devolver 1
+    } else {
+        return 2; // Si no es 'Activo', devolver 2
+    }
+}
+
+function llenarFechaActual(){
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+    // Formatear la fecha actual como YYYY-MM-DD
+    var fechaActualFormato = fechaActual.toISOString().split('T')[0];
+    // Establecer la fecha actual como el valor del campo de entrada de fecha
+    fecharInput.value = fechaActualFormato;
 }
 
 let id_worker = null;
+
 // Función para abrir los detalles de un trabajador.
 const openDetails = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
@@ -277,11 +310,7 @@ function showAddDiv(boton) {
     ADD_DIV.classList.remove('d-none');
     TABLE_DIV.classList.add('d-none');
     // Obtener la fecha actual
-    var fechaActual = new Date();
-    // Formatear la fecha actual como YYYY-MM-DD
-    var fechaActualFormato = fechaActual.toISOString().split('T')[0];
-    // Establecer la fecha actual como el valor del campo de entrada de fecha
-    fecharInput.value = fechaActualFormato;
+    llenarFechaActual();
     updateButtonColors(boton);
 }
 
@@ -473,13 +502,18 @@ document.getElementById('duiTrabajador').addEventListener('input', function (eve
     event.target.value = inputValue;
 });
 
+//FORMETEO DE QUE EN EL INOUT DE TELEFONO
 document.getElementById('telefonoInput').addEventListener('input', function () {
-    var telefonoInput = this.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos
+    // Selecciona el elemento del campo de entrada del teléfono y agrega un evento 'input'
+    var telefonoInput = this.value.replace(/[^0-9]/g, ''); // Elimina caracteres no numéricos del valor del campo
     if (telefonoInput.length > 4) {
+        // Si la longitud del valor del campo es mayor que 4
         telefonoInput = telefonoInput.substring(0, 4) + '-' + telefonoInput.substring(4, 8);
+        // Formatea el número de teléfono añadiendo un guion después del cuarto dígito
     }
-    this.value = telefonoInput;
+    this.value = telefonoInput; // Asigna el valor formateado de vuelta al campo de entrada
 });
+
 
 document.getElementById('fechanInput').addEventListener('change', function () {
     // Obtener la fecha de nacimiento seleccionada por el usuario
@@ -502,65 +536,76 @@ document.getElementById('fechanInput').addEventListener('change', function () {
         this.value = '';
     }
 });
-
+// Variables globales para almacenar el ID y el estado del trabajador seleccionado
 let idT = null;
 let estadoT = null;
 
-const boton = document.getElementById('btnBloq');
-const texto = document.getElementById('textoInfo');
+// Referencias a elementos del DOM
+const boton = document.getElementById('btnBloq'); // Botón de bloqueo
+const texto = document.getElementById('textoInfo'); // Elemento de texto para mostrar información
 
+// Función llamada al seleccionar una fila de la tabla de trabajadores
 const rowSelected = async (id, estado) => {
     var variante;
+    // Actualizar el texto del botón y del elemento de texto según el estado del trabajador seleccionado
     if (estado == 'Activo') {
-        boton.textContent = "Bloquear";
-        variante = 'NO ha sido bloqueado'
+        boton.textContent = "Bloquear"; // Cambiar el texto del botón a "Bloquear"
+        variante = 'No ha sido bloqueado';
     } else if (estado == 'Desactivo') {
-        boton.textContent = "Desbloquear";
-        variante = 'HA sido bloqueado'
+        boton.textContent = "Desbloquear"; // Cambiar el texto del botón a "Desbloquear"
+        variante = 'Ha sido bloqueado';
     }
+    // Actualizar el texto del elemento de información con el ID y estado del trabajador
     texto.textContent = `El trabajador de ID ${id} está ${estado}, ${variante}`;
+    // Almacenar el ID y estado del trabajador seleccionado en variables globales
     idT = id;
     estadoT = estado;
 }
 
+// Función llamada al hacer clic en el botón de bloqueo
 const botonBloquear = async () => {
     let estadoC;
+    // Verificar si se ha seleccionado un trabajador
     if (idT == null) {
-        sweetAlert(3, 'Selecciona a un trabajador', true);
-    }
-    else {
+        sweetAlert(3, 'Selecciona a un trabajador', true); // Mostrar una alerta si no se ha seleccionado ningún trabajador
+    } else {
+        // Confirmar la acción de bloqueo/desbloqueo
         const RESPONSE = await confirmAction('¿Seguro qué quieres realizar la acción?', 'Se modificará el estado al trabajador');
         if (RESPONSE.isConfirmed) {
+            // Determinar el nuevo estado del trabajador (activar o desactivar)
             if (estadoT == 'Activo') {
                 estadoC = 'Desactivo';
-            }
-            else if (estadoT == 'Desactivo') {
+            } else if (estadoT == 'Desactivo') {
                 estadoC = 'Activo';
             }
+            // Crear un objeto FormData con el ID del trabajador y el nuevo estado
             const FORM = new FormData();
             FORM.append('id_trabajador', parseInt(idT));
             FORM.append('estado', findNumberValue(estadoC));
 
-            // Petición para guardar los datos del formulario.
+            // Realizar una solicitud para actualizar el estado del trabajador en la base de datos
             const DATA = await fetchData(TRABAJADORES_API, 'bloq-desbloq-Row', FORM);
-            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            // Verificar si la solicitud fue exitosa
             if (DATA.status) {
-                // Se muestra un mensaje de éxito.
+                // Mostrar un mensaje de éxito
                 await sweetAlert(1, 'Se ha actualizado correctamente', true);
-                // Se carga nuevamente la tabla para visualizar los cambios.
+                // Actualizar la tabla de trabajadores para reflejar los cambios
                 fillTable();
-                restoreEvrPS();
+                restoreEvrPS(); // Restablecer las variables globales y el texto del botón y elemento de información
             } else {
-                sweetAlert(2, DATA.error, false);
+                sweetAlert(2, DATA.error, false); // Mostrar un mensaje de error si la solicitud falla
             }
+        } else {
+            // Cancelar la acción si el usuario no confirma
         }
-        else { }
     }
 }
 
+// Restablecer las variables globales y el texto del botón y elemento de información
 function restoreEvrPS() {
     idT = null;
     estadoT = null;
-    boton.textContent = "Bloquear";
-    texto.textContent = '';
+    boton.textContent = "Bloquear"; // Restaurar el texto del botón a "Bloquear"
+    texto.textContent = ''; // Eliminar el texto del elemento de información
 }
+
