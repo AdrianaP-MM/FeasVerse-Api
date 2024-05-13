@@ -6,6 +6,9 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     CORREO_INPUT = document.getElementById('correoInput'),
     FECHAN_INPUT = document.getElementById('fechanInput');
 
+    const nombre = document.getElementById('nombreDeUsuario');
+    const correo = document.getElementById('correoDeUsuario');
+
 const forms = document.querySelectorAll('form');
 const PASSWORD_FORM = document.getElementById('passwordForm');
 const CONTRA_WRITTEN = document.getElementById('contraActual');
@@ -28,6 +31,8 @@ const fillTable = async (form = null) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         const ROW = DATA.dataset;
+        nombre.innerHTML = ROW.nombre_trabajador + ' ' + ROW.apellido_trabajador;
+        correo.innerHTML = ROW.correo_trabajador;
         NOMBRES_INPUT.value = ROW.nombre_trabajador;
         APELLIDOS_INPUT.value = ROW.apellido_trabajador;
         DUI_INPUT.value = ROW.dui_trabajador;
