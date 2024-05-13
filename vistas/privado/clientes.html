@@ -59,7 +59,7 @@
                             <div class="d-flex flex-column align-items-center">
                                 <div class="search-container col-11 mt-4">
                                     <input type="search" class="form-control" name="search" placeholder="Buscar....."
-                                        id="buscadorInputPedidos" required>
+                                        id="buscadorInputClientes" required>
                                     <span class="search-icon"><i class="bi bi-search"></i></span>
                                     <span class="clear-icon" onclick="clearSearch()"><i
                                             class="bi clear-icon"></i></span>
@@ -100,11 +100,15 @@
                                 </div>
                             </div>
                             <!-- Contenedor de botones -->
-                            <div class="contenedorBotones z-0 mb-4 mt-2">
+                            <div
+                                class="contenedorBotones col-11 mb-4 z-0 d-flex flex-wrap justify-content-center justify-content-lg-start justify-content-md-start">
                                 <button type="button"
-                                    class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular">Bloquear</button>
-                                <button type="button"
-                                    class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Desbloquear</button>
+                                    class="btn btn2 btn-primary mx-4 shadow text18 titillium-web-regular" id="btnBloq"
+                                    onclick="botonBloquear()">Bloquear
+                                </button>
+                                <p id="textoInfo"
+                                    class="text-white titillium-web-regular text-center d-flex justify-content-center align-items-center m-0">
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -172,10 +176,11 @@
                             <!-- Campo de estado -->
                             <div class="col-sm-12 col-md-6">
                                 <label for="estadoCliente" class="form-label">Estado</label>
-                                <select class="form-label form-select form-control" id="estadoCliente" aria-label="Estado cliente" required>
+                                <select class="form-label form-select form-control" id="estadoCliente"
+                                    aria-label="Estado cliente" required>
                                     <option value="" disabled>Selecciona un estado</option>
-                                    <option value="1">Vigente</option>
-                                    <option value="2">Inactivo</option>
+                                    <option value="1">Activo</option>
+                                    <option value="2">Desactivado</option>
                                 </select>
                             </div>
                         </div>

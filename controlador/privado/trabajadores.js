@@ -73,9 +73,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     };
 
-    // Obtener el elemento de entrada de búsqueda
-    const inputBusqueda = document.getElementById("inputBusqueda");
-
     // Agregar un controlador de eventos de entrada al campo de búsqueda
     inputBusqueda.addEventListener("input", function (event) {
         filtrarRegistros(event.target.value); // Llamar a la función filtrarRegistros con el valor del campo de búsqueda
@@ -536,6 +533,7 @@ document.getElementById('fechanInput').addEventListener('change', function () {
         this.value = '';
     }
 });
+
 // Variables globales para almacenar el ID y el estado del trabajador seleccionado
 let idT = null;
 let estadoT = null;
@@ -550,13 +548,17 @@ const rowSelected = async (id, estado) => {
     // Actualizar el texto del botón y del elemento de texto según el estado del trabajador seleccionado
     if (estado == 'Activo') {
         boton.textContent = "Bloquear"; // Cambiar el texto del botón a "Bloquear"
-        variante = 'No ha sido bloqueado';
+        variante = 'no ha sido bloqueado';
+
+        // Actualizar el texto del elemento de información con el ID y estado del trabajador
+        texto.textContent = `El trabajador de ID ${id} está activo, ${variante}`;
     } else if (estado == 'Desactivo') {
         boton.textContent = "Desbloquear"; // Cambiar el texto del botón a "Desbloquear"
-        variante = 'Ha sido bloqueado';
+        variante = 'ha sido bloqueado';
+        
+        // Actualizar el texto del elemento de información con el ID y estado del trabajador
+        texto.textContent = `El trabajador de ID ${id} está desactivo, ${variante}`;
     }
-    // Actualizar el texto del elemento de información con el ID y estado del trabajador
-    texto.textContent = `El trabajador de ID ${id} está ${estado}, ${variante}`;
     // Almacenar el ID y estado del trabajador seleccionado en variables globales
     idT = id;
     estadoT = estado;
@@ -565,6 +567,7 @@ const rowSelected = async (id, estado) => {
 // Función llamada al hacer clic en el botón de bloqueo
 const botonBloquear = async () => {
     let estadoC;
+    let estadoCC;
     // Verificar si se ha seleccionado un trabajador
     if (idT == null) {
         sweetAlert(3, 'Selecciona a un trabajador', true); // Mostrar una alerta si no se ha seleccionado ningún trabajador
@@ -584,7 +587,7 @@ const botonBloquear = async () => {
             FORM.append('estado', findNumberValue(estadoC));
 
             // Realizar una solicitud para actualizar el estado del trabajador en la base de datos
-            const DATA = await fetchData(TRABAJADORES_API, 'bloq-desbloq-Row', FORM);
+            const DATA = await fetchData(TRABAJADORES_API, 'bloqDesbloqRow', FORM);
             // Verificar si la solicitud fue exitosa
             if (DATA.status) {
                 // Mostrar un mensaje de éxito

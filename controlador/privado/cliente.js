@@ -18,6 +18,7 @@ const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const DATA_MODAL = new bootstrap.Modal('#dataModal');
 const MODAL_TITLE = document.getElementById('modalTitle');
 const UPDATE_FORM = document.getElementById('detailUpdateForm');
+const inputBusqueda = document.getElementById('buscadorInputClientes');
 
 const CLIENTES_API = 'services/privada/clientes.php';
 
@@ -32,7 +33,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Bloquear el botón
     document.getElementById('tabla-tab').setAttribute('disabled', 'disabled');
 
+    // Llamada a la función para llenar la tabla con los registros existentes.
     fillTable();
+
+    // Función para filtrar los registros de la tabla según el texto de búsqueda
+    const filtrarRegistros = (texto) => {
+        // Seleccionar todas las filas de la tabla
+        const filas = document.querySelectorAll("#tableBody tr");
+        
+        // Iterar sobre cada fila
+        filas.forEach(fila => {
+            let coincidencia = false; // Inicializar la variable coincidencia como false
+            
+            // Iterar sobre cada columna de la fila
+            fila.querySelectorAll("td").forEach(columna => {
+                const valorColumna = columna.textContent.toLowerCase(); // Obtener el texto de la columna en minúsculas
+                // Verificar si el texto de la columna incluye el texto de búsqueda
+                if (valorColumna.includes(texto.toLowerCase())) {
+                    coincidencia = true; // Si hay coincidencia, establecer coincidencia como true
+                }
+            });
+            
+            // Establecer el estilo de visualización de la fila
+            fila.style.display = coincidencia ? "table-row" : "none";
+        });
+    };
+
+    // Agregar un controlador de eventos de entrada al campo de búsqueda
+    inputBusqueda.addEventListener("input", function (event) {
+        filtrarRegistros(event.target.value); // Llamar a la función filtrarRegistros con el valor del campo de búsqueda
+    });
+
+    restoreEvrPS();
 });
 
 //Constante para abrir detalles cuando se le de doble click a la tabla
@@ -93,78 +125,6 @@ DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
     BOTON_ACTUALIZAR.textContent = "Actualizar";
 });
 
-
-//Funcion del boton actualizar
-const botonActualizar = async () => {
-    //se obtiene el texto del boton sin espacios
-    var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-
-    if (textoBoton == 'Actualizar') {
-
-        // habilitar la edición de los campos de entrada
-        NOMBRES_INPUT.readOnly = false;
-        APELLIDOS_INPUT.readOnly = false;
-        DUI_INPUT.readOnly = false;
-        TEL_INPUT.readOnly = false;
-        CORREO_INPUT.readOnly = false;
-        FECHAN_INPUT.readOnly = false;
-        ESTADO_INPUT.disabled = false;
-
-        BOTON_ACTUALIZAR.textContent = "Guardar";
-    }
-    else if (textoBoton == 'Guardar') {
-        // Se evita recargar la página web después de enviar el formulario.
-        event.preventDefault();
-
-        // Obtener los valores de los campos de nombre y apellido
-        var nombre = document.getElementById('nombreCliente').value.trim();
-        var apellido = document.getElementById('apellidosCliente').value.trim();
-
-        // Validar que se haya ingresado algo en los campos de nombre y apellido
-        if (nombre === '' || apellido === '') {
-            await sweetAlert(2,'Por favor, completa todos los campos.', true);
-        }
-
-        // Validar que los campos de nombre y apellido no contengan números
-        else if (/\d/.test(nombre) || /\d/.test(apellido)) {
-            await sweetAlert(2, 'Los campos de nombre y apellido no pueden contener números.', true);
-        }
-
-        else {
-            const FORM = new FormData();
-
-            // Petición para ACTUALIZAR.
-            FORM.append('idCliente', ID_INPUT.value);
-            FORM.append('nombreCliente', NOMBRES_INPUT.value);
-            FORM.append('apellidosCliente', APELLIDOS_INPUT.value);
-            FORM.append('correoCliente', CORREO_INPUT.value);
-            FORM.append('telefonoCliente', TEL_INPUT.value);
-            FORM.append('duiCliente', DUI_INPUT.value);
-            FORM.append('fechaDeNacimientoCliente', FECHAN_INPUT.value);
-            FORM.append('estadoCliente', ESTADO_INPUT.value);
-
-            const DATA = await fetchData(CLIENTES_API, 'updateRow', FORM);
-            console.log(DATA);
-            if (DATA.status) {
-                // Deshabilitar la edición de los campos de entrada
-                NOMBRES_INPUT.readOnly = true;
-                APELLIDOS_INPUT.readOnly = true;
-                DUI_INPUT.readOnly = true;
-                TEL_INPUT.readOnly = true;
-                CORREO_INPUT.readOnly = true;
-                FECHAN_INPUT.readOnly = true;
-                FECHAR_INPUT.readOnly = true;
-                ESTADO_INPUT.disabled = true;
-                await sweetAlert(1, 'Se ha actualizado correctamente', true);
-                fillTable();
-                DATA_MODAL.hide();
-            } else {
-                await sweetAlert(2, DATA.error, false);
-            }
-        }
-    }
-}
-
 //Funcion del boton cancelar
 const botonCancelar = async () => {
     //se obtiene el texto del boton sin espacios
@@ -175,6 +135,7 @@ const botonCancelar = async () => {
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
+            restoreEvrPS();
         }
     }
     else if (textoBoton == 'Guardar') {
@@ -182,6 +143,7 @@ const botonCancelar = async () => {
         const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Si has modificado no se guardara');
         if (RESPONSE.isConfirmed) {
             DATA_MODAL.hide();
+            restoreEvrPS();
         }
     }
 
@@ -232,7 +194,7 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
             TABLE_BODY.innerHTML += `
-            <tr class="table-row" ondblclick="openDetails(${row.id_cliente})">
+            <tr class="table-row" ondblclick="openDetails(${row.id_cliente})" onclick="rowSelected(${row.id_cliente}, '${row.estado_cliente}')">
                 <td>${row.id_cliente}</td>
                 <td>${row.apellido_cliente}</td>
                 <td>${row.nombre_cliente}</td>
@@ -337,9 +299,97 @@ UPDATE_FORM.addEventListener('submit', async (event) => {
                 await sweetAlert(1, 'Se ha actualizado correctamente', true);
                 fillTable();
                 DATA_MODAL.hide();
+                restoreEvrPS();
             } else {
                 await sweetAlert(2, DATA.error, false);
             }
         }
     }
 });
+
+// Función para encontrar el valor numérico correspondiente a un texto dado
+function findNumberValue(value) {
+    // Comprobar si el valor es 'Activo'
+    if (value == 'Activo') {
+        return 1; // Si es 'Activo', devolver 1
+    } else {
+        return 2; // Si no es 'Activo', devolver 2
+    }
+}
+
+// Variables globales para almacenar el ID y el estado del trabajador seleccionado
+let idT = null;
+let estadoT = null;
+
+// Referencias a elementos del DOM
+const boton = document.getElementById('btnBloq'); // Botón de bloqueo
+const texto = document.getElementById('textoInfo'); // Elemento de texto para mostrar información
+
+// Función llamada al seleccionar una fila de la tabla de trabajadores
+const rowSelected = async (id, estado) => {
+    var variante;
+    // Actualizar el texto del botón y del elemento de texto según el estado del trabajador seleccionado
+    if (estado == 'Activo') {
+        boton.textContent = "Bloquear"; // Cambiar el texto del botón a "Bloquear"
+        variante = 'no ha sido bloqueado';
+
+        // Actualizar el texto del elemento de información con el ID y estado del trabajador
+        texto.textContent = `El trabajador de ID ${id} está activo, ${variante}`;
+    } else if (estado == 'Desactivo') {
+        boton.textContent = "Desbloquear"; // Cambiar el texto del botón a "Desbloquear"
+        variante = 'ha sido bloqueado';
+        
+        // Actualizar el texto del elemento de información con el ID y estado del trabajador
+        texto.textContent = `El trabajador de ID ${id} está desactivo, ${variante}`;
+    }
+    // Almacenar el ID y estado del trabajador seleccionado en variables globales
+    idT = id;
+    estadoT = estado;
+}
+
+// Función llamada al hacer clic en el botón de bloqueo
+const botonBloquear = async () => {
+    let estadoC;
+    // Verificar si se ha seleccionado un trabajador
+    if (idT == null) {
+        sweetAlert(3, 'Selecciona a un cliente', true); // Mostrar una alerta si no se ha seleccionado ningún trabajador
+    } else {
+        // Confirmar la acción de bloqueo/desbloqueo
+        const RESPONSE = await confirmAction('¿Seguro qué quieres realizar la acción?', 'Se modificará el estado al cliente');
+        if (RESPONSE.isConfirmed) {
+            // Determinar el nuevo estado del trabajador (activar o desactivar)
+            if (estadoT == 'Activo') {
+                estadoC = 'Desactivo';
+            } else if (estadoT == 'Desactivo') {
+                estadoC = 'Activo';
+            }
+            // Crear un objeto FormData con el ID del trabajador y el nuevo estado
+            const FORM = new FormData();
+            FORM.append('idCliente', parseInt(idT));
+            FORM.append('estadoCliente', findNumberValue(estadoC));
+
+            // Realizar una solicitud para actualizar el estado del trabajador en la base de datos
+            const DATA = await fetchData(CLIENTES_API, 'updateStatus', FORM);
+            // Verificar si la solicitud fue exitosa
+            if (DATA.status) {
+                // Mostrar un mensaje de éxito
+                await sweetAlert(1, 'Se ha actualizado correctamente el estado del cliente', true);
+                // Actualizar la tabla de trabajadores para reflejar los cambios
+                fillTable();
+                restoreEvrPS(); // Restablecer las variables globales y el texto del botón y elemento de información
+            } else {
+                sweetAlert(2, DATA.error, false); // Mostrar un mensaje de error si la solicitud falla
+            }
+        } else {
+            // Cancelar la acción si el usuario no confirma
+        }
+    }
+}
+
+// Restablecer las variables globales y el texto del botón y elemento de información
+function restoreEvrPS() {
+    idT = null;
+    estadoT = null;
+    boton.textContent = "Bloquear"; // Restaurar el texto del botón a "Bloquear"
+    texto.textContent = ''; // Eliminar el texto del elemento de información
+}
