@@ -66,6 +66,16 @@ class TrabajadorHandler
         }
     }
 
+    public function changePassword()
+    {
+        $sql = 'UPDATE tb_trabajadores
+        SET clave_trabajador = ?
+        WHERE id_trabajador = ?';
+        $params = array($this->clave_trabajador, $_SESSION['idTrabajador']);
+        return Database::executeRow($sql, $params);
+    }
+
+
     public function updatePassword()
     {
         $sql = 'UPDATE tb_trabajadores
@@ -151,7 +161,7 @@ class TrabajadorHandler
         return Database::getRow($sql, $params);
     }
 
-    public function bloq_desbloq_Row()
+    public function bloqDesbloqRow()
     {
         $sql = 'UPDATE tb_trabajadores SET
         estado_trabajador = ?

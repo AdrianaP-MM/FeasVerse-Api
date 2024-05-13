@@ -57,8 +57,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Trabajador inexistente';
                 }
-                break;
-                break;
+            break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -80,14 +79,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el trabajador';
                 }
                 break;
-            case 'bloq-desbloq-Row':
+            case 'bloqDesbloqRow':
                     $_POST = Validator::validateForm($_POST);
                     if (
                         !$trabajador->setId($_POST['id_trabajador']) or
                         !$trabajador->setEstado($_POST['estado'])
                     ) {
                         $result['error'] = $trabajador->getDataError();
-                    } elseif ($trabajador->bloq_desbloq_Row()) {
+                    } elseif ($trabajador->bloqDesbloqRow()) {
                         $result['status'] = 1;
                         $result['message'] = 'Trabajador modificado correctamente';
                     } else {
@@ -117,6 +116,21 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'No existen niveles registrados';
                 }
+                break;
+                case 'changePassword':
+                    $_POST = Validator::validateForm($_POST);
+                    if (!$trabajador->checkPassword($_POST['contraActual'])) {
+                        $result['error'] = 'Contraseña actual incorrecta';
+                    } elseif ($_POST['newContra'] != $_POST['confirContra']) {
+                        $result['error'] = 'Confirmación de contraseña diferente';
+                    } elseif (!$trabajador->setClave($_POST['newContra'])) {
+                        $result['error'] = $trabajador->getDataError();
+                    } elseif ($trabajador->changePassword()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Contraseña cambiada correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                    }
                 break;
             case 'readProfile':
                 break;
