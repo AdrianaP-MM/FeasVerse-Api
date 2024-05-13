@@ -46,52 +46,61 @@ class PedidosHandler
         return Database::getRows($sql);
     }
 
-    //BUSCAR de todos los pedidos
-    public function searchOrders($searchTerm)
+    public function searchOrders($estado, $searchTerm)
     {
+        // Inicializamos la consulta SQL
         $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
-        CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
-        CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
-        correo_cliente,
-        telefono_cliente,
-        direccion_cliente,
-        estado_pedido,
-        fecha_de_inicio,
-        fecha_de_entrega,
-        precio_total,
-        costo_de_envio,
-        precio_total + costo_de_envio AS total_cobrar
-        FROM tb_pedidos_clientes 
-        INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
-        INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
-        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
-        WHERE tb_pedidos_clientes.estado_pedido LIKE ? 
-        OR tb_trabajadores.nombre_trabajador LIKE ?
+    CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
+    CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
+    correo_cliente,
+    telefono_cliente,
+    direccion_cliente,
+    estado_pedido,
+    fecha_de_inicio,
+    fecha_de_entrega,
+    precio_total,
+    costo_de_envio,
+    precio_total + costo_de_envio AS total_cobrar
+    FROM tb_pedidos_clientes 
+    INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
+    INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
+    INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento";
+
+        // Inicializamos los parámetros para la consulta
+        $params = array();
+
+        // Creamos condiciones basadas en los parámetros de entrada
+        if (!empty($searchTerm)) {
+            $sql .= " WHERE (tb_trabajadores.nombre_trabajador LIKE ?
         OR tb_trabajadores.apellido_trabajador LIKE ?
         OR tb_clientes.nombre_cliente LIKE ?
         OR tb_clientes.apellido_cliente LIKE ?
         OR tb_clientes.correo_cliente LIKE ?
         OR tb_clientes.telefono_cliente LIKE ?
         OR tb_clientes.direccion_cliente LIKE ?
-        OR tb_costos_de_envio_por_departamento.nombre_departamento LIKE ?";
-        
-        $params = array(
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%",
-            "%$searchTerm%"
-        );
-        
+        OR tb_costos_de_envio_por_departamento.costo_de_envio LIKE ?)";
+
+            // Añadimos los términos de búsqueda a los parámetros
+            $params = array_fill(0, 8, "%$searchTerm%");
+
+            if (!empty($estado)) {
+                $sql .= " AND tb_pedidos_clientes.estado_pedido = ?";
+                $params[] = $estado;
+            }
+        } elseif (!empty($estado)) {
+            $sql .= " WHERE tb_pedidos_clientes.estado_pedido = ?";
+            $params[] = $estado;
+        }
+
+        // Ejecutamos la consulta y retornamos los resultados
         return Database::getRows($sql, $params);
     }
 
+
+
     //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
-    public function readShoesOfOrders(){
+    public function readShoesOfOrders()
+    {
         $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
         nombre_zapato, nombre_color, num_talla, cantidad_pedido, precio_unitario_zapato,
         precio_unitario_zapato * cantidad_pedido AS precio_total
@@ -130,8 +139,36 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
+    public function searchOrdersWorkers($searchTerm)
+    {
+        $sql = "SELECT id_trabajador, nombre_trabajador, 
+            apellido_trabajador, 
+            dui_trabajador, 
+            telefono_trabajador, 
+            correo_trabajador, 
+            SUM(CASE WHEN estado_pedido = ? THEN 1 ELSE 0 END) AS entregado,
+            SUM(CASE WHEN estado_pedido = ? THEN 1 ELSE 0 END) AS en_proceso,
+            SUM(CASE WHEN estado_pedido = ? THEN 1 ELSE 0 END) AS pendiente
+            FROM tb_trabajadores 
+            INNER JOIN tb_pedidos_clientes 
+            ON tb_pedidos_clientes.id_repartidor = tb_trabajadores.id_trabajador
+            WHERE id_trabajador LIKE ? OR
+                nombre_trabajador LIKE ? OR
+                apellido_trabajador LIKE ? OR
+                dui_trabajador LIKE ? OR
+                telefono_trabajador LIKE ? OR
+                correo_trabajador LIKE ?
+            GROUP BY 
+            id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador";
+
+        $params = array('Entregado', 'En camino', 'Pendiente', "%$searchTerm%", "%$searchTerm%", "%$searchTerm%", "%$searchTerm%", "%$searchTerm%", "%$searchTerm%");
+        return Database::getRows($sql, $params);
+    }
+
+
     //SELECT PARA MOSTRAR LOS DIFERENTES workers 
-    public function readOrdersOfWorkerCategories(){
+    public function readOrdersOfWorkerCategories()
+    {
         $sql = "SELECT 
         tb_pedidos_clientes.id_pedido_cliente, 
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
@@ -155,7 +192,7 @@ class PedidosHandler
 
     //!CREATE UPDATE DELETE
     //CUD DE TBPEDIDOSCLIENTES
-    
+
     public function createRowPedidos()
     {
         $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
@@ -216,5 +253,4 @@ class PedidosHandler
         $params = array($this->id_detalles_pedido);
         return Database::executeRow($sql, $params);
     }
-
 }

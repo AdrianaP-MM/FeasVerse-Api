@@ -15,7 +15,14 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'searchRows':
+            case 'searchOrders':
+                $_POST = Validator::validateForm($_POST);
+                if ($result['dataset'] = $pedidos->searchOrders($_POST['estado'], $_POST['paramentro'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos con esa búsqueda';
+                }
                 break;
             case 'createRow':
                 break;
@@ -44,10 +51,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen clientes registrados';
                 }
                 break;
+            case 'searchOrdersWorkers':
+                if ($result['dataset'] = $pedidos->searchOrdersWorkers($_POST['paramentro'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen clientes registrados';
+                }
+                break;
             case 'ReadOrderOfDeliverys':
                 $_POST = Validator::validateForm($_POST);
-                if (!$pedidos->setIdRepartidor($_POST['idTrabajador']) or
-                !$pedidos->setEstadoPedido($_POST['estado'])) {
+                if (
+                    !$pedidos->setIdRepartidor($_POST['idTrabajador']) or
+                    !$pedidos->setEstadoPedido($_POST['estado'])
+                ) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($result['dataset'] = $pedidos->readOrdersOfWorkerCategories()) {
                     $result['status'] = 1;
@@ -72,12 +89,12 @@ if (isset($_GET['action'])) {
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
-    // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
-    $result['exception'] = Database::getException();
-    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-    header('Content-type: application/json; charset=utf-8');
-    // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+        // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
+        $result['exception'] = Database::getException();
+        // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
+        header('Content-type: application/json; charset=utf-8');
+        // Se imprime el resultado en formato JSON y se retorna al controlador.
+        print(json_encode($result));
     } else {
         print(json_encode('Acceso denegado'));
     }
