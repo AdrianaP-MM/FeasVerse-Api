@@ -6,18 +6,43 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     CORREO_INPUT = document.getElementById('correoInput'),
     FECHAN_INPUT = document.getElementById('fechanInput');
 
+    const nombre = document.getElementById('nombreDeUsuario');
+    const correo = document.getElementById('correoDeUsuario');
+
 const forms = document.querySelectorAll('form');
 const PASSWORD_FORM = document.getElementById('passwordForm');
+const CONTRA_WRITTEN = document.getElementById('contraActual');
 
 // Declaración de constantes para el modal, el título del modal y el formulario de comentario.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     MODAL_TITLE = document.getElementById('modalTitle');
-
+const TRABAJADORES_API = 'services/privada/trabajadores.php';
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    fillTable();
 });
+
+
+const fillTable = async (form = null) => {
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(TRABAJADORES_API, 'readAdmin');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        nombre.innerHTML = ROW.nombre_trabajador + ' ' + ROW.apellido_trabajador;
+        correo.innerHTML = ROW.correo_trabajador;
+        NOMBRES_INPUT.value = ROW.nombre_trabajador;
+        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
+        DUI_INPUT.value = ROW.dui_trabajador;
+        TEL_INPUT.value = ROW.telefono_trabajador;
+        CORREO_INPUT.value = ROW.correo_trabajador;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
 
 // Función para mostrar el formulario de usuario.
 function showFormUser() {
@@ -42,19 +67,17 @@ const returnBack = async () => {
 // Función para agregar o guardar datos con SweetAlert integrado.
 const addSave = async () => {
     const btnUpdate = document.getElementById('btnUpdate');
-
     var textoBoton = btnUpdate.textContent.trim();
-
-    if (textoBoton == 'Guardar') {
+    if (textoBoton == 'Actualizar') {
+        // Hacer los campos de entrada editables para actualizar.
+        makeFieldsReadOnly(false);
+        btnUpdate.textContent = 'Guardar';
+    }
+    else if (textoBoton == 'Guardar') {
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
         btnUpdate.textContent = 'Actualizar';
         // Hacer los campos de entrada de solo lectura después de guardar.
         makeFieldsReadOnly(true);
-    }
-    else if (textoBoton == 'Actualizar') {
-        // Hacer los campos de entrada editables para actualizar.
-        makeFieldsReadOnly(false);
-        btnUpdate.textContent = 'Guardar';
     }
 }
 
@@ -66,8 +89,6 @@ function makeFieldsReadOnly(isReadOnly) {
     TEL_INPUT.readOnly = isReadOnly;
     CORREO_INPUT.readOnly = isReadOnly;
     FECHAN_INPUT.readOnly = isReadOnly;
-    CONTRA_INPUT.readOnly = isReadOnly;
-    CONTRAC_INPUT.readOnly = isReadOnly;
 }
 
 // Evento para validar el formulario antes de enviarlo.
@@ -98,8 +119,19 @@ const botonCancelar = async () => {
 }
 
 // Definición de la función asíncrona para agregar y cerrar el modal.
-const botonAgregar = async () => {
-    // Muestra una alerta de éxito y oculta el modal.
-    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
-    DATA_MODAL.hide();
+const botonRestablecer = async () => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PASSWORD_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(TRABAJADORES_API, 'changePassword', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, 'La contraseña ha sido modificada exitosamente', true);
+        DATA_MODAL.hide();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
 }

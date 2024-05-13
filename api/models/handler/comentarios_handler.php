@@ -17,6 +17,17 @@ class ComentariosHandler
     protected $estado_comentario = null;
     protected $fecha_del_comentario = null;
     protected $id_detalles_pedido = null;
+    protected $id_cliente = null;
+    protected $nombre_cliente = null;
+    protected $apellido_cliente = null;
+    protected $telefono_cliente = null;
+    protected $correo_cliente = null;
+    protected $nombre_zapato = null;
+    protected $genero_zapato = null;
+    protected $nombre_color = null;
+    protected $precio_unitario_zapato = null;
+    protected $foto_detalle_zapato = null;
+    
 
     /*
      *  Metodos
@@ -38,16 +49,34 @@ class ComentariosHandler
         return Database::executeRow($sql, $params);
     }
 
-    
+
     public function readOneComentario()
     {
-        $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
-                FROM tb_comentarios
-                WHERE id_comentario = ?;';
+        $sql = "SELECT
+                c.nombre_cliente AS 'Nombre del cliente',
+                c.apellido_cliente AS 'Apellido del cliente',
+                c.correo_cliente AS 'Correo del cliente',
+                c.telefono_cliente AS 'Teléfono del cliente',
+                z.nombre_zapato AS 'Nombre del Zapato',
+                z.genero_zapato AS 'Género del zapato',
+                col.nombre_color AS 'Color del zapato',
+                dz.precio_unitario_zapato AS 'Precio del zapato',
+                dz.foto_detalle_zapato AS 'Foto del zapato',
+                com.descripcion_comentario AS 'Descripción del comentario'
+            FROM
+                tb_comentarios com
+                JOIN tb_detalles_pedidos dp ON com.id_detalles_pedido = dp.id_detalles_pedido
+                JOIN tb_pedidos_clientes pc ON dp.id_pedido_cliente = pc.id_pedido_cliente
+                JOIN tb_clientes c ON pc.id_cliente = c.id_cliente
+                JOIN tb_detalle_zapatos dz ON dp.id_detalle_zapato = dz.id_detalle_zapato
+                JOIN tb_zapatos z ON dz.id_zapato = z.id_zapato
+                JOIN tb_colores col ON dz.id_color = col.id_color
+            WHERE
+                com.id_comentario = ?;";
         $params = array($this->id_comentario);
         return Database::getRow($sql, $params);
     }
-
+    
     public function updateRow()
     {
         $sql = 'UPDATE tb_comentarios
@@ -56,9 +85,4 @@ class ComentariosHandler
         $params = array($this->titulo_comentario, $this->descripcion_comentario, $this->calificacion_comentario, $this->estado_comentario, $this->fecha_del_comentario, $this->id_comentario);
         return Database::executeRow($sql, $params);
     }
-
-
-
-
-
 }

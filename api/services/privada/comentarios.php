@@ -26,7 +26,6 @@ if (isset($_GET['action'])) {
                 }
                 break;
                 case 'readOneComentario':
-                    $comentarios = new ComentariosData();
                     if (!$comentarios->setId($_POST['idComentario'])) {
                         $result['error'] = $comentarios->getDataError();
                     } elseif ($result['dataset'] = $comentarios->readOneComentario()) {
