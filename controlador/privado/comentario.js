@@ -12,6 +12,7 @@ const COMENTARIOS_DIV = document.getElementById('rectanguloP'),
     TITULOCOMENTARIO = document.getElementById('TituloComentario');
 
 const COMENTARIO_BODY = document.getElementById('ComentarioC');
+const DCOMENTARIOS_BODY = document.getElementById('Prueba')
 
 const COMENTARIOS_API = 'services/privada/comentarios.php';
 
@@ -36,21 +37,23 @@ const fillComents = async () => {
             // Manejar los datos de comentarios
             DATA.dataset.forEach(row => {
                 COMENTARIO_BODY.innerHTML += `
-                <div class="ComentarioC mt-3" data-bs-toggle="tab" id="ComentarioC" role="tab"
+                <div class="ComentarioC mt-3" data-id="${row.idComentario}" data-bs-toggle="tab" id="ComentarioC_${row.idComentario}" role="tab"
                                 data-bs-target="#rectanguloP" aria-controls="rectanguloP" aria-selected="true">
                                 
-                                <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario">
-                                <input type="number" class="d-none" id="Fecha" name="Fecha">
+                                <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario_${row.idComentario}">
+                                <input type="number" class="d-none" id="Fecha_${row.idComentario}" name="Fecha">
                                     <p style="font-size: 23px;" class=" d-flex justify-content-end flex-row"
-                                        id="NumberCalificacion">${row.calificacion_comentario}</p>
+                                        id="NumberCalificacion_${row.idComentario}">${row.calificacion_comentario}</p>
                                     <a href="#" class="bi-star-fill estrella d-flex justify-content-end mt-2"></a>
                                 </div>
-                                <h5 class="comentarioT" id="TituloComentario">${row.titulo_comentario}</h5>
-                                <p class="comentarioD" id="DescripcionComentario">${row.descripcion_comentario}</p>`
+                                <h5 class="comentarioT" id="TituloComentario_${row.idComentario}">${row.titulo_comentario}</h5>
+                                <p class="comentarioD" id="DescripcionComentario_${row.idComentario}">${row.descripcion_comentario}</p>`
             });
-            // Asignar un manejador de eventos
-            document.querySelector('.ComentarioC').addEventListener('click', function () {
-                ShowComentario(this);
+            // Asignar un manejador de eventos a todos los elementos .ComentarioC
+            document.querySelectorAll('.ComentarioC').forEach(comentario => {
+                comentario.addEventListener('click', function () {
+                    ShowComentario(this.dataset.idComentario);
+                });
             });
         }
     } else {
@@ -59,45 +62,82 @@ const fillComents = async () => {
     }
 };
 
-BOTON_ESTADO.addEventListener('submit', async (event) => {
-    // Se evita recargar la página web después de enviar el formulario.
-    event.preventDefault();
-    // Se verifica la acción a realizar.
-    (ID_PRODUCTO.value) ? action = 'updateRow' : action = 'createRow';
-    // Petición para guardar los datos del formulario.
-    const DATA = await fetchData(COMENTARIOS_API, action, BOTON_ESTADO);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se cierra la caja de diálogo.
-        // Se muestra un mensaje de éxito.
-        sweetAlert(1, DATA.message, true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        fillComents();
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
-});
-
 const ShowComentario = async (idComentario) => {
     try {
-        COMENTARIOS_DIV.classList.remove('d-none');
-        const body = new URLSearchParams({ idComentario }).toString();
+        console.log(idComentario); // Verifica que idComentario no sea undefined
+        // Crear un objeto FormData para enviar el idComentario
+        const formData = new FormData(); 
+        formData.append('idComentario', idComentario);
 
-        const DATA = await fetchData(COMENTARIOS_API, 'readOneComentario', body);
+        COMENTARIOS_DIV.classList.remove('d-none'); // Mostrar el contenedor de comentarios
 
-        if (DATA.status) {
-            const BOTON = DATA.dataset;
-            const ESTADO_PRODUCTO = ESTADO_PRODUCTO.estado_producto;
+        // Obtener los datos del comentario específico usando la API
+        const DATA = await fetchData(COMENTARIOS_API, 'readOneComentario', formData);
+        
+        console.log('Response from fetchData:', DATA);
+
+
+        if (DATA && DATA.status) {
+            DCOMENTARIOS_DIV.innerHTML = ''; // Limpiamos el contenido anterior antes de agregar nuevos comentarios
+            DATA.dataset.forEach(row => {
+                DCOMENTARIOS_DIV.innerHTML += `
+                    <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
+                        <div class="container p-0 m-0">
+                            <button class="btn" type="button" onclick="volver()">
+                                <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
+                            </button> <!--Boton para volver a la pagina de comentarios-->
+                        </div>
+                        <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
+                            <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Nombre del cliente:</span> ${row.nombre_cliente}, ${row.apellido_cliente}
+                            </p>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Correo del cliente:</span> ${row.correo_cliente}
+                            </p>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Teléfono del cliente:</span> ${row.telefono_cliente}
+                            </p>
+                        </div>
+                        <div class="d-flex flex-column contedorDataZapato flex-wrap">
+                            <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
+                                <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
+                                <img src="${row.foto_detalle_zapato}" alt="zapatoC" class="">
+                                <p class=" m-0 fw-semi-bold">${row.nombre_zapato}</p>
+                                <p class="m-0">Zapato ${row.genero_zapato}</p>
+                                <p class="m-0">2 Colores ${row.nombre_color}</p>
+                                <p class=" m-0 fw-bold">$${row.precio_unitario_zapato}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-wrap contenedorComentario">
+                        <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
+                        <p class="Texto">${row.descripcion_comentario}</p>
+                        <div class="container p-0 m-0 mt-4">
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="updateEstado()">
+                                Retirar comentario
+                            </button>
+                        </div>
+                    </div>`;
+            });
         } else {
-            sweetAlert(2, DATA.error, null);
+            if (DATA && DATA.error) {
+                console.error('Error fetching data:', DATA.error);
+                await sweetAlert(2, DATA.error, null); // Mostrar mensaje de error
+            } else {
+                console.error('Unknown error: Unable to fetch data.');
+                await sweetAlert(2, 'Unknown error: Unable to fetch data.', null); // Mostrar mensaje de error
+            }
         }
     } catch (error) {
         console.error('Error fetching data:', error);
-        sweetAlert(2, 'Error processing request.', null);
+        await sweetAlert(2, 'Error processing request.', null); // Mostrar mensaje de error
     } finally {
-        COMENTARIOS_DIV.classList.add('d-none');
+        COMENTARIOS_DIV.classList.add('d-none'); // Ocultar el contenedor de comentarios
     }
 };
+
+
 
 
 const openUpdate = async (id) => {

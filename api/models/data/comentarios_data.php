@@ -21,8 +21,8 @@ class ComentariosData extends ComentariosHandler{
 
     public function setId($value)
     {
-        if (Validator::validateNaturalNumber((int)$value)) {
-            $this->id_comentario = (int)$value;
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_comentario = $value;
             return true;
         } else {
             $this->data_error = 'El identificador del comentario es incorrecto';
