@@ -18,7 +18,26 @@ const TRABAJADORES_API = 'services/privada/trabajadores.php';
 document.addEventListener('DOMContentLoaded', async () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    fillTable();
 });
+
+
+const fillTable = async (form = null) => {
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(TRABAJADORES_API, 'readAdmin');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        NOMBRES_INPUT.value = ROW.nombre_trabajador;
+        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
+        DUI_INPUT.value = ROW.dui_trabajador;
+        TEL_INPUT.value = ROW.telefono_trabajador;
+        CORREO_INPUT.value = ROW.correo_trabajador;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
 
 // Función para mostrar el formulario de usuario.
 function showFormUser() {
@@ -43,19 +62,17 @@ const returnBack = async () => {
 // Función para agregar o guardar datos con SweetAlert integrado.
 const addSave = async () => {
     const btnUpdate = document.getElementById('btnUpdate');
-
     var textoBoton = btnUpdate.textContent.trim();
-
-    if (textoBoton == 'Guardar') {
+    if (textoBoton == 'Actualizar') {
+        // Hacer los campos de entrada editables para actualizar.
+        makeFieldsReadOnly(false);
+        btnUpdate.textContent = 'Guardar';
+    }
+    else if (textoBoton == 'Guardar') {
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
         btnUpdate.textContent = 'Actualizar';
         // Hacer los campos de entrada de solo lectura después de guardar.
         makeFieldsReadOnly(true);
-    }
-    else if (textoBoton == 'Actualizar') {
-        // Hacer los campos de entrada editables para actualizar.
-        makeFieldsReadOnly(false);
-        btnUpdate.textContent = 'Guardar';
     }
 }
 
@@ -67,8 +84,6 @@ function makeFieldsReadOnly(isReadOnly) {
     TEL_INPUT.readOnly = isReadOnly;
     CORREO_INPUT.readOnly = isReadOnly;
     FECHAN_INPUT.readOnly = isReadOnly;
-    CONTRA_INPUT.readOnly = isReadOnly;
-    CONTRAC_INPUT.readOnly = isReadOnly;
 }
 
 // Evento para validar el formulario antes de enviarlo.

@@ -58,6 +58,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Trabajador inexistente';
                 }
             break;
+            case 'readAdmin':
+                if ($result['dataset'] = $trabajador->readAdmin()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Trabajador inexistente';
+                }
+            break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (

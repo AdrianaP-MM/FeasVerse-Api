@@ -161,6 +161,14 @@ class TrabajadorHandler
         return Database::getRow($sql, $params);
     }
 
+    public function readAdmin()
+    {
+        $sql = 'SELECT id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador, clave_trabajador, fecha_de_registro, fecha_de_nacimiento, id_nivel, estado_trabajador
+        FROM tb_trabajadores WHERE id_trabajador = ?;';
+        $params = array($_SESSION['idTrabajador']);
+        return Database::getRow($sql, $params);
+    }
+
     public function bloqDesbloqRow()
     {
         $sql = 'UPDATE tb_trabajadores SET
