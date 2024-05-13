@@ -159,11 +159,14 @@ const returnBack = async () => {
     }
 }
 
+let id_marca = null;
+
 // Definición de la función asíncrona llamada 'openDetails'.
 const openDetails = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
     FORM.append('IdMarca', id);
+    id_marca = id;
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(MARCAS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -177,8 +180,8 @@ const openDetails = async (id) => {
         // Se inicializan los campos con los datos.
         const ROW = DATA.dataset;
         NOMBRED_INPUT.value = ROW.nombre_marca,
-        DESCD_INPUT.value = ROW.descripcion_marca,
-        IMGD_INPUT.src = `${SERVER_URL}images/marcas/${ROW.foto_marca}`;
+            DESCD_INPUT.value = ROW.descripcion_marca,
+            IMGD_INPUT.src = `${SERVER_URL}images/marcas/${ROW.foto_marca}`;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -213,7 +216,6 @@ const addSave = async () => {
 const botonActualizar = async () => {
     // Obtiene el texto contenido en el botón de actualización y elimina los espacios en blanco al principio y al final.
     var textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-
     // Verifica si el texto del botón es 'Actualizar'.
     if (textoBoton == 'Actualizar') {
         // Si es 'Actualizar', habilita la edición de ciertos campos del formulario.
@@ -224,9 +226,27 @@ const botonActualizar = async () => {
     }
     // Verifica si el texto del botón es 'Guardar'.
     else if (textoBoton == 'Guardar') {
-        // Si es 'Guardar', muestra una alerta de confirmación y oculta el modal.
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        DATA_MODAL.hide();
+        // Deshabilita la edición de los campos de entrada.
+        NOMBRED_INPUT.readOnly = true;
+        DESCD_INPUT.readOnly = true;
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(UPDATE_FORM);
+        FORM.append('id_marca', id_marca);
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(MARCAS_API, 'updateRow', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            // Se cierra la caja de diálogo.
+            DATA_MODAL.hide();
+            fillTable();
+        } else {
+            NOMBRED_INPUT.readOnly = false;
+            DESCD_INPUT.readOnly = false;
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }
 

@@ -90,7 +90,6 @@ class TrabajadorData extends TrabajadorHandler
             $this->data_error = 'El correo ingresado ya existe';
             return false;
         } else {
-
             $this->correo_trabajador = $value;
             return true;
         }

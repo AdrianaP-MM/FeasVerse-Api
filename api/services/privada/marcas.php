@@ -47,23 +47,26 @@ if (isset($_GET['action'])) {
                 } elseif ($result['dataset'] = $marca->readOne()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Producto inexistente';
+                    $result['error'] = 'Marca inexistente';
                 }
                 break;
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$trabajador->setId($_POST['id_marca']) or
-                    !$marca->setNombreMarca($_POST['']) or
-                    !$marca->setDescripcionMarca($_POST['']) or
-                    !$marca->setFotoMarca($_FILES[''])
+                    !$marca->setId($_POST['id_marca']) or
+                    !$marca->setFilename() or
+                    !$marca->setNombreMarca($_POST['nombreMarcaD']) or
+                    !$marca->setDescripcionMarca($_POST['descripcionMarcaD']) or
+                    !$marca->setFotoMarca($_FILES['customFile1'], $marca->getFilename())
                 ) {
-                    $result['error'] = $trabajador->getDataError();
-                } elseif ($trabajador->updateRow()) {
+                    $result['error'] = $marca->getDataError();
+                } elseif ($marca->updateRow()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Trabajador modificado correctamente';
+                    $result['message'] = 'Marca modificada correctamente';
+                    // Se asigna el estado del archivo después de actualizar.
+                    $result['fileStatus'] = Validator::changeFile($_FILES['customFile1'], $marca::RUTA_IMAGEN, $marca->getFilename());
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el trabajador';
+                    $result['error'] = 'Ocurrió un problema al modificar la marca';
                 }
                 break;
             case 'deleteRow':

@@ -20,6 +20,7 @@ class MarcasHandler
         $sql = 'SELECT id_marca, foto_marca FROM tb_marcas';
         return Database::getRows($sql);
     }
+
     public function createRow()
     {
         $sql = 'INSERT INTO tb_marcas(nombre_marca, foto_marca, descripcion_marca) VALUES (?,?,?)';
@@ -34,13 +35,37 @@ class MarcasHandler
     public function checkDuplicate($value)
     {
         $sql = 'SELECT id_marca WHERE nombre_marca = ?';
-        $params = array($value, $value);
+        $params = array($value);
         return Database::getRow($sql, $params);
     }
 
     public function readOne()
     {
         $sql = 'SELECT id_marca, nombre_marca, foto_marca, descripcion_marca FROM tb_marcas WHERE id_marca = ?';
+        $params = array($this->id_marca);
+        return Database::getRow($sql, $params);
+    }
+
+    public function updateRow()
+    {
+        $sql = 'UPDATE tb_marcas SET
+        nombre_marca = ?,
+        foto_marca = ?,
+        descripcion_marca = ? WHERE id_marca = ?;';
+        $params = array(
+            $this->nombre_marca,
+            $this->foto_marca,
+            $this->descripcion_marca,
+            $this->id_marca,
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function readFilename()
+    {
+        $sql = 'SELECT foto_marca
+                FROM tb_marcas
+                WHERE id_marca = ?;';
         $params = array($this->id_marca);
         return Database::getRow($sql, $params);
     }

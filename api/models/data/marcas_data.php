@@ -10,7 +10,7 @@ class MarcasData extends MarcasHandler
 {
     // Atributo genérico para manejo de errores.
     private $data_error = null;
-
+    private $filename = null;
     /*
      *  Métodos para validar y asignar valores de los atributos.
      */
@@ -30,12 +30,15 @@ class MarcasData extends MarcasHandler
         if (!Validator::validateAlphabetic($value)) {
             $this->data_error = 'El nombre debe ser un valor alfabético';
             return false;
-        } elseif (Validator::validateLength($value, $min, $max)) {
-            $this->nombre_marca = $value;
-            return true;
-        } else {
+        } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
+        } elseif($this->checkDuplicate($value)) {
+            $this->data_error = 'El nombre ingresado ya existe';
+            return false;
+        } else {
+            $this->nombre_marca = $value;
+            return true;
         }
     }
 
@@ -70,5 +73,21 @@ class MarcasData extends MarcasHandler
     public function getDataError()
     {
         return $this->data_error;
+    }
+
+    public function setFilename()
+    {
+        if ($data = $this->readFilename()) {
+            $this->filename = $data['foto_marca'];
+            return true;
+        } else {
+            $this->data_error = 'Marca inexistente';
+            return false;
+        }
+    }
+
+    public function getFilename()
+    {
+        return $this->filename;
     }
 }

@@ -143,14 +143,14 @@
                             <!-- Campo de nombres -->
                             <div class="col-sm-12 col-md-12">
                                 <label for="nombreMarcaD" class="form-label">Nombres</label>
-                                <input id="nombreMarcaD" type="text" name="nombreTrabajador"
+                                <input id="nombreMarcaD" type="text" name="nombreMarcaD"
                                     class="form-control editableInput" required readonly>
                             </div>
 
                             <!-- Área de descripción de la marca -->
                             <div class="input-group">
                                 <span class="input-group-text">Descripción de la marca</span>
-                                <textarea class="form-control" aria-label="With textarea" id="descripcionMarcaD"
+                                <textarea class="form-control" aria-label="With textarea" id="descripcionMarcaD" name="descripcionMarcaD"
                                     readonly required></textarea>
                             </div>
 
@@ -165,7 +165,7 @@
                                 <div class="btn btn-primary btn-rounded mt-3">
                                     <label class="form-label text-white m-1" for="customFile1">Seleccionar
                                         imagen</label>
-                                    <input type="file" class="form-control d-none" id="customFile1" readonly
+                                    <input type="file" class="form-control d-none" id="customFile1" readonly name='customFile1'
                                         onchange="displaySelectedImage(event, 'selectedImageD')" />
                                 </div>
                             </div>
