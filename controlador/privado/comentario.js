@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     COMENTARIOS_DIV.classList.remove('d-none');
-    //DCOMENTARIOS_DIV.classList.add('d-none');
+    DCOMENTARIOS_DIV.classList.add('d-none');
     fillComents();
 });
 
@@ -37,105 +37,93 @@ const fillComents = async () => {
             // Manejar los datos de comentarios
             DATA.dataset.forEach(row => {
                 COMENTARIO_BODY.innerHTML += `
-                <div class="ComentarioC mt-3" data-id="${row.id_comentario}" data-bs-toggle="tab" id="ComentarioC_${row.id_comentario}" role="tab"  onclick="ShowComentario(${row.id_comentario})">
-                                <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario1_${row.id_comentario}">
-                                    <input type="number" class="d-none" id="Fecha_${row.id_comentario}" name="Fecha">
-                                    <p style="font-size: 23px;" class=" d-flex justify-content-end flex-row"
-                                        id="NumberCalificacion_${row.id_comentario}">${row.calificacion_comentario}</p>
-                                    <a href="#" class="bi-star-fill estrella d-flex justify-content-end mt-2"></a>
-                                </div>
-                                <h5 class="comentarioT" id="TituloComentario_${row.id_comentario}">${row.titulo_comentario}</h5>
-                                <p class="comentarioD" id="DescripcionComentario_${row.idComentario}">${row.descripcion_comentario}</p>
-                                </div>`
+                <div class="ComentarioC mt-3" id="ComentarioC_${row.id_comentario}"  onclick="ShowComentario(${row.id_comentario})">
+                    <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario1_${row.id_comentario}">
+                        <input type="number" class="d-none" id="Fecha_${row.id_comentario}" name="Fecha">
+                        <p style="font-size: 23px;" class=" d-flex justify-content-end flex-row"
+                            id="NumberCalificacion_${row.id_comentario}">${row.calificacion_comentario}</p>
+                        <a href="#" class="bi-star-fill estrella d-flex justify-content-end mt-2"></a>
+                    </div>
+                    <h5 class="comentarioT" id="TituloComentario_${row.id_comentario}">${row.titulo_comentario}</h5>
+                    <p class="comentarioD" id="DescripcionComentario_${row.idComentario}">${row.descripcion_comentario}</p>
+                </div>`
             });
             // Asignar un manejador de eventos a todos los elementos .ComentarioC
         }
     } else {
-        console.error('ERROR:', DATA.error);
         await sweetAlert(4, DATA.error, true);
     }
 };
 
 const ShowComentario = async (idComentario) => {
-    try {
-        // Creamos un FormData y añadimos el id del comentario
-        const formData = new FormData(); 
-        formData.append('idComentario', idComentario);
 
-        // Mostramos el contenedor de comentarios
-        COMENTARIOS_DIV.classList.remove('d-none');
+    // Creamos un FormData y añadimos el id del comentario
+    const formData = new FormData();
+    formData.append('idComentario', idComentario);
+    DCOMENTARIOS_BODY.innerHTML = '';
+    // Mostramos el contenedor de comentarios
+    DCOMENTARIOS_DIV.classList.remove('d-none');
+    // Ocultamos el contenedor de comentarios después de realizar todas las operaciones
+    COMENTARIOS_DIV.classList.add('d-none');
 
-        // Obtenemos los datos del comentario específico usando la API
-        const DATA = await fetchData(COMENTARIOS_API, 'readOneComentario', formData);
-        
-        // Verificamos si la respuesta es exitosa
-        if (DATA.status) {
-            // Verificamos si hay datos en el conjunto de datos
-            if (DATA.dataset.length === 0) {
-                await sweetAlert(1, "No hay comentarios disponibles.", true);
-            } else {
-                // Iteramos sobre cada comentario en el conjunto de datos
-                DATA.dataset.forEach(row => {
-                    // Construimos el HTML para mostrar el comentario
-                    DCOMENTARIOS_BODY.innerHTML += `
-                        <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
-                            <div class="container p-0 m-0" id="idComentario">
-                                <button class="btn" type="button" onclick="volver()">
-                                    <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
-                                </button> <!--Boton para volver a la pagina de comentarios-->
-                            </div>
-                            <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
-                                <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
-                                <p class="titillium-web-regular">
-                                    <span class="fw-bold">Nombre del cliente:</span> ${row.nombre_cliente}, ${row.apellido_cliente}
-                                </p>
-                                <p class="titillium-web-regular">
-                                    <span class="fw-bold">Correo del cliente:</span> ${row.correo_cliente}
-                                </p>
-                                <p class="titillium-web-regular">
-                                    <span class="fw-bold">Teléfono del cliente:</span> ${row.telefono_cliente}
-                                </p>
-                            </div>
-                            <div class="d-flex flex-column contedorDataZapato flex-wrap">
-                                <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
-                                    <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
-                                    <img src="${row.foto_detalle_zapato}" alt="zapatoC" class="">
-                                    <p class=" m-0 fw-semi-bold">${row.nombre_zapato}</p>
-                                    <p class="m-0">Zapato ${row.genero_zapato}</p>
-                                    <p class="m-0">2 Colores ${row.nombre_color}</p>
-                                    <p class=" m-0 fw-bold">$${row.precio_unitario_zapato}</p>
-                                </div>
+    // Obtenemos los datos del comentario específico usando la API
+    const DATA = await fetchData(COMENTARIOS_API, 'readOneComentario', formData);
+
+    // Verificamos si la respuesta es exitosa
+    if (DATA.status) {
+        // Verificamos si hay datos en el conjunto de datos
+        if (DATA.dataset.length === 0) {
+            await sweetAlert(1, "No hay comentarios disponibles.", true);
+        } else {
+            const row = DATA.dataset;
+
+            // Iteramos sobre cada comentario en el conjunto de datos
+            // Construimos el HTML para mostrar el comentario
+            DCOMENTARIOS_BODY.innerHTML += `
+                    <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
+                        <div class="container p-0 m-0" id="idComentario">
+                            <button class="btn" type="button" onclick="volver()">
+                                <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
+                            </button> <!--Boton para volver a la pagina de comentarios-->
+                        </div>
+                        <div class="d-flex flex-column justify-content-center flex-wrap mx-5 me-5 ms-5 mb-2 contenedorInfoCliente">
+                            <h3 class="fw-normal titillium-web-regular mb-5 color-4blue">Información del comentario</h3>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Nombre del cliente:</span> ${row.nombre_cliente}, ${row.apellido_cliente}
+                            </p>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Correo del cliente:</span> ${row.correo_cliente}
+                            </p>
+                            <p class="titillium-web-regular">
+                                <span class="fw-bold">Teléfono del cliente:</span> ${row.telefono_cliente}
+                            </p>
+                        </div>
+                        <div class="d-flex flex-column contedorDataZapato flex-wrap">
+                            <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
+                                <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
+                                <img src="${row.foto_detalle_zapato}" alt="zapatoC" class="">
+                                <p class=" m-0 fw-semi-bold">${row.nombre_zapato}</p>
+                                <p class="m-0">Zapato ${row.genero_zapato}</p>
+                                <p class="m-0">2 Colores ${row.nombre_color}</p>
+                                <p class=" m-0 fw-bold">$${row.precio_unitario_zapato}</p>
                             </div>
                         </div>
-                        <div class="d-flex flex-column flex-wrap contenedorComentario">
-                            <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
-                            <p class="Texto">${row.descripcion_comentario}</p>
-                            <div class="container p-0 m-0 mt-4">
-                                <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="updateEstado()">
-                                    Retirar comentario
-                                </button>
-                            </div>
-                        </div>`;
-                });
-            }
-        } else {
-            // Si hay un error, mostramos una alerta
-            console.error('ERROR:', DATA.error);
-            await sweetAlert(4, DATA.error, true);
+                    </div>
+                    <div class="d-flex flex-column flex-wrap contenedorComentario">
+                        <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
+                        <p class="Texto">${row.descripcion_comentario}</p>
+                        <div class="container p-0 m-0 mt-4">
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="updateEstado()">
+                                Retirar comentario
+                            </button>
+                        </div>
+                    </div>`;
         }
-    } catch (error) {
-        // Si ocurre un error, mostramos una alerta
-        console.error('Error fetching data:', error);
-        await sweetAlert(2, 'Error processing request.', null);
-    } finally {
-        // Ocultamos el contenedor de comentarios después de realizar todas las operaciones
-        COMENTARIOS_DIV.classList.add('d-none');
+    } else {
+        // Si hay un error, mostramos una alerta
+        await sweetAlert(4, DATA.error, true);
     }
 };
-
-
-
-
 
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
@@ -172,7 +160,6 @@ function volver() {
 
 const RetirarC = async () => {
     var textoBoton = BOTON_ESTADO.textContent.trim();
-
     await sweetAlert(1, 'Se ha retirado el comentario correctamente', true);
 
 }

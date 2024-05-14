@@ -53,16 +53,16 @@ class ComentariosHandler
     public function readOneComentario()
     {
         $sql = "SELECT
-                c.nombre_cliente AS 'Nombre del cliente',
-                c.apellido_cliente AS 'Apellido del cliente',
-                c.correo_cliente AS 'Correo del cliente',
-                c.telefono_cliente AS 'Teléfono del cliente',
-                z.nombre_zapato AS 'Nombre del Zapato',
-                z.genero_zapato AS 'Género del zapato',
-                col.nombre_color AS 'Color del zapato',
-                dz.precio_unitario_zapato AS 'Precio del zapato',
-                dz.foto_detalle_zapato AS 'Foto del zapato',
-                com.descripcion_comentario AS 'Descripción del comentario'
+                c.nombre_cliente,
+                c.apellido_cliente,
+                c.correo_cliente,
+                c.telefono_cliente,
+                z.nombre_zapato,
+                z.genero_zapato,
+                col.nombre_color,
+                dz.precio_unitario_zapato,
+                dz.foto_detalle_zapato,
+                com.descripcion_comentario
             FROM
                 tb_comentarios com
                 JOIN tb_detalles_pedidos dp ON com.id_detalles_pedido = dp.id_detalles_pedido
