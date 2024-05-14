@@ -80,8 +80,9 @@ const ShowComentario = async (idComentario) => {
             // Iteramos sobre cada comentario en el conjunto de datos
             // Construimos el HTML para mostrar el comentario
             DCOMENTARIOS_BODY.innerHTML += `
+            <div class="nav-link idComentario z-0 d-flex flex-column " id="idComentario">
                     <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
-                        <div class="container p-0 m-0" id="idComentario">
+                        <div class="container p-0 m-0" id="idComentario2">
                             <button class="btn" type="button" onclick="volver()">
                                 <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
                             </button> <!--Boton para volver a la pagina de comentarios-->
@@ -109,15 +110,17 @@ const ShowComentario = async (idComentario) => {
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex flex-column flex-wrap contenedorComentario">
+                    <div class="d-flex flex-column flex-wrap contenedorComentario ms-5">
                         <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
-                        <p class="Texto">${row.descripcion_comentario}</p>
+                        <p class="Texto ">${row.descripcion_comentario}</p>
                         <div class="container p-0 m-0 mt-4">
-                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="updateEstado()">
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="(openUpdate)">
                                 Retirar comentario
                             </button>
                         </div>
-                    </div>`;
+                    </div>
+                </div>
+            </div>`;
         }
     } else {
         // Si hay un error, mostramos una alerta
@@ -127,9 +130,9 @@ const ShowComentario = async (idComentario) => {
 
 const openUpdate = async (id) => {
     // Se define un objeto con los datos del registro seleccionado.
-    FORM.append('idProducto', id);
+    FORM.append('idComentario', id);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(PRODUCTO_API, 'readOne', FORM);
+    const DATA = await fetchData(COMENTARIOS_API, 'readOne', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
