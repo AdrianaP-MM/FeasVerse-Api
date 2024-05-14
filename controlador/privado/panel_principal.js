@@ -1,3 +1,6 @@
+// Constante para completar la ruta de la API.
+const PEDIDOS_API = 'services/privada/pedidos.php';
+
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
     // Constante para obtener el número de horas.
@@ -23,12 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Definición de la función asíncrona llamada 'graficoBarrasVentas'.
 const graficoBarrasVentas = async () => {
-    // Se declaran los arreglos para guardar los datos a graficar.
-    // Se declaran dos arreglos: uno para los meses y otro para las ventas.
-    let Meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-    let Ventas = [80,150,45,30,50,80,30,100,95,95,50,70];
-    
-    // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-    barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
 
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(PEDIDOS_API, 'ventasPorMes');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let Meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let Ventas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            Ventas.push(row.Cantidad);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
+    } else {
+        document.getElementById('chart1').remove();
+        console.log(DATA.error);
+    }
 }

@@ -83,6 +83,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No se pudo cambiar el estado del pedido';
                 }
                 break;
+            case 'ventasPorMes':
+                if ($result['dataset'] = $pedidos->ventasMes()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay datos disponibles';
+                }
+            break;
             case 'deleteRow':
                 break;
             default:
