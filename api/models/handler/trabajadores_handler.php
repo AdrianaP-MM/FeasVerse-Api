@@ -137,6 +137,27 @@ class TrabajadorHandler
         return Database::executeRow($sql, $params);
     }
 
+    public function editProfile()
+    {
+        $sql = 'UPDATE tb_trabajadores SET 
+        nombre_trabajador = ?,
+        apellido_trabajador = ?,
+        dui_trabajador = ?,
+        telefono_trabajador = ?,
+        correo_trabajador = ?,
+        fecha_de_nacimiento = ? WHERE id_trabajador = ?;';
+        $params = array(
+            $this->nombre_trabajador,
+            $this->apellido_trabajador,
+            $this->dui_trabajador,
+            $this->telefono_trabajador,
+            $this->correo_trabajador,
+            $this->fecha_de_nacimiento,
+            $_SESSION['idTrabajador']
+        );
+        return Database::executeRow($sql, $params);
+    }
+
     public function readNiveles()
     {
         $sql = 'SELECT id_nivel, nivel from tb_niveles; ';

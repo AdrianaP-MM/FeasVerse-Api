@@ -139,9 +139,24 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
                     }
                 break;
-            case 'readProfile':
-                break;
             case 'editProfile':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setID($_POST['id_trabajador']) or
+                    !$trabajador->setNombre($_POST['nombreInputTrabajador']) or
+                    !$trabajador->setApellido($_POST['apellidosInputTrabajador']) or
+                    !$trabajador->setDUI($_POST['duiInputTrabajador']) or
+                    !$trabajador->setTelefono($_POST['telefonoInputTrabajador']) or
+                    !$trabajador->setCorreo($_POST['correoInputTrabajador']) or
+                    !$trabajador->setNacimiento($_POST['fechanInputTrabajador'])
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->editProfile()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Usuario modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar su usuario';
+                }
                 break;
             case 'changePassword':
                 break;

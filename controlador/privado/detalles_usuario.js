@@ -1,17 +1,19 @@
 // Obtener referencias a elementos del formulario por su ID
-const NOMBRES_INPUT = document.getElementById('nombreInput'),
-    APELLIDOS_INPUT = document.getElementById('apellidosInput'),
-    DUI_INPUT = document.getElementById('duiInput'),
-    TEL_INPUT = document.getElementById('telefonoInput'),
-    CORREO_INPUT = document.getElementById('correoInput'),
-    FECHAN_INPUT = document.getElementById('fechanInput');
+const NOMBRES_INPUT = document.getElementById('nombreInputTrabajador'),
+    APELLIDOS_INPUT = document.getElementById('apellidosInputTrabajador'),
+    DUI_INPUT = document.getElementById('duiInputTrabajador'),
+    TEL_INPUT = document.getElementById('telefonoInputTrabajador'),
+    CORREO_INPUT = document.getElementById('correoInputTrabajador'),
+    FECHAN_INPUT = document.getElementById('fechanInputTrabajador');
 
-    const nombre = document.getElementById('nombreDeUsuario');
-    const correo = document.getElementById('correoDeUsuario');
+const nombre = document.getElementById('nombreDeUsuario');
+const correo = document.getElementById('correoDeUsuario');
 
 const forms = document.querySelectorAll('form');
 const PASSWORD_FORM = document.getElementById('passwordForm');
 const CONTRA_WRITTEN = document.getElementById('contraActual');
+
+const INFO_FORM = document.getElementById('infoForm');
 
 // Declaración de constantes para el modal, el título del modal y el formulario de comentario.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
@@ -24,8 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     fillTable();
 });
 
+let id_worker = null;
 
-const fillTable = async (form = null) => {
+const fillTable = async () => {
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(TRABAJADORES_API, 'readAdmin');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -39,6 +42,8 @@ const fillTable = async (form = null) => {
         TEL_INPUT.value = ROW.telefono_trabajador;
         CORREO_INPUT.value = ROW.correo_trabajador;
         FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+
+        id_worker = ROW.id_trabajador;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -74,10 +79,24 @@ const addSave = async () => {
         btnUpdate.textContent = 'Guardar';
     }
     else if (textoBoton == 'Guardar') {
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        btnUpdate.textContent = 'Actualizar';
-        // Hacer los campos de entrada de solo lectura después de guardar.
-        makeFieldsReadOnly(true);
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(INFO_FORM);
+        FORM.append('id_trabajador', id_worker);
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(TRABAJADORES_API, 'editProfile', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            // Deshabilita la edición de los campos de entrada.
+            makeFieldsReadOnly(true);
+            btnUpdate.textContent = 'Actualizar';
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            makeFieldsReadOnly(false);
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }
 
@@ -101,7 +120,6 @@ Array.from(forms).forEach(form => {
         form.classList.add('was-validated')
     }, false)
 })
-
 
 // Definición de la función asíncrona para abrir los detalles en el modal.
 const showConDetails = async () => {
