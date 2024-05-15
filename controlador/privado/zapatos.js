@@ -12,21 +12,52 @@ const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
 const BOTON_ACTUALIZAR3 = document.getElementById('actualizarBtn3');
+const CARDZAPATO = document.getElementById('slider-container');
 
 document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
 const COLORES_DIV = document.getElementById('colores');
 const AGREGAR_DIV = document.getElementById('agregar');
 const AGREGAR_PASO_DOS_DIV = document.getElementById('paso2');
+const PRINCIPAL = document.getElementById('container');
+
+
+const ZAPATOS_API = 'services/privada/zapatos.php';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar plantilla
     await loadTemplate();
+    fillTable();
 
     // Establecer propiedades iniciales
     NOMBREC_INPUT.readOnly = true;
     document.getElementById('registrados-tab').click();
 });
+
+const fillTable = async (form = null) => {
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(ZAPATOS_API, 'readAll');
+    console.log(DATA); 
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            CARDZAPATO.innerHTML += `
+            <div class="slide">
+            <img src="${SERVER_URL}images/marcas/zapatos/${row.foto_detalle_zapato}" alt="Descripción de la imagen">
+            <span>${row.nombre_zapato}</span>
+        </div>
+            `;
+        });
+
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
 
 // Funciones de interacción
 function showZapatos(button) {
@@ -38,6 +69,7 @@ function showColores(button) {
     // Mostrar y ocultar divs correspondientes
     COLORES_DIV.classList.remove('d-none');
     AGREGAR_DIV.classList.add('d-none');
+    PRINCIPAL.classList.add('d-none');
     AGREGAR_PASO_DOS_DIV.classList.add('d-none');
 
     // Restablecer colores de botones
@@ -53,12 +85,14 @@ function showPaso2(button) {
     // Mostrar y ocultar divs correspondientes
     COLORES_DIV.classList.add('d-none');
     AGREGAR_DIV.classList.add('d-none');
+    PRINCIPAL.classList.add('d-none');
     AGREGAR_PASO_DOS_DIV.classList.remove('d-none');
 }
 
 function showAgregar(button) {
     // Mostrar y ocultar divs correspondientes
     AGREGAR_DIV.classList.remove('d-none');
+    PRINCIPAL.classList.add('d-none');
     COLORES_DIV.classList.add('d-none');
     AGREGAR_PASO_DOS_DIV.classList.add('d-none');
 

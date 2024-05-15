@@ -40,11 +40,11 @@ class ComentariosHandler
         return Database::getRows($sql);
     }
 
-    public function updateEstado()
+    public function bloqDesbloqRow()
     {
-        $sql = 'UPDATE tb_comentarios
-                SET estado_comentario = ?
-                WHERE id_comentario = ?';
+        $sql = 'UPDATE tb_comentarios SET
+        estado_comentario = "?"
+        WHERE id_comentario = ?;';
         $params = array($this->estado_comentario, $this->id_comentario);
         return Database::executeRow($sql, $params);
     }
@@ -77,12 +77,4 @@ class ComentariosHandler
         return Database::getRow($sql, $params);
     }
     
-    public function updateRow()
-    {
-        $sql = 'UPDATE tb_comentarios
-                SET titulo_comentario = ?, descripcion_comentario = ?, calificacion_comentario = ?, estado_comentario = ?, fecha_del_comentario = ?
-                WHERE id_comentario = ?';
-        $params = array($this->titulo_comentario, $this->descripcion_comentario, $this->calificacion_comentario, $this->estado_comentario, $this->fecha_del_comentario, $this->id_comentario);
-        return Database::executeRow($sql, $params);
-    }
 }

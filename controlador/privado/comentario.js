@@ -4,7 +4,8 @@ document.querySelector('title').textContent = 'Feasverse - Comentarios';
 
 const COMENTARIOS_DIV = document.getElementById('rectanguloP'),
     DCOMENTARIOS_DIV = document.getElementById('idComentario'),
-    NUMBERCALIFICACION = document.getElementById('NumberCalificacion'),
+    estado = document.getElementById('estado_comentario');
+NUMBERCALIFICACION = document.getElementById('NumberCalificacion'),
     DESCRIPCIONCOMENTARIO = document.getElementById('DescripcionComentario'),
     ID_COMENTARIO = document.getElementById('idComentario1'),
     BOTON_ESTADO = document.getElementById('btnRetirar'),
@@ -15,6 +16,7 @@ const COMENTARIO_BODY = document.getElementById('ComentarioC');
 const DCOMENTARIOS_BODY = document.getElementById('idComentario')
 
 const COMENTARIOS_API = 'services/privada/comentarios.php';
+
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
@@ -37,8 +39,8 @@ const fillComents = async () => {
             // Manejar los datos de comentarios
             DATA.dataset.forEach(row => {
                 COMENTARIO_BODY.innerHTML += `
-                <div class="ComentarioC mt-3" id="ComentarioC_${row.id_comentario}"  onclick="ShowComentario(${row.id_comentario})">
-                    <div class="Calificacion d-flex align-items: center; justify-content-end" id="idComentario1_${row.id_comentario}">
+                <div class="ComentarioC mt-3" id="ComentarioC_${row.id_comentario}"  onclick="ShowComentario(${row.id_comentario}, '${row.estado_comentario}')">
+                    <div class="Calificacion d-flex align-items: center; justify-content-end" id="estado_comentario"_${row.estado_comentario}">
                         <input type="number" class="d-none" id="Fecha_${row.id_comentario}" name="Fecha">
                         <p style="font-size: 23px;" class=" d-flex justify-content-end flex-row"
                             id="NumberCalificacion_${row.id_comentario}">${row.calificacion_comentario}</p>
@@ -55,20 +57,21 @@ const fillComents = async () => {
     }
 };
 
-const ShowComentario = async (idComentario) => {
+let idC = null;
+let estadoC = null;
 
+const ShowComentario = async (idComentario, estado) => {
     // Creamos un FormData y añadimos el id del comentario
     const formData = new FormData();
     formData.append('idComentario', idComentario);
+    formData.append('estado_comentario', estado);
     DCOMENTARIOS_BODY.innerHTML = '';
     // Mostramos el contenedor de comentarios
     DCOMENTARIOS_DIV.classList.remove('d-none');
     // Ocultamos el contenedor de comentarios después de realizar todas las operaciones
     COMENTARIOS_DIV.classList.add('d-none');
-
     // Obtenemos los datos del comentario específico usando la API
     const DATA = await fetchData(COMENTARIOS_API, 'readOneComentario', formData);
-
     // Verificamos si la respuesta es exitosa
     if (DATA.status) {
         // Verificamos si hay datos en el conjunto de datos
@@ -76,12 +79,11 @@ const ShowComentario = async (idComentario) => {
             await sweetAlert(1, "No hay comentarios disponibles.", true);
         } else {
             const row = DATA.dataset;
-
             // Iteramos sobre cada comentario en el conjunto de datos
             // Construimos el HTML para mostrar el comentario
             DCOMENTARIOS_BODY.innerHTML += `
             <div class="nav-link idComentario z-0 d-flex flex-column " id="idComentario">
-                    <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between">
+                    <div class="d-flex flex-row flex-wrap contenedorElemento1 justify-content-between" i>
                         <div class="container p-0 m-0" id="idComentario2">
                             <button class="btn" type="button" onclick="volver()">
                                 <img src="../../recursos/imagenes/flecha.png" width="25px" height="30px">
@@ -114,13 +116,18 @@ const ShowComentario = async (idComentario) => {
                         <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
                         <p class="Texto ">${row.descripcion_comentario}</p>
                         <div class="container p-0 m-0 mt-4">
-                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="(openUpdate)">
-                                Retirar comentario
-                            </button>
+                        <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarComentario()">
+                        Retirar comentario
+                        </button>
                         </div>
                     </div>
                 </div>
             </div>`;
+            
+    idC = idComentario;
+    estadoC = estado;
+    console.log(idC);
+    console.log(estadoC);
         }
     } else {
         // Si hay un error, mostramos una alerta
@@ -128,41 +135,65 @@ const ShowComentario = async (idComentario) => {
     }
 };
 
-const openUpdate = async (id) => {
-    // Se define un objeto con los datos del registro seleccionado.
-    FORM.append('idComentario', id);
-    // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(COMENTARIOS_API, 'readOne', FORM);
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-    if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        SAVE_MODAL.show();
-        MODAL_TITLE.textContent = 'Actualizar producto';
-        // Se prepara el formulario.
-        SAVE_FORM.reset();
-        EXISTENCIAS_PRODUCTO.disabled = true;
-        // Se inicializan los campos con los datos.
-        const ROW = DATA.dataset;
-        ID_PRODUCTO.value = ROW.id_producto;
-        NOMBRE_PRODUCTO.value = ROW.nombre_producto;
-        DESCRIPCION_PRODUCTO.value = ROW.descripcion_producto;
-        PRECIO_PRODUCTO.value = ROW.precio_producto;
-        EXISTENCIAS_PRODUCTO.value = ROW.existencias_producto;
-        ESTADO_PRODUCTO.checked = ROW.estado_producto;
-        fillSelect(CATEGORIA_API, 'readAll', 'categoriaProducto', ROW.id_categoria);
-    } else {
-        sweetAlert(2, DATA.error, false);
-    }
-}
-
 function volver() {
     COMENTARIOS_DIV.classList.remove('d-none');
     // Se oculta el formulario de tabla.
     DCOMENTARIOS_DIV.classList.add('d-none');
 }
 
-const RetirarC = async () => {
-    var textoBoton = BOTON_ESTADO.textContent.trim();
-    await sweetAlert(1, 'Se ha retirado el comentario correctamente', true);
 
+const RetirarComentario = async () => {
+    let estadoCOM;
+    console.log(idC);
+    console.log(estadoC);
+    if (idC == null) {
+        await sweetAlert(3, 'Selecciona un comentario', true);
+    } else {
+        const RESPONSE = await confirmAction('¿Seguro qué quieres realizar la acción?', 'Se modificará el estado del comentario');
+        if (RESPONSE.isConfirmed) {
+            // Determinar el nuevo estado del comentario (activar o desactivar)
+            if (estadoC == 'Activo') {
+                estadoCOM = 'Desactivo';
+            } else if (estadoC == 'Desactivo') {
+                estadoCOM = 'Activo';
+            }
+            // Crear un objeto FormData con el ID del trabajador y el nuevo estado
+            const FORM = new FormData();
+            FORM.append('idComentario', parseInt(idC));
+            FORM.append('estado_comentario', findNumberValue(estadoCOM));
+
+
+            // Realizar una solicitud para actualizar el estado del trabajador en la base de datos
+            const DATA = await fetchData(COMENTARIOS_API, 'bloqDesbloqRow', FORM);
+            // Verificar si la solicitud fue exitosa
+            if (DATA.status) {
+                console.log(idC);
+                console.log(estadoC);
+                // Mostrar un mensaje de éxito
+                await sweetAlert(1, 'Se ha actualizado correctamente', true);
+                // Actualizar la tabla de trabajadores para reflejar los cambios
+                volver();
+                restoreEvrPS(); 
+                // Restablecer las variables globales y el texto del botón y elemento de información
+            } else {
+                sweetAlert(2, DATA.error, false); // Mostrar un mensaje de error si la solicitud falla
+            }
+        } else {
+            // Cancelar la acción si el usuario no confirma
+        }
+    }
+}
+
+function restoreEvrPS() {
+    idC = null;
+    estadoC = null;
+}
+
+function findNumberValue(value) {
+    // Comprobar si el valor es 'Activo'
+    if (value == 'Activo') {
+        return 1; // Si es 'Activo', devolver 1
+    } else {
+        return 2; // Si no es 'Activo', devolver 2
+    }
 }

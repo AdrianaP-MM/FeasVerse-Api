@@ -52,9 +52,20 @@ if (isset($_GET['action'])) {
                             $result['error'] = 'Ocurrió un problema al modificar el comentario';
                         }
                         break;
-                
-            case 'deleteRow':
-                break;
+                        case 'bloqDesbloqRow':
+                            $_POST = Validator::validateForm($_POST);
+                            if (
+                                !$comentarios->setId($_POST['idComentario']) or
+                                !$comentarios->setEstado($_POST['estado_comentario'])
+                            ) {
+                                $result['error'] = $comentarios->getDataError();
+                            } elseif ($comentarios->bloqDesbloqRow()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Comentario retirado correctamente';
+                            } else {
+                                $result['error'] = 'Ocurrió un problema al retirar el comentario';
+                            }
+                        break;
             case 'getUser':
                 if (isset($_SESSION['nombreTrabajador'])) {
                     $result['status'] = 1;
