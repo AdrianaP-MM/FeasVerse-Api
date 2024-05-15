@@ -96,8 +96,9 @@ class TrabajadorHandler
     public function readAll()
     {
         $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador FROM tb_trabajadores t
-        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel ORDER BY t.id_trabajador ASC;'; // Consulta SQL para obtener todos los trabajadores
-        return Database::getRows($sql); // Ejecución de la consulta SQL
+        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel AND id_trabajador != ? ORDER BY t.id_trabajador ASC;'; // Consulta SQL para obtener todos los trabajadores
+        $params = array($_SESSION['idTrabajador']); // Parámetros para la consulta SQL
+        return Database::getRows($sql, $params);
     }
 
     // Método para crear un nuevo trabajador
