@@ -97,9 +97,6 @@ class mandarCorreo
         }
     }
 
-
-
-
     function generarCodigoRecuperacion($longitud = 8)
     {
         // Caracteres permitidos para el código de recuperación

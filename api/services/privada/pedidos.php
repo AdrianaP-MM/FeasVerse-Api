@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+                //BUSCAR ORDENES
             case 'searchOrders':
                 $_POST = Validator::validateForm($_POST);
                 if ($result['dataset'] = $pedidos->searchOrders($_POST['estado'], $_POST['paramentro'])) {
@@ -26,6 +27,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'createRow':
                 break;
+                //BUSCAR ORDEnES
             case 'readAllOrders':
                 if ($result['dataset'] = $pedidos->readAllOrders()) {
                     $result['status'] = 1;
@@ -34,6 +36,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos registrados';
                 }
                 break;
+                //LEER TODO LOS ZAPATOS DE UNA ORDEN
             case 'ReadAllShoesOfOneOrder':
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])) {
                     $result['error'] = $pedidos->getDataError();
@@ -43,6 +46,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapatos inexistente';
                 }
                 break;
+                //LEEER TODA LOS REPARTIdORES
             case 'readAllOrdersDeliverys':
                 if ($result['dataset'] = $pedidos->readAllOrdersWorkers()) {
                     $result['status'] = 1;
@@ -51,6 +55,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen repartidores registrados';
                 }
                 break;
+                //BUSCAR REPARTIDOREs
             case 'searchOrdersWorkers':
                 if ($result['dataset'] = $pedidos->searchOrdersWorkers($_POST['paramentro'])) {
                     $result['status'] = 1;
@@ -59,6 +64,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen repartidores con esa búqueda';
                 }
                 break;
+                //LEER ORDENES DE REPARTIDORES
             case 'ReadOrderOfDeliverys':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -72,6 +78,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Pedidos inexistente';
                 }
                 break;
+                //ACTUALIZAR ESTADO
             case 'updateStatus':
                 $_POST = Validator::validateForm($_POST);
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido']) or !$pedidos->setEstadoPedido($_POST['estado'])) {
@@ -83,13 +90,14 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No se pudo cambiar el estado del pedido';
                 }
                 break;
+                //VENTA POR MES
             case 'ventasPorMes':
                 if ($result['dataset'] = $pedidos->ventasMes()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'No hay datos disponibles';
                 }
-            break;
+                break;
             case 'deleteRow':
                 break;
             default:

@@ -3,8 +3,9 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/clientes_handler.php');
+
 /*
-*	Clase para manejar el encapsulamiento de los datos de la tabla CLIENTE.
+*   Clase para manejar el encapsulamiento de los datos de la tabla CLIENTE.
 */
 class ClienteData extends ClienteHandler
 {
@@ -14,6 +15,8 @@ class ClienteData extends ClienteHandler
     /*
     *   Métodos para validar y establecer los datos.
     */
+
+    // Método para establecer el ID del cliente
     public function setId($value)
     {
         if (Validator::validateNaturalNumber((int)$value)) {
@@ -25,6 +28,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el nombre del cliente
     public function setNombre($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -39,6 +43,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el apellido del cliente
     public function setApellido($value, $min = 2, $max = 50)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -53,6 +58,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el correo del cliente
     public function setCorreo($value, $min = 8, $max = 100)
     {
         if (!Validator::validateEmail($value)) {
@@ -70,6 +76,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el teléfono del cliente
     public function setTelefono($value)
     {
         if (Validator::validatePhone($value)) {
@@ -81,6 +88,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el DUI del cliente
     public function setDUI($value)
     {
         if (!Validator::validateDUI($value)) {
@@ -95,6 +103,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer la fecha de registro del cliente
     public function setFechaRegistro($value)
     {
         if (Validator::validateDate($value)) {
@@ -106,6 +115,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer la fecha de nacimiento del cliente
     public function setNacimiento($value)
     {
         if (Validator::validateDate($value)) {
@@ -117,6 +127,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer la dirección del cliente
     public function setDireccion($value, $min = 2, $max = 100)
     {
         if (!Validator::validateString($value)) {
@@ -131,6 +142,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer la clave del cliente
     public function setClave($value)
     {
         if (Validator::validatePassword($value)) {
@@ -142,6 +154,7 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    // Método para establecer el estado del cliente
     public function setEstado($value)
     {
         if (Validator::validateNaturalNumber($value)) {

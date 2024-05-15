@@ -3,6 +3,7 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/pedidos_handler.php');
+
 /*
 *	Clase para manejar el encapsulamiento de los datos de la tabla CLIENTE.
 */
@@ -14,6 +15,8 @@ class PedidosData extends PedidosHandler
     /*
     *   Métodos para validar y establecer los datos.
     */
+
+    // Método para establecer el ID del pedido del cliente.
     public function setIdPedidoCliente($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -25,6 +28,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el ID del cliente.
     public function setIdCliente($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -36,6 +40,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el ID del repartidor.
     public function setIdRepartidor($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -47,18 +52,20 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el estado del pedido.
     public function setEstadoPedido($value)
     {
         if (Validator::validateAlphabetic($value)) {
             $this->estado_pedido = $value;
             return true;
         } else {
-            // Si la validación falla o el valor no coincide con 1 o 2
+            // Si la validación falla
             $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
             return false;
         }
     }
 
+    // Método para establecer el estado del pedido usando valores numéricos.
     public function setEstadoPedido2($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -72,17 +79,18 @@ class PedidosData extends PedidosHandler
                 $this->estado_pedido = 'Entregado';
                 return true;
             } else {
-                // Si la validación falla o el valor no coincide con 1 o 2
+                // Si la validación falla o el valor no coincide con 1, 2 o 3
                 $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
                 return false;
             }
         } else {
-            // Si la validación falla o el valor no coincide con 1 o 2
+            // Si la validación falla o el valor no es numérico
             $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
             return false;
         }
     }
 
+    // Método para establecer el precio total del pedido.
     public function setPrecioTotal($value)
     {
         if (Validator::validateMoney($value)) {
@@ -94,6 +102,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer la fecha de inicio del pedido.
     public function setFechaDeInicio($value)
     {
         if (Validator::validateDate($value)) {
@@ -105,6 +114,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer la fecha de entrega del pedido.
     public function setFechaDeEntrega($value)
     {
         if (Validator::validateDate($value)) {
@@ -116,6 +126,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el ID del costo de envío por departamento.
     public function setIdCostoDeEnvioPorDepartamento($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -127,6 +138,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el ID de los detalles del pedido.
     public function setIdDetallesPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -138,6 +150,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el ID del detalle del zapato.
     public function setIdDetalleZapato($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -149,6 +162,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer la cantidad del pedido.
     public function setCantidadPedido($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -160,6 +174,7 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer el precio del zapato.
     public function setPrecioDelZapato($value)
     {
         if (Validator::validateMoney($value)) {

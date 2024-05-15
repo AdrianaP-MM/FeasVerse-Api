@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
 require_once('../../helpers/database.php');
+
 /*
 *	Clase para manejar el comportamiento de los datos de la tabla CLIENTE.
 */
@@ -26,6 +27,7 @@ class PedidosHandler
     //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
     public function readAllOrders()
     {
+        // Consulta SQL para obtener todos los pedidos realizados
         $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
         CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
@@ -43,9 +45,11 @@ class PedidosHandler
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
         ";
+        // Ejecutar la consulta y devolver los resultados
         return Database::getRows($sql);
     }
 
+    // Método para buscar pedidos según el estado y un término de búsqueda
     public function searchOrders($estado, $searchTerm)
     {
         // Inicializamos la consulta SQL
@@ -96,11 +100,10 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
-
-
     //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
     public function readShoesOfOrders()
     {
+        // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
         $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
         nombre_zapato, nombre_color, num_talla, cantidad_pedido, precio_unitario_zapato,
         precio_unitario_zapato * cantidad_pedido AS precio_total
@@ -121,6 +124,7 @@ class PedidosHandler
     //SELECT DE LOS TRABAJADORES PARA SABER LAS CLASES DE PEDIDOS QUE TIENEN O REALIZARON
     public function readAllOrdersWorkers()
     {
+        // Consulta SQL para obtener el resumen de los pedidos realizados por cada trabajador
         $sql = "SELECT id_trabajador, nombre_trabajador, 
         apellido_trabajador, 
         dui_trabajador, 
@@ -139,8 +143,10 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
+    // Método para buscar pedidos realizados por un trabajador específico
     public function searchOrdersWorkers($searchTerm)
     {
+        // Consulta SQL para buscar pedidos realizados por trabajadores según un término de búsqueda
         $sql = "SELECT id_trabajador, nombre_trabajador, 
             apellido_trabajador, 
             dui_trabajador, 
@@ -165,10 +171,10 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
-
     //SELECT PARA MOSTRAR LOS DIFERENTES workers 
     public function readOrdersOfWorkerCategories()
     {
+        // Consulta SQL para obtener pedidos de un trabajador según su categoría
         $sql = "SELECT 
         tb_pedidos_clientes.id_pedido_cliente, 
         CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
@@ -184,7 +190,7 @@ class PedidosHandler
         FROM tb_pedidos_clientes 
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
-        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento
         WHERE id_trabajador = ? AND estado_pedido = ?";
         $params = array($this->id_repartidor, $this->estado_pedido);
         return Database::getRows($sql, $params);
@@ -193,6 +199,7 @@ class PedidosHandler
     //!CREATE UPDATE DELETE
     //CUD DE TBPEDIDOSCLIENTES
 
+    // Método para crear un nuevo pedido
     public function createRowPedidos()
     {
         $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
@@ -201,6 +208,7 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para actualizar un pedido existente
     public function updateRowPedidos()
     {
         $sql = 'UPDATE tb_pedidos_clientes
@@ -210,16 +218,17 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para actualizar el estado de un pedido
     public function updateStatus()
     {
         $sql = 'UPDATE tb_pedidos_clientes
                 SET estado_pedido = ?
                 WHERE id_pedido_cliente = ?';
         $params = array($this->estado_pedido, $this->id_pedido_cliente);
-        //print_r($params);
         return Database::executeRow($sql, $params);
     }
 
+    // Método para eliminar un pedido
     public function deleteRowPedidos()
     {
         $sql = 'DELETE FROM tb_pedidos_clientes
@@ -229,6 +238,7 @@ class PedidosHandler
     }
 
     //CUD DE TBDETALLES
+    // Método para crear un nuevo detalle de pedido
     public function createRowDetalle()
     {
         $sql = 'INSERT INTO tb_detalles_pedidos (id_pedido_cliente, id_detalle_zapato, cantidad_pedido, precio_del_zapato)
@@ -237,6 +247,7 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para actualizar un detalle de pedido existente
     public function updateRowDetalle()
     {
         $sql = 'UPDATE tb_detalles_pedidos
@@ -246,6 +257,7 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para eliminar un detalle de pedido
     public function deleteRowDetalle()
     {
         $sql = 'DELETE FROM tb_detalles_pedidos
@@ -254,6 +266,7 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para obtener la cantidad de ventas por mes
     public function ventasMes()
     {
         $sql = '

@@ -3,6 +3,7 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/marcas_handler.php');
+
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla USUARIO.
  */
@@ -11,9 +12,12 @@ class MarcasData extends MarcasHandler
     // Atributo genérico para manejo de errores.
     private $data_error = null;
     private $filename = null;
+
     /*
      *  Métodos para validar y asignar valores de los atributos.
      */
+
+    // Método para establecer el ID de la marca
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -25,6 +29,7 @@ class MarcasData extends MarcasHandler
         }
     }
 
+    // Método para establecer el nombre de la marca
     public function setNombreMarca($value, $min = 2, $max = 20)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -42,17 +47,19 @@ class MarcasData extends MarcasHandler
         }
     }
 
+    // Método para establecer la descripción de la marca
     public function setDescripcionMarca($value, $min = 20, $max = 100)
     {
         if (Validator::validateLength($value, $min, $max)) {
             $this->descripcion_marca = $value;
             return true;
         } else {
-            $this->data_error = 'La descrpcion debe tener una longitud entre ' . $min . ' y ' . $max;
+            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
         }
     }
 
+    // Método para establecer la foto de la marca
     public function setFotoMarca($file, $filename = null)
     {
         if (Validator::validateImageFile($file, 150)) {
@@ -69,12 +76,14 @@ class MarcasData extends MarcasHandler
             return true;
         }
     }
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {
         return $this->data_error;
     }
 
+    // Método para establecer el nombre de archivo
     public function setFilename()
     {
         if ($data = $this->readFilename()) {
@@ -86,6 +95,7 @@ class MarcasData extends MarcasHandler
         }
     }
 
+    // Método para obtener el nombre de archivo
     public function getFilename()
     {
         return $this->filename;

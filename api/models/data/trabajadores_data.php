@@ -3,6 +3,7 @@
 require_once('../../helpers/validator.php');
 // Se incluye la clase padre.
 require_once('../../models/handler/trabajadores_handler.php');
+
 /*
  *  Clase para manejar el encapsulamiento de los datos de la tabla USUARIO.
  */
@@ -14,6 +15,8 @@ class TrabajadorData extends TrabajadorHandler
     /*
      *  Métodos para validar y asignar valores de los atributos.
      */
+
+    // Método para establecer el ID del trabajador
     public function setId($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -25,10 +28,11 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el nombre del trabajador
     public function setNombre($value, $min = 2, $max = 20)
     {
         if (!Validator::validateAlphabetic($value)) {
-            $this->data_error = 'El nombre debe ser un valor alfabetico';
+            $this->data_error = 'El nombre debe ser un valor alfabético';
             return false;
         } elseif (Validator::validateLength($value, $min, $max)) {
             $this->nombre_trabajador = $value;
@@ -39,6 +43,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el apellido del trabajador
     public function setApellido($value, $min = 2, $max = 20)
     {
         if (!Validator::validateAlphabetic($value)) {
@@ -53,12 +58,13 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el DUI del trabajador
     public function setDUI($value)
     {
         if (!Validator::validateDUI($value)) {
             $this->data_error = 'El DUI debe tener el formato ########-#';
             return false;
-        } elseif($this->checkDuplicate($value)) {
+        } elseif ($this->checkDuplicate($value)) {
             $this->data_error = 'El DUI ingresado ya existe';
             return false;
         } else {
@@ -67,6 +73,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el teléfono del trabajador
     public function setTelefono($value)
     {
         if (Validator::validatePhone($value)) {
@@ -78,6 +85,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el correo del trabajador
     public function setCorreo($value, $min = 8, $max = 30)
     {
         if (!Validator::validateEmail($value)) {
@@ -86,7 +94,7 @@ class TrabajadorData extends TrabajadorHandler
         } elseif (!Validator::validateLength($value, $min, $max)) {
             $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
             return false;
-        } elseif($this->checkDuplicate($value)) {
+        } elseif ($this->checkDuplicate($value)) {
             $this->data_error = 'El correo ingresado ya existe';
             return false;
         } else {
@@ -95,6 +103,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el correo del trabajador sin validación de longitud
     public function setPasswordCorreo($value, $min = 8, $max = 30)
     {
         if (!Validator::validateEmail($value)) {
@@ -109,6 +118,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer la contraseña del trabajador
     public function setClave($value)
     {
         if (Validator::validatePassword($value)) {
@@ -120,6 +130,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer la fecha de registro del trabajador
     public function setRegistro($value)
     {
         if (Validator::validateDate($value)) {
@@ -131,6 +142,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer la fecha de nacimiento del trabajador
     public function setNacimiento($value)
     {
         if (Validator::validateDate($value)) {
@@ -142,6 +154,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el ID del nivel del trabajador
     public function setIdNivel($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -153,6 +166,7 @@ class TrabajadorData extends TrabajadorHandler
         }
     }
 
+    // Método para establecer el estado del trabajador
     public function setEstado($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -162,20 +176,18 @@ class TrabajadorData extends TrabajadorHandler
             } elseif ($value == 2) {
                 $this->estado_trabajador = 'Desactivo';
                 return true;
-            }
-            else{    
+            } else {
                 // Si la validación falla o el valor no coincide con 1 o 2
                 $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
                 return false;
             }
-        }
-        else{    
+        } else {
             // Si la validación falla o el valor no coincide con 1 o 2
             $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
             return false;
         }
     }
-    
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {

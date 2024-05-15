@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
+            //BUSCADOR
             case 'searchRows':
                 // Verificar si el valor de búsqueda es válido
                 if (!Validator::validateSearch($_POST['search'])) {
@@ -29,6 +30,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+            //CREAR
             case 'createRow':
                 // Validar y procesar los datos del formulario para crear un nuevo registro
                 $_POST = Validator::validateForm($_POST);
@@ -59,6 +61,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear el cliente';
                 }
                 break;
+            //LEER TODOS
             case 'readAll':
                 if ($result['dataset'] = $cliente->readAll()) {
                     $result['status'] = 1;
@@ -67,6 +70,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen clientes registrados';
                 }
                 break;
+            //LEER UNO
             case 'readOne':
                 if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = 'Cliente incorrecto';
@@ -76,6 +80,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Clientes inexistente';
                 }
                 break;
+            //ACTUALIZAR
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -96,6 +101,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el cliente';
                 }
                 break;
+            //ACTUALIZAR CONTRASEÑA
             case 'updatePassword':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -112,6 +118,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el la contraseña';
                 }
                 break;
+            //CAMBIAR EsTATUS DEL CLIENTE
             case 'updateStatus':
                 if (
                     !$cliente->setEstado($_POST['estadoCliente']) or
@@ -125,6 +132,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el estado del cliente';
                 }
                 break;
+            // ELIMINAR
             case 'deleteRow':
                 if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();

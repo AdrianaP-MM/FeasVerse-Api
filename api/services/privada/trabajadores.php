@@ -17,8 +17,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
-            case 'searchRows':
-                break;
+                //CREAR
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -41,6 +40,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear el trabajador';
                 }
                 break;
+                //LEER TODO
             case 'readAll':
                 if ($result['dataset'] = $trabajador->readAll()) {
                     $result['status'] = 1;
@@ -49,6 +49,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen productos registrados';
                 }
                 break;
+                //LEER UNO
             case 'readOne':
                 if (!$trabajador->setId($_POST['id_trabajador'])) {
                     $result['error'] = $trabajador->getDataError();
@@ -57,14 +58,16 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Trabajador inexistente';
                 }
-            break;
+                break;
+                //LEER ADMIN
             case 'readAdmin':
                 if ($result['dataset'] = $trabajador->readAdmin()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Trabajador inexistente';
                 }
-            break;
+                break;
+                //ACTUALIZAR
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -86,20 +89,22 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el trabajador';
                 }
                 break;
+                //ACTUALIZAR sTATUS
             case 'bloqDesbloqRow':
-                    $_POST = Validator::validateForm($_POST);
-                    if (
-                        !$trabajador->setId($_POST['id_trabajador']) or
-                        !$trabajador->setEstado($_POST['estado'])
-                    ) {
-                        $result['error'] = $trabajador->getDataError();
-                    } elseif ($trabajador->bloqDesbloqRow()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Trabajador modificado correctamente';
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al modificar el trabajador';
-                    }
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$trabajador->setId($_POST['id_trabajador']) or
+                    !$trabajador->setEstado($_POST['estado'])
+                ) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->bloqDesbloqRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Trabajador modificado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al modificar el trabajador';
+                }
                 break;
+                //OBTENER USUARIO
             case 'getUser':
                 if (isset($_SESSION['nombreTrabajador'])) {
                     $result['status'] = 1;
@@ -108,6 +113,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Alias de trabajador indefinido';
                 }
                 break;
+                //CERRAR SESION
             case 'logOut':
                 if (session_destroy()) {
                     $result['status'] = 1;
@@ -116,6 +122,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
+                //LEER NIVEL
             case 'readNivel':
                 if ($result['dataset'] = $trabajador->readNiveles()) {
                     $result['status'] = 1;
@@ -124,21 +131,23 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen niveles registrados';
                 }
                 break;
-                case 'changePassword':
-                    $_POST = Validator::validateForm($_POST);
-                    if (!$trabajador->checkPassword($_POST['contraActual'])) {
-                        $result['error'] = 'Contraseña actual incorrecta';
-                    } elseif ($_POST['newContra'] != $_POST['confirContra']) {
-                        $result['error'] = 'Confirmación de contraseña diferente';
-                    } elseif (!$trabajador->setClave($_POST['newContra'])) {
-                        $result['error'] = $trabajador->getDataError();
-                    } elseif ($trabajador->changePassword()) {
-                        $result['status'] = 1;
-                        $result['message'] = 'Contraseña cambiada correctamente';
-                    } else {
-                        $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
-                    }
+                //CAMBIAR CONTRASEÑA
+            case 'changePassword':
+                $_POST = Validator::validateForm($_POST);
+                if (!$trabajador->checkPassword($_POST['contraActual'])) {
+                    $result['error'] = 'Contraseña actual incorrecta';
+                } elseif ($_POST['newContra'] != $_POST['confirContra']) {
+                    $result['error'] = 'Confirmación de contraseña diferente';
+                } elseif (!$trabajador->setClave($_POST['newContra'])) {
+                    $result['error'] = $trabajador->getDataError();
+                } elseif ($trabajador->changePassword()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Contraseña cambiada correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al cambiar la contraseña';
+                }
                 break;
+                //EDITAR PERFIL
             case 'editProfile':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -158,14 +167,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar su usuario';
                 }
                 break;
-            case 'changePassword':
-                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
         // Se compara la acción a realizar cuando el trabajador no ha iniciado sesión.
         switch ($_GET['action']) {
+                //LOGIN
             case 'logIn':
                 $_POST = Validator::validateForm($_POST);
                 if ($trabajador->checkUser($_POST['correo_electronico'], $_POST['clave'])) {
@@ -175,6 +183,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Credenciales incorrectas';
                 }
                 break;
+                //BUSCAR CORREO
             case 'searchMail':
                 $_POST = Validator::validateForm($_POST);
                 if (!$trabajador->setPasswordCorreo($_POST['correo_electronico_paso1'])) {
@@ -185,6 +194,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Correo electrónico inexistente';
                 }
                 break;
+                //ENVIAR CODIGO 
             case 'enviarCodigoRecuperacion':
                 // Generar un código de recuperación
                 $codigoRecuperacion = $mandarCorreo->generarCodigoRecuperacion();
@@ -195,7 +205,7 @@ if (isset($_GET['action'])) {
                 $asunto = 'Código de recuperación';
                 // Enviar el correo electrónico y verificar si hubo algún error
                 $envioExitoso = $mandarCorreo->enviarCorreoPassword($correoDestino, $nombreDestinatario, $asunto, $codigoRecuperacion);
-                
+
                 if ($envioExitoso === true) {
                     $result['status'] = 1;
                     $result['codigo'] = $codigoRecuperacion;
@@ -205,6 +215,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Error al enviar el correo: ' . $envioExitoso;
                 }
                 break;
+                //CAMBIAR CONTRASEÑA
             case 'changePasswordLogin':
                 $_POST = Validator::validateForm($_POST);
                 if (

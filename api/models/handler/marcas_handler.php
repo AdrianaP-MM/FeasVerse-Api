@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
 require_once('../../helpers/database.php');
+
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -14,13 +15,17 @@ class MarcasHandler
     protected $foto_marca = null;
     protected $descripcion_marca = null;
 
+    // Ruta donde se guardarán las imágenes de las marcas
     const RUTA_IMAGEN = '../../images/marcas/';
 
-    public function readAll(){
+    // Método para leer todas las marcas
+    public function readAll()
+    {
         $sql = 'SELECT id_marca, foto_marca FROM tb_marcas';
         return Database::getRows($sql);
     }
 
+    // Método para crear una nueva marca
     public function createRow()
     {
         $sql = 'INSERT INTO tb_marcas(nombre_marca, foto_marca, descripcion_marca) VALUES (?,?,?)';
@@ -32,6 +37,7 @@ class MarcasHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para verificar si ya existe una marca con el mismo nombre
     public function checkDuplicate($value)
     {
         $sql = 'SELECT id_marca WHERE nombre_marca = ?';
@@ -39,6 +45,7 @@ class MarcasHandler
         return Database::getRow($sql, $params);
     }
 
+    // Método para leer una marca específica
     public function readOne()
     {
         $sql = 'SELECT id_marca, nombre_marca, foto_marca, descripcion_marca FROM tb_marcas WHERE id_marca = ?';
@@ -46,6 +53,7 @@ class MarcasHandler
         return Database::getRow($sql, $params);
     }
 
+    // Método para actualizar una marca
     public function updateRow()
     {
         $sql = 'UPDATE tb_marcas SET
@@ -61,6 +69,7 @@ class MarcasHandler
         return Database::executeRow($sql, $params);
     }
 
+    // Método para obtener el nombre del archivo de la imagen de una marca
     public function readFilename()
     {
         $sql = 'SELECT foto_marca
@@ -70,6 +79,7 @@ class MarcasHandler
         return Database::getRow($sql, $params);
     }
 
+    // Método para buscar marcas por nombre o descripción
     public function searchRows()
     {
         $value = '%' . Validator::getSearchValue() . '%';
@@ -79,5 +89,4 @@ class MarcasHandler
         $params = array($value, $value);
         return Database::getRows($sql, $params);
     }
-
 }

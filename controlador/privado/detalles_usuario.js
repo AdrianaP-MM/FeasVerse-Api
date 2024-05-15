@@ -153,3 +153,25 @@ const botonRestablecer = async () => {
         sweetAlert(2, DATA.error, false);
     }
 }
+
+document.getElementById('fechanInputTrabajador').addEventListener('change', function () {
+    // Obtener la fecha de nacimiento seleccionada por el usuario
+    var fechaNacimiento = new Date(this.value);
+
+    // Obtener la fecha actual
+    var fechaActual = new Date();
+
+    // Calcular la diferencia de tiempo entre la fecha actual y la fecha de nacimiento
+    var edadMilisegundos = fechaActual - fechaNacimiento;
+
+    // Calcular la edad en años
+    var edad = Math.floor(edadMilisegundos / (365.25 * 24 * 60 * 60 * 1000));
+
+    // Comprobar si la edad es menor de 18 años
+    if (edad < 18) {
+        // Mostrar Sweet Alert con el mensaje de error
+        sweetAlert(2, 'Fecha incorrecta, debes ser mayor de 18 años para ingresar.', true);
+        // Limpiar el campo de entrada de fecha
+        this.value = '';
+    }
+});

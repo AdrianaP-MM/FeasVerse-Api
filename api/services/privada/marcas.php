@@ -15,6 +15,7 @@ if (isset($_GET['action'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
+                //BUSCAR
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();
@@ -25,6 +26,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                //CREAR
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -41,6 +43,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear la marca';
                 }
                 break;
+                //BUSCAR TODO
             case 'readAll':
                 if ($result['dataset'] = $marca->readAll()) {
                     $result['status'] = 1;
@@ -49,6 +52,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen marcas registradas';
                 }
                 break;
+                //BUSCAR UNO
             case 'readOne':
                 if (!$marca->setId($_POST['IdMarca'])) {
                     $result['error'] = $marca->getDataError();
@@ -58,6 +62,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Marca inexistente';
                 }
                 break;
+                //ACTUALIZAR
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -77,61 +82,11 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar la marca';
                 }
                 break;
-            case 'deleteRow':
-                break;
-            case 'getUser':
-                break;
-            case 'logOut':
-                break;
-            case 'readProfile':
-                break;
-            case 'editProfile':
-                break;
-            case 'changePassword':
-                break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
-        // Se compara la acción a realizar cuando el trabajador no ha iniciado sesión.
-        switch ($_GET['action']) {
-            case 'logIn':
-                $_POST = Validator::validateForm($_POST);
-                if ($trabajador->checkUser($_POST['correo_electronico'], $_POST['clave'])) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Autenticación correcta';
-                } else {
-                    $result['error'] = 'Credenciales incorrectas';
-                }
-                break;
-            case 'searchMail':
-                if (!$trabajador->setCorreo($_POST['correo'])) {
-                    $result['error'] = 'Correo electrónico incorrecto';
-                } elseif ($result['dataset'] = $trabajador->checkMail()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Usuario inexistente';
-                }
-                break;
-            case 'changePasswordLogin':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$trabajador->setClave($_POST['claveTrabajador']) or
-                    !$trabajador->setId($_POST['idTrabajador'])
-                ) {
-                    $result['error'] = $trabajador->getDataError();
-                } elseif ($_POST['claveTrabajador'] != $_POST['confirmarTrabajador']) {
-                    $result['error'] = 'Contraseñas diferentes';
-                } elseif ($trabajador->updatePassword()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Se ha actualizado correctamente la contraseña';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el la contraseña';
-                }
-                break;
-            default:
-                $result['error'] = 'Acción no disponible fuera de la sesión';
-        }
+        print(json_encode('Acceso denegado'));
     }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
     $result['exception'] = Database::getException();
