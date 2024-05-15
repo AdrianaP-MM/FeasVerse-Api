@@ -991,9 +991,13 @@ async function handleSearch() {
 
         if (value === 1) {
             estado = 'Entregado';
-        } else if (value === 2 || value === 3) {
+        } else if (value === 2) {
             estado = 'En camino';
-        } else {
+        }
+        else if (value === 3) {
+            estado = 'Pendiente';
+        }
+        else {
             estado = '';
         }
 
