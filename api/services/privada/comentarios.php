@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'searchRowsActive':
-                if ($result['dataset'] = $comentarios->readComentarios('Activo',0)) {
+                if ($result['dataset'] = $comentarios->readComentarios('Activo','')) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
@@ -24,7 +24,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'searchRowsDesactive':
-                if ($result['dataset'] = $comentarios->readComentarios('Desactivo',0)) {
+                if ($result['dataset'] = $comentarios->readComentarios('Desactivo','')) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
