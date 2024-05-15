@@ -13,6 +13,9 @@ const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
 const BOTON_ACTUALIZAR3 = document.getElementById('actualizarBtn3');
 const CARDZAPATO = document.getElementById('slider-container');
+const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
+const ADD_COLOR = document.getElementById('AddColor');
+const PASTILLA_COLOR = document.getElementById('contenedorFilaColores');
 
 document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
@@ -20,6 +23,7 @@ const COLORES_DIV = document.getElementById('colores');
 const AGREGAR_DIV = document.getElementById('agregar');
 const AGREGAR_PASO_DOS_DIV = document.getElementById('paso2');
 const PRINCIPAL = document.getElementById('container');
+const NOMBRE_INPUT = document.getElementById('nombreColorInput');
 
 
 const ZAPATOS_API = 'services/privada/zapatos.php';
@@ -33,6 +37,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     NOMBREC_INPUT.readOnly = true;
     document.getElementById('registrados-tab').click();
 });
+
+const fillTableColores = async (form = null) => {
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(ZAPATOS_API, 'readAllColores');
+    console.log(DATA); 
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        PASTILLA_COLOR.innerHTML ="";
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            PASTILLA_COLOR.innerHTML += `
+            <div class="pastilla" ondblclick="openDetails(this)">
+            <h4>${row.nombre_color}</h4>
+        </div>
+            `;
+        });
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
 
 const fillTable = async (form = null) => {
     // Petición para obtener los registros disponibles.
@@ -58,6 +86,51 @@ const fillTable = async (form = null) => {
     }
 }
 
+let id_color = null;
+
+// Función para abrir los detalles de un trabajador.
+const openDetails = async (id) => {
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_trabajador', id);
+    id_worker = id;
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(TRABAJADORES_API, 'readOne', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra la caja de diálogo con su título.
+        DATA_MODAL.show();
+        // Se prepara el formulario.
+        UPDATE_FORM.reset();
+
+        const ROW = DATA.dataset;
+        NOMBRES_INPUT.value = ROW.nombre_trabajador;
+        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
+        DUI_INPUT.value = ROW.dui_trabajador;
+        TEL_INPUT.value = ROW.telefono_trabajador;
+        CORREO_INPUT.value = ROW.correo_trabajador;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+        FECHAR_INPUT.value = ROW.fecha_de_registro;
+        fillSelect(TRABAJADORES_API, 'readNivel', 'nivelInputD', ROW.id_nivel);
+        ESTADO_INPUT.value = findNumberValue(ROW.estado_trabajador);
+
+        // Deshabilita la edición de los campos de entrada.
+        NOMBRES_INPUT.readOnly = true;
+        APELLIDOS_INPUT.readOnly = true;
+        DUI_INPUT.readOnly = true;
+        TEL_INPUT.readOnly = true;
+        CORREO_INPUT.readOnly = true;
+        FECHAN_INPUT.readOnly = true;
+        FECHAR_INPUT.readOnly = true;
+        ESTADO_INPUT.disabled = true;
+        NIVEL_INPUT.disabled = true;
+        // Actualiza el título del modal con el ID del trabajador.
+        MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
 
 // Funciones de interacción
 function showZapatos(button) {
@@ -66,11 +139,13 @@ function showZapatos(button) {
 }
 
 function showColores(button) {
+    fillTableColores();
     // Mostrar y ocultar divs correspondientes
     COLORES_DIV.classList.remove('d-none');
     AGREGAR_DIV.classList.add('d-none');
     PRINCIPAL.classList.add('d-none');
     AGREGAR_PASO_DOS_DIV.classList.add('d-none');
+    
 
     // Restablecer colores de botones
     document.querySelectorAll('.boton-cambiar-color').forEach(boton => {
@@ -122,7 +197,7 @@ DATA_TALLAS_MODAL._element.addEventListener('hidden.bs.modal', function () {
 async function openDetails() {
     DATA_MODAL.show();
     UPDATE_FORM.reset();
-    NOMBREC_INPUT.value = "Rojo";
+    NOMBREC_INPUT.value =
     MODAL_TITLE.textContent = 'Detalles Color: Rojo';
 }
 

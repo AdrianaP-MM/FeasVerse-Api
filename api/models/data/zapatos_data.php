@@ -21,6 +21,17 @@ class ZapatosData extends ZapatosHandler{
             return false;
         }
     }
+    
+    public function setIdColor($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_color = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del zapato es incorrecto';
+            return false;
+        }
+    }
 
     public function setFotoZapato($file, $filename = null)
     {
@@ -42,6 +53,23 @@ class ZapatosData extends ZapatosHandler{
     public function getDataError()
     {
         return $this->data_error;
+    }
+
+    public function setNombreColor($value, $min = 2, $max = 20)
+    {
+        if (!Validator::validateAlphabetic($value)) {
+            $this->data_error = 'El nombre debe ser un valor alfabético';
+            return false;
+        } elseif (!Validator::validateLength($value, $min, $max)) {
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        } elseif($this->checkDuplicate($value)) {
+            $this->data_error = 'El nombre ingresado ya existe';
+            return false;
+        } else {    
+            $this->nombre_color = $value;
+            return true;
+        }
     }
 
     public function setFilename()

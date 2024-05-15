@@ -15,8 +15,10 @@ class ZapatosHandler{
     protected $descripcion_zapato = null;
     protected $estado_zapato = null;
     protected $foto_detalle_zapato = null;
+    protected $id_color = null;
+    protected $nombre_color = null;
 
-    const RUTA_IMAGEN = '../../images/marcas/zapatos';
+    const RUTA_IMAGEN = '../../images/zapatos';
 
     
     public function readAll(){
@@ -25,12 +27,37 @@ class ZapatosHandler{
         return Database::getRows($sql);
     }
 
+        
+    public function readAllColores(){
+        $sql = 'SELECT nombre_color FROM tb_colores;';
+        return Database::getRows($sql);
+    }
+
+    public function readOneColores(){
+        $sql ='SELECT nombre_color FROM tb_colores WHERE id_color = ?;';
+    }
+
+
+    public function addColores(){
+        $sql = 'INSERT INTO tb_colores(nombre_color) VALUES (?)';
+        $params = array($this->nombre_color
+        );
+        return Database::executeRow($sql, $params);
+    }
+
     public function readFilename()
     {
         $sql = 'SELECT foto_detalle_zapato
                 FROM tb_detalle_zapatos
                 WHERE id_detalle_zapato = ?;';
         $params = array($this->id_zapato);
+        return Database::getRow($sql, $params);
+    }
+
+    public function checkDuplicate($value)
+    {
+        $sql = 'SELECT id_color WHERE nombre_color = ?';
+        $params = array($value);
         return Database::getRow($sql, $params);
     }
 }

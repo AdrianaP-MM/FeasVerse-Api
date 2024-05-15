@@ -25,47 +25,29 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay comentarios existentes';
                 }
                 break;
-                case 'readOneComentario':
-                    if (!$comentarios->setId($_POST['idComentario'])) {
-                        $result['error'] = $comentarios->getDataError();
-                    } elseif ($result['dataset'] = $comentarios->readOneComentario()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'Comentario inexistente';
-                    }
-                    break;
-                    case 'updateRow':
-                        $_POST = Validator::validateForm($_POST);
-                        if (
-                            !$comentarios->setId($_POST['idComentario']) or
-                            !$comentarios->setTitulo($_POST['TituloComentario']) or
-                            !$comentarios->setDescripcion($_POST['DescripcionComentario']) or
-                            !$comentarios->setCalificacion($_POST['NumberCalificacion']) or
-                            !$comentarios->setEstado($_POST['btnRetirar']) or
-                            !$comentarios->setFecha(isset($_POST['Fecha']) ? 1 : 0) 
-                        ) {
-                            $result['error'] = $producto->getDataError();
-                        } elseif ($producto->updateRow()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Comentario modificado correctamente';
-                        } else {
-                            $result['error'] = 'Ocurrió un problema al modificar el comentario';
-                        }
-                        break;
-                        case 'bloqDesbloqRow':
-                            $_POST = Validator::validateForm($_POST);
-                            if (
-                                !$comentarios->setId($_POST['idComentario']) or
-                                !$comentarios->setEstado($_POST['estado_comentario'])
-                            ) {
-                                $result['error'] = $comentarios->getDataError();
-                            } elseif ($comentarios->bloqDesbloqRow()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Comentario retirado correctamente';
-                            } else {
-                                $result['error'] = 'Ocurrió un problema al retirar el comentario';
-                            }
-                        break;
+            case 'readOneComentario':
+                if (!$comentarios->setId($_POST['idComentario'])) {
+                    $result['error'] = $comentarios->getDataError();
+                } elseif ($result['dataset'] = $comentarios->readOneComentario()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Comentario inexistente';
+                }
+                break;
+            case 'bloqDesbloqRow':
+                $_POST = Validator::validateForm($_POST);
+                if (
+                    !$comentarios->setId($_POST['idComentario']) or
+                    !$comentarios->setEstado($_POST['estado_comentario'])
+                ) {
+                    $result['error'] = $comentarios->getDataError();
+                } elseif ($comentarios->bloqDesbloqRow()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Comentario retirado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al retirar el comentario';
+                }
+                break;
             case 'getUser':
                 if (isset($_SESSION['nombreTrabajador'])) {
                     $result['status'] = 1;
@@ -93,8 +75,8 @@ if (isset($_GET['action'])) {
         }
     } else {
         // Se compara la acción a realizar cuando el trabajador no ha iniciado sesión.
-    
-}
+
+    }
     // Se obtiene la excepción del servidor de base de datos por si ocurrió un problema.
     $result['exception'] = Database::getException();
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.

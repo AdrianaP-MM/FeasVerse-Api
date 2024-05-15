@@ -39,13 +39,21 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen zapatos registrados';
                 }
                 break;
-            case 'readOne':
-                if (!$cliente->setId($_POST['idCliente'])) {
-                    $result['error'] = 'Cliente incorrecto';
-                } elseif ($result['dataset'] = $cliente->readOne()) {
+                case 'readAllColores':
+                    if ($result['dataset'] = $zapatos->readAllColores()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    } else {
+                        $result['error'] = 'No existen colores registrados';
+                    }
+                    break;
+            case 'readOneColores':
+                if (!$zapatos->setIdColor($_POST['idColor'])) {
+                    $result['error'] = 'Color incorrecto';
+                } elseif ($result['dataset'] = $zapatos->readOneColores()) {
                     $result['status'] = 1;
                 } else {
-                    $result['error'] = 'Clientes inexistente';
+                    $result['error'] = 'Color inexistente';
                 }
                 break;
             case 'updateRow':
@@ -68,22 +76,19 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el cliente';
                 }
                 break;
-            case 'updatePassword':
-                $_POST = Validator::validateForm($_POST);
-                if (
-                    !$cliente->setClave($_POST['claveCliente']) or
-                    !$cliente->setId($_POST['idCliente'])
-                ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($_POST['claveCliente'] != $_POST['confirmarCliente']) {
-                    $result['error'] = 'Contraseñas diferentes';
-                }elseif ($cliente->updatePassword()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Se ha actualizado correctamente la contraseña';
-                } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el la contraseña';
-                }
-                break;
+                case 'addColores':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$zapatos->setNombreColor($_POST['nombreColorInput']) 
+                    ) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($zapatos->addColores()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Marca creada correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al añadir el color';
+                    }
+                    break;
             case 'updateStatus':
                 if (
                     !$cliente->setEstado($_POST['estadoCliente']) or

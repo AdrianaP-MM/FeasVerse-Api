@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 const fillComents = async () => {
+    COMENTARIO_BODY.innerHTML = '';
     // Obtén los datos de la API
     const DATA = await fetchData(COMENTARIOS_API, 'readAll');
 
@@ -50,7 +51,6 @@ const fillComents = async () => {
                     <p class="comentarioD" id="DescripcionComentario_${row.idComentario}">${row.descripcion_comentario}</p>
                 </div>`
             });
-            // Asignar un manejador de eventos a todos los elementos .ComentarioC
         }
     } else {
         await sweetAlert(4, DATA.error, true);
@@ -126,8 +126,6 @@ const ShowComentario = async (idComentario, estado) => {
             
     idC = idComentario;
     estadoC = estado;
-    console.log(idC);
-    console.log(estadoC);
         }
     } else {
         // Si hay un error, mostramos una alerta
@@ -143,9 +141,8 @@ function volver() {
 
 
 const RetirarComentario = async () => {
+    DCOMENTARIOS_BODY.innerHTML = '';
     let estadoCOM;
-    console.log(idC);
-    console.log(estadoC);
     if (idC == null) {
         await sweetAlert(3, 'Selecciona un comentario', true);
     } else {

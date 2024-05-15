@@ -35,15 +35,14 @@ class ComentariosHandler
     public function readComentarios()
     {
         $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
-        FROM tb_comentarios
-        WHERE estado_comentario = "Activo";';
+        FROM tb_comentarios';
         return Database::getRows($sql);
     }
 
     public function bloqDesbloqRow()
     {
         $sql = 'UPDATE tb_comentarios SET
-        estado_comentario = "?"
+        estado_comentario = ?
         WHERE id_comentario = ?;';
         $params = array($this->estado_comentario, $this->id_comentario);
         return Database::executeRow($sql, $params);
