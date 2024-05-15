@@ -202,7 +202,6 @@ function findNumberValue(value) {
 
 // Obtener el elemento select por su ID
 const CMBX_ESTADO = document.getElementById('cmbxEstado');
-var selectedValue;
 // Agregar un evento de cambio al elemento select
 CMBX_ESTADO.addEventListener('change', function () {
     search();
@@ -210,7 +209,7 @@ CMBX_ESTADO.addEventListener('change', function () {
 
 function search() {
     // Obtener el valor seleccionado
-    selectedValue = CMBX_ESTADO.value;
+    var selectedValue = CMBX_ESTADO.value;
     if (selectedValue == 1) { fillComents('searchRowsActive'); }
     else if (selectedValue == 2) { fillComents('searchRowsDesactive'); }
     else { fillComents('readAll'); };
