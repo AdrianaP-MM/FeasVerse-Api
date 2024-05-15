@@ -17,20 +17,19 @@ const DCOMENTARIOS_BODY = document.getElementById('idComentario')
 
 const COMENTARIOS_API = 'services/privada/comentarios.php';
 
-
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     COMENTARIOS_DIV.classList.remove('d-none');
     DCOMENTARIOS_DIV.classList.add('d-none');
-    fillComents();
+    fillComents('readAll');
 });
 
-const fillComents = async () => {
+const fillComents = async (action) => {
     COMENTARIO_BODY.innerHTML = '';
     // Obtén los datos de la API
-    const DATA = await fetchData(COMENTARIOS_API, 'readAll');
+    const DATA = await fetchData(COMENTARIOS_API, action);
 
     // Verifica si la respuesta es satisfactoria
     if (DATA.status) {
@@ -116,16 +115,23 @@ const ShowComentario = async (idComentario, estado) => {
                         <h6 class="titillium-web-semibold color-3blue Texto">Descripcion del comentario:</h6>
                         <p class="Texto ">${row.descripcion_comentario}</p>
                         <div class="container p-0 m-0 mt-4">
-                        <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarComentario()">
-                        Retirar comentario
-                        </button>
+                            ${row.estado_comentario === 'Activo' ? `
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarComentario()">
+                            Retirar Comentario
+                            </button>
+                            ` : row.estado_comentario === 'Desactivo' ? `
+                            <button type="button" class="btn btn1 btn-primary" id="btnRetirar" onclick="RetirarComentario()">
+                            Activar Comentario
+                            </button>
+                            ` : `
+                            `}
                         </div>
                     </div>
                 </div>
             </div>`;
-            
-    idC = idComentario;
-    estadoC = estado;
+
+            idC = idComentario;
+            estadoC = estado;
         }
     } else {
         // Si hay un error, mostramos una alerta
@@ -134,11 +140,11 @@ const ShowComentario = async (idComentario, estado) => {
 };
 
 function volver() {
+    search();
     COMENTARIOS_DIV.classList.remove('d-none');
     // Se oculta el formulario de tabla.
     DCOMENTARIOS_DIV.classList.add('d-none');
 }
-
 
 const RetirarComentario = async () => {
     DCOMENTARIOS_BODY.innerHTML = '';
@@ -159,7 +165,6 @@ const RetirarComentario = async () => {
             FORM.append('idComentario', parseInt(idC));
             FORM.append('estado_comentario', findNumberValue(estadoCOM));
 
-
             // Realizar una solicitud para actualizar el estado del trabajador en la base de datos
             const DATA = await fetchData(COMENTARIOS_API, 'bloqDesbloqRow', FORM);
             // Verificar si la solicitud fue exitosa
@@ -170,7 +175,7 @@ const RetirarComentario = async () => {
                 await sweetAlert(1, 'Se ha actualizado correctamente', true);
                 // Actualizar la tabla de trabajadores para reflejar los cambios
                 volver();
-                restoreEvrPS(); 
+                restoreEvrPS();
                 // Restablecer las variables globales y el texto del botón y elemento de información
             } else {
                 sweetAlert(2, DATA.error, false); // Mostrar un mensaje de error si la solicitud falla
@@ -193,4 +198,20 @@ function findNumberValue(value) {
     } else {
         return 2; // Si no es 'Activo', devolver 2
     }
+}
+
+// Obtener el elemento select por su ID
+const CMBX_ESTADO = document.getElementById('cmbxEstado');
+var selectedValue;
+// Agregar un evento de cambio al elemento select
+CMBX_ESTADO.addEventListener('change', function () {
+    search();
+});
+
+function search() {
+    // Obtener el valor seleccionado
+    selectedValue = CMBX_ESTADO.value;
+    if (selectedValue == 1) { fillComents('searchRowsActive'); }
+    else if (selectedValue == 2) { fillComents('searchRowsDesactive'); }
+    else { fillComents('readAll'); };
 }

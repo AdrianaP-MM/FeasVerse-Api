@@ -32,11 +32,12 @@ class ComentariosHandler
     /*
      *  Metodos
      */
-    public function readComentarios()
+    public function readComentarios($estado1, $estado2)
     {
         $sql = 'SELECT id_comentario, titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario
-        FROM tb_comentarios';
-        return Database::getRows($sql);
+        FROM tb_comentarios WHERE estado_comentario = ? OR estado_comentario = ?';
+        $params = array($estado1, $estado2);
+        return Database::getRows($sql, $params);
     }
 
     public function bloqDesbloqRow()
@@ -47,7 +48,6 @@ class ComentariosHandler
         $params = array($this->estado_comentario, $this->id_comentario);
         return Database::executeRow($sql, $params);
     }
-
 
     public function readOneComentario()
     {
@@ -61,7 +61,8 @@ class ComentariosHandler
                 col.nombre_color,
                 dz.precio_unitario_zapato,
                 dz.foto_detalle_zapato,
-                com.descripcion_comentario
+                com.descripcion_comentario,
+                com.estado_comentario
             FROM
                 tb_comentarios com
                 JOIN tb_detalles_pedidos dp ON com.id_detalles_pedido = dp.id_detalles_pedido
