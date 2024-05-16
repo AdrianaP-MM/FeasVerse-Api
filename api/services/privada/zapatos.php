@@ -29,8 +29,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
-            case 'createRow':
-                break;
             case 'readAll':
                 if ($result['dataset'] = $zapatos->readAll()) {
                     $result['status'] = 1;
@@ -56,26 +54,40 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Color inexistente';
                 }
                 break;
-            case 'updateRow':
+            case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
-                    !$cliente->setId($_POST['idCliente']) or
-                    !$cliente->setNombre($_POST['nombreCliente']) or
-                    !$cliente->setApellido($_POST['apellidosCliente']) or
-                    !$cliente->setCorreo($_POST['correoCliente']) or
-                    !$cliente->setTelefono($_POST['telefonoCliente']) or
-                    !$cliente->setDUI($_POST['duiCliente']) or
-                    !$cliente->setNacimiento($_POST['fechaDeNacimientoCliente']) or
-                    !$cliente->setEstado($_POST['estadoCliente'])
+                    !$zapatos->setIdMarca($_POST['marcaInput']) or
+                    !$zapatos->setNombreZapato($_POST['nombreZapatoInput']) or
+                    !$zapatos->setGenero($_POST['generoInput']) or
+                    !$zapatos->setDescripcion($_POST['descripcionInput']) or
+                    !$zapatos->setPrecio($_POST['precioInput']) 
                 ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->updateRow()) {
+                    $result['error'] = $zapatos->getDataError();
+                } elseif ($zapatos->createRow()) {
                     $result['status'] = 1;
                     $result['message'] = 'Cliente modificado correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el cliente';
+                    $result['error'] = 'Ocurrió un problema al subir el zapato';
                 }
                 break;
+                case 'createRowPT2':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$zapatos->setIdTalla($_POST['idTalla']) or
+                        !$zapatos->setCantidad($_POST['cantidad']) or
+                        !$zapatos->setIdColor($_POST['Color']) or
+                        !$zapatos->setFotoZapato($_FILES['customFile2'])
+                    ) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($zapatos->createRowPT2()) {
+                        $result['status'] = 1;
+                        $result['fileStatus'] = Validator::saveFile($_FILES['customFile2'], $zapatos::RUTA_IMAGEN);
+                        $result['message'] = 'Zapato creada correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear el zapato';
+                    }
+                    break;
                 case 'addColores':
                     $_POST = Validator::validateForm($_POST);
                     if (
