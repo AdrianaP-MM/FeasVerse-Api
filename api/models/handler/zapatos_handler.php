@@ -97,10 +97,26 @@ class ZapatosHandler
         );
         return Database::executeRow($sql, $params);
     }
-        // Método para leer todos los niveles
-        public function readMarcas()
-        {
-            $sql = 'SELECT id_marca, nombre_marca from tb_marcas; '; // Consulta SQL para obtener todos los niveles
-            return Database::getRows($sql); // Ejecución de la consulta SQL
-        }
+    // Método para leer todos los niveles
+    public function readMarcas()
+    {
+        $sql = 'SELECT id_marca, nombre_marca from tb_marcas; '; // Consulta SQL para obtener todos los niveles
+        return Database::getRows($sql); // Ejecución de la consulta SQL
+    }
+
+    public function readOneZapato()
+    {
+        $sql = 'SELECT id_zapato, nombre_zapato, genero_Zapato, descripcion_zapato, id_marca, precio_unitario_zapato FROM tb_Zapatos 
+        WHERE id_Zapato = ?;'; // Consulta SQL para obtener los datos de un zapato por ID
+        $params = array($this->id_zapato); // Parámetros para la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+    }
+
+    public function readDetallesZapatos()
+    {
+        $sql = 'SELECT id_detalle_zapato, id_talla, cantidad_zapato, id_color, foto_detalle_zapato FROM tb_detalle_Zapatos 
+        WHERE id_zapato = ?;'; // Consulta SQL para obtener los datos de un zapato por ID
+        $params = array($this->id_zapato); // Parámetros para la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+    }
 }

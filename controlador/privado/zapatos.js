@@ -7,7 +7,6 @@ const MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
 const MODAL_TITLE_DETALLE = document.getElementById('modalTitleD');
 
 const DATA_MODAL = new bootstrap.Modal('#dataModal');
-const DATA_TALLAS_MODAL = new bootstrap.Modal('#dataModalT');
 const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
 const TALLAS_DETALLES_MODAL = new bootstrap.Modal('#dataModalTallas');
 const DESCRIPCION_INPUT = document.getElementById('descripcionInput');
@@ -34,8 +33,21 @@ const AGREGAR_DIV = document.getElementById('agregar');
 const PRINCIPAL = document.getElementById('container');
 const NOMBRE_INPUT = document.getElementById('nombreColorInput');
 
+const FORM_EDIT_ZAPATO = document.getElementById('formZapatoEdit');
+
 
 const ZAPATOS_API = 'services/privada/zapatos.php';
+
+// Inputs del modal de UPDATE zapato
+const NOMBRE_ZAPATOD = document.getElementById('nombreZapatoD'),
+    GENERO_ZAPATOD = document.getElementById('generoZapatoD'),
+    MARCA_ZAPATOD = document.getElementById('marcaZapatoD'),
+    PRECIO_ZAPATOD = document.getElementById('precioZapatoD'),
+    DESCRIPCION_ZAPATOD = document.getElementById('descripcionZapatoD'),
+    IMAGEN_ZAPATOD = document.getElementById('selectedImageDetalleZapato');
+
+// Constantes para establecer el contenido de la tabla.
+const TABLE_BODY = document.getElementById('bodyDetalleZapato');
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar plantilla
@@ -48,10 +60,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 const fillTableColores = async (form = null) => {
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, 'readAllColores');
-    console.log(DATA); 
+    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        PASTILLA_COLOR.innerHTML ="";
+        PASTILLA_COLOR.innerHTML = "";
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             PASTILLA_COLOR.innerHTML += `
@@ -68,7 +80,7 @@ const fillTableColores = async (form = null) => {
     }
 }
 
-const addColores = async() => {
+const addColores = async () => {
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(ADD_COLOR);
@@ -87,7 +99,7 @@ const addColores = async() => {
     }
 }
 
-const addZapato = async() => {
+const addZapato = async () => {
     event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(ADD_FORM);
@@ -109,7 +121,7 @@ const fillTable = async (form = null) => {
     slider.innerHTML = '';
     const DATA = await fetchData(ZAPATOS_API, 'readAll');
     if (DATA.status) {
-        DATA.dataset.forEach(row => { 
+        DATA.dataset.forEach(row => {
             slider.innerHTML += `
             <div class="slide" onclick="openDetalles(${row.id_zapato})">
                 <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
@@ -124,8 +136,6 @@ const fillTable = async (form = null) => {
         sweetAlert(2, DATA.error, false);
     }
 };
-
-
 
 let id_color = null;
 let nombre_color = null;
@@ -143,8 +153,6 @@ const openDetailsColores = async (id_color, nombre_color) => {
     const DATA = await fetchData(ZAPATOS_API, 'readOneColores', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se muestra la caja de diálogo con su título.
-        DATA_TALLAS_MODAL.show();
         // Se prepara el formulario.
         UPDATE_FORM.reset();
 
@@ -201,10 +209,6 @@ function showColores(button) {
     button.style.color = 'white';
 }
 
-function showPaso2() {
-    DATA_TALLAS_MODAL.show();
-}
-
 function showAgregar(button) {
     fillSelect(ZAPATOS_API, 'readMarcas', 'marcaInput');
     // Mostrar y ocultar divs correspondientes
@@ -231,9 +235,6 @@ DATA_DETALLES_MODAL._element.addEventListener('hidden.bs.modal', function () {
     BOTON_ACTUALIZAR3.textContent = "Actualizar";
 });
 
-DATA_TALLAS_MODAL._element.addEventListener('hidden.bs.modal', function () {
-    BOTON_ACTUALIZAR2.textContent = "Actualizar";
-});
 
 // Funciones para abrir modales
 /*
@@ -246,19 +247,89 @@ async function openDetails() {
 }*/
 
 async function openTallas() {
-    event.preventDefault(); 
-    DATA_TALLAS_MODAL.show();
+    event.preventDefault();
     UPDATE_FORM.reset();
     MODAL_TITLE_TALLA.textContent = 'Tallas y Stock del Producto';
 }
 
 const openDetalles = async (id) => {
-    DATA_DETALLES_MODAL.show();
-    MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato';
+    // Se define un objeto con los datos del registro seleccionado.
+    const FORM = new FormData();
+    FORM.append('id_zapato', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(ZAPATOS_API, 'readOneZapato', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se prepara el formulario.
+        FORM_EDIT_ZAPATO.reset();
+
+        const ROW = DATA.dataset;
+        NOMBRE_ZAPATOD.value = ROW.nombre_zapato;
+        GENERO_ZAPATOD.value = findNumberValue(ROW.genero_Zapato);
+        fillSelect(ZAPATOS_API, 'readMarcas', 'marcaZapatoD', ROW.id_marca);
+        PRECIO_ZAPATOD.value = ROW.precio_unitario_zapato;
+        DESCRIPCION_ZAPATOD.value = ROW.descripcion_zapato;
+        // Actualiza el título del modal con el ID del zapato.
+        MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato #' + id;
+        fillTableDetalles(id);
+        // Se muestra la caja de diálogo con su título.
+        DATA_DETALLES_MODAL.show();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+const fillTableDetalles = async (id) => {
+    const FORM = new FormData();
+    FORM.append('id_zapato', id);
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(ZAPATOS_API, 'readDetallesZapato', FORM);
+    TABLE_BODY.innerHTML = '';
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        IMAGEN_ZAPATOD.src = `${SERVER_URL}/helpers/images/zapatos/${ROW.foto_detalle_zapato}`;
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            TABLE_BODY.innerHTML += `
+                <tr>
+                    <td data-labelN="N°">${row.id_detalle_zapato}</td>
+                    <td data-labelT="Talla">${row.id_talla}</td>
+                    <td data-labelS="Cantidad Actual">${row.cantidad_zapato}</td>
+                    <td data-labelE="Color actual">${row.id_color}</td>
+                    <td> <button class="Verde"> <img class="note"
+                                src="../../recursos/imagenes/icons/notebook.svg"
+                                width="35px" height="35px">
+                        </button>
+                        <button class="Rojo"> <img class="note"
+                                src="../../recursos/imagenes/basura.svg" width="35px"
+                                height="35px">
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+function findNumberValue(value) {
+    // Comprobar si el valor es 'Activo'
+    if (value == 'Unisex') {
+        return 1; // Si es 'Activo', devolver 1
+    } else if (value == 'Masculino') {
+        return 2; // Si no es 'Activo', devolver 2
+    }
+    else { return 3 }
 }
 
 async function addDetalles() {
-    event.preventDefault(); 
+    event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(ADD_FORM);
     FORM.append('descripcionInput', DESCRIPCION_INPUT.value);
@@ -274,14 +345,13 @@ async function addDetalles() {
         TALLAS_DETALLES_MODAL.show();
         // Resetear el formulario
         document.getElementById('addZapato').reset();
-        DATA_TALLAS_MODAL
     } else {
         await sweetAlert(2, DATA.error, false);
     }
 }
 
 async function createRowPT2() {
-    event.preventDefault(); 
+    event.preventDefault();
     // Constante tipo objeto con los datos del formulario.
     const FORM = new FormData(FORMADD);
 
@@ -356,7 +426,7 @@ async function botonActualizar2() {
         BOTON_ACTUALIZAR2.textContent = "Guardar";
     } else if (textoBoton === 'Guardar') {
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        DATA_TALLAS_MODAL.hide();
+
         DATA_DETALLES_MODAL.show();
     }
 }
@@ -367,7 +437,7 @@ async function botonCancelar2() {
     if (textoBoton === 'Actualizar') {
         const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Se cerrará la ventana emergente');
         if (RESPONSE.isConfirmed) {
-            DATA_TALLAS_MODAL.hide();
+
             DATA_DETALLES_MODAL.show();
         }
     } else if (textoBoton === 'Guardar') {

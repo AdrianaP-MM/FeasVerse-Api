@@ -54,6 +54,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Color inexistente';
                 }
                 break;
+            case 'readOneZapato':
+                    if (!$zapatos->setId($_POST['id_zapato'])) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($result['dataset'] = $zapatos->readOneZapato()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Trabajador inexistente';
+                    }
+                break;
             case 'createRow':
                 $_POST = Validator::validateForm($_POST);
                 if (
@@ -132,6 +141,15 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen niveles registrados';
                     }
                     break;
+                case 'readDetallesZapato':
+                    if (!$zapatos->setId($_POST['id_zapato'])) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($result['dataset'] = $zapatos->readDetallesZapatos()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Trabajador inexistente';
+                    }
+                break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
