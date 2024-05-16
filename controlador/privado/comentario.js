@@ -147,7 +147,6 @@ function volver() {
 }
 
 const RetirarComentario = async () => {
-    DCOMENTARIOS_BODY.innerHTML = '';
     let estadoCOM;
     if (idC == null) {
         await sweetAlert(3, 'Selecciona un comentario', true);
