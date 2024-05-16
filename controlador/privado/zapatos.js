@@ -21,7 +21,7 @@ const IMG_INPUT = document.getElementById('selectedImageF');
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
 const BOTON_ACTUALIZAR3 = document.getElementById('actualizarBtn3');
-const CARDZAPATO = document.getElementById('slider-container');
+const CARDZAPATO = document.getElementById('slider');
 const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
 const ADD_COLOR = document.getElementById('AddColor');
 const PASTILLA_COLOR = document.getElementById('contenedorFilaColores');
@@ -40,7 +40,6 @@ const ZAPATOS_API = 'services/privada/zapatos.php';
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar plantilla
     await loadTemplate();
-    fillTable();
     // Establecer propiedades iniciales
     NOMBREC_INPUT.readOnly = true;
     document.getElementById('registrados-tab').click();
@@ -107,28 +106,26 @@ const addZapato = async() => {
 
 
 const fillTable = async (form = null) => {
-    // Petición para obtener los registros disponibles.
+    slider.innerHTML = '';
     const DATA = await fetchData(ZAPATOS_API, 'readAll');
-    console.log(DATA); 
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            CARDZAPATO.innerHTML += `
-            <div class="slide">
-            <img src="${SERVER_URL}images/marcas/zapatos/${row.foto_detalle_zapato}" alt="Descripción de la imagen">
-            <span>${row.nombre_zapato}</span>
-        </div>
+        DATA.dataset.forEach(row => { 
+            slider.innerHTML += `
+            <div class="slide" onclick="openDetalles(${row.id_zapato})">
+                <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
+                <span>${row.nombre_zapato}</span>
+            </div>
             `;
         });
-
-        if (DATA.dataset == 0) {
-            await sweetAlert(1, DATA.message, true);
-        }
+        slides = document.getElementsByClassName('slide').length;
+        slidesCount = slides - slidesPerPage;
+        setParams(containerWidth);
     } else {
         sweetAlert(2, DATA.error, false);
     }
-}
+};
+
+
 
 let id_color = null;
 let nombre_color = null;
@@ -159,7 +156,7 @@ const openDetailsColores = async (id_color, nombre_color) => {
         CORREO_INPUT.value = ROW.correo_trabajador;
         FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
         FECHAR_INPUT.value = ROW.fecha_de_registro;
-        fillSelect(TRABAJADORES_API, 'readNivel', 'nivelInputD', ROW.id_nivel);
+        fillSelect(ZAPATOS_API, 'readMarcas', 'marcaInput');
         ESTADO_INPUT.value = findNumberValue(ROW.estado_trabajador);
 
         // Deshabilita la edición de los campos de entrada.
@@ -181,9 +178,11 @@ const openDetailsColores = async (id_color, nombre_color) => {
 
 
 // Funciones de interacción
-function showZapatos(button) {
-    button.style.backgroundColor = '#1A89BD';
-    button.style.color = 'white';
+function showZapatos() {
+    fillTable();
+    COLORES_DIV.classList.add('d-none');
+    AGREGAR_DIV.classList.add('d-none');
+    PRINCIPAL.classList.remove('d-none');
 }
 
 function showColores(button) {
@@ -192,8 +191,6 @@ function showColores(button) {
     COLORES_DIV.classList.remove('d-none');
     AGREGAR_DIV.classList.add('d-none');
     PRINCIPAL.classList.add('d-none');
-    AGREGAR_PASO_DOS_DIV.classList.add('d-none');
-    
 
     // Restablecer colores de botones
     document.querySelectorAll('.boton-cambiar-color').forEach(boton => {
@@ -209,6 +206,7 @@ function showPaso2() {
 }
 
 function showAgregar(button) {
+    fillSelect(ZAPATOS_API, 'readMarcas', 'marcaInput');
     // Mostrar y ocultar divs correspondientes
     AGREGAR_DIV.classList.remove('d-none');
     PRINCIPAL.classList.add('d-none');
@@ -238,24 +236,23 @@ DATA_TALLAS_MODAL._element.addEventListener('hidden.bs.modal', function () {
 });
 
 // Funciones para abrir modales
+/*
 async function openDetails() {
     event.preventDefault(); 
     DATA_MODAL.show();
     UPDATE_FORM.reset();
     NOMBREC_INPUT.value =
     MODAL_TITLE.textContent = 'Detalles Color: Rojo';
-}
+}*/
 
 async function openTallas() {
     event.preventDefault(); 
-    DATA_DETALLES_MODAL.hide();
     DATA_TALLAS_MODAL.show();
     UPDATE_FORM.reset();
     MODAL_TITLE_TALLA.textContent = 'Tallas y Stock del Producto';
 }
 
-async function openDetalles() {
-    event.preventDefault(); 
+const openDetalles = async (id) => {
     DATA_DETALLES_MODAL.show();
     MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato';
 }
@@ -409,84 +406,55 @@ async function botonCancelar3() {
     }
 }
 
-
-var container = document.getElementById('container')
+var container = document.getElementById('container');
 var slider = document.getElementById('slider');
 var slides = document.getElementsByClassName('slide').length;
 var buttons = document.getElementsByClassName('btn');
 
 var currentPosition = 0;
-var currentMargin = 0;
 var slidesPerPage = 0;
 var slidesCount = slides - slidesPerPage;
 var containerWidth = container.offsetWidth;
-var prevKeyActive = false;
-var nextKeyActive = true;
 
 window.addEventListener("resize", checkWidth);
 
 function checkWidth() {
-	containerWidth = container.offsetWidth;
-	setParams(containerWidth);
+    containerWidth = container.offsetWidth;
+    setParams(containerWidth);
 }
 
 function setParams(w) {
-	if (w < 551) {
-		slidesPerPage = 1;
-	} else {
-		if (w < 901) {
-			slidesPerPage = 2;
-		} else {
-			if (w < 1101) {
-				slidesPerPage = 3;
-			} else {
-				slidesPerPage = 4;
-			}
-		}
-	}
-	slidesCount = slides - slidesPerPage;
-	if (currentPosition > slidesCount) {
-		currentPosition -= slidesPerPage;
-	};
-	currentMargin = - currentPosition * (100 / slidesPerPage);
-	slider.style.marginLeft = currentMargin + '%';
-	if (currentPosition > 0) {
-		buttons[0].classList.remove('inactive');
-	}
-	if (currentPosition < slidesCount) {
-		buttons[1].classList.remove('inactive');
-	}
-	if (currentPosition >= slidesCount) {
-		buttons[1].classList.add('inactive');
-	}
+    if (w < 551) {
+        slidesPerPage = 1;
+    } else if (w < 901) {
+        slidesPerPage = 2;
+    } else if (w < 1101) {
+        slidesPerPage = 3;
+    } else {
+        slidesPerPage = 4;
+    }
+    slidesCount = slides - slidesPerPage;
+    currentPosition = Math.min(currentPosition, slidesCount);
+    currentPosition = Math.max(currentPosition, 0);
+    slider.style.transform = 'translateX(-' + currentPosition * (100 / slidesPerPage) + '%)';
+    updateButtons();
+}
+
+function updateButtons() {
+    buttons[0].classList.toggle('inactive', currentPosition <= 0);
+    buttons[1].classList.toggle('inactive', currentPosition >= slidesCount - slidesPerPage);
 }
 
 setParams();
 
 function slideRight() {
-	if (currentPosition != 0) {
-		slider.style.marginLeft = currentMargin + (100 / slidesPerPage) + '%';
-		currentMargin += (100 / slidesPerPage);
-		currentPosition--;
-	};
-	if (currentPosition === 0) {
-		buttons[0].classList.add('inactive');
-	}
-	if (currentPosition < slidesCount) {
-		buttons[1].classList.remove('inactive');
-	}
-};
+    currentPosition = Math.min(currentPosition + 1, slidesCount - slidesPerPage);
+    slider.style.transform = 'translateX(-' + currentPosition * (100 / slidesPerPage) + '%)';
+    updateButtons();
+}
 
 function slideLeft() {
-	if (currentPosition != slidesCount) {
-		slider.style.marginLeft = currentMargin - (100 / slidesPerPage) + '%';
-		currentMargin -= (100 / slidesPerPage);
-		currentPosition++;
-	};
-	if (currentPosition == slidesCount) {
-		buttons[1].classList.add('inactive');
-	}
-	if (currentPosition > 0) {
-		buttons[0].classList.remove('inactive');
-	}
-};
+    currentPosition = Math.max(currentPosition - 1, 0);
+    slider.style.transform = 'translateX(-' + currentPosition * (100 / slidesPerPage) + '%)';
+    updateButtons();
+}

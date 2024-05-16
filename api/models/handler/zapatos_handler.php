@@ -23,7 +23,7 @@ class ZapatosHandler
     protected $cantidad_zapato = null;
     protected $cantidad_talla = null;
 
-    const RUTA_IMAGEN = '../../helpers/images/zapatos';
+    const RUTA_IMAGEN = '../../helpers/images/zapatos/';
 
 
     public function readAll()
@@ -97,4 +97,10 @@ class ZapatosHandler
         );
         return Database::executeRow($sql, $params);
     }
+        // Método para leer todos los niveles
+        public function readMarcas()
+        {
+            $sql = 'SELECT id_marca, nombre_marca from tb_marcas; '; // Consulta SQL para obtener todos los niveles
+            return Database::getRows($sql); // Ejecución de la consulta SQL
+        }
 }
