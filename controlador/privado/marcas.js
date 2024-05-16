@@ -58,7 +58,8 @@ const search = async () => {
             </div>
             `;
         });
-    } else {
+    } else if(inputBusqueda.value == ''){fillTable();}   
+    else {
         sweetAlert(2, 'No se han encontrado coincidencias', false);
         inputBusqueda.value = '';
         fillTable();
@@ -104,7 +105,6 @@ function showAddDiv(boton) {
     ADD_DIV.classList.remove('d-none');
     // Se oculta la visualizacion de las marcas.
     MARCA_DIV.classList.add('d-none');
-
     // Restablece el color de todos los botones
     var botones = document.querySelectorAll('.boton-cambiar-color');
     botones.forEach(function (b) {
@@ -175,8 +175,7 @@ const returnBack = async () => {
         // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
-        IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
-
+      
         // Simula un clic en la primera pestaña para cambiar a la vista de tabla.
         primeraPestana.click();
 
@@ -230,7 +229,6 @@ const addSave = async () => {
         // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
-        IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
         inputBusqueda.value = '';
         fillTable();
     } else {
