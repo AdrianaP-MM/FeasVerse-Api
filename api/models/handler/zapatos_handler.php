@@ -23,7 +23,7 @@ class ZapatosHandler
     protected $cantidad_zapato = null;
     protected $cantidad_talla = null;
 
-    const RUTA_IMAGEN = '../../images/zapatos';
+    const RUTA_IMAGEN = '../../helpers/images/zapatos';
 
 
     public function readAll()
@@ -88,11 +88,12 @@ class ZapatosHandler
 
     public function createRowPT2()
     {
-        $sql = 'CALL InsertarDetalleZapato(?, ?, ?, "123.png");';
+        $sql = 'CALL InsertarDetalleZapato(?, ?, ?, ?);';
         $params = array(
             $this->id_talla,
             $this->cantidad_zapato,
-            $this->id_color
+            $this->id_color,
+            $this->foto_detalle_zapato
         );
         return Database::executeRow($sql, $params);
     }

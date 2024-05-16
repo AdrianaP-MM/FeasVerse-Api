@@ -16,7 +16,7 @@ const FORMADD = document.getElementById('AddTallasF')
 const TALLA_INPUT = document.getElementById('idTalla');
 const COLOR_INPUT = document.getElementById('Color');
 const CANTIDAD_INPUT = document.getElementById('cantidad');
-IMG_INPUT = document.getElementById('selectedImageF');
+const IMG_INPUT = document.getElementById('selectedImageF');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
@@ -268,8 +268,6 @@ async function addDetalles() {
 
     // Petición para guardar los datos del formulario.
     const DATA = await fetchData(ZAPATOS_API, 'createRow', FORM);
-    
-
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
