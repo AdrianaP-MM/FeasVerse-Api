@@ -31,7 +31,7 @@ class TrabajadorHandler
     {
         $sql = "SELECT id_trabajador, nombre_trabajador, clave_trabajador
                 FROM tb_trabajadores
-                WHERE  correo_trabajador = ? AND estado_trabajador = 'Activo';"; // Consulta SQL para obtener datos del trabajador por correo electrónico
+                WHERE  correo_trabajador = ? AND estado_trabajador = 'Activo' AND id_nivel = 1;"; // Consulta SQL para obtener datos del trabajador por correo electrónico
         $params = array($mail); // Parámetros para la consulta SQL
         $data = Database::getRow($sql, $params); // Ejecución de la consulta SQL
         // Verificación de existencia de datos y coincidencia de contraseña

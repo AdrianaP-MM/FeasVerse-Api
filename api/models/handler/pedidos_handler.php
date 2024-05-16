@@ -105,8 +105,8 @@ class PedidosHandler
     {
         // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
         $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
-        nombre_zapato, nombre_color, num_talla, cantidad_pedido, precio_unitario_zapato,
-        precio_unitario_zapato * cantidad_pedido AS precio_total
+        nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
+        tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
         FROM tb_detalles_pedidos
         INNER JOIN tb_detalle_zapatos 
         ON tb_detalle_zapatos.id_detalle_zapato = tb_detalles_pedidos.id_detalle_zapato
