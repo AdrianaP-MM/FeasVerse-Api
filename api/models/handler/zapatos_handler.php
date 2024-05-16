@@ -35,6 +35,7 @@ class ZapatosHandler{
 
     public function readOneColores(){
         $sql ='SELECT nombre_color FROM tb_colores WHERE id_color = ?;';
+        return Database::getRows($sql);
     }
 
 

@@ -92,7 +92,7 @@
                                         <div class="contenedorBotones1 col-lg-6 ">
                                             <button
                                                 class="btn btnAdd btn-primary shadow ms-5 text18 titillium-web-regular"
-                                                id="btnAddColor" onclick="addSave()" type="submit">Agregar</button>
+                                                id="btnAddColor" onclick="addColores()" type="submit">Agregar</button>
                                         </div>
                                 </div>
                                 </form>
@@ -121,12 +121,12 @@
                                 <form class="row needs-validation form1" novalidate>
                                     <div class="col-md-6">
                                         <label for="nombreInput" class="form-label">Nombre del zapato</label>
-                                        <input type="text" class="form-control" id="nombreInput"
-                                            placeholder="Ingresa los nombres" required>
+                                        <input type="text" class="form-control" id="nombreZapatoInput"
+                                            placeholder="Ingresa los nombres" required name="nombreZapatoInput">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="marcaInput" class="form-label ">Marca del zapato</label>
-                                        <select class="form-select" aria-label="Marca" id="marcaInput" name="nivelInput"
+                                        <select class="form-select" aria-label="Marca" id="marcaInput" name="marcaInput"
                                             required>
                                             <option value="" disabled selected>Selecciona una marca</option>
                                             <option value="1">Nike</option>
@@ -145,21 +145,21 @@
                                     </div>
                                     <div class="col-md-6 mt-3">
                                         <label for="precioInput" class="form-label ">Precio del zapato</label>
-                                        <input type="number" class="form-control" id="precioInput" min="0"
-                                            placeholder="Ingresa el precio del producto" required>
+                                        <input type="number" class="form-control" id="precioInput" min="0" pattern="^\d+$-"
+                                            placeholder="Ingresa el precio del producto" required name="precioInput">
                                     </div>
                                     <div class="col md-6 mt-3">
                                         <label for="Descripcion" class="form-label">Descripcion del
                                             zapato</label>
-                                        <textarea class="form-control" id="Descripcion"
+                                        <textarea class="form-control" id="descripcionInput"
                                             placeholder="Ingresa una descripcion para el producto" required
-                                            rows="3"></textarea>
+                                            rows="3" name="descripcionInput"></textarea>
                                     </div>
                                     <div class="contenedorBotones1A">
                                         <button type="button" onclick="returnBack()"
                                             class="btn btn2 btn-primary ms-2 shadow text18 titillium-web-regular">Cancelar</button>
                                         <button class="btn btn3 btn-primary shadow ms-4 text18 titillium-web-regular"
-                                            onclick="showPaso2()" type="submit">Siguiente</button>
+                                            onclick="openTallas(this)" type="submit">Siguiente</button>
                                     </div>
                                 </form>
                             </div>
@@ -208,7 +208,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Modal para Tallas -->
                     <!-- TODO ----------------------------TALLAS MODAL------------------------------------------>
                     <div class="modal fade" id="dataModalT" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -229,13 +228,12 @@
                                                     <th>Talla</th>
                                                     <th>Stock Actual</th>
                                                     <th>Ingreso de Datos</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td data-labelN="N°">01</td>
-                                                    <td data-labelT="Talla">01</td>
+                                                    <td data-labelT="Talla">01</td>     
                                                     <td data-labelS="Stock Actual">01</td>
                                                     <td> <button class="Verde"> <img class="note"
                                                                 src="../../recursos/imagenes/icons/notebook.svg"

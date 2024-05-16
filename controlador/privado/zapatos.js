@@ -16,12 +16,12 @@ const CARDZAPATO = document.getElementById('slider-container');
 const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
 const ADD_COLOR = document.getElementById('AddColor');
 const PASTILLA_COLOR = document.getElementById('contenedorFilaColores');
+const ID_COLOR = document.getElementById('idColor');
 
 document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
 const COLORES_DIV = document.getElementById('colores');
 const AGREGAR_DIV = document.getElementById('agregar');
-const AGREGAR_PASO_DOS_DIV = document.getElementById('paso2');
 const PRINCIPAL = document.getElementById('container');
 const NOMBRE_INPUT = document.getElementById('nombreColorInput');
 
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Cargar plantilla
     await loadTemplate();
     fillTable();
-
     // Establecer propiedades iniciales
     NOMBREC_INPUT.readOnly = true;
     document.getElementById('registrados-tab').click();
@@ -48,7 +47,7 @@ const fillTableColores = async (form = null) => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             PASTILLA_COLOR.innerHTML += `
-            <div class="pastilla" ondblclick="openDetails(this)">
+            <div class="pastilla" onclick="openDetailsColores(${row.id_color}, '${row.nombre_color}')">
             <h4>${row.nombre_color}</h4>
         </div>
             `;
@@ -61,6 +60,24 @@ const fillTableColores = async (form = null) => {
     }
 }
 
+const addColores = async() => {
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(ADD_COLOR);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'addColores', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Llama a la función 'sweetAlert' con ciertos parámetros.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
+        NOMBRE_INPUT.value = ' ';
+        fillTableColores();
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+}
 
 const fillTable = async (form = null) => {
     // Petición para obtener los registros disponibles.
@@ -87,19 +104,23 @@ const fillTable = async (form = null) => {
 }
 
 let id_color = null;
+let nombre_color = null;
+
 
 // Función para abrir los detalles de un trabajador.
-const openDetails = async (id) => {
+const openDetailsColores = async (id_color, nombre_color) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('id_trabajador', id);
-    id_worker = id;
+    FORM.append('idColor', id_color);
+    FORM.append('nombre_color', nombre_color);
+    console.log(id_color);
+    console.log(nombre_color);
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(TRABAJADORES_API, 'readOne', FORM);
+    const DATA = await fetchData(ZAPATOS_API, 'readOneColores', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra la caja de diálogo con su título.
-        DATA_MODAL.show();
+        DATA_TALLAS_MODAL.show();
         // Se prepara el formulario.
         UPDATE_FORM.reset();
 
@@ -156,12 +177,8 @@ function showColores(button) {
     button.style.color = 'white';
 }
 
-function showPaso2(button) {
-    // Mostrar y ocultar divs correspondientes
-    COLORES_DIV.classList.add('d-none');
-    AGREGAR_DIV.classList.add('d-none');
-    PRINCIPAL.classList.add('d-none');
-    AGREGAR_PASO_DOS_DIV.classList.remove('d-none');
+function showPaso2() {
+    DATA_TALLAS_MODAL.show();
 }
 
 function showAgregar(button) {
@@ -195,6 +212,7 @@ DATA_TALLAS_MODAL._element.addEventListener('hidden.bs.modal', function () {
 
 // Funciones para abrir modales
 async function openDetails() {
+    event.preventDefault(); 
     DATA_MODAL.show();
     UPDATE_FORM.reset();
     NOMBREC_INPUT.value =
@@ -202,6 +220,7 @@ async function openDetails() {
 }
 
 async function openTallas() {
+    event.preventDefault(); 
     DATA_DETALLES_MODAL.hide();
     DATA_TALLAS_MODAL.show();
     UPDATE_FORM.reset();
@@ -209,6 +228,7 @@ async function openTallas() {
 }
 
 async function openDetalles() {
+    event.preventDefault(); 
     DATA_DETALLES_MODAL.show();
     MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato';
 }
