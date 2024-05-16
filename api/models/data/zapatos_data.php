@@ -21,6 +21,38 @@ class ZapatosData extends ZapatosHandler{
             return false;
         }
     }
+
+    public function setIdTalla($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_talla = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador de la talla es incorrecto';
+            return false;
+        }
+    }
+    public function setGenero($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->genero_zapato = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del genero es incorrecto';
+            return false;
+        }
+    }
+
+    public function setCantidad($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad_zapato = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad es incorrecta incorrecto';
+            return false;
+        }
+    }
     
     public function setIdColor($value)
     {
@@ -28,10 +60,33 @@ class ZapatosData extends ZapatosHandler{
             $this->id_color = $value;
             return true;
         } else {
-            $this->data_error = 'El identificador del zapato es incorrecto';
+            $this->data_error = 'El identificador del color es incorrecto';
             return false;
         }
     }
+
+    public function setIdMarca($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_marca = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador de la marca es incorrecto';
+            return false;
+        }
+    }
+
+    public function setPrecio($value)
+    {
+        if (Validator::validateMoney($value)) {
+            $this->precio_unitario_zapato = $value;
+            return true;
+        } else {
+            $this->data_error = 'El precio total debe ser un número válido';
+            return false;
+        }
+    }
+
 
     public function setFotoZapato($file, $filename = null)
     {
@@ -71,6 +126,35 @@ class ZapatosData extends ZapatosHandler{
             return true;
         }
     }
+
+    public function setDescripcion($value, $min = 2, $max = 200)
+    {
+        if (!Validator::validateAlphabetic($value)) {
+            $this->data_error = 'La descripcion debe ser un valor alfabético'  ;
+            return false;
+        } elseif (!Validator::validateLength($value, $min, $max)) {
+            $this->data_error = 'El nombre debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        } else {    
+            $this->descripcion_zapato = $value;
+            return true;
+        }
+    }
+
+        // Método para establecer el nombre del trabajador
+        public function setNombreZapato($value, $min = 2, $max = 20)
+        {
+            if (!Validator::validateAlphabetic($value)) {
+                $this->data_error = 'El nombre debe ser un valor alfabético tu mami';
+                return false;
+            } elseif (Validator::validateLength($value, $min, $max)) {
+                $this->nombre_zapato = $value;
+                return true;
+            } else {
+                $this->data_error = 'El nombre debe tener una longitud entre tu mami ' . $min . ' y ' . $max;
+                return false;
+            }
+        }
 
     public function setFilename()
     {

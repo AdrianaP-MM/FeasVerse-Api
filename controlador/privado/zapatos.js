@@ -2,12 +2,21 @@
 const NOMBREC_INPUT = document.getElementById('nombreColor');
 const MODAL_TITLE = document.getElementById('modalTitle');
 const UPDATE_FORM = document.getElementById('updateForm');
+const ADD_FORM = document.getElementById('addZapato');
 const MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
 const MODAL_TITLE_DETALLE = document.getElementById('modalTitleD');
 
 const DATA_MODAL = new bootstrap.Modal('#dataModal');
 const DATA_TALLAS_MODAL = new bootstrap.Modal('#dataModalT');
 const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
+const TALLAS_DETALLES_MODAL = new bootstrap.Modal('#dataModalTallas');
+const DESCRIPCION_INPUT = document.getElementById('descripcionInput');
+const FORMADD = document.getElementById('AddTallasF')
+
+const TALLA_INPUT = document.getElementById('idTalla');
+const COLOR_INPUT = document.getElementById('Color');
+const CANTIDAD_INPUT = document.getElementById('cantidad');
+IMG_INPUT = document.getElementById('selectedImageF');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
@@ -78,6 +87,24 @@ const addColores = async() => {
         await sweetAlert(2, DATA.error, false);
     }
 }
+
+const addZapato = async() => {
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(ADD_FORM);
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'createRow', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Llama a la función 'sweetAlert' con ciertos parámetros.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+}
+
 
 const fillTable = async (form = null) => {
     // Petición para obtener los registros disponibles.
@@ -232,6 +259,54 @@ async function openDetalles() {
     DATA_DETALLES_MODAL.show();
     MODAL_TITLE_DETALLE.textContent = 'Detalle del zapato';
 }
+
+async function addDetalles() {
+    event.preventDefault(); 
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(ADD_FORM);
+    FORM.append('descripcionInput', DESCRIPCION_INPUT.value);
+
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'createRow', FORM);
+    
+
+
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        TALLAS_DETALLES_MODAL.show();
+        // Resetear el formulario
+        document.getElementById('addZapato').reset();
+        DATA_TALLAS_MODAL
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+}
+
+async function createRowPT2() {
+    event.preventDefault(); 
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(FORMADD);
+
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'createRowPT2', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        TALLAS_DETALLES_MODAL.hide();
+        // Resetear el formulario
+        TALLA_INPUT.value = ' ';
+        COLOR_INPUT.value = ' ';
+        IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+}
+
 
 // Función para mostrar imágenes seleccionadas
 function displaySelectedImage(event, elementId) {
