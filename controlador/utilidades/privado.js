@@ -17,7 +17,6 @@ const USER_API = 'services/privada/trabajadores.php';
 const loadTemplate = async () => {
     // Crear el elemento de encabezado con una barra de navegación.
     const DATA = await fetchData(USER_API, 'getUser');
-    console.log(DATA)
     // Se verifica si el usuario está autenticado, de lo contrario se envía a iniciar sesión.
     if (DATA.session) {
         // Se comprueba si existe un alias definido para el usuario, de lo contrario se muestra un mensaje con la excepción.

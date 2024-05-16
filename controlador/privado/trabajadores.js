@@ -114,9 +114,7 @@ const fillTable = async (form = null) => {
         }
 
     } else {
-        /*
-        sweetAlert(4, DATA.error, true);*/
-        console.log('ERROR');
+        sweetAlert(4, DATA.error, true);
     }
 }
 

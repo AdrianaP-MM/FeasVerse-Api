@@ -958,7 +958,6 @@ const cambioDeEstado = async (id_pedido_cliente, estado) => {
 
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA3.status) {
-        console.log(DATA3)
         await sweetAlert(1, DATA3.message, true);
         fillTable();
     }
@@ -1005,8 +1004,6 @@ async function handleSearch() {
         const FORM1 = new FormData();
         FORM1.append('estado', estado);
         FORM1.append('paramentro', texto);
-        console.log(estado);
-        console.log(texto);
         // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
         await fillTable(FORM1);
         inicializarAccordion(FORM1);

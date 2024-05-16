@@ -42,6 +42,5 @@ const graficoBarrasVentas = async () => {
         barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
     } else {
         document.getElementById('chart1').remove();
-        console.log(DATA.error);
     }
 }

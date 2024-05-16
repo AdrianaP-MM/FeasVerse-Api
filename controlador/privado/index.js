@@ -75,7 +75,6 @@ document.getElementById("forgetpasswordstepone").addEventListener("submit", asyn
         id = resultado.id_trabajador;
 
         DATA2 = await fetchData(USER_API, 'enviarCodigoRecuperacion', FORM2); // Asigna el valor de DATA2 aquí
-        console.log(DATA2.codigo);
 
         if (DATA2.status) {
             await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico, ingrese el código enviado', true);
