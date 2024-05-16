@@ -16,7 +16,7 @@ class MarcasHandler
     protected $descripcion_marca = null;
 
     // Ruta donde se guardarán las imágenes de las marcas
-    const RUTA_IMAGEN = '../../images/marcas/';
+    const RUTA_IMAGEN = '../../helpers/images/marcas/';
 
     // Método para leer todas las marcas
     public function readAll()

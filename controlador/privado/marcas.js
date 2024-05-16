@@ -54,7 +54,7 @@ const search = async () => {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
             <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
-                <img src="${SERVER_URL}images/marcas/${row.foto_marca}" />
+                <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
             </div>
             `;
         });
@@ -81,8 +81,8 @@ const fillTable = async (form = null) => {
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
             <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
-                <img src="${SERVER_URL}images/marcas/${row.foto_marca}" />
-            </div>
+                <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
+            </div> 
             `;
         });
 
@@ -207,7 +207,7 @@ const openDetails = async (id) => {
         const ROW = DATA.dataset;
         NOMBRED_INPUT.value = ROW.nombre_marca,
             DESCD_INPUT.value = ROW.descripcion_marca,
-            IMGD_INPUT.src = `${SERVER_URL}images/marcas/${ROW.foto_marca}`;
+            IMGD_INPUT.src = `${SERVER_URL}helpers/images/marcas/${ROW.foto_marca}`;
     } else {
         sweetAlert(2, DATA.error, false);
     }
