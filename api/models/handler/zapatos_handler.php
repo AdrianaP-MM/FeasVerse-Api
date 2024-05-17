@@ -36,14 +36,15 @@ class ZapatosHandler
 
     public function readAllColores()
     {
-        $sql = 'SELECT nombre_color FROM tb_colores;';
+        $sql = 'SELECT nombre_color, id_color FROM tb_colores;';
         return Database::getRows($sql);
     }
 
     public function readOneColores()
     {
-        $sql = 'SELECT nombre_color FROM tb_colores WHERE id_color = ?;';
-        return Database::getRows($sql);
+        $sql = 'SELECT id_color, nombre_color FROM tb_colores WHERE id_color = ?;';
+        $params = array($this->id_color);
+        return Database::getRows($sql, $params);
     }
 
 
@@ -103,6 +104,7 @@ class ZapatosHandler
         $sql = 'SELECT id_marca, nombre_marca from tb_marcas; '; // Consulta SQL para obtener todos los niveles
         return Database::getRows($sql); // Ejecución de la consulta SQL
     }
+
 
     public function readOneZapato()
     {

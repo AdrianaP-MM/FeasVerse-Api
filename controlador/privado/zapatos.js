@@ -5,8 +5,8 @@ const UPDATE_FORM = document.getElementById('updateForm');
 const ADD_FORM = document.getElementById('addZapato');
 const MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
 const MODAL_TITLE_DETALLE = document.getElementById('modalTitleD');
-
-const DATA_MODAL = new bootstrap.Modal('#dataModal');
+const nombrecolor = document.getElementById('nombre_color');
+const DATA_MODAL_COLORES = new bootstrap.Modal('#dataModal');
 const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
 const TALLAS_DETALLES_MODAL = new bootstrap.Modal('#dataModalTallas');
 const DESCRIPCION_INPUT = document.getElementById('descripcionInput');
@@ -24,7 +24,7 @@ const CARDZAPATO = document.getElementById('slider');
 const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
 const ADD_COLOR = document.getElementById('AddColor');
 const PASTILLA_COLOR = document.getElementById('contenedorFilaColores');
-const ID_COLOR = document.getElementById('idColor');
+const ID_COLOR = document.getElementById('id_color');
 
 document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
@@ -66,8 +66,10 @@ const fillTableColores = async (form = null) => {
         PASTILLA_COLOR.innerHTML = "";
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
+            console.log(row.id_color)
+            console.log(row.nombre_color)
             PASTILLA_COLOR.innerHTML += `
-            <div class="pastilla" onclick="openDetailsColores(${row.id_color}, '${row.nombre_color}')">
+            <div class="pastilla" onclick="openDetailsColores(${row.id_color},'${row.nombre_color}')"> 
             <h4>${row.nombre_color}</h4>
         </div>
             `;
@@ -137,7 +139,7 @@ const fillTable = async (form = null) => {
     }
 };
 
-let id_color = null;
+let idColor = null;
 let nombre_color = null;
 
 
@@ -145,40 +147,20 @@ let nombre_color = null;
 const openDetailsColores = async (id_color, nombre_color) => {
     // Se define un objeto con los datos del registro seleccionado.
     const FORM = new FormData();
-    FORM.append('idColor', id_color);
+    FORM.append('id_color', id_color);
     FORM.append('nombre_color', nombre_color);
     console.log(id_color);
     console.log(nombre_color);
+
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(ZAPATOS_API, 'readOneColores', FORM);
+    console.log(DATA)
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se prepara el formulario.
-        UPDATE_FORM.reset();
-
+        DATA_MODAL_COLORES.show();
         const ROW = DATA.dataset;
-        NOMBRES_INPUT.value = ROW.nombre_trabajador;
-        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
-        DUI_INPUT.value = ROW.dui_trabajador;
-        TEL_INPUT.value = ROW.telefono_trabajador;
-        CORREO_INPUT.value = ROW.correo_trabajador;
-        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
-        FECHAR_INPUT.value = ROW.fecha_de_registro;
-        fillSelect(ZAPATOS_API, 'readMarcas', 'marcaInput');
-        ESTADO_INPUT.value = findNumberValue(ROW.estado_trabajador);
-
-        // Deshabilita la edición de los campos de entrada.
-        NOMBRES_INPUT.readOnly = true;
-        APELLIDOS_INPUT.readOnly = true;
-        DUI_INPUT.readOnly = true;
-        TEL_INPUT.readOnly = true;
-        CORREO_INPUT.readOnly = true;
-        FECHAN_INPUT.readOnly = true;
-        FECHAR_INPUT.readOnly = true;
-        ESTADO_INPUT.disabled = true;
-        NIVEL_INPUT.disabled = true;
-        // Actualiza el título del modal con el ID del trabajador.
-        MODAL_TITLE.textContent = 'Detalles Trabajador #' + id;
+        NOMBREC_INPUT.value = nombre_color;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -288,31 +270,56 @@ const fillTableDetalles = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         const ROW = DATA.dataset;
-        IMAGEN_ZAPATOD.src = `${SERVER_URL}/helpers/images/zapatos/${ROW.foto_detalle_zapato}`;
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            TABLE_BODY.innerHTML += `
+        IMAGEN_ZAPATOD.src = `${SERVER_URL}/helpers/images/zapatos/${ROW.foto_detalle_zapato} `;
+
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+        else {
+            if (!Array.isArray(DATA.dataset)) {
+                // Construir la fila de la tabla si solo hay un elemento en el conjunto de datos.
+                TABLE_BODY.innerHTML += `
+                    <tr>
+                        <td data-labelN="N°">${ROW.id_detalle_zapato}</td>
+                        <td data-labelT="Talla">${ROW.id_talla}</td>
+                        <td data-labelS="Cantidad Actual">${ROW.cantidad_zapato}</td>
+                        <td data-labelE="Color actual">${ROW.id_color}</td>
+                        <td>
+                            <button class="Verde"> <img class="note"
+                                src="../../recursos/imagenes/icons/notebook.svg"
+                                width="35px" height="35px">
+                            </button>
+                            <button class="Rojo"> <img class="note"
+                                src="../../recursos/imagenes/basura.svg" width="35px"
+                                height="35px">
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                 // Construir la tabla normalmente si hay más de un elemento en el conjunto de datos.
+                DATA.dataset.forEach(row => {
+                    TABLE_BODY.innerHTML += `
                 <tr>
                     <td data-labelN="N°">${row.id_detalle_zapato}</td>
                     <td data-labelT="Talla">${row.id_talla}</td>
                     <td data-labelS="Cantidad Actual">${row.cantidad_zapato}</td>
                     <td data-labelE="Color actual">${row.id_color}</td>
-                    <td> <button class="Verde"> <img class="note"
-                                src="../../recursos/imagenes/icons/notebook.svg"
-                                width="35px" height="35px">
+                    <td>
+                        <button class="Verde"> <img class="note"
+                            src="../../recursos/imagenes/icons/notebook.svg"
+                            width="35px" height="35px">
                         </button>
                         <button class="Rojo"> <img class="note"
-                                src="../../recursos/imagenes/basura.svg" width="35px"
-                                height="35px">
+                            src="../../recursos/imagenes/basura.svg" width="35px"
+                            height="35px">
                         </button>
                     </td>
                 </tr>
             `;
-        });
-        if (DATA.dataset == 0) {
-            await sweetAlert(1, DATA.message, true);
+            });
+            }
         }
-
     } else {
         sweetAlert(4, DATA.error, true);
     }

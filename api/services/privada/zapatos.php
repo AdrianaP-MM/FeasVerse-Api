@@ -45,15 +45,15 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen colores registrados';
                     }
                     break;
-            case 'readOneColores':
-                if (!$zapatos->setIdColor($_POST['idColor'])) {
-                    $result['error'] = 'Color incorrecto';
-                } elseif ($result['dataset'] = $zapatos->readOneColores()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['error'] = 'Color inexistente';
-                }
-                break;
+                    case 'readOneColores':
+                        if (!$zapatos->setIdColor($_POST['id_color'])) {
+                            $result['error'] = $zapatos->getDataError();
+                        } elseif ($result['dataset'] = $zapatos->readOneColores()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['error'] = 'Color inexistente';
+                        }
+                        break;
             case 'readOneZapato':
                     if (!$zapatos->setId($_POST['id_zapato'])) {
                         $result['error'] = $zapatos->getDataError();
