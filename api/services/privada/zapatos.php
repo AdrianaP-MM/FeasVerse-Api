@@ -17,10 +17,10 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'searchRows':
                 // Verificar si el valor de búsqueda es válido
-                if (!Validator::validateSearch($_POST['search'])) {
+                if (!Validator::validateSearch($_POST['inputBusquedaZapatos'])) {
                     // Si no es válido, se asigna un mensaje de error
                     $result['error'] = Validator::getSearchError();
-                } elseif ($result['dataset'] = $cliente->searchRows()) {
+                } elseif ($result['dataset'] = $zapatos->searchRows()) {
                     // Si la búsqueda es válida y se encuentran resultados, se establece el estado como éxito y se crea un mensaje
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' coincidencias';

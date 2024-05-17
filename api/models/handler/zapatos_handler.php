@@ -128,6 +128,43 @@ class ZapatosHandler
         return Database::getRows($sql); // Ejecución de la consulta SQL
     }
 
+    public function searchRows()
+    {
+        // Obtiene el valor de búsqueda del validador y lo formatea para buscar coincidencias parciales en la base de datos
+        $value = '%' . Validator::getSearchValue() . '%';
+        
+        // Consulta SQL para buscar zapatos cuyo nombre o género coincidan parcialmente con el valor de búsqueda
+        $sql = 'SELECT 
+                    z.id_zapato, 
+                    z.id_trabajador, 
+                    z.id_marca, 
+                    z.nombre_zapato, 
+                    z.genero_zapato, 
+                    z.descripcion_zapato, 
+                    z.precio_unitario_zapato, 
+                    z.estado_zapato,
+                    d.foto_detalle_zapato
+                FROM 
+                    tb_zapatos z
+                INNER  JOIN 
+                    tb_detalle_zapatos d
+                ON 
+                    z.id_zapato = d.id_detalle_zapato
+                WHERE 
+                    z.nombre_zapato LIKE ? OR 
+                    z.genero_zapato LIKE ?
+                ORDER BY 
+                    z.id_zapato;';
+        
+        // Parámetros de la consulta SQL
+        $params = array($value, $value);
+        
+        // Ejecuta la consulta y devuelve los resultados
+        return Database::getRows($sql, $params);
+    }
+    
+    
+
 
 
     public function readOneZapato()

@@ -30,6 +30,8 @@ const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
 const ADD_COLOR = document.getElementById('AddColor');
 const PASTILLA_COLOR = document.getElementById('contenedorFilaColores');
 const ID_COLOR = document.getElementById('id_color');
+const SEARCH_FORM_ZAPATO = document.getElementById('searchForm');
+
 
 document.querySelector('title').textContent = 'Feasverse - Zapatos';
 
@@ -124,10 +126,12 @@ const addZapato = async () => {
 }
 
 
-const fillTable = async (form = null) => {
+const fillTableZapato = async (form = null) => {
     CARDZAPATO.innerHTML = '';
+    (form) ? action = 'searchRows' : action = 'readAll';
+    console.log(action);
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(ZAPATOS_API, 'readAll');
+    const DATA = await fetchData(ZAPATOS_API, action, form);
     console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
@@ -147,6 +151,36 @@ const fillTable = async (form = null) => {
     } else {
         sweetAlert(2, DATA.error, false);
     }
+}
+
+SEARCH_FORM_ZAPATO.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const BUSCADOR = document.getElementById('buscadorZapato');
+    var texto = BUSCADOR.value.trim();
+
+    if (texto === '') {
+        fillTableZapato();
+    }
+    else {
+        // Constante tipo objeto con los datos del formulario.
+        const FORM1 = new FormData();
+        FORM1.append('inputBusquedaZapatos', texto);
+        // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+        fillTableZapato(FORM1);
+    }
+})
+
+function clearSearch() {
+    var input = document.getElementById('inputBusquedaZapatos');
+    var searchIcon = document.querySelector('.search-icon');
+    var clearIcon = document.querySelector('.clear-icon');
+
+    input.value = ''; // Limpia el contenido del input
+    input.focus(); // Coloca el foco en el input para seguir escribiendo
+
+    searchIcon.style.display = 'block'; // Muestra el icono de búsqueda
+    clearIcon.style.display = 'none'; // Oculta el icono de limpiar
 }
 let idColor = null;
 let nombre_color = null;
@@ -179,7 +213,7 @@ const openDetailsColores = async (id_color, nombre_color) => {
 
 // Funciones de interacción
 function showZapatos() {
-    fillTable();
+    fillTableZapato();
     COLORES_DIV.classList.add('d-none');
     AGREGAR_DIV.classList.add('d-none');
     PRINCIPAL.classList.remove('d-none');

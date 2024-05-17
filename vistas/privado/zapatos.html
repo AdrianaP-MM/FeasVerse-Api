@@ -64,10 +64,18 @@
                 <div class="tab-content contenidoP" id="">
                     <!-- Rectángulo de fondo -->
                     <div id="container">
+                        <form class="ms-2 col-lg-12 col-md-10 col mt-3 mb-4" id="searchForm">
+                            <div class="row col-lg-12">
+                                    <div class="search-container">
+                                        <input type="search" class="form-control" name="buscadorZapato"
+                                            placeholder="Buscar....." id="buscadorZapato">
+                                        
+                                    </div>
+                            </div>
+                        </form>
                         <div id="slider-container">
-                            <span onclick="slideLeft()" class="btn btn-left"></span>
                             <div id="slider"></div>
-                            <span onclick="slideRight()" class="btn btn-right"></span>
+
                         </div>
                     </div>
                     <!--Pagina de colores-->
@@ -441,33 +449,38 @@
                                     <div class="contenedorR1">
                                         <div class="contenedorInputs">
                                             <form
-                                                class="row needs-validation form1 d-flex justify-content-center col-12 p-0 m-0" id="formZapatoEdit">
+                                                class="row needs-validation form1 d-flex justify-content-center col-12 p-0 m-0"
+                                                id="formZapatoEdit">
                                                 <div class="formZapato mt-2 mx-2 col-md-5">
                                                     <label for="nombreZapatoD" class="formNombre">
                                                         Nombre del zapato</label>
-                                                    <input type="text" class="form-control" id="nombreZapatoD" name="nombreZapatoD">
+                                                    <input type="text" class="form-control" id="nombreZapatoD"
+                                                        name="nombreZapatoD">
                                                 </div>
                                                 <div class="formGenero mt-2 mx-2 col-md-5">
                                                     <label for="generoZapatoD" class="formMarca">
                                                         Género del zapato</label>
-                                                    <input type="text" class="form-control" id="generoZapatoD" name="generoZapatoD">
+                                                    <input type="text" class="form-control" id="generoZapatoD"
+                                                        name="generoZapatoD">
                                                 </div>
                                                 <div class="formZapato mt-2 col-md-5 mx-2">
                                                     <label for="marcaZapatoD" class="formMarca">
                                                         Marca del zapato</label>
-                                                    <select id="marcaZapatoD" name="marcaZapatoD" class="form-select" required>
+                                                    <select id="marcaZapatoD" name="marcaZapatoD" class="form-select"
+                                                        required>
                                                     </select>
                                                 </div>
                                                 <div class="formGenero mt-2 mx-2 col-md-5">
                                                     <label for="precioZapatoD" class="formMarca">
                                                         Precio del zapato </label>
-                                                    <input type="text" class="form-control" id="precioZapatoD" name="precioZapatoD">
+                                                    <input type="text" class="form-control" id="precioZapatoD"
+                                                        name="precioZapatoD">
                                                 </div>
                                                 <div class="formZapato mt-2 mx-2 mb-4 col-md-10">
                                                     <label for="descripcionZapatoD" class="formMarca">
                                                         Descripcion del zapato</label>
-                                                    <textarea class="form-control"
-                                                    id="descripcionZapatoD" name="descripcionZapatoD"> </textarea>
+                                                    <textarea class="form-control" id="descripcionZapatoD"
+                                                        name="descripcionZapatoD"> </textarea>
                                                 </div>
                                             </form>
                                         </div>
