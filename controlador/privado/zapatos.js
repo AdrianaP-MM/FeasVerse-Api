@@ -12,12 +12,15 @@ const DATA_DETALLES_MODAL = new bootstrap.Modal('#dataModalD');
 const TALLAS_DETALLES_MODAL = new bootstrap.Modal('#dataModalTallas');
 const DESCRIPCION_INPUT = document.getElementById('descripcionInput');
 const FORMADD = document.getElementById('AddTallasF')
+const MODAL_VER_ZAPATO = document.getElementById('dataModalAdd');
 
 const TALLA_INPUT = document.getElementById('idTalla');
 const COLOR_INPUT = document.getElementById('Color');
 const CANTIDAD_INPUT = document.getElementById('cantidad');
 const IMG_INPUT = document.getElementById('selectedImageF');
 const BOTON_CANCELAR_COLOR = document.getElementById('cancelarBtnColor');
+
+const BOTON_CANCELAR_MODAL = document.getElementById('cancelarBtn3');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR_COLOR = document.getElementById('actualizarBtnColor');
@@ -450,19 +453,16 @@ const botonActualizarColor = async () => {
     }
 };
 
-
-async function botonCancelar() {
-    const textoBoton = BOTON_ACTUALIZAR.textContent.trim();
-
-    if (textoBoton === 'Actualizar') {
-        const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Se cerrará la ventana emergente');
-        if (RESPONSE.isConfirmed) {
-        }
-    } else if (textoBoton === 'Guardar') {
-        const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Si has modificado, no se guardará');
-        if (RESPONSE.isConfirmed) {
-        }
+async function showCancelConfirmation1(message, submessage) {
+    const RESPONSE = await confirmAction(message, submessage);
+    if (RESPONSE.isConfirmed) {
+        DATA_DETALLES_MODAL.hide();
     }
+}
+
+async function botonCancelar3() {
+
+    await showCancelConfirmation1('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
 }
 
 // Funciones para actualizar y cancelar en otros modales (similar a las anteriores)
@@ -514,6 +514,7 @@ async function showCancelConfirmation(message, submessage) {
         DATA_MODAL_COLORES.hide();
     }
 }
+
 
 
 async function botonCancelarColor() {

@@ -143,6 +143,6 @@ class ZapatosHandler
         $sql = 'SELECT id_detalle_zapato, id_talla, cantidad_zapato, id_color, foto_detalle_zapato FROM tb_detalle_Zapatos 
         WHERE id_zapato = ?;'; // Consulta SQL para obtener los datos de un zapato por ID
         $params = array($this->id_zapato); // Parámetros para la consulta SQL
-        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+        return Database::getRows($sql, $params); // Ejecución de la consulta SQL
     }
 }
