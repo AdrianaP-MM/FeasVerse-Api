@@ -336,7 +336,7 @@ const ShowRepartidor = async (boton) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
@@ -574,7 +574,7 @@ const ShowRepartidor = async (boton) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
@@ -813,7 +813,7 @@ const ShowRepartidor = async (boton) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
@@ -1207,7 +1207,7 @@ const fillTable = async (form = null) => {
                         <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                             <div class="card">
                                 <!--Contenedor de la imagen-->
-                                <img src="${SERVER_URL}images/marcas/${row2.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                <img src="${SERVER_URL}helpers/images/zapatos/${row2.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                 <!--Contenedor del cuerpo de la card-->
                                 <div class="card-body">
                                     <!--Contenedor de nombre zapato-->
@@ -1774,7 +1774,7 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
@@ -2012,7 +2012,7 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
@@ -2251,7 +2251,7 @@ SEARCH_FORM_REPARTIDOR.addEventListener('submit', async (event) => {
                                             <div class="containerCard col-lg-12 flex-wrap" id="cardPedido">
                                                 <div class="card">
                                                     <!--Contenedor de la imagen-->
-                                                    <img src="${SERVER_URL}images/marcas/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="Imagen de zapato">
+                                                    <img src="${SERVER_URL}helpers/images/zapatos/${row3.foto_detalle_zapato}" class="card-img-top img-fluid" alt="${row2.nombre_zapato}">
                                                     <!--Contenedor del cuerpo de la card-->
                                                     <div class="card-body">
                                                         <!--Contenedor de nombre zapato-->
