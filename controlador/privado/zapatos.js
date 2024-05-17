@@ -2,6 +2,7 @@
 const NOMBREC_INPUT = document.getElementById('nombreColor');
 const MODAL_TITLE = document.getElementById('modalTitle');
 const UPDATE_FORM = document.getElementById('updateForm');
+const UPDATE_FORM_COLOR = document.getElementById('updateFromColor');
 const ADD_FORM = document.getElementById('addZapato');
 const MODAL_TITLE_TALLA = document.getElementById('modalTitleT');
 const MODAL_TITLE_DETALLE = document.getElementById('modalTitleD');
@@ -18,7 +19,7 @@ const CANTIDAD_INPUT = document.getElementById('cantidad');
 const IMG_INPUT = document.getElementById('selectedImageF');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
-const BOTON_ACTUALIZAR2 = document.getElementById('actualizarBtn2');
+const BOTON_ACTUALIZAR_COLOR = document.getElementById('actualizarBtnColor');
 const BOTON_ACTUALIZAR3 = document.getElementById('actualizarBtn3');
 const CARDZAPATO = document.getElementById('slider');
 const BOTON_ADD_COLOR = document.getElementById('btnAddColor');
@@ -154,7 +155,7 @@ const openDetailsColores = async (id_color, nombre_color) => {
     FORM.append('nombre_color', nombre_color);
     console.log(id_color);
     console.log(nombre_color);
-
+    idColor = id_color;
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(ZAPATOS_API, 'readOneColores', FORM);
     console.log(DATA)
@@ -168,6 +169,7 @@ const openDetailsColores = async (id_color, nombre_color) => {
         sweetAlert(2, DATA.error, false);
     }
 }
+
 
 
 // Funciones de interacción
@@ -393,18 +395,52 @@ function displaySelectedImage(event, elementId) {
         reader.readAsDataURL(fileInput.files[0]);
     }
 }
+function enableFormFields() {
+    NOMBREC_INPUT.readOnly = false;
+}
+function disableFormFields() {
+    NOMBREC_INPUT.readOnly = true;
+
+}
 
 // Funciones para actualizar y cancelar en modales
-async function botonActualizar() {
-    const textoBoton = BOTON_ACTUALIZAR.textContent.trim();
+const botonActualizarColor = async () => {
+    const textoBoton = BOTON_ACTUALIZAR_COLOR.textContent.trim();
+    event.preventDefault(); // Se evita recargar la página web después de enviar el formulario.
 
     if (textoBoton === 'Actualizar') {
-        NOMBREC_INPUT.readOnly = false;
-        BOTON_ACTUALIZAR.textContent = "Guardar";
+        console.log(idColor);
+        // Habilita la edición de los campos de entrada.
+        enableFormFields(); // Suponemos que habilita todos los campos incluido NOMBREC_INPUT.
+        NOMBREC_INPUT.readOnly = false; // Asegura que el campo específico también es editable.
+        BOTON_ACTUALIZAR_COLOR.textContent = "Guardar";
     } else if (textoBoton === 'Guardar') {
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
+        // Deshabilita la edición de los campos de entrada.
+        disableFormFields(); // Suponemos que deshabilita todos los campos.
+
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(UPDATE_FORM_COLOR);
+        FORM.append('id_color', idColor);
+        FORM.append('nombreColor', NOMBREC_INPUT.value);
+
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(ZAPATOS_API, 'ActColores', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            // Se cierra la caja de diálogo.
+            DATA_MODAL.hide();
+            restoreEvrPS();
+            fillTableColores();
+        } else {
+            enableFormFields(); // Si hay error, habilita los campos nuevamente para corrección.
+            sweetAlert(2, DATA.error, false);
+        }
     }
-}
+};
+
 
 async function botonCancelar() {
     const textoBoton = BOTON_ACTUALIZAR.textContent.trim();

@@ -110,17 +110,17 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Ocurrió un problema al añadir el color';
                     }
                     break;
-            case 'updateStatus':
+            case 'ActColores':
                 if (
-                    !$cliente->setEstado($_POST['estadoCliente']) or
-                    !$cliente->setId($_POST['idCliente'])
+                    !$zapatos->setIdColor($_POST['id_color']) or
+                    !$zapatos->setNombreColor($_POST['nombreColor']) 
                 ) {
-                    $result['error'] = $cliente->getDataError();
-                } elseif ($cliente->updateStatus()) {
+                    $result['error'] = $zapatos->getDataError();
+                } elseif ($zapatos->ActColores()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Estado del cliente modificado correctamente';
+                    $result['message'] = 'El color se actualizo correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al modificar el estado del cliente';
+                    $result['error'] = 'Ocurrió un problema al modificar el color';
                 }
                 break;
             case 'deleteRow':

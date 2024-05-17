@@ -47,6 +47,15 @@ class ZapatosHandler
         return Database::getRows($sql, $params);
     }
 
+    public function ActColores()
+    {
+        $sql = 'UPDATE tb_colores 
+        SET nombre_color = ?
+        WHERE id_color = ?;';
+        $params = array($this->nombre_color, $this->id_color); // Parámetros para la consulta SQL
+        return Database::executeRow($sql, $params); // Ejecución de la consulta SQL
+    }
+
 
     public function addColores()
     {
