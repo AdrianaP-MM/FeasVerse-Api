@@ -168,8 +168,6 @@ const RetirarComentario = async () => {
             const DATA = await fetchData(COMENTARIOS_API, 'bloqDesbloqRow', FORM);
             // Verificar si la solicitud fue exitosa
             if (DATA.status) {
-                console.log(idC);
-                console.log(estadoC);
                 // Mostrar un mensaje de éxito
                 await sweetAlert(1, 'Se ha actualizado correctamente', true);
                 // Actualizar la tabla de trabajadores para reflejar los cambios

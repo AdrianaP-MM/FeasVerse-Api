@@ -166,6 +166,15 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Trabajador inexistente';
                     }
                 break;
+                case 'readFto1':
+                    if (!$zapatos->setId($_POST['id_zapato'])) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($result['dataset'] = $zapatos->readFtoDetalle()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Trabajador inexistente';
+                    }
+                break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';

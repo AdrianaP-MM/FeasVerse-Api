@@ -67,14 +67,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 const fillTableColores = async (form = null) => {
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, 'readAllColores');
-    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         PASTILLA_COLOR.innerHTML = "";
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
-            console.log(row.id_color)
-            console.log(row.nombre_color)
             PASTILLA_COLOR.innerHTML += `
             <div class="pastilla" onclick="openDetailsColores(${row.id_color},'${row.nombre_color}')"> 
             <h4>${row.nombre_color}</h4>
@@ -129,10 +126,8 @@ const addZapato = async () => {
 const fillTableZapato = async (form = null) => {
     CARDZAPATO.innerHTML = '';
     (form) ? action = 'searchRows' : action = 'readAll';
-    console.log(action);
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, action, form);
-    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -192,12 +187,9 @@ const openDetailsColores = async (id_color, nombre_color) => {
     const FORM = new FormData();
     FORM.append('id_color', id_color);
     FORM.append('nombre_color', nombre_color);
-    console.log(id_color);
-    console.log(nombre_color);
     idColor = id_color;
     // Petición para obtener los datos del registro solicitado.
     const DATA = await fetchData(ZAPATOS_API, 'readOneColores', FORM);
-    console.log(DATA)
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se prepara el formulario.
@@ -308,14 +300,16 @@ const fillTableDetalles = async (id) => {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         const ROW = DATA.dataset;
-        IMAGEN_ZAPATOD.src = `${SERVER_URL}/helpers/images/zapatos/${ROW.foto_detalle_zapato} `;
+
+        const DATA2 = await fetchData(ZAPATOS_API, 'readFto1', FORM);
+        const ROW2 = DATA2.dataset;
+        IMAGEN_ZAPATOD.src = `${SERVER_URL}helpers/images/zapatos/6646c0ddb4197.png`;
 
         if (DATA.dataset == 0) {
             await sweetAlert(1, DATA.message, true);
         }
         else {
             if (Array.isArray(DATA.dataset)) {
-                console.log(id);
                 // Construir la fila de la tabla si solo hay un elemento en el conjunto de datos.
                 DATA.dataset.forEach(row => {
                     TABLE_BODY.innerHTML += `
@@ -323,7 +317,7 @@ const fillTableDetalles = async (id) => {
                     <td data-labelN="N°">${row.id_detalle_zapato}</td>
                     <td data-labelT="Talla">${row.id_talla}</td>
                     <td data-labelS="Cantidad Actual">${row.cantidad_zapato}</td>
-                    <td data-labelE="Color actual">${row.id_color}</td>
+                    <td data-labelE="Color actual">${row.nombre_color}</td>
                     <td>
                         <button class="Verde"> <img class="note"
                             src="../../recursos/imagenes/icons/notebook.svg"
@@ -338,13 +332,12 @@ const fillTableDetalles = async (id) => {
             `;
                 });
             } else {
-                console.log("Hola Adriana nos habla feo");
                 TABLE_BODY.innerHTML += `
                 <tr> 
                     <td data-labelN="N°">${ROW.id_detalle_zapato}</td>
                     <td data-labelT="Talla">${ROW.id_talla}</td>
                     <td data-labelS="Cantidad Actual">${ROW.cantidad_zapato}</td>
-                    <td data-labelE="Color actual">${ROW.id_color}</td>
+                    <td data-labelE="Color actual">${ROW.nombre_color}</td>
                     <td>
                         <button class="Verde"> <img class="note"
                             src="../../recursos/imagenes/icons/notebook.svg"
@@ -455,7 +448,6 @@ const botonActualizarColor = async () => {
     event.preventDefault(); // Se evita recargar la página web después de enviar el formulario.
 
     if (textoBoton === 'Actualizar') {
-        console.log(idColor);
         // Habilita la edición de los campos de entrada.
         enableFormFields(); // Suponemos que habilita todos los campos incluido NOMBREC_INPUT.
         NOMBREC_INPUT.readOnly = false; // Asegura que el campo específico también es editable.
