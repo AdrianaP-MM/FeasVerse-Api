@@ -21,7 +21,7 @@ class ZapatosHandler
     protected $nombre_color = null;
     protected $id_talla = null;
     protected $cantidad_zapato = null;
-    protected $cantidad_talla = null;
+    protected $num_talla = null;
 
     const RUTA_IMAGEN = '../../helpers/images/zapatos/';
 
@@ -55,6 +55,8 @@ class ZapatosHandler
         $params = array($this->nombre_color, $this->id_color); // Parámetros para la consulta SQL
         return Database::executeRow($sql, $params); // Ejecución de la consulta SQL
     }
+
+
 
 
     public function addColores()
@@ -113,6 +115,19 @@ class ZapatosHandler
         $sql = 'SELECT id_marca, nombre_marca from tb_marcas; '; // Consulta SQL para obtener todos los niveles
         return Database::getRows($sql); // Ejecución de la consulta SQL
     }
+
+    public function readTallas()
+    {
+        $sql = 'SELECT id_talla, num_talla from tb_tallas; '; // Consulta SQL para obtener todos los niveles
+        return Database::getRows($sql); // Ejecución de la consulta SQL
+    }
+
+    public function readColores()
+    {
+        $sql = 'SELECT id_color, nombre_color from tb_colores; '; // Consulta SQL para obtener todos los niveles
+        return Database::getRows($sql); // Ejecución de la consulta SQL
+    }
+
 
 
     public function readOneZapato()

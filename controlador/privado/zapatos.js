@@ -122,9 +122,10 @@ const addZapato = async () => {
 
 
 const fillTable = async (form = null) => {
+    CARDZAPATO.innerHTML = '';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, 'readAll');
-    console.log(DATA); 
+    console.log(DATA);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -245,7 +246,6 @@ const openDetalles = async (id) => {
     if (DATA.status) {
         // Se prepara el formulario.
         FORM_EDIT_ZAPATO.reset();
-
         const ROW = DATA.dataset;
         NOMBRE_ZAPATOD.value = ROW.nombre_zapato;
         GENERO_ZAPATOD.value = findNumberValue(ROW.genero_Zapato);
@@ -298,7 +298,7 @@ const fillTableDetalles = async (id) => {
                     </tr>
                 `;
             } else {
-                 // Construir la tabla normalmente si hay más de un elemento en el conjunto de datos.
+                // Construir la tabla normalmente si hay más de un elemento en el conjunto de datos.
                 DATA.dataset.forEach(row => {
                     TABLE_BODY.innerHTML += `
                 <tr>
@@ -318,7 +318,7 @@ const fillTableDetalles = async (id) => {
                     </td>
                 </tr>
             `;
-            });
+                });
             }
         }
     } else {
@@ -351,6 +351,8 @@ async function addDetalles() {
         await sweetAlert(1, 'Se ha guardado correctamente', true);
         // Se carga nuevamente la tabla para visualizar los cambios.
         TALLAS_DETALLES_MODAL.show();
+        fillSelect(ZAPATOS_API, 'readTallas', 'idTalla');
+        fillSelect(ZAPATOS_API, 'readColores', 'Color');
         // Resetear el formulario
         document.getElementById('addZapato').reset();
     } else {
@@ -368,13 +370,18 @@ async function createRowPT2() {
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se muestra un mensaje de éxito.
-        await sweetAlert(1, 'Se ha guardado correctamente', true);
-        // Se carga nuevamente la tabla para visualizar los cambios.
-        TALLAS_DETALLES_MODAL.hide();
-        // Resetear el formulario
-        TALLA_INPUT.value = ' ';
-        COLOR_INPUT.value = ' ';
-        IMG_INPUT.src = 'https://mdbootstrap.com/img/Photos/Others/placeholder.jpg';
+        const RESPONSE = await confirmAction('Guardado Exitosamente', '¿Desea agregar otro detalle?');
+
+        // Se verifica la respuesta del mensaje.
+        if (RESPONSE.isConfirmed) {
+            // Resetear el formulario
+            TALLA_INPUT.value = ' ';
+            COLOR_INPUT.value = ' ';
+        } else {
+            // Si el usuario cancela, se oculta algún elemento modal (posiblemente DATA_MODAL).
+            TALLAS_DETALLES_MODAL.hide();
+        }
+
     } else {
         await sweetAlert(2, DATA.error, false);
     }
