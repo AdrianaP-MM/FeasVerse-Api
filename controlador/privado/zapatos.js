@@ -211,11 +211,6 @@ function showAgregar(button) {
     button.style.color = 'white';
 }
 
-// Funciones relacionadas con los modales
-DATA_MODAL._element.addEventListener('hidden.bs.modal', function () {
-    BOTON_ACTUALIZAR.textContent = "Actualizar";
-});
-
 DATA_DETALLES_MODAL._element.addEventListener('hidden.bs.modal', function () {
     BOTON_ACTUALIZAR3.textContent = "Actualizar";
 });
@@ -408,7 +403,6 @@ async function botonActualizar() {
         BOTON_ACTUALIZAR.textContent = "Guardar";
     } else if (textoBoton === 'Guardar') {
         await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        DATA_MODAL.hide();
     }
 }
 
@@ -418,12 +412,10 @@ async function botonCancelar() {
     if (textoBoton === 'Actualizar') {
         const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Se cerrará la ventana emergente');
         if (RESPONSE.isConfirmed) {
-            DATA_MODAL.hide();
         }
     } else if (textoBoton === 'Guardar') {
         const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Si has modificado, no se guardará');
         if (RESPONSE.isConfirmed) {
-            DATA_MODAL.hide();
         }
     }
 }
