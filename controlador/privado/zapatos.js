@@ -17,6 +17,7 @@ const TALLA_INPUT = document.getElementById('idTalla');
 const COLOR_INPUT = document.getElementById('Color');
 const CANTIDAD_INPUT = document.getElementById('cantidad');
 const IMG_INPUT = document.getElementById('selectedImageF');
+const BOTON_CANCELAR_COLOR = document.getElementById('cancelarBtnColor');
 
 const BOTON_ACTUALIZAR = document.getElementById('actualizarBtn');
 const BOTON_ACTUALIZAR_COLOR = document.getElementById('actualizarBtnColor');
@@ -431,7 +432,7 @@ const botonActualizarColor = async () => {
             // Se muestra un mensaje de éxito.
             await sweetAlert(1, 'Se ha actualizado correctamente', true);
             // Se cierra la caja de diálogo.
-            DATA_MODAL.hide();
+            DATA_MODAL_COLORES.hide();
             restoreEvrPS();
             fillTableColores();
         } else {
@@ -487,6 +488,7 @@ async function botonCancelar2() {
     }
 }
 
+
 async function botonActualizar3() {
     const textoBoton = BOTON_ACTUALIZAR3.textContent.trim();
 
@@ -498,20 +500,16 @@ async function botonActualizar3() {
     }
 }
 
-async function botonCancelar3() {
-    const textoBoton = BOTON_ACTUALIZAR3.textContent.trim();
-
-    if (textoBoton === 'Actualizar') {
-        const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Se cerrará la ventana emergente');
-        if (RESPONSE.isConfirmed) {
-            DATA_DETALLES_MODAL.hide();
-        }
-    } else if (textoBoton === 'Guardar') {
-        const RESPONSE = await confirmAction('¿Seguro que quieres regresar?', 'Si has modificado, no se guardará');
-        if (RESPONSE.isConfirmed) {
-            DATA_DETALLES_MODAL.hide();
-        }
+async function showCancelConfirmation(message, submessage) {
+    const RESPONSE = await confirmAction(message, submessage);
+    if (RESPONSE.isConfirmed) {
+        DATA_MODAL_COLORES.hide();
     }
+}
+
+
+async function botonCancelarColor() {
+    await showCancelConfirmation('¿Seguro qué quieres regresar?', 'Se cerrará la ventana emergente');
 }
 
 var container = document.getElementById('container');
