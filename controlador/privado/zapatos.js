@@ -120,25 +120,28 @@ const addZapato = async () => {
 
 
 const fillTable = async (form = null) => {
-    slider.innerHTML = '';
+    // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, 'readAll');
+    console.log(DATA); 
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
-            slider.innerHTML += `
+            CARDZAPATO.innerHTML += `
             <div class="slide" onclick="openDetalles(${row.id_zapato})">
-                <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
-                <span>${row.nombre_zapato}</span>
-            </div>
+            <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
+            <span>${row.nombre_zapato}</span>
+        </div>
             `;
         });
-        slides = document.getElementsByClassName('slide').length;
-        slidesCount = slides - slidesPerPage;
-        setParams(containerWidth);
+
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
     } else {
         sweetAlert(2, DATA.error, false);
     }
-};
-
+}
 let idColor = null;
 let nombre_color = null;
 

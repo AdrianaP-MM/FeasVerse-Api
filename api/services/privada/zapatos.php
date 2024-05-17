@@ -32,7 +32,7 @@ if (isset($_GET['action'])) {
             case 'readAll':
                 if ($result['dataset'] = $zapatos->readAll()) {
                     $result['status'] = 1;
-                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    $result['message'] = 'Existen ' . count($result['dataset']) . 'registros';
                 } else {
                     $result['error'] = 'No existen zapatos registrados';
                 }
@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
                     } elseif ($result['dataset'] = $zapatos->readOneZapato()) {
                         $result['status'] = 1;
                     } else {
-                        $result['error'] = 'Trabajador inexistente';
+                        $result['error'] = 'Zapato inexistente';
                     }
                 break;
             case 'createRow':
