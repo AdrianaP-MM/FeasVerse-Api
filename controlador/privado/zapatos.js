@@ -277,28 +277,9 @@ const fillTableDetalles = async (id) => {
             await sweetAlert(1, DATA.message, true);
         }
         else {
-            if (!Array.isArray(DATA.dataset)) {
+            if (Array.isArray(DATA.dataset)) {
+                console.log(id);
                 // Construir la fila de la tabla si solo hay un elemento en el conjunto de datos.
-                TABLE_BODY.innerHTML += `
-                    <tr>
-                        <td data-labelN="N°">${ROW.id_detalle_zapato}</td>
-                        <td data-labelT="Talla">${ROW.id_talla}</td>
-                        <td data-labelS="Cantidad Actual">${ROW.cantidad_zapato}</td>
-                        <td data-labelE="Color actual">${ROW.id_color}</td>
-                        <td>
-                            <button class="Verde"> <img class="note"
-                                src="../../recursos/imagenes/icons/notebook.svg"
-                                width="35px" height="35px">
-                            </button>
-                            <button class="Rojo"> <img class="note"
-                                src="../../recursos/imagenes/basura.svg" width="35px"
-                                height="35px">
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            } else {
-                // Construir la tabla normalmente si hay más de un elemento en el conjunto de datos.
                 DATA.dataset.forEach(row => {
                     TABLE_BODY.innerHTML += `
                 <tr>
@@ -319,6 +300,26 @@ const fillTableDetalles = async (id) => {
                 </tr>
             `;
                 });
+            } else {
+                console.log("Hola Adriana nos habla feo");
+                TABLE_BODY.innerHTML += `
+                <tr> 
+                    <td data-labelN="N°">${ROW.id_detalle_zapato}</td>
+                    <td data-labelT="Talla">${ROW.id_talla}</td>
+                    <td data-labelS="Cantidad Actual">${ROW.cantidad_zapato}</td>
+                    <td data-labelE="Color actual">${ROW.id_color}</td>
+                    <td>
+                        <button class="Verde"> <img class="note"
+                            src="../../recursos/imagenes/icons/notebook.svg"
+                            width="35px" height="35px">
+                        </button>
+                        <button class="Rojo"> <img class="note"
+                            src="../../recursos/imagenes/basura.svg" width="35px"
+                            height="35px">
+                        </button>
+                    </td>
+                </tr>
+            `;
             }
         }
     } else {
