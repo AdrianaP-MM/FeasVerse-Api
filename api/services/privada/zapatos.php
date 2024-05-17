@@ -45,6 +45,14 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'No existen colores registrados';
                     }
                     break;
+                    case 'readAllTallas':
+                        if ($result['dataset'] = $zapatos->readTallas()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                        } else {
+                            $result['error'] = 'No existen tallas registrados';
+                        }
+                        break;
                     case 'readOneColores':
                         if (!$zapatos->setIdColor($_POST['id_color'])) {
                             $result['error'] = $zapatos->getDataError();
@@ -54,6 +62,15 @@ if (isset($_GET['action'])) {
                             $result['error'] = 'Color inexistente';
                         }
                         break;
+                        case 'readOneTalla':
+                            if (!$zapatos->setIdTalla($_POST['id_talla'])) {
+                                $result['error'] = $zapatos->getDataError();
+                            } elseif ($result['dataset'] = $zapatos->readOneTalla()) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['error'] = 'Talla inexistente';
+                            }
+                            break;
             case 'readOneZapato':
                     if (!$zapatos->setId($_POST['id_zapato'])) {
                         $result['error'] = $zapatos->getDataError();
@@ -105,11 +122,24 @@ if (isset($_GET['action'])) {
                         $result['error'] = $zapatos->getDataError();
                     } elseif ($zapatos->addColores()) {
                         $result['status'] = 1;
-                        $result['message'] = 'Marca creada correctamente';
+                        $result['message'] = 'Color creada correctamente';
                     } else {
                         $result['error'] = 'Ocurrió un problema al añadir el color';
                     }
                     break;
+                    case 'addTallas':
+                        $_POST = Validator::validateForm($_POST);
+                        if (
+                            !$zapatos->setTallas($_POST['tallaInputAdd']) 
+                        ) {
+                            $result['error'] = $zapatos->getDataError();
+                        } elseif ($zapatos->addTallas()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Talla creada correctamente';
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al añadir la talla';
+                        }
+                        break;
             case 'ActColores':
                 if (
                     !$zapatos->setIdColor($_POST['id_color']) or
@@ -123,6 +153,31 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al modificar el color';
                 }
                 break;
+                case 'ActTallas':
+                    if (
+                        !$zapatos->setIdTalla($_POST['id_talla']) or
+                        !$zapatos->setTallas($_POST['nombreTalla']) 
+                    ) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($zapatos->ActTallas()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'El color se actualizo correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar el color';
+                    }
+                    break;
+                    case 'searchTalla':
+                        if (
+                            !Validator::validateSearch($_POST['nombreTalla']) 
+                        ) {
+                            $result['error'] = $zapatos->getDataError();
+                        } elseif ($zapatos->searchTallas()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Busqueda de tablas';
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al búsqueda';
+                        }
+                        break;
             case 'deleteRow':
                 if (!$cliente->setId($_POST['idCliente'])) {
                     $result['error'] = $cliente->getDataError();

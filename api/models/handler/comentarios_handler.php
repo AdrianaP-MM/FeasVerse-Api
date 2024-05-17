@@ -59,7 +59,7 @@ class ComentariosHandler
                 z.nombre_zapato,
                 z.genero_zapato,
                 col.nombre_color,
-                dz.precio_unitario_zapato,
+                z.precio_unitario_zapato,
                 dz.foto_detalle_zapato,
                 com.descripcion_comentario,
                 com.estado_comentario

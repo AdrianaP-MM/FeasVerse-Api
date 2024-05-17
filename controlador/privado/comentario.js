@@ -103,7 +103,7 @@ const ShowComentario = async (idComentario, estado) => {
                         <div class="d-flex flex-column contedorDataZapato flex-wrap">
                             <div class="detalleZapato d-flex flex-column flex-wrap justify-content-evenly">
                                 <h5 class="titillium-web-extralight color-3blue"> Producto Comentado</h5>
-                                <img src="${row.foto_detalle_zapato}" alt="zapatoC" class="">
+                                <img src="${SERVER_URL}helpers/images/zapatos/6646c0ddb4197.png" alt="zapatoC" width="150px" height="150px" class="">
                                 <p class=" m-0 fw-semi-bold">${row.nombre_zapato}</p>
                                 <p class="m-0">Zapato ${row.genero_zapato}</p>
                                 <p class="m-0">2 Colores ${row.nombre_color}</p>

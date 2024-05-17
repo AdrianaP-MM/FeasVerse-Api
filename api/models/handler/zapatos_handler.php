@@ -47,6 +47,14 @@ class ZapatosHandler
         return Database::getRows($sql, $params);
     }
 
+    public function readOneTalla()
+    {
+        $sql = 'SELECT id_talla, num_talla FROM tb_tallas WHERE id_talla = ?;';
+        $params = array($this->id_talla);
+        return Database::getRows($sql, $params);
+    }
+
+
     public function ActColores()
     {
         $sql = 'UPDATE tb_colores 
@@ -56,14 +64,28 @@ class ZapatosHandler
         return Database::executeRow($sql, $params); // Ejecución de la consulta SQL
     }
 
-
-
+    public function ActTallas()
+    {
+        $sql = 'UPDATE tb_tallas 
+        SET num_talla = ?
+        WHERE id_talla = ?;';
+        $params = array($this->num_talla, $this->id_talla); // Parámetros para la consulta SQL
+        return Database::executeRow($sql, $params); // Ejecución de la consulta SQL
+    }
 
     public function addColores()
     {
         $sql = 'INSERT INTO tb_colores(nombre_color) VALUES (?)';
         $params = array(
             $this->nombre_color
+        );
+        return Database::executeRow($sql, $params);
+    }
+    public function addTallas()
+    {
+        $sql = 'INSERT INTO tb_tallas(num_talla) VALUES (?)';
+        $params = array(
+            $this->num_talla
         );
         return Database::executeRow($sql, $params);
     }
@@ -79,7 +101,14 @@ class ZapatosHandler
 
     public function checkDuplicate($value)
     {
-        $sql = 'SELECT id_color WHERE nombre_color = ?';
+        $sql = 'SELECT id_color from tb_colores WHERE nombre_color = ?';
+        $params = array($value);
+        return Database::getRow($sql, $params);
+    }
+
+    public function checkDuplicate2($value)
+    {
+        $sql = 'SELECT id_talla from tb_tallas WHERE num_talla = ?';
         $params = array($value);
         return Database::getRow($sql, $params);
     }
@@ -118,8 +147,21 @@ class ZapatosHandler
 
     public function readTallas()
     {
-        $sql = 'SELECT id_talla, num_talla from tb_tallas; '; // Consulta SQL para obtener todos los niveles
+        $sql = 'SELECT*FROM tb_tallas;'; // Consulta SQL para obtener todos los niveles
         return Database::getRows($sql); // Ejecución de la consulta SQL
+    }
+
+    public function searchTallas()
+    {
+        // Obtiene el valor de búsqueda del validador y lo formatea para buscar coincidencias parciales en la base de datos
+        $value = '%' . Validator::getSearchValue() . '%';
+
+        $sql = 'SELECT*FROM tb_tallas where num_talla LIKE ?;'; // Consulta SQL para obtener todos los niveles
+        // Parámetros de la consulta SQL
+        $params = array($value);
+
+        // Ejecuta la consulta y devuelve los resultados
+        return Database::getRows($sql, $params);
     }
 
     public function readColores()
@@ -132,7 +174,7 @@ class ZapatosHandler
     {
         // Obtiene el valor de búsqueda del validador y lo formatea para buscar coincidencias parciales en la base de datos
         $value = '%' . Validator::getSearchValue() . '%';
-        
+
         // Consulta SQL para buscar zapatos cuyo nombre o género coincidan parcialmente con el valor de búsqueda
         $sql = 'SELECT 
                     z.id_zapato, 
@@ -155,14 +197,14 @@ class ZapatosHandler
                     z.genero_zapato LIKE ?
                 ORDER BY 
                     z.id_zapato;';
-        
+
         // Parámetros de la consulta SQL
         $params = array($value, $value);
-        
+
         // Ejecuta la consulta y devuelve los resultados
         return Database::getRows($sql, $params);
     }
-    
+
     public function readOneZapato()
     {
         $sql = 'SELECT id_zapato, nombre_zapato, genero_Zapato, descripcion_zapato, id_marca, precio_unitario_zapato FROM tb_Zapatos 

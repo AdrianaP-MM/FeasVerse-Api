@@ -32,6 +32,8 @@ class ZapatosData extends ZapatosHandler{
             return false;
         }
     }
+
+
     public function setGenero($value)
     {
         if (Validator::validateNaturalNumber($value)) {
@@ -51,6 +53,21 @@ class ZapatosData extends ZapatosHandler{
         } else {
             $this->data_error = 'La cantidad es incorrecta incorrecto';
             return false;
+        }
+    }
+
+    public function setTallas($value)
+    {
+        $numero = (int)$value;
+        if (!Validator::validateNaturalNumber($numero)) {
+            $this->data_error = 'La talla debe de ser numero';
+            return false;
+        } elseif ($this->checkDuplicate2($numero)) {
+            $this->data_error = 'La talla ingresada ya existe';
+            return false;
+        } else {    
+            $this->num_talla = $numero;
+            return true;
         }
     }
     

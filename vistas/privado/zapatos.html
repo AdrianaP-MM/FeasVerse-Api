@@ -60,17 +60,25 @@
                             Colores
                         </button>
                     </li>
+
+                    <li class="nav-item ms-3" role="presentation">
+                        <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="tallas-tab" type="button"
+                            data-bs-target="#tallas" role="tab" aria-controls="tallas" aria-selected="true"
+                            onclick="showTallas(this)">
+                            Tallas
+                        </button>
+                    </li>
                 </ul>
                 <div class="tab-content contenidoP" id="">
                     <!-- Rectángulo de fondo -->
                     <div id="container">
                         <form class="ms-2 col-lg-12 col-md-10 col mt-3 mb-4" id="searchForm">
                             <div class="row col-lg-12">
-                                    <div class="search-container">
-                                        <input type="search" class="form-control" name="buscadorZapato"
-                                            placeholder="Buscar....." id="buscadorZapato">
-                                        
-                                    </div>
+                                <div class="search-container">
+                                    <input type="search" class="form-control" name="buscadorZapato"
+                                        placeholder="Buscar....." id="buscadorZapato">
+
+                                </div>
                             </div>
                         </form>
                         <div id="slider-container">
@@ -87,7 +95,7 @@
                                     <div class="contenedor1 d-flex flex-row align-items-center justify-content-evenly">
 
                                         <div class="col-lg-6 col-md-6">
-                                            <label for="nombreColorInput"
+                                            <label for="tallaInputAdd"
                                                 class="form-label text25 m-1 titillium-web-extralight">Nombre
                                                 del
                                                 color</label>
@@ -108,8 +116,49 @@
                                         <h2 class="titillium-web-extralight text25">Colores disponibles</h2>
                                     </div>
                                     <div class="contenedorColoresScroll d-flex flex-column">
-                                        <div class="contenedorFilaColores d-flex flex-row flex-wrap"
+                                        <div class="contenedorFilaTallas d-flex flex-row flex-wrap"
                                             id="contenedorFilaColores">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Pagina de Tallas-->
+                    <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="tallas"
+                        aria-labelledby="tallas-tab">
+                        <div class="ContenedorB1">
+                            <div class="ContenedorTotalA d-flex flex-column align-items-center">
+                                <form class="ms-2 col-lg-12 col-md-10 col mt-3 mb-4" id="searchFormTalla">
+                                    <div class="row col-lg-12">
+                                        <div class="search-container">
+                                            <input type="search" class="form-control" name="buscadorTalla"
+                                                placeholder="Buscar....." id="buscadorTalla">
+                                        </div>
+                                    </div>
+                                </form>
+                                <form id="addTallas">
+                                    <div class="contenedor1 d-flex flex-row align-items-center justify-content-evenly">
+                                        <div class="col-lg-6 col-md-6">
+                                            <label for="tallasInput"
+                                                class="form-label text25 m-1 titillium-web-extralight"> </label>
+                                            <input type="number" class="form-control" id="tallasInput"
+                                                placeholder="Ingresa la talla" required name="tallasInput">
+                                        </div>
+                                        <div class="contenedorBotones1 col-lg-6 ">
+                                            <button
+                                                class="btn btnAdd btn-primary shadow ms-5 text18 titillium-web-regular"
+                                                id="btnAddTalla" onclick="addTallas()" type="submit">Agregar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="contenedor2 d-flex flex-column align-items-center mt-2">
+                                    <div class="tituloColoresD mt-5">
+                                        <h2 class="titillium-web-extralight text25">Tallas disponibles</h2>
+                                    </div>
+                                    <div class="contenedorColoresScroll d-flex flex-column">
+                                        <div class="contenedorFilaColores d-flex flex-row flex-wrap"
+                                            id="contenedorFilaTallas">
                                         </div>
                                     </div>
                                 </div>
@@ -276,6 +325,46 @@
                                                 <button type="button" id="actualizarBtnColor"
                                                     class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
                                                     onclick="botonActualizarColor()">
+                                                    Actualizar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- TODO ----------------------------TALLAS MODAL------------------------------------------>
+                    <div class="modal fade" id="dataModalTallasD" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <!-- Encabezado del modal -->
+                                <div class="modal-header d-flex justify-content-center align-items-center">
+                                    <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
+                                </div>
+                                <!-- Formulario para crear o actualizar un registro -->
+                                <form id="updateFromTalla" name="updateFromTalla">
+                                    <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                                        <!-- Campo de nombres -->
+                                        <div class="col-sm-6 col-md-6">
+                                            <label for="nombreColor" class="form-label">Numero de talla</label>
+                                            <input id="nombreTalla" type="text" name="nombreTalla"
+                                                class="form-control editableInput" required readonly>
+                                        </div>
+                                        <!-- Botones en el pie del modal -->
+                                        <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                            <div class="contenedorBotones3">
+                                                <!-- Botón para cancelar la operación -->
+                                                <button type="button" id="cancelarBtnColor"
+                                                    class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                                    onclick="botonCancelarTalla()">
+                                                    Cancelar
+                                                </button>
+                                                <!-- Botón para actualizar el registro -->
+                                                <button type="button" id="actualizarBtnTalla"
+                                                    class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                                    onclick="botonActualizarTalla()">
                                                     Actualizar
                                                 </button>
                                             </div>
