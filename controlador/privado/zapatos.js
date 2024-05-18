@@ -102,8 +102,10 @@ const fillTableTallas = async (form = null) => {
     (form) ? action = 'searchTalla' : action = 'readAllTallas';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(ZAPATOS_API, action, form);
+
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        console.log(DATA);
         if (DATA.dataset == 0) {
             await sweetAlert(1, DATA.message, true);
         }
@@ -123,6 +125,7 @@ const fillTableTallas = async (form = null) => {
                 }
             } else {
                 const ROW = DATA.dataset;
+                console.log(ROW);
                 PASTILLA_TALLAS.innerHTML = "";
                     PASTILLA_TALLAS.innerHTML += `
                     <div class="pastilla" onclick="openDetailsTallas(${ROW.id_talla},'${ROW.num_talla}')"> 
@@ -312,6 +315,36 @@ const fillTableTallas = async (form = null) => {
             sweetAlert(2, DATA.error, false);
         }
     }
+
+    const eliminarTalla = async () => {
+        event.preventDefault(); // Se evita recargar la página web después de enviar el formulario.
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData();
+        FORM.append('id_talla', parseInt(idTallaD));
+    
+        const RESPONSE = await confirmAction('Eliminar', '¿Seguro, qué quieres eliminar?');
+        if (RESPONSE.isConfirmed) {
+            // Petición para guardar los datos del formulario.
+            const DATA = await fetchData(ZAPATOS_API, 'eliminarTallas', FORM);
+    
+            // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+            if (DATA.status) {
+                // Se muestra un mensaje de éxito.
+                await sweetAlert(1, 'Se ha eliminado correctamente', true);
+                // Se cierra la caja de diálogo.
+                MODAL_TALLAS.hide();
+    
+                fillTableTallas();
+            } else {
+                enableFormFields(); // Si hay error, habilita los campos nuevamente para corrección.
+                sweetAlert(2, DATA.error, false);
+            }
+        }
+        else {
+            
+        }
+    
+    };
 
 
 

@@ -53,6 +53,18 @@ if (isset($_GET['action'])) {
                             $result['error'] = 'No existen tallas registrados';
                         }
                         break;
+                        case 'eliminarTallas':
+                            if (
+                                !$zapatos->setIdTalla($_POST['id_talla']) 
+                            ) {
+                                $result['error'] = $zapatos->getDataError();
+                            } elseif ($zapatos->DeleteTallas()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'La talla se elimino correctamente';
+                            } else {
+                                $result['error'] = 'Ocurrió un problema al eliminar la talla, porque tiene datos relacionados';
+                            }
+                            break;
                     case 'readOneColores':
                         if (!$zapatos->setIdColor($_POST['id_color'])) {
                             $result['error'] = $zapatos->getDataError();
@@ -167,11 +179,7 @@ if (isset($_GET['action'])) {
                     }
                     break;
                     case 'searchTalla':
-                        if (
-                            !Validator::validateSearch($_POST['nombreTalla']) 
-                        ) {
-                            $result['error'] = $zapatos->getDataError();
-                        } elseif ($zapatos->searchTallas()) {
+                        if ($zapatos->searchTallas($_POST['nombreTalla'])) {
                             $result['status'] = 1;
                             $result['message'] = 'Busqueda de tablas';
                         } else {

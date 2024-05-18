@@ -151,17 +151,25 @@ class ZapatosHandler
         return Database::getRows($sql); // Ejecución de la consulta SQL
     }
 
-    public function searchTallas()
+    public function searchTallas($value)
     {
         // Obtiene el valor de búsqueda del validador y lo formatea para buscar coincidencias parciales en la base de datos
-        $value = '%' . Validator::getSearchValue() . '%';
 
-        $sql = 'SELECT*FROM tb_tallas where num_talla LIKE ?;'; // Consulta SQL para obtener todos los niveles
+
+        $sql = 'SELECT id_talla, num_talla FROM tb_tallas where num_talla LIKE ?;'; // Consulta SQL para obtener todos los niveles
         // Parámetros de la consulta SQL
         $params = array($value);
 
         // Ejecuta la consulta y devuelve los resultados
         return Database::getRows($sql, $params);
+    }
+
+    public function DeleteTallas()
+    {
+        $sql = 'DELETE FROM tb_tallas 
+        WHERE id_talla = ?;';
+        $params = array($this->id_talla); // Parámetros para la consulta SQL
+        return Database::executeRow($sql, $params); // Ejecución de la consulta SQL
     }
 
     public function readColores()
