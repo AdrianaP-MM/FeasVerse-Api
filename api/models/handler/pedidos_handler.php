@@ -121,6 +121,27 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
+    //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
+    public function readShoesOfCarritos()
+    {
+        // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
+        $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
+        nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
+        tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
+        FROM tb_detalles_pedidos
+        INNER JOIN tb_detalle_zapatos 
+        ON tb_detalle_zapatos.id_detalle_zapato = tb_detalles_pedidos.id_detalle_zapato
+        INNER JOIN tb_zapatos
+        ON tb_detalle_zapatos.id_zapato = tb_zapatos.id_zapato
+        INNER JOIN tb_colores
+        ON tb_colores.id_color = tb_detalle_zapatos.id_color
+        INNER JOIN tb_tallas
+        ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
+        WHERE id_cliente = ? AND tb_detalles_pedidos.estado_pedido = 'Carrito';";
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
     //SELECT DE LOS TRABAJADORES PARA SABER LAS CLASES DE PEDIDOS QUE TIENEN O REALIZARON
     public function readAllOrdersWorkers()
     {

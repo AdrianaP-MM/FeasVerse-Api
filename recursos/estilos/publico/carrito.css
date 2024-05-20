@@ -10,6 +10,15 @@
     /* Alineación del texto al centro en el encabezado de la tabla */
 }
 
+button{
+    border: none;
+    background-color: transparent;
+}
+
+button:hover{
+    background-color: gainsboro;
+}
+
 #tablaCarrito th,
 #tablaCarrito td {
     border: none;

@@ -39,12 +39,12 @@ const loadTemplate = async () => {
                                 <h5 class="text-white titillium-web-regular m-0 p-0">Ingresar</h5>
                             </a>
                             <ul class="dropdown-menu bg-color-4blue">
-                                <li><a class="dropdown-item my-2" href="/vistas/publico/inicio_sesion_registro.html">
+                                <li><a class="dropdown-item my-2" href="inicio_sesion_registro.html">
                                         <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Iniciar Sesión
                                         </h6>
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item my-2" href="/vistas/publico/configuraciones.html">
+                                <li><a class="dropdown-item my-2" href="configuraciones.html">
                                 <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
                             </a>
                         </li>
@@ -52,7 +52,7 @@ const loadTemplate = async () => {
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link space" aria-current="page" href="/vistas/publico/sobre_nosotros.html">
+                            <a class="nav-link space" aria-current="page" href="sobre_nosotros.html">
                                 <h5 class="text-white titillium-web-regular m-0 p-0">Sobre Nosotros</h5>
                             </a>
                         </li>
@@ -66,25 +66,25 @@ const loadTemplate = async () => {
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row flex-wrap contenedorMarcas">
                                         <li> <!--*Elemento 1-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 2-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 3-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
                                         </li>
                                         <li> <!--*Elemento 4-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="/vistas/publico/buscador.html">
+                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
                                                 <img width="100px" height="100px"
                                                     src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
                                             </a>
@@ -233,10 +233,10 @@ const loadTemplate = async () => {
 
 // Función para redirigir a la página "Sobre Nosotros"
 function gotoAboutUs() {
-    location.href = "../../vistas/publico/sobre_nosotros.html";
+    location.href = "sobre_nosotros.html";
 }
 
 // Función para redirigir a la página del "Carrito"
 function gotoCarrito() {
-    location.href = "../../vistas/publico/carrito.html";
+    location.href = "carrito.html";
 }

@@ -1,16 +1,75 @@
 // Declaraciones de constantes para los elementos del DOM
 const DIV_CARRITO = document.getElementById('carritoDeCompras');
 const DIV_METODO_COMPRA = document.getElementById('compraDatos');
+const TEXT_CANTIDAD_ZAPATO = document.getElementById('cantidadZapato');
+
+const TABLE_BODY = document.getElementById('tableBody');
+
+const CARRITO_API = 'services/publica/carrito.php';
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
     // Llama a una función para cargar el encabezado y el pie de página del documento
     loadTemplate();
-    
     // Visualización inicial del contenido: muestra el carrito de compras y oculta los detalles de compra
     DIV_CARRITO.classList.remove('d-none');
     DIV_METODO_COMPRA.classList.add('d-none');
 });
+
+
+const fillTable = async () => {
+    // Se inicializa el contenido de la tabla.
+    TABLE_BODY.innerHTML = '';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(CARRITO_API, 'readAll');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se recorre el conjunto de registros fila por fila.
+        DATA.dataset.forEach(row => {
+            // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+            TABLE_BODY.innerHTML += `
+            <tr class="table-row">
+                <td>
+                    <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}" alt="Foto zapato"
+                        height="50">
+                </td>
+                <td>${row.nombre_zapato}</td>
+                <td>${row.num_talla}</td>
+                <td>${row.nombre_color}</td>
+                <td>${row.precio_unitario_zapato}</td>
+                <td>${row.cantidad_pedido}</td>
+                <td>${row.precio_total}</td>
+                <td>
+                    <button onclick="actualizar(${row.id_detalles_pedido})">
+                        <img src="../../recursos/imagenes/icons/notebook.svg"
+                            alt="Icono de actualizar" class="imgBasura">
+                    </button>
+                </td>
+                <td>
+                    <button onclick="eliminar(${row.id_detalles_pedido})">
+                        <img src="../../recursos/imagenes/basura.svg" alt="Icono de basura"
+                            class="imgBasura">
+                    </button>
+                </td>
+            </tr>
+            `;
+        });
+        // Se muestra un mensaje de acuerdo con el resultado.
+        if (DATA.dataset == 0) {
+            await sweetAlert(1, DATA.message, true);
+        }
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+}
+
+const actualizar = async (id) => {
+    
+}
+
+const eliminar = async (id) => {
+    
+}
 
 // Función para cambiar la visualización al realizar una compra
 function botonComprar() {
