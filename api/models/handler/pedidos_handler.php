@@ -44,7 +44,7 @@ class PedidosHandler
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
-        ";
+        WHERE estado_pedido != 'Carrito';";
         // Ejecutar la consulta y devolver los resultados
         return Database::getRows($sql);
     }
@@ -75,7 +75,7 @@ class PedidosHandler
 
         // Creamos condiciones basadas en los parámetros de entrada
         if (!empty($searchTerm)) {
-            $sql .= " WHERE (tb_trabajadores.nombre_trabajador LIKE ?
+            $sql .= " WHERE estado_pedido != 'Carrito' AND (tb_trabajadores.nombre_trabajador LIKE ?
         OR tb_trabajadores.apellido_trabajador LIKE ?
         OR tb_clientes.nombre_cliente LIKE ?
         OR tb_clientes.apellido_cliente LIKE ?
@@ -92,7 +92,7 @@ class PedidosHandler
                 $params[] = $estado;
             }
         } elseif (!empty($estado)) {
-            $sql .= " WHERE tb_pedidos_clientes.estado_pedido = ?";
+            $sql .= " WHERE tb_pedidos_clientes.estado_pedido = ? AND estado_pedido != 'Carrito';";
             $params[] = $estado;
         }
 
@@ -136,6 +136,7 @@ class PedidosHandler
         FROM tb_trabajadores 
         INNER JOIN tb_pedidos_clientes 
         ON tb_pedidos_clientes.id_repartidor = tb_trabajadores.id_trabajador
+        WHERE estado_pedido != 'Carrito'
         GROUP BY 
         id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador";
 
@@ -158,12 +159,13 @@ class PedidosHandler
             FROM tb_trabajadores 
             INNER JOIN tb_pedidos_clientes 
             ON tb_pedidos_clientes.id_repartidor = tb_trabajadores.id_trabajador
-            WHERE id_trabajador LIKE ? OR
+            WHERE (id_trabajador LIKE ? OR
                 nombre_trabajador LIKE ? OR
                 apellido_trabajador LIKE ? OR
                 dui_trabajador LIKE ? OR
                 telefono_trabajador LIKE ? OR
-                correo_trabajador LIKE ?
+                correo_trabajador LIKE ?)
+                AND estado_pedido != 'Carrito'
             GROUP BY 
             id_trabajador, nombre_trabajador, apellido_trabajador, dui_trabajador, telefono_trabajador, correo_trabajador";
 
@@ -190,8 +192,8 @@ class PedidosHandler
         FROM tb_pedidos_clientes 
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
-        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento
-        WHERE id_trabajador = ? AND estado_pedido = ?";
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
+        WHERE id_trabajador = ? AND estado_pedido = ? AND estado_pedido != 'Carrito';";
         $params = array($this->id_repartidor, $this->estado_pedido);
         return Database::getRows($sql, $params);
     }
