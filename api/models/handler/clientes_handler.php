@@ -39,6 +39,7 @@ class ClienteHandler
         if (password_verify($clave_cliente, $data['clave_cliente'])) {
             // Si la contraseña coincide, establece las propiedades de la clase con los datos del usuario y devuelve true
             $this->id_cliente = $data['id_cliente'];
+            $_SESSION['idCliente'] = $data['id_cliente'];
             $this->correo_cliente = $data['correo_cliente'];
             $this->estado_cliente = $data['estado_cliente'];
             return true;
