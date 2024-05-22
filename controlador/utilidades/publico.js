@@ -2,7 +2,7 @@
 *   Controladores de uso general en las páginas web del sitio público.
 *   Sirve para manejar las plantillas del encabezado y pie del documento.
 */
-
+const USER_API = 'services/public/cliente.php';
 //* Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
 
@@ -24,7 +24,7 @@ const loadTemplate = async () => {
                         height="50">
                 </div>
                 <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            dbv           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

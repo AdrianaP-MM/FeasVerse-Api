@@ -26,8 +26,8 @@
     <!--Pagina de Inicio de Sesion-->
     <main class="d-flex align-items-center justify-content-center flex-column position-relative mainContent">
         <!--Contenedor para formulario de Inicio de Sesion-->
-        <div class="ContenedorForm d-none col-lg-5 col-md-10 col-sm-10 col-10
-        " id="loginForm">
+        <div class="ContenedorForm d-none col-lg-5 col-md-7 col-sm-10 col-10
+        " id="login">
             <!--Contenedor para imagen-->
             <div class="ContenedorImg d-flex justify-content-center align-items-center mt-5 mb-4" widht=>
                 <img src="../../recursos/imagenes/Group.svg">
@@ -40,7 +40,7 @@
                 <h6 class="textoBienvenida titillium-web-regular">ingresando la información solicitada debajo</h6>
             </div>
             <!--Formulario de inicio de sesion-->
-            <div class="row g-3">
+            <form class="row g-3" id="loginForm">
                 <!--Contenedor del Input de correo-->
                 <div class="correo col-11 ms-4">
                     <div class="d-flex align-items-start">
@@ -48,7 +48,7 @@
                         <label for="correo_electronico" class="form-label titillium-web-regular">Correo
                             electrónico</label>
                     </div>
-                    <input id="correo_electronico" type="email" name="correo_electronico"
+                    <input id="correoelectronico" type="email" name="correoelectronico"
                         class="form-control titillium-web-regular correo bordesAzul"
                         placeholder="Ingrese su correo electronico" required>
                 </div>
@@ -81,7 +81,7 @@
                     ¿No tienes una cuenta?
                     <a class="color-5blue" onclick="Registro()">Registrate GRATIS </a>
                 </label>
-            </div>
+            </form>
         </div>
         <!-- *Pagina de Registro -->
         <div class="ContenedorRegistro d-none position-relative col-lg-6 col-md-8 col-sm-8 col-10

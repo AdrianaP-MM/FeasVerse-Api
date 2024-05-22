@@ -1,5 +1,6 @@
 // Constante para establecer el formulario de inicio de sesión, olvidaste contraseña paso 1,2 y 3.
 const MAIN_TITLE = document.getElementById('mainTitle');
+const LOGIN_FORM_DIV = document.getElementById('login');
 const LOGIN_FORM = document.getElementById('loginForm');
 const PASSWORD1_FORM = document.getElementById('password1');
 const PASSWORD2_FORM = document.getElementById('password2');
@@ -8,12 +9,26 @@ const REGISTRO_FORM = document.getElementById('registro');
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Se muestra el formulario para iniciar sesión.
-    LOGIN_FORM.classList.remove('d-none');
+    LOGIN_FORM_DIV.classList.remove('d-none');
 });
+
+LOGIN_FORM.addEventListener('submit', async(event) =>{
+    event.preventDefault();
+
+    const FORM = new FormData(LOGIN_FORM);
+
+    const DATA = await fetchData(USER_API, 'logIn', FORM)
+
+    if (DATA.status) {
+        sweetAlert(1, DATA.message, true, 'index.html');
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+})
 
 function Registro() {
     // Se oculta el formulario para iniciar sesión y paso 2, 3.
-    LOGIN_FORM.classList.add('d-none');
+    LOGIN_FORM_DIV.classList.add('d-none');
     PASSWORD1_FORM.classList.add('d-none');
     PASSWORD2_FORM.classList.add('d-none');
     PASSWORD3_FORM.classList.add('d-none');
@@ -25,7 +40,7 @@ function Registro() {
 
 function showPass1() {
     // Se oculta el formulario para iniciar sesión y paso 2, 3.
-    LOGIN_FORM.classList.add('d-none');
+    LOGIN_FORM_DIV.classList.add('d-none');
     PASSWORD1_FORM.classList.remove('d-none');
     PASSWORD2_FORM.classList.add('d-none');
     PASSWORD3_FORM.classList.add('d-none');
@@ -38,7 +53,7 @@ function showPass1() {
 const showPass2 = async () => {
     await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 3
-    LOGIN_FORM.classList.add('d-none');
+    LOGIN_FORM_DIV.classList.add('d-none');
     PASSWORD1_FORM.classList.add('d-none');
     PASSWORD2_FORM.classList.remove('d-none');
     PASSWORD3_FORM.classList.add('d-none');
@@ -50,7 +65,7 @@ const showPass2 = async () => {
 const showPass3 = async () => {
     await sweetAlert(1, 'Código ingresado correctamente', true);
     // Se oculta el formulario para iniciar sesión y paso 1, 2
-    LOGIN_FORM.classList.add('d-none');
+    LOGIN_FORM_DIV.classList.add('d-none');
     PASSWORD1_FORM.classList.add('d-none');
     PASSWORD2_FORM.classList.add('d-none');
     PASSWORD3_FORM.classList.remove('d-none');
@@ -61,7 +76,7 @@ const showPass3 = async () => {
 
 function showLogIn() {
     // Se oculta el formulario para iniciar sesión y paso 1, 2
-    LOGIN_FORM.classList.remove('d-none');
+    LOGIN_FORM_DIV.classList.remove('d-none');
     REGISTRO_FORM.classList.add('d-none');
     // Se muestra el formulario de recuperación de contraseña (paso 3).
     // Se establece el título del contenido principal.
