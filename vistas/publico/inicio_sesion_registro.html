@@ -41,18 +41,17 @@
             </div>
             <!--Formulario de inicio de sesion-->
             <form class="row g-3" id="loginForm">
-                <!--Contenedor del Input de correo-->
+                <!-- Contenedor del Input de correo -->
                 <div class="correo col-11 ms-4">
                     <div class="d-flex align-items-start">
                         <img src="../../recursos/imagenes/correo.svg" class="me-1" width="20" alt="candado">
-                        <label for="correo_electronico" class="form-label titillium-web-regular">Correo
-                            electrónico</label>
+                        <label for="correo" class="form-label titillium-web-regular">Correo electrónico</label>
                     </div>
-                    <input id="correoelectronico" type="email" name="correoelectronico"
+                    <input id="correo" type="email" name="correo"
                         class="form-control titillium-web-regular correo bordesAzul"
                         placeholder="Ingrese su correo electronico" required>
                 </div>
-                <!--Contenedor del Input de contraseña-->
+                <!-- Contenedor del Input de contraseña -->
                 <div class="contraseña col-11 ms-4 mt-0">
                     <div class="d-flex align-items-start">
                         <img src="../../recursos/imagenes/candado2.svg" class="me-1" width="20" alt="candado">
@@ -62,26 +61,26 @@
                         class="form-control contraseña titillium-web-regular bordesAzul"
                         placeholder="Ingrese su contraseña" required>
                 </div>
-                <!--Texto para llevar al formulario de Recuperacion de Contraseña-->
+                <!-- Texto para llevar al formulario de Recuperacion de Contraseña -->
                 <label class="text-end col-11 mb-2 ms-3" for="olvidaste_clave">
-                    <a class="color-5blue" onclick="showPass1()">¿Olvidaste tu
-                        contraseña?</a>
+                    <a class="color-5blue" onclick="showPass1()">¿Olvidaste tu contraseña?</a>
                 </label>
-                <!--Boton para ingresar-->
+                <!-- Boton para ingresar -->
                 <div class="d-flex justify-content-center">
                     <div class="text-center col-sm-12 col-md-6">
-                        <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso"
-                            onclick="showInicio()"><i class="bi bi-send"></i>
-                            Ingresar</button>
+                        <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso"><i
+                                class="bi bi-send"></i>
+                            Ingresar
+                        </button>
                     </div>
                 </div>
-                <!--Texto para llevar al formulario de creacion de cuenta-->
+            </form>
+                <!-- Texto para llevar al formulario de creacion de cuenta -->
                 <label class="text-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
                     for="olvidaste_clave">
                     ¿No tienes una cuenta?
                     <a class="color-5blue" onclick="Registro()">Registrate GRATIS </a>
                 </label>
-            </form>
         </div>
         <!-- *Pagina de Registro -->
         <div class="ContenedorRegistro d-none position-relative col-lg-6 col-md-8 col-sm-8 col-10
@@ -313,8 +312,10 @@
     <!-- *Llamada al controlador del sitio público -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- *Llamada al controlador del sitio público -->
+    <script type="text/javascript" src="../../controlador/utilidades/publico.js"></script>
     <script type="text/javascript" src="../../controlador/publico/inicio_sesion.js"></script>
     <script type="text/javascript" src="../../controlador/utilidades/componentes.js"></script>
     <script type="text/javascript" src="../../controlador/privado/index.js"></script>
 </body>
+
 </html>

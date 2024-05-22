@@ -24,7 +24,7 @@ LOGIN_FORM.addEventListener('submit', async(event) =>{
     } else {
         sweetAlert(2, DATA.error, false);
     }
-})
+});
 
 function Registro() {
     // Se oculta el formulario para iniciar sesión y paso 2, 3.
@@ -84,13 +84,6 @@ function showLogIn() {
 
 function handleLoginFormSubmission(event) {
     event.preventDefault(); // Evita la recarga de la página por defecto
-}
-
-//Funcion de mostrar la dashboard
-const showInicio = async () =>
-{
-    await sweetAlert(1, 'Se ha iniciado correctamente la sesión', true);
-    location.href = 'index.html';
 }
 
 

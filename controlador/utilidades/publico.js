@@ -2,7 +2,7 @@
 *   Controladores de uso general en las páginas web del sitio público.
 *   Sirve para manejar las plantillas del encabezado y pie del documento.
 */
-const USER_API = 'services/public/cliente.php';
+const USER_API = 'services/publica/cliente.php';
 //* Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
 
@@ -11,6 +11,8 @@ const MAIN = document.querySelector('main');
 *   Retorno: ninguno.*/
 
 const loadTemplate = async () => {
+
+    const DATA = await fetchData(USER_API, 'getUser');
     // *Se agrega el encabezado de la página web antes del contenido principal.
     MAIN.insertAdjacentHTML('beforebegin', `
     <header class="sticky-top">

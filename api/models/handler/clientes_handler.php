@@ -55,7 +55,7 @@ class ClienteHandler
         if ($this->estado_cliente) {
             // Si está activo, establece las variables de sesión y devuelve true
             $_SESSION['idCliente'] = $this->id_cliente;
-            $_SESSION['correoCliente'] = $this->correo_cliente;
+            $_SESSION['correo_electronico'] = $this->correo_cliente;
             return true;
         } else {
             // Si no está activo, devuelve false
