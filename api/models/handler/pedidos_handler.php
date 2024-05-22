@@ -137,7 +137,9 @@ class PedidosHandler
         ON tb_colores.id_color = tb_detalle_zapatos.id_color
         INNER JOIN tb_tallas
         ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
-        WHERE id_cliente = ? AND tb_detalles_pedidos.estado_pedido = 'Carrito';";
+        INNER JOIN tb_pedidos_clientes
+        ON tb_pedidos_clientes.id_pedido_cliente = tb_detalles_pedidos.id_pedido_cliente
+        WHERE id_cliente = ? AND estado_pedido = 'Carrito';";
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }
@@ -227,7 +229,7 @@ class PedidosHandler
     {
         $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
                 VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->id_cliente, $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
+        $params = array($_SESSION['idCliente'], $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
         return Database::executeRow($sql, $params);
     }
 
@@ -235,9 +237,9 @@ class PedidosHandler
     public function updateRowPedidos()
     {
         $sql = 'UPDATE tb_pedidos_clientes
-                SET id_cliente = ?, id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
+                SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
                 WHERE id_pedido_cliente = ?';
-        $params = array($this->id_cliente, $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
+        $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
         return Database::executeRow($sql, $params);
     }
 

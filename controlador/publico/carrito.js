@@ -2,6 +2,8 @@
 const DIV_CARRITO = document.getElementById('carritoDeCompras');
 const DIV_METODO_COMPRA = document.getElementById('compraDatos');
 const TEXT_CANTIDAD_ZAPATO = document.getElementById('cantidadZapato');
+const TEXT_PRECIO_TOTAL = document.getElementById('totalPedido');
+
 
 const TABLE_BODY = document.getElementById('tableBody');
 
@@ -14,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Visualización inicial del contenido: muestra el carrito de compras y oculta los detalles de compra
     DIV_CARRITO.classList.remove('d-none');
     DIV_METODO_COMPRA.classList.add('d-none');
+    fillTable();
 });
 
 
@@ -24,6 +27,8 @@ const fillTable = async () => {
     const DATA = await fetchData(CARRITO_API, 'readAll');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
+        let total = 0;
+        let cant = 0;
         // Se recorre el conjunto de registros fila por fila.
         DATA.dataset.forEach(row => {
             // Se crean y concatenan las filas de la tabla con los datos de cada registro.
@@ -53,22 +58,61 @@ const fillTable = async () => {
                 </td>
             </tr>
             `;
+            total += parseFloat(row.precio_total);
+            cant += 1;
         });
+
+        TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${total}`;
+        TEXT_CANTIDAD_ZAPATO.innerHTML = `Tienes ${cant} zapatos en tu carrito`;
+
         // Se muestra un mensaje de acuerdo con el resultado.
         if (DATA.dataset == 0) {
             await sweetAlert(1, DATA.message, true);
         }
     } else {
-        sweetAlert(4, DATA.error, true);
+        const FORM1 = new FormData();
+        FORM1.append('idRepartidor', '');
+        FORM1.append('estado_pedido', 4);
+        FORM1.append('precio_total', '');
+        FORM1.append('fecha_de_inicio', '');
+        FORM1.append('fecha_de_entrega', '');
+        FORM1.append('id_costo_de_envio_por_departamento', '');
+
+        const DATA2 = await fetchData(CARRITO_API, 'createRow', FORM1);
+
+        if (DATA2.status) {
+            sweetAlert(4, DATA.error, true);
+            TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
+        } else {
+            sweetAlert(4, 'Inicia sesión para visualizar los productos del carrito', true);
+            TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
+            TEXT_CANTIDAD_ZAPATO.innerHTML = `Debes de inciar sesión para visualizar los productos del carrito`;
+
+        }
     }
 }
 
 const actualizar = async (id) => {
-    
+
+}
+
+const comprar = async () => {
+    // 1. Obtener la fecha actual
+    const today = new Date();
+
+    // 2. Formatear la fecha en 'YYYY-MM-DD'
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Los meses son indexados desde 0, por eso se suma 1
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // 3. Crear el objeto FormData y agregar la fecha
+    const FORM1 = new FormData();
+    FORM1.append('fecha_de_inicio', formattedDate);
 }
 
 const eliminar = async (id) => {
-    
+
 }
 
 // Función para cambiar la visualización al realizar una compra

@@ -78,6 +78,9 @@ class PedidosData extends PedidosHandler
             } elseif ($value == 3) {
                 $this->estado_pedido = 'Entregado';
                 return true;
+            } elseif ($value == 4) {
+                $this->estado_pedido = 'Carrito';
+                return true;
             } else {
                 // Si la validación falla o el valor no coincide con 1, 2 o 3
                 $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
