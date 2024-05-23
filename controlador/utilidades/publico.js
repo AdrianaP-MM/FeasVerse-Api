@@ -20,7 +20,7 @@ const loadTemplate = async () => {
         <nav class="navbar navbar-expand-lg bg-color-3blue shadow">
             <div class="container-fluid">
                 <div class="d-flex flex-row m-3 me-5">
-                    <a class="navbar-brand" href="/vistas/publico/index.html">
+                    <a class="navbar-brand" href="index.html">
                         <h2 class="text-white titillium-web-black m-0 p-0">FEASVERSE</h2>
                     </a>
                     <img src="../../recursos/imagenes/logo.svg" class="img1" alt="FeasVerseCompany" width="50" height="50">
@@ -175,9 +175,9 @@ const loadTemplate = async () => {
     document.body.insertAdjacentHTML('beforeend', footerTemplate);
 
     if (DATA.session) {
-        console.log('Sesión iniciada');
+        
     } else {
-        console.log('Sesión no iniciada');
+        
     }
 };
 
