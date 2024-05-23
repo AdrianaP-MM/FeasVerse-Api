@@ -3,6 +3,7 @@
 *   Sirve para manejar las plantillas del encabezado y pie del documento.
 */
 const USER_API = 'services/publica/cliente.php';
+const CARRITO_API = 'services/publica/carrito.php';
 //* Constante para establecer el elemento del contenido principal.
 const MAIN = document.querySelector('main');
 
@@ -171,7 +172,7 @@ const loadTemplate = async () => {
     document.body.insertAdjacentHTML('beforeend', footerTemplate);
 
     if (DATA.session) {
-        
+        comprobarCarrito();
     } else {
         
     }
@@ -186,3 +187,24 @@ function gotoAboutUs() {
 function gotoCarrito() {
     location.href = "carrito.html";
 }
+
+const comprobarCarrito = async () => {
+    const DATA0 = await fetchData(CARRITO_API, 'readAllCarrito');
+
+    if (DATA0.status) {
+
+    }
+    else {
+        const FORM1 = new FormData();
+        FORM1.append('estado_pedido', 4);
+
+        const DATA2 = await fetchData(CARRITO_API, 'createRow', FORM1);
+
+        if (DATA2.status) {
+            sweetAlert(4, DATA.error, true);
+        } else {
+            sweetAlert(4, DATA.error, true);
+        }
+    }
+}
+

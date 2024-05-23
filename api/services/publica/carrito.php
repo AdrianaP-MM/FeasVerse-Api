@@ -20,12 +20,7 @@ if (isset($_GET['action'])) {
                 $_POST = Validator::validateForm($_POST);
                 // Verificar si todos los datos necesarios son válidos
                 if (
-                    !$pedidos->setIdRepartidor($_POST['idRepartidor']) or
-                    !$pedidos->setEstadoPedido2($_POST['estado_pedido']) or
-                    !$pedidos->setPrecioTotal($_POST['precio_total']) or
-                    !$pedidos->setFechaDeInicio($_POST['fecha_de_inicio']) or
-                    !$pedidos->setFechaDeEntrega($_POST['fecha_de_entrega']) or
-                    !$pedidos->setIdCostoDeEnvioPorDepartamento($_POST['id_costo_de_envio_por_departamento'])
+                    !$pedidos->setEstadoPedido2($_POST['estado_pedido'])
                 ) {
                     // Si algún dato no es válido, se asigna un mensaje de error
                     $result['error'] = $pedidos->getDataError();
@@ -41,6 +36,14 @@ if (isset($_GET['action'])) {
             //LEER TODOS
             case 'readAll':
                 if ($result['dataset'] = $pedidos->readShoesOfCarritos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen carrito del cliente';
+                }
+                break;
+            case 'readAllCarrito':
+                if ($result['dataset'] = $pedidos->verCarrito()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {

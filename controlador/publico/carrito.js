@@ -7,7 +7,6 @@ const TEXT_PRECIO_TOTAL = document.getElementById('totalPedido');
 
 const TABLE_BODY = document.getElementById('tableBody');
 
-const CARRITO_API = 'services/publica/carrito.php';
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
@@ -35,7 +34,7 @@ const fillTable = async () => {
             TABLE_BODY.innerHTML += `
             <tr class="table-row">
                 <td>
-                    <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}" alt="Foto zapato"
+                    <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}" alt="${row.nombre_zapato}"
                         height="50">
                 </td>
                 <td>${row.nombre_zapato}</td>
@@ -70,30 +69,39 @@ const fillTable = async () => {
             await sweetAlert(1, DATA.message, true);
         }
     } else {
-        const FORM1 = new FormData();
-        FORM1.append('idRepartidor', '');
-        FORM1.append('estado_pedido', 4);
-        FORM1.append('precio_total', '');
-        FORM1.append('fecha_de_inicio', '');
-        FORM1.append('fecha_de_entrega', '');
-        FORM1.append('id_costo_de_envio_por_departamento', '');
+        comprobarCarritoCars();
+    }
+}
 
+const actualizar = async (id) => {
+
+}
+
+const comprobarCarritoCars = async () => {
+    const DATA0 = await fetchData(CARRITO_API, 'readAllCarrito');
+
+    if (DATA0.status) {
+        TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
+        TEXT_CANTIDAD_ZAPATO.innerHTML = `Tienes ${0} zapatos en tu carrito`;
+    }
+    else {
+        const FORM1 = new FormData();
+        FORM1.append('estado_pedido', 4);
         const DATA2 = await fetchData(CARRITO_API, 'createRow', FORM1);
 
         if (DATA2.status) {
             sweetAlert(4, DATA.error, true);
             TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
         } else {
-            sweetAlert(4, 'Inicia sesión para visualizar los productos del carrito', true);
+            sweetAlert(4, DATA.error, true);
             TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
             TEXT_CANTIDAD_ZAPATO.innerHTML = `Debes de inciar sesión para visualizar los productos del carrito`;
+        }
 
+        if (DATA === 'Acceso denegado') {
+            sweetAlert(4, 'Debe de iniciar sesión', true);
         }
     }
-}
-
-const actualizar = async (id) => {
-
 }
 
 const comprar = async () => {

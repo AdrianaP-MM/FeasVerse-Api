@@ -300,9 +300,9 @@ class PedidosHandler
     // Método para crear un nuevo pedido
     public function createRowPedidos()
     {
-        $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($_SESSION['idCliente'], $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
+        $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, estado_pedido)
+                VALUES(?, ?)';
+        $params = array($_SESSION['idCliente'], $this->estado_pedido);
         return Database::executeRow($sql, $params);
     }
 
@@ -334,6 +334,16 @@ class PedidosHandler
         ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
         INNER JOIN tb_pedidos_clientes
         ON tb_pedidos_clientes.id_pedido_cliente = tb_detalles_pedidos.id_pedido_cliente
+        WHERE id_cliente = ? AND estado_pedido = 'Carrito';";
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
+    //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
+    public function verCarrito()
+    {
+        // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
+        $sql = "SELECT*FROM tb_pedidos_clientes
         WHERE id_cliente = ? AND estado_pedido = 'Carrito';";
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
