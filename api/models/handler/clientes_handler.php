@@ -112,17 +112,17 @@ class ClienteHandler
 
     public function createRow()
     {
-        // Consulta SQL para insertar un nuevo cliente en la base de datos
-        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, fecha_de_nacimiento, fecha_de_registro, direccion_cliente, clave_cliente, estado_cliente)
-            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
+        // Consulta SQL para insertar un nuevo cliente en la base de datos sin incluir el campo estado_cliente
+        $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, fecha_de_nacimiento, fecha_de_registro, direccion_cliente, clave_cliente)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'; 
+    
         // Parámetros de la consulta SQL, usando propiedades de la clase
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->correo_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->fecha_de_registro, $this->direccion_cliente, $this->clave_cliente, $this->estado_cliente);
-
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->correo_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->fecha_de_registro, $this->direccion_cliente, $this->clave_cliente);
+    
         // Ejecuta la consulta de inserción y devuelve el resultado
         return Database::executeRow($sql, $params);
     }
-
+    
     public function readAll()
     {
         // Consulta SQL para leer todos los clientes de la base de datos

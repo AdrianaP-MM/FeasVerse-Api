@@ -75,12 +75,11 @@
                     </div>
                 </div>
             </form>
-                <!-- Texto para llevar al formulario de creacion de cuenta -->
-                <label class="text-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
-                    for="olvidaste_clave">
-                    ¿No tienes una cuenta?
-                    <a class="color-5blue" onclick="Registro()">Registrate GRATIS </a>
-                </label>
+            <!-- Texto para llevar al formulario de creacion de cuenta -->
+            <label class="text-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2" for="olvidaste_clave">
+                ¿No tienes una cuenta?
+                <a class="color-5blue" onclick="Registro()">Registrate GRATIS </a>
+            </label>
         </div>
         <!-- *Pagina de Registro -->
         <div class="ContenedorRegistro d-none position-relative col-lg-6 col-md-8 col-sm-8 col-10
@@ -98,46 +97,56 @@
             <!--Contenedor para FORMULARIO y texto -->
 
             <div class="ContenedorForms">
-                <form class="row needs-validation form1" novalidate>
+                <form class="row needs-validation form1" novalidate id="registroForm">
                     <div class="col-12 ps-5 col-lg-6">
                         <label for="nombreInput" class="form-label">Nombres</label>
                         <input type="text" class="form-control bordesAzul" id="nombreInput"
-                            placeholder="Ingresa los nombres" required>
+                            placeholder="Ingresa los nombres" required name="nombreInput">
                     </div>
                     <div class="col-12 ps-5 pe-lg-5 col-lg-6">
                         <label for="apellidosInput" class="form-label ">Apellidos</label>
                         <input type="text" class="form-control bordesAzul" id="apellidosInput"
-                            placeholder="Ingresa los apellidos" required>
+                            placeholder="Ingresa los apellidos" required name="apellidosInput">
                     </div>
                     <div class="col-12 ps-5 col-lg-6">
                         <label for="duiInput" class="form-label ">DUI</label>
                         <input type="text" class="form-control bordesAzul" id="duiInput" placeholder="Ingresa el dui"
-                            required>
+                            required name="duiInput">
                     </div>
                     <div class="col-12 ps-5 pe-lg-5 col-lg-6">
                         <label for="telefonoInput" class="form-label ">Teléfono</label>
                         <input type="text" class="form-control bordesAzul" id="telefonoInput"
-                            placeholder="Ingresa el número telefonico" required>
+                            placeholder="Ingresa el número telefonico" required name="telefonoInput">
                     </div>
                     <div class="col-12 ps-5 col-lg-6">
                         <label for="correoInput" class="form-label ">Correo electrónico</label>
                         <input type="email" class="form-control bordesAzul" id="correoInput"
-                            placeholder="Ingresa el correo electrónico" required>
+                            placeholder="Ingresa el correo electrónico" required name="correoInput">
                     </div>
                     <div class="col-12 ps-5 pe-lg-5 col-lg-6">
-                        <label for="fechanInput" class="form-label ">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control bordesAzul" id="fechanInput"
-                            placeholder="Ingresa la fecha de nacimiento" required>
+                        <label for="fecharInput" class="form-label">Fecha de Registro</label>
+                        <input type="date" class="form-control bordesAzul" id="fecharInput" name="fecharInput"
+                            placeholder="21/2/2024" required>
                     </div>
                     <div class="col-12 ps-5 col-lg-6">
-                        <label for="direccionInput" class="form-label ">Dirección</label>
-                        <input type="text" class="form-control bordesAzul" id="direccionInput"
-                            placeholder="Ingresa la dirección" required>
+                        <label for="fechanInput" class="form-label ">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control bordesAzul" id="fechanInput"
+                            placeholder="Ingresa la fecha de nacimiento" required name="fechanInput">
                     </div>
                     <div class="col-12 ps-5 pe-lg-5 col-lg-6">
+                        <label for="direccionInput" class="form-label ">Dirección</label>
+                        <input type="text" class="form-control bordesAzul" id="direccionInput"
+                            placeholder="Ingresa la dirección" required name="direccionInput">
+                    </div>
+                    <div class="col-12 ps-5 col-lg-6">
                         <label for="contraInput" class="form-label ">Contraseña</label>
                         <input type="password" class="form-control bordesAzul" id="contraInput"
-                            placeholder="Ingresa una contraseña" required>
+                            placeholder="Ingresa una contraseña" required name="contraInput">
+                    </div>
+                    <div class="col-12 ps-5 pe-lg-5 col-lg-6">
+                        <label for="direccionCliente" class="form-label">Confirmar contraseña</label>
+                        <input type="password" id="confirmContraseña" maxlength="250" class="form-control bordesAzul"
+                            required name="confirmContraseña">
                     </div>
                     <div class="row gx-5 ">
                         <div class="col">
@@ -149,8 +158,8 @@
                         </div>
                         <div class="col">
                             <div class="text-center d-flex justify-content-center mt-3">
-                                <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso1"
-                                    onclick="showInicio()"><i class="bi bi-send"></i>
+                                <button type="submit" class="btn btn-primary titillium-web-regular botonIngreso1"><i
+                                        class="bi bi-send"></i>
                                     Iniciar Sesion</button>
                             </div>
                         </div>

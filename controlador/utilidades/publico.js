@@ -41,7 +41,11 @@ const loadTemplate = async () => {
                             <ul class="dropdown-menu bg-color-4blue">
                                 <li><a class="dropdown-item my-2" href="configuraciones.html">
                                     <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
-                                </a></li>
+                                </a>
+                                </li>
+                                <li><a class="dropdown-item my-2" href="#" onclick="logOut()">
+                                <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Cerrar sesión</h6>
+                            </a>
                             </ul>
                         </li>` : `
                         <li class="nav-item dropdown">
@@ -176,3 +180,13 @@ const loadTemplate = async () => {
         console.log('Sesión no iniciada');
     }
 };
+
+// Función para redirigir a la página "Sobre Nosotros"
+function gotoAboutUs() {
+    location.href = "sobre_nosotros.html";
+}
+
+// Función para redirigir a la página del "Carrito"
+function gotoCarrito() {
+    location.href = "carrito.html";
+}
