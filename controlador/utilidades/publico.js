@@ -41,11 +41,10 @@ const loadTemplate = async () => {
                             <ul class="dropdown-menu bg-color-4blue">
                                 <li><a class="dropdown-item my-2" href="configuraciones.html">
                                     <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
-                                </a>
-                                </li>
+                                </a></li>
                                 <li><a class="dropdown-item my-2" href="#" onclick="logOut()">
-                                <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Cerrar sesión</h6>
-                            </a>
+                                    <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Cerrar sesión</h6>
+                                </a></li>
                             </ul>
                         </li>` : `
                         <li class="nav-item dropdown">
@@ -56,9 +55,6 @@ const loadTemplate = async () => {
                             <ul class="dropdown-menu bg-color-4blue">
                                 <li><a class="dropdown-item my-2" href="inicio_sesion_registro.html">
                                     <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Iniciar Sesión</h6>
-                                </a></li>
-                                <li><a class="dropdown-item my-2" href="configuraciones.html">
-                                    <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
                                 </a></li>
                             </ul>
                         </li>`}

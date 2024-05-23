@@ -38,6 +38,26 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Cliente inexistente';
                 }
                 break;
+                case 'editProfile':
+                    $_POST = Validator::validateForm($_POST);
+                    if (
+                        !$cliente->setId($_POST['id_cliente']) or
+                        !$cliente->setNombre($_POST['nombreInput']) or
+                        !$cliente->setApellido($_POST['apellidosInput']) or
+                        !$cliente->setDUI($_POST['duiInput']) or
+                        !$cliente->setTelefono($_POST['telefonoInput']) or
+                        !$cliente->setCorreo($_POST['correoInput']) or
+                        !$cliente->setNacimiento($_POST['fechanInput']) or
+                        !$cliente->setDireccion($_POST['direccion'])
+                    ) {
+                        $result['error'] = $cliente->getDataError();
+                    } elseif ($cliente->editProfile()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Usuario modificado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al modificar su usuario';
+                    }
+                    break;
             default:
                 $result['error'] = 'Acción no disponible dentro de la sesión1';
         }

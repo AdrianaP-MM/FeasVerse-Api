@@ -68,25 +68,39 @@ const returnBack = async () => {
     // Llamada a la función para mostrar un mensaje de confirmación, capturando la respuesta en una constante.
     const RESPONSE = await confirmAction('¿Seguro qué quieres regresar?', 'Los datos modificados no serán guardados');
     if (RESPONSE.isConfirmed) {
-        location.href = '/vistas/publico/configuraciones.html'
+        location.href = 'configuraciones.html'
     }
 }
 
+
+// Función para agregar o guardar datos con SweetAlert integrado.
 const addSave = async () => {
     const btnUpdate = document.getElementById('btnUpdate');
-
     var textoBoton = btnUpdate.textContent.trim();
-
-    if (textoBoton == 'Guardar') {
-        await sweetAlert(1, 'Se ha actualizado correctamente', true);
-        btnUpdate.textContent = 'Actualizar';
-        // Hacer los campos de entrada de solo lectura después de guardar.
-        makeFieldsReadOnly(true);
-    }
-    else if (textoBoton == 'Actualizar') {
+    if (textoBoton == 'Actualizar') {
         // Hacer los campos de entrada editables para actualizar.
         makeFieldsReadOnly(false);
         btnUpdate.textContent = 'Guardar';
+    }
+    else if (textoBoton == 'Guardar') {
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData(INFO_FORM);
+        FORM.append('id_cliente', id_worker);
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(CLIENTES_API, 'editProfile', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+            // Deshabilita la edición de los campos de entrada.
+            makeFieldsReadOnly(true);
+            btnUpdate.textContent = 'Actualizar';
+            // Se carga nuevamente la tabla para visualizar los cambios.
+            fillTable();
+        } else {
+            makeFieldsReadOnly(false);
+            sweetAlert(2, DATA.error, false);
+        }
     }
 }
 
