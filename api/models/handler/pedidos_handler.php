@@ -23,6 +23,8 @@ class PedidosHandler
     protected $cantidad_pedido = null;
     protected $precio_del_zapato = null;
 
+    //!PRIVADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
     //!METODOS DE BUSQUEDA
     //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
     public function readAllOrders()
@@ -121,29 +123,6 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
-    //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
-    public function readShoesOfCarritos()
-    {
-        // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
-        $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
-        nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
-        tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
-        FROM tb_detalles_pedidos
-        INNER JOIN tb_detalle_zapatos 
-        ON tb_detalle_zapatos.id_detalle_zapato = tb_detalles_pedidos.id_detalle_zapato
-        INNER JOIN tb_zapatos
-        ON tb_detalle_zapatos.id_zapato = tb_zapatos.id_zapato
-        INNER JOIN tb_colores
-        ON tb_colores.id_color = tb_detalle_zapatos.id_color
-        INNER JOIN tb_tallas
-        ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
-        INNER JOIN tb_pedidos_clientes
-        ON tb_pedidos_clientes.id_pedido_cliente = tb_detalles_pedidos.id_pedido_cliente
-        WHERE id_cliente = ? AND estado_pedido = 'Carrito';";
-        $params = array($_SESSION['idCliente']);
-        return Database::getRows($sql, $params);
-    }
-
     //SELECT DE LOS TRABAJADORES PARA SABER LAS CLASES DE PEDIDOS QUE TIENEN O REALIZARON
     public function readAllOrdersWorkers()
     {
@@ -221,28 +200,6 @@ class PedidosHandler
         return Database::getRows($sql, $params);
     }
 
-    //!CREATE UPDATE DELETE
-    //CUD DE TBPEDIDOSCLIENTES
-
-    // Método para crear un nuevo pedido
-    public function createRowPedidos()
-    {
-        $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
-                VALUES(?, ?, ?, ?, ?, ?, ?)';
-        $params = array($_SESSION['idCliente'], $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
-        return Database::executeRow($sql, $params);
-    }
-
-    // Método para actualizar un pedido existente
-    public function updateRowPedidos()
-    {
-        $sql = 'UPDATE tb_pedidos_clientes
-                SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
-                WHERE id_pedido_cliente = ?';
-        $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
-        return Database::executeRow($sql, $params);
-    }
-
     // Método para actualizar el estado de un pedido
     public function updateStatus()
     {
@@ -251,6 +208,55 @@ class PedidosHandler
                 WHERE id_pedido_cliente = ?';
         $params = array($this->estado_pedido, $this->id_pedido_cliente);
         return Database::executeRow($sql, $params);
+    }
+
+    // Método para obtener la cantidad de ventas por mes
+    public function ventasMes()
+    {
+        $sql = '
+        SELECT 
+            IFNULL(COUNT(pc.fecha_de_entrega), 0) AS Cantidad,
+            m.mes AS Mes
+        FROM 
+            (SELECT 1 AS mes UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 
+            UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS m
+        LEFT JOIN 
+            tb_pedidos_clientes pc ON MONTH(pc.fecha_de_entrega) = m.mes
+                                    AND pc.estado_pedido = "Entregado"
+                                    AND pc.fecha_de_entrega IS NOT NULL 
+                                    AND pc.fecha_de_entrega != "0000-00-00"
+                                    AND YEAR(pc.fecha_de_entrega) = YEAR(CURDATE())
+        GROUP BY 
+            m.mes
+        ORDER BY 
+            m.mes;';
+        return Database::getRows($sql);
+    }
+
+    //!PUBLICA
+
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
+    public function readAllOrdersClients()
+    {
+        // Consulta SQL para obtener todos los pedidos realizados
+        $sql = "SELECT id_trabajador,
+        CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
+        correo_trabajador,
+        telefono_trabajador,
+        estado_pedido,
+        fecha_de_inicio,
+        fecha_de_entrega,
+        precio_total,
+        costo_de_envio,
+        precio_total + costo_de_envio AS total_cobrar
+        FROM tb_pedidos_clientes 
+        INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
+        INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
+        WHERE estado_pedido != 'Carrito' AND id_cliente = ?;";
+
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
     }
 
     // Método para eliminar un pedido
@@ -291,26 +297,45 @@ class PedidosHandler
         return Database::executeRow($sql, $params);
     }
 
-    // Método para obtener la cantidad de ventas por mes
-    public function ventasMes()
+    // Método para crear un nuevo pedido
+    public function createRowPedidos()
     {
-        $sql = '
-        SELECT 
-            IFNULL(COUNT(pc.fecha_de_entrega), 0) AS Cantidad,
-            m.mes AS Mes
-        FROM 
-            (SELECT 1 AS mes UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 
-            UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS m
-        LEFT JOIN 
-            tb_pedidos_clientes pc ON MONTH(pc.fecha_de_entrega) = m.mes
-                                    AND pc.estado_pedido = "Entregado"
-                                    AND pc.fecha_de_entrega IS NOT NULL 
-                                    AND pc.fecha_de_entrega != "0000-00-00"
-                                    AND YEAR(pc.fecha_de_entrega) = YEAR(CURDATE())
-        GROUP BY 
-            m.mes
-        ORDER BY 
-            m.mes;';
-        return Database::getRows($sql);
+        $sql = 'INSERT INTO tb_pedidos_clientes (id_cliente, id_repartidor, estado_pedido, precio_total, fecha_de_inicio, fecha_de_entrega, id_costo_de_envio_por_departamento)
+                VALUES(?, ?, ?, ?, ?, ?, ?)';
+        $params = array($_SESSION['idCliente'], $this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento);
+        return Database::executeRow($sql, $params);
+    }
+
+    // Método para actualizar un pedido existente
+    public function updateRowPedidos()
+    {
+        $sql = 'UPDATE tb_pedidos_clientes
+                SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
+                WHERE id_pedido_cliente = ?';
+        $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
+        return Database::executeRow($sql, $params);
+    }
+
+    //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
+    public function readShoesOfCarritos()
+    {
+        // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
+        $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
+        nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
+        tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
+        FROM tb_detalles_pedidos
+        INNER JOIN tb_detalle_zapatos 
+        ON tb_detalle_zapatos.id_detalle_zapato = tb_detalles_pedidos.id_detalle_zapato
+        INNER JOIN tb_zapatos
+        ON tb_detalle_zapatos.id_zapato = tb_zapatos.id_zapato
+        INNER JOIN tb_colores
+        ON tb_colores.id_color = tb_detalle_zapatos.id_color
+        INNER JOIN tb_tallas
+        ON tb_tallas.id_talla = tb_detalle_zapatos.id_talla
+        INNER JOIN tb_pedidos_clientes
+        ON tb_pedidos_clientes.id_pedido_cliente = tb_detalles_pedidos.id_pedido_cliente
+        WHERE id_cliente = ? AND estado_pedido = 'Carrito';";
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
     }
 }
