@@ -27,24 +27,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
     fillTable();
 });
-
+let id_worker = null;
 
 const fillTable = async () => {
     // Petición para obtener los datos del registro solicitado.
-    const DATA = await fetchData(CLIENTES_API, 'readOne');
+    const DATA = await fetchData(CLIENTES_API, 'readCliente');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         const ROW = DATA.dataset;
-        NOMBRE.innerHTML = ROW.nombre_trabajador + ' ' + ROW.apellido_trabajador;
-        CORREO.innerHTML = ROW.correo_trabajador;
-        NOMBRES_INPUT.value = ROW.nombre_trabajador;
-        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
-        DUI_INPUT.value = ROW.dui_trabajador;
-        TEL_INPUT.value = ROW.telefono_trabajador;
-        CORREO_INPUT.value = ROW.correo_trabajador;
+        NOMBRE.innerHTML = ROW.nombre_cliente + ' ' + ROW.apellido_cliente;
+        CORREO.innerHTML = ROW.correo_cliente;
+        NOMBRES_INPUT.value = ROW.nombre_cliente;
+        APELLIDOS_INPUT.value = ROW.apellido_cliente;
+        DUI_INPUT.value = ROW.dui_cliente;
+        TEL_INPUT.value = ROW.telefono_cliente;
+        CORREO_INPUT.value = ROW.correo_cliente;
         FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+        DIRECCION_INPUT.value = ROW.direccion_cliente;  
 
-        id_worker = ROW.id_trabajador;
+        id_worker <= ROW.id_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
     }
