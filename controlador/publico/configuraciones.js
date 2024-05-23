@@ -4,20 +4,51 @@ const NOMBRES_INPUT = document.getElementById('nombreInput'),
     TEL_INPUT = document.getElementById('telefonoInput'),
     CORREO_INPUT = document.getElementById('correoInput'),
     FECHAN_INPUT = document.getElementById('fechanInput'),
-    DIRECCION_INPUT = document.getElementById('direccion');    
+    DIRECCION_INPUT = document.getElementById('direccion');
+
 const forms = document.querySelectorAll('form');
 const PASSWORD_FORM = document.getElementById('passwordForm');
+const NOMBRE = document.getElementById('nombreDeUsuario');
+const CORREO = document.getElementById('correoDeUsuario');
 
 // Declaración de constantes para el modal, el título del modal y el formulario de comentario.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     MODAL_TITLE = document.getElementById('modalTitle'),
-    COMMENT_FORM = document.getElementById('comentarioForm'); 
+    COMMENT_FORM = document.getElementById('comentarioForm');
+
+const INFO_FORM = document.getElementById('infoForm');
+
+const CLIENTES_API = 'services/publica/cliente.php';
+
 
 // *Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', async () => {
     // *Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
+    fillTable();
 });
+
+
+const fillTable = async () => {
+    // Petición para obtener los datos del registro solicitado.
+    const DATA = await fetchData(CLIENTES_API, 'readOne');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        const ROW = DATA.dataset;
+        NOMBRE.innerHTML = ROW.nombre_trabajador + ' ' + ROW.apellido_trabajador;
+        CORREO.innerHTML = ROW.correo_trabajador;
+        NOMBRES_INPUT.value = ROW.nombre_trabajador;
+        APELLIDOS_INPUT.value = ROW.apellido_trabajador;
+        DUI_INPUT.value = ROW.dui_trabajador;
+        TEL_INPUT.value = ROW.telefono_trabajador;
+        CORREO_INPUT.value = ROW.correo_trabajador;
+        FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
+
+        id_worker = ROW.id_trabajador;
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
 
 function showFormUser() {
     const FROM_DIV = document.getElementById('formDiv');
@@ -28,9 +59,7 @@ function showFormUser() {
     // Se oculta el formulario de tabla.
     MAIN.classList.add('d-none');
 }
-
-function showPedidos()
-{
+function showPedidos() {
     location.href = '/vistas/publico/tuspedidos.html';
 }
 

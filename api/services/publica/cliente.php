@@ -71,6 +71,12 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'La cuenta ha sido desactivada';
                 }
                 break;
+                case 'readOne';
+                if ($result['dataset'] = $cliente->readCliente()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Cliente inexistente';
+                }
             default:
                 $result['error'] = 'Acción no disponible fuera de la sesión2';
         }

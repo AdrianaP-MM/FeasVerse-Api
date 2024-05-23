@@ -148,6 +148,15 @@ class ClienteHandler
         return Database::getRow($sql, $params);
     }
 
+    public function readCliente()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, fecha_de_nacimiento, fecha_de_registro, direccion_cliente, estado_cliente
+        FROM tb_clientes
+        WHERE id_cliente = ?;'; // Consulta SQL para obtener los datos del administrador actual (logueado)
+        $params = array($_SESSION['idCliente']); // Parámetros para la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+    }
+
     public function updateRow()
     {
         // Consulta SQL para actualizar los datos de un cliente existente
