@@ -31,6 +31,7 @@ class ClienteHandler
             FROM tb_clientes
             WHERE correo_cliente = ? AND estado_cliente = 'Activo';";
         $params = array($correo_cliente);
+        
 
         // Obtiene los datos del usuario de la base de datos
         $data = Database::getRow($sql, $params);
@@ -40,6 +41,7 @@ class ClienteHandler
             // Si la contraseña coincide, establece las propiedades de la clase con los datos del usuario y devuelve true
             $this->id_cliente = $data['id_cliente'];
             $_SESSION['idCliente'] = $data['id_cliente'];
+            $_SESSION['nombreCliente'] = $data['nombre_cliente']; 
             $this->correo_cliente = $data['correo_cliente'];
             $this->estado_cliente = $data['estado_cliente'];
             return true;

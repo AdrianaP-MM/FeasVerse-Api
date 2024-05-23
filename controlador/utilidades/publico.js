@@ -13,8 +13,9 @@ const MAIN = document.querySelector('main');
 const loadTemplate = async () => {
 
     const DATA = await fetchData(USER_API, 'getUser');
-    // *Se agrega el encabezado de la página web antes del contenido principal.
-    MAIN.insertAdjacentHTML('beforebegin', `
+
+    // Header template
+    const headerTemplate = (session, username = '') => `
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg bg-color-3blue shadow">
             <div class="container-fluid">
@@ -22,19 +23,27 @@ const loadTemplate = async () => {
                     <a class="navbar-brand" href="/vistas/publico/index.html">
                         <h2 class="text-white titillium-web-black m-0 p-0">FEASVERSE</h2>
                     </a>
-                    <img src="../../recursos/imagenes/logo.svg" class="img1" alt="FeasVerseCompany" width="50"
-                        height="50">
+                    <img src="../../recursos/imagenes/logo.svg" class="img1" alt="FeasVerseCompany" width="50" height="50">
                 </div>
                 <button class="navbar-toggler mb-3" type="button" data-bs-toggle="collapse"
-            dbv           data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-underline">
-
+                        ${session ? `
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle space" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <h5 class="text-white titillium-web-regular m-0 p-0">${username}</h5>
+                            </a>
+                            <ul class="dropdown-menu bg-color-4blue">
+                                <li><a class="dropdown-item my-2" href="configuraciones.html">
+                                    <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
+                                </a></li>
+                            </ul>
+                        </li>` : `
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle space" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,23 +51,18 @@ const loadTemplate = async () => {
                             </a>
                             <ul class="dropdown-menu bg-color-4blue">
                                 <li><a class="dropdown-item my-2" href="inicio_sesion_registro.html">
-                                        <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Iniciar Sesión
-                                        </h6>
-                                    </a>
-                                </li>
+                                    <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Iniciar Sesión</h6>
+                                </a></li>
                                 <li><a class="dropdown-item my-2" href="configuraciones.html">
-                                <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
-                            </a>
-                        </li>
+                                    <h6 class="text-white titillium-web-regular m-0 p-0 py-1">Configuraciones</h6>
+                                </a></li>
                             </ul>
-                        </li>
-
+                        </li>`}
                         <li class="nav-item">
                             <a class="nav-link space" aria-current="page" href="sobre_nosotros.html">
                                 <h5 class="text-white titillium-web-regular m-0 p-0">Sobre Nosotros</h5>
                             </a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle space" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -67,85 +71,54 @@ const loadTemplate = async () => {
                             <ul class="dropdown-menu bg-color-4blue">
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row flex-wrap contenedorMarcas">
-                                        <li> <!--*Elemento 1-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                                <img width="100px" height="100px"
-                                                    src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                            </a>
-                                        </li>
-                                        <li> <!--*Elemento 2-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                                <img width="100px" height="100px"
-                                                    src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                            </a>
-                                        </li>
-                                        <li> <!--*Elemento 3-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                                <img width="100px" height="100px"
-                                                    src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                            </a>
-                                        </li>
-                                        <li> <!--*Elemento 4-->
-                                            <a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                                <img width="100px" height="100px"
-                                                    src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                            </a>
-                                        </li>
+                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
+                                            <img width="100px" height="100px"
+                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
+                                        </a></li>
+                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
+                                            <img width="100px" height="100px"
+                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
+                                        </a></li>
+                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
+                                            <img width="100px" height="100px"
+                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
+                                        </a></li>
+                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
+                                            <img width="100px" height="100px"
+                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
+                                        </a></li>
                                     </div>
                                 </div>
-
                             </ul>
                         </li>
-
                     </ul>
                     <div class="d-flex">
-                        <button class="btn btn-outline-primary" type="button" onclick="gotoCarrito()" >
+                        <button class="btn btn-outline-primary" type="button" onclick="gotoCarrito()">
                             <img src="../../recursos/imagenes/carrito.svg" width="50px" height="50">
                         </button>
                     </div>
                 </div>
             </div>
         </nav>
-    </header>
-    `);
-    //* Se agrega el pie de la página web después del contenido principal.
-    MAIN.insertAdjacentHTML('afterend', `
-    <footer class="text-center text-lg-start text-white bg-color-3blue">
-        <!-- Section: Social media -->
-        <section class="d-flex justify-content-between p-4 topFooter">
-            <!-- Right -->
-            <div>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="" class="text-white me-4">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </section>
-        <!-- Section: Social media -->
+    </header>`;
 
-        <!-- Section: Links  -->
+    // Footer template
+    const footerTemplate = `
+    <footer class="text-center text-lg-start text-white bg-color-3blue">
+        <section class="d-flex justify-content-between p-4 topFooter">
+            <div>
+                <a href="" class="text-white me-4"><i class="fab fa-facebook-f"></i></a>
+                <a href="" class="text-white me-4"><i class="fab fa-twitter"></i></a>
+                <a href="" class="text-white me-4"><i class="fab fa-google"></i></a>
+                <a href="" class="text-white me-4"><i class="fab fa-instagram"></i></a>
+                <a href="" class="text-white me-4"><i class="fab fa-linkedin"></i></a>
+                <a href="" class="text-white me-4"><i class="fab fa-github"></i></a>
+            </div>
+        </section>
         <section class="">
             <div class="container text-center text-md-start mt-5">
-                <!-- Grid row -->
                 <div class="row mt-3">
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
                         <h5 class="text-white titillium-web-bold">FEASVERSE</h5>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto" />
                         <h6 class="titillium-web-regular">
@@ -153,11 +126,7 @@ const loadTemplate = async () => {
                             garantizando la mejor calidad que no encontrarás en otro lado
                         </h6>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-                        <!-- Links -->
                         <h5 class="text-white titillium-web-bold">Desarrolladores</h5>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto" />
                         <h6 class="titillium-web-regular">
@@ -170,75 +139,40 @@ const loadTemplate = async () => {
                             <a href="#!" class="text-white">Fernando José Gomez Martinez</a>
                         </h6>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
                     <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-                        <!-- Content -->
                         <h5 class="text-white titillium-web-bold">Donde estamos ubicados</h5>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto" />
-                        <h6 class="titillium-web-regular">
-                            Norte y, 83 Avenida Sur, San Salvador
-                        </h6>
+                        <h6 class="titillium-web-regular">Norte y, 83 Avenida Sur, San Salvador</h6>
                         <button type="button" onclick="gotoAboutUs()"
-                            class="btn border shadow bg-color-4blue col-10 rounded-pill p-3 text15 titillium-web-semibold text-white mt-4">
-                            Más Sobre Nosotros</button>
+                            class="btn border shadow bg-color-4blue col-10 rounded-pill p-3 text15 text-white titillium-web-bold m-4">
+                            Sobre Nosotros
+                        </button>
                     </div>
-                    <!-- Grid column -->
-
-                    <!-- Grid column -->
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <!-- Links -->
-                        <h5 class="text-white titillium-web-bold">Contáctanos</h5>
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+                        <h5 class="text-white titillium-web-bold">Nuestras Redes</h5>
                         <hr class="mb-4 mt-0 d-inline-block mx-auto" />
-
-                        <div class="d-flex flex-row align-items-center mb-3">
-                            <img class="me-2" src="../../recursos/imagenes/icons/facebookIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="https://m.facebook.com/login/?locale=es_LA&refsrc=deprecated">
-                                <h6>FEASVerse</h6>
-                            </a>
-                        </div>
-                        <div class="d-flex flex-row align-items-center mb-3">
-                            <img class="me-2" src="../../recursos/imagenes/icons/instgrmIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2F&hl=es-es&aa_click=8891933284028179">
-                                <h6>FEAS.VERSE.SV </h6>
-                            </a>
-                        </div>
-                        <div class="d-flex flex-row align-items-center mb-3">
-                            <img class="me-2" src="../../recursos/imagenes/icons/xIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="https://twitter.com/i/flow/login">
-                                <h6>FEASVerse</h6>
-                            </a>
-                        </div>
-                        <div class="d-flex flex-row align-items-center mb-3">
-                            <img class="me-2" src="../../recursos/imagenes/icons//gmlIcon1.svg" alt="">
-                            <a class="text-white titillium-web-light" href="https://accounts.google.com/InteractiveLogin/signinchooser?continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ddm=0&emr=1&flowEntry=ServiceLogin&flowName=GlifWebSignIn&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&ifkv=ARZ0qKLk-_9PH-CNHmkMfHqPte6zFFvxKPPoiWa4KBmdLsXbfhmM9TThRGCrIuuIqnBDCyaH7r6veg&osid=1&passive=1209600&service=mail&theme=mn">
-                                <h6>feasverse.sv@gmail.com</h6>
-                            </a>
-                        </div>
+                        <h6 class="titillium-web-regular">
+                            <a href="#!" class="text-white">Facebook</a>
+                        </h6>
+                        <h6 class="titillium-web-regular mt-3">
+                            <a href="#!" class="text-white">Twitter</a>
+                        </h6>
+                        <h6 class="titillium-web-regular mt-3">
+                            <a href="#!" class="text-white">Instagram</a>
+                        </h6>
                     </div>
-                    <!-- Grid column -->
                 </div>
-                <!-- Grid row -->
             </div>
         </section>
-        <!-- Section: Links  -->
-        <!-- Copyright -->
-        <div class="text-center p-3 btmFooter">
-            Copyright © 2024 FeasVerseCompany. All rights reserved
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-`);
-}
+    </footer>`;
 
-// Función para redirigir a la página "Sobre Nosotros"
-function gotoAboutUs() {
-    location.href = "sobre_nosotros.html";
-}
+    // Insert header and footer into the document
+    document.body.insertAdjacentHTML('afterbegin', headerTemplate(DATA.session, DATA.username));
+    document.body.insertAdjacentHTML('beforeend', footerTemplate);
 
-// Función para redirigir a la página del "Carrito"
-function gotoCarrito() {
-    location.href = "carrito.html";
-}
+    if (DATA.session) {
+        console.log('Sesión iniciada');
+    } else {
+        console.log('Sesión no iniciada');
+    }
+};
