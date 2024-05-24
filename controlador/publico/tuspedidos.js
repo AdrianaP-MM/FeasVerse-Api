@@ -6,9 +6,9 @@ const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     STAR = document.getElementsByClassName('star'),
     STARS = document.querySelectorAll('.star a');
 
-const TABLE_BODY = document.getElementById('contenedorDePedidos');
+const CONTENEDOR_PEDIDOS = document.getElementById('contenedorDePedidos');
 
-const CARRITO_API = 'services/publica/pedidos.php';
+const CARRITO_API2 = 'services/publica/pedidos.php';
 
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
@@ -54,9 +54,9 @@ const botonAgregar = async () => {
 
 const fillPedidos = async () => {
     // Se inicializa el contenido de la tabla.
-    TABLE_BODY.innerHTML = '';
+    CONTENEDOR_PEDIDOS.innerHTML = '';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(CARRITO_API, 'readAllOrdersOfClients');
+    const DATA = await fetchData(CARRITO_API2, 'readAllOrdersOfClients');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
@@ -163,8 +163,9 @@ const fillPedidos = async () => {
             `;
 
             const FORM_ID = new FormData();
+            console.log(row.id_pedido_cliente);
             FORM_ID.append('idPedido', row.id_pedido_cliente);
-            const DATA2 = await fetchData(CARRITO_API, 'ReadAllShoesOfOneOrder', FORM_ID);
+            const DATA2 = await fetchData(CARRITO_API2, 'ReadAllShoesOfOneOrder', FORM_ID);
             if (DATA2.status) {
                 const contenedorTarjetas = document.getElementById(`contenedorCardsZaptos${row.id_pedido_cliente}`);
                 contenedorTarjetas.innerHTML = '';
@@ -235,7 +236,7 @@ const inicializarAccordion = async (form = null) => {
     let action = 'readAllOrdersOfClients';
 
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(CARRITO_API, action, form);
+    const DATA = await fetchData(CARRITO_API2, action, form);
 
     // Objeto para almacenar botones de acordeón y detalles correspondientes
     const accordionButtons = {};

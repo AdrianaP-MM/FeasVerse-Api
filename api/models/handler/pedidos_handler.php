@@ -239,7 +239,7 @@ class PedidosHandler
     public function readAllOrdersClients()
     {
         // Consulta SQL para obtener todos los pedidos realizados
-        $sql = "SELECT id_trabajador,
+        $sql = "SELECT id_pedido_cliente, id_trabajador,
         CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
         correo_trabajador,
         telefono_trabajador,
@@ -253,7 +253,7 @@ class PedidosHandler
         INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
         INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
         INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
-        WHERE estado_pedido != 'Carrito' AND id_cliente = ?;";
+        WHERE estado_pedido != 'Carrito' AND tb_pedidos_clientes.id_cliente = ?;";
 
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
