@@ -70,7 +70,7 @@
     /* Borde de 2px sólido gris */
     border: 2px solid gray;
     /* Altura ajustada al contenido */
-    height: fit-content;
+    flex: 1;
     /* Relleno interior de 30px */
     padding: 30px;
 }
