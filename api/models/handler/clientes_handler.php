@@ -71,7 +71,7 @@ class ClienteHandler
         $sql = 'UPDATE tb_clientes
             SET clave_cliente = ?
             WHERE id_cliente = ?';
-        $params = array($this->clave_cliente, $this->id_cliente);
+        $params = array($this->clave_cliente, $_SESSION['idCliente']);
 
         // Ejecuta la consulta de actualización de contraseña y devuelve el resultado
         return Database::executeRow($sql, $params);
@@ -87,6 +87,7 @@ class ClienteHandler
         // Ejecuta la consulta de actualización de perfil y devuelve el resultado
         return Database::executeRow($sql, $params);
     }
+
 
     /*
     *   Métodos para realizar las operaciones SCRUD (search, create, read, update, and delete).
@@ -107,6 +108,22 @@ class ClienteHandler
 
         // Ejecuta la consulta y devuelve los resultados
         return Database::getRows($sql, $params);
+    }
+
+    // Método para verificar la contraseña actual del trabajador
+    public function checkPassword($password)
+    {
+        $sql = 'SELECT clave_cliente
+                    FROM tb_clientes
+                   WHERE id_cliente = ?'; // Consulta SQL para obtener la contraseña del trabajador por ID
+        $params = array($_SESSION['idCliente']); // Parámetros para la consulta SQL
+        $data = Database::getRow($sql, $params); // Ejecución de la consulta SQL
+        // Verificación de coincidencia de contraseñas
+        if (password_verify($password, $data['clave_cliente'])) {
+            return true; // Retorna verdadero si la contraseña es correcta
+        } else {
+            return false; // Retorna falso si la contraseña es incorrecta
+        }
     }
 
     public function createRow()

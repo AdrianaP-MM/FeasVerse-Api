@@ -169,8 +169,19 @@ const botonCancelar = async () => {
 }
 
 // Definición de la función asíncrona para agregar y cerrar el modal.
-const botonAgregar = async () => {
+const botonActualizar= async () => {
     // Muestra una alerta de éxito y oculta el modal.
-    await sweetAlert(1, 'Se ha restablecido la contraseña correctamente', true);
-    DATA_MODAL.hide();
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(PASSWORD_FORM);
+    // Petición para actualizar la constraseña.
+    const DATA = await fetchData(CLIENTES_API, 'changePassword', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        sweetAlert(1, 'La contraseña ha sido modificada exitosamente', true);
+        DATA_MODAL.hide();
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
 }
