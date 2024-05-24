@@ -154,6 +154,20 @@ class ClienteData extends ClienteHandler
         }
     }
 
+    public function setPasswordCorreo($value, $min = 8, $max = 30)
+    {
+        if (!Validator::validateEmail($value)) {
+            $this->data_error = 'El correo no es válido';
+            return false;
+        } elseif (!Validator::validateLength($value, $min, $max)) {
+            $this->data_error = 'El correo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        } else {
+            $this->correo_cliente = $value;
+            return true;
+        }
+    }
+
     // Método para establecer el estado del cliente
     public function setEstado($value)
     {

@@ -51,6 +51,16 @@ class ClienteHandler
         }
     }
 
+    public function checkMail()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, correo_cliente
+                FROM tb_clientes
+                WHERE  correo_cliente = ?'; // Consulta SQL para verificar correo existente
+        $params = array($this->correo_cliente); // Parámetros para la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+    }
+
+
     public function checkStatus()
     {
         // Verifica si el estado del cliente es verdadero (activo)

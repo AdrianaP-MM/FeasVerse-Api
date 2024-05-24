@@ -158,6 +158,10 @@ function showLogIn() {
     // Se oculta el formulario para iniciar sesión y paso 1, 2
     LOGIN_FORM_DIV.classList.remove('d-none');
     REGISTRO_FORM_DIV.classList.add('d-none');
+    PASSWORD1_FORM.classList.add('d-none');
+    PASSWORD2_FORM.classList.add('d-none');
+    PASSWORD3_FORM.classList.add('d-none');
+
     // Se muestra el formulario de recuperación de contraseña (paso 3).
     // Se establece el título del contenido principal.
 }
@@ -165,6 +169,104 @@ function showLogIn() {
 function handleLoginFormSubmission(event) {
     event.preventDefault(); // Evita la recarga de la página por defecto
 }
+
+let DATA2; // Declara DATA2 en un ámbito más amplio para que sea accesible desde ambos eventos
+let id;
+
+document.getElementById("password1").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+
+    const INPUTCORREO = document.getElementById("correo_electronico_paso1");
+
+    FORM1 = new FormData();
+    FORM1.append('correo_electronico_paso1', INPUTCORREO.value);
+
+    // Lógica asíncrona para obtener los datos del usuario
+    const DATA = await fetchData(USER_API, 'searchMail', FORM1);
+    if (DATA.status) {
+        FORM2 = new FormData();
+        var resultado = DATA.dataset;
+        FORM2.append('correo_electronico_paso1', INPUTCORREO.value);
+        FORM2.append('nombre_destinatario', resultado.nombre_trabajador);
+
+        id = resultado.id_cliente;
+
+        DATA2 = await fetchData(USER_API, 'enviarCodigoRecuperacion', FORM2); // Asigna el valor de DATA2 aquí
+
+        if (DATA2.status) {
+            await sweetAlert(1, 'Se ha enviado correctamente al correo electrónico, ingrese el código enviado', true);
+            showPass2();
+        } else {
+            sweetAlert(2, DATA2.error, false);
+        }
+
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+});
+
+document.getElementById("password2").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+
+    const INPUTCODIGO = document.getElementById("codigoPaso2").value;
+    if (INPUTCODIGO.trim() === DATA2.codigo) {
+        showForgotPasswordStepThreeForm();
+    } else {
+        await sweetAlert(2, 'El código no coincide con el que se le envió en el correo.', true);
+    }
+});
+
+const showForgotPasswordStepThreeForm = async () => {
+    await sweetAlert(1, 'Código ingresado correctamente', true);
+    // Se oculta el formulario para iniciar sesión y paso 1, 2
+    LOGIN_FORM_DIV.classList.add('d-none');
+    PASSWORD1_FORM.classList.add('d-none');
+    PASSWORD2_FORM.classList.add('d-none');
+    // Se muestra el formulario de recuperación de contraseña (paso 3).
+    PASSWORD3_FORM.classList.remove('d-none');
+    // Se establece el título del contenido principal.
+    MAIN_TITLE.textContent = 'FEASVERSE - Recuperar contraseña';
+}
+
+function validatePassword(password) {
+    // Expresión regular para validar que la contraseña cumpla con los requisitos
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+}{":;'?/>.<,])[A-Za-z\d!@#$%^&*()_+}{":;'?/>.<,]{8,}$/;
+    return regex.test(password);
+}
+
+document.getElementById("password3").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Esto evita que el formulario se envíe de forma predeterminada
+    const INPUTCONTRA = document.getElementById("clavePaso3").value.trim();
+    const INPUTCONFIRMARCONTRA = document.getElementById("clave2_paso3").value.trim();
+
+    // Validar que las contraseñas coincidan
+    if (INPUTCONTRA === INPUTCONFIRMARCONTRA) {
+        // Validar que la contraseña cumpla con los requisitos
+        if (validatePassword(INPUTCONTRA)) {
+            const FORM1 = new FormData();
+            FORM1.append('claveCliente', INPUTCONTRA);
+            FORM1.append('confirmarCliente', INPUTCONFIRMARCONTRA);
+            FORM1.append('idCliente', id);
+
+            const DATA = await fetchData(USER_API, 'changePasswordLogin', FORM1);
+            if (DATA.status) {
+                sweetAlert(1, 'La contraseña ha sido restablecida correctamente', true);
+                showLogIn();
+            } else {
+                sweetAlert(2, DATA.error, false);
+            }
+        } else {
+            sweetAlert(2, 'La contraseña debe tener al menos 8 caracteres, incluir letras mayúsculas y minúsculas, dígitos y caracteres especiales.', true);
+        }
+    } else {
+        sweetAlert(2, 'Los campos de contraseña no coinciden.', true);
+    }
+});
+
+function handleLoginFormSubmission(event) {
+    event.preventDefault(); // Evita la recarga de la página por defecto
+}
+
 
 
 document.getElementById('duiInput').addEventListener('input', function (event) {
