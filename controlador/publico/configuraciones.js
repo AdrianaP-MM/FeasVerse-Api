@@ -45,7 +45,7 @@ const fillTable = async () => {
         FECHAN_INPUT.value = ROW.fecha_de_nacimiento;
         DIRECCION_INPUT.value = ROW.direccion_cliente;  
 
-        id_worker <= ROW.id_cliente;
+        id_worker = ROW.id_cliente;
     } else {
         sweetAlert(2, DATA.error, false);
     }
@@ -85,7 +85,7 @@ const addSave = async () => {
     else if (textoBoton == 'Guardar') {
         // Constante tipo objeto con los datos del formulario.
         const FORM = new FormData(INFO_FORM);
-        FORM.append('id_cliente', id_worker);
+        FORM.append('idCliente', id_worker);
         // Petición para guardar los datos del formulario.
         const DATA = await fetchData(CLIENTES_API, 'editProfile', FORM);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.

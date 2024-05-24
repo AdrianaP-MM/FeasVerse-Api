@@ -41,12 +41,12 @@ if (isset($_GET['action'])) {
                 case 'editProfile':
                     $_POST = Validator::validateForm($_POST);
                     if (
-                        !$cliente->setId($_POST['id_cliente']) or
+                        !$cliente->setId($_POST['idCliente']) or
                         !$cliente->setNombre($_POST['nombreInput']) or
                         !$cliente->setApellido($_POST['apellidosInput']) or
+                        !$cliente->setCorreo($_POST['correoInput']) or
                         !$cliente->setDUI($_POST['duiInput']) or
                         !$cliente->setTelefono($_POST['telefonoInput']) or
-                        !$cliente->setCorreo($_POST['correoInput']) or
                         !$cliente->setNacimiento($_POST['fechanInput']) or
                         !$cliente->setDireccion($_POST['direccion'])
                     ) {

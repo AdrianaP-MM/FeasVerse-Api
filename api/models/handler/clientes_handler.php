@@ -31,7 +31,7 @@ class ClienteHandler
             FROM tb_clientes
             WHERE correo_cliente = ? AND estado_cliente = 'Activo';";
         $params = array($correo_cliente);
-        
+
 
         // Obtiene los datos del usuario de la base de datos
         $data = Database::getRow($sql, $params);
@@ -41,7 +41,7 @@ class ClienteHandler
             // Si la contraseña coincide, establece las propiedades de la clase con los datos del usuario y devuelve true
             $this->id_cliente = $data['id_cliente'];
             $_SESSION['idCliente'] = $data['id_cliente'];
-            $_SESSION['nombreCliente'] = $data['nombre_cliente']; 
+            $_SESSION['nombreCliente'] = $data['nombre_cliente'];
             $this->correo_cliente = $data['correo_cliente'];
             $this->estado_cliente = $data['estado_cliente'];
             return true;
@@ -83,8 +83,7 @@ class ClienteHandler
         $sql = 'UPDATE tb_clientes
             SET nombre_cliente = ?, apellido_cliente = ?, correo_cliente = ?, dui_cliente = ?, telefono_cliente = ?, fecha_de_nacimiento = ?, direccion_cliente = ?
             WHERE id_cliente = ?';
-        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->correo_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->direccion_cliente, $this->id_cliente);
-
+        $params = array($this->nombre_cliente, $this->apellido_cliente, $this->correo_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->direccion_cliente, $_SESSION['idCliente']);
         // Ejecuta la consulta de actualización de perfil y devuelve el resultado
         return Database::executeRow($sql, $params);
     }
@@ -114,15 +113,15 @@ class ClienteHandler
     {
         // Consulta SQL para insertar un nuevo cliente en la base de datos sin incluir el campo estado_cliente
         $sql = 'INSERT INTO tb_clientes(nombre_cliente, apellido_cliente, correo_cliente, dui_cliente, telefono_cliente, fecha_de_nacimiento, fecha_de_registro, direccion_cliente, clave_cliente)
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)'; 
-    
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
         // Parámetros de la consulta SQL, usando propiedades de la clase
         $params = array($this->nombre_cliente, $this->apellido_cliente, $this->correo_cliente, $this->dui_cliente, $this->telefono_cliente, $this->fecha_de_nacimiento, $this->fecha_de_registro, $this->direccion_cliente, $this->clave_cliente);
-    
+
         // Ejecuta la consulta de inserción y devuelve el resultado
         return Database::executeRow($sql, $params);
     }
-    
+
     public function readAll()
     {
         // Consulta SQL para leer todos los clientes de la base de datos
