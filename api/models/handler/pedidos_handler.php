@@ -262,9 +262,9 @@ class PedidosHandler
     // Método para eliminar un pedido
     public function deleteRowPedidos()
     {
-        $sql = 'DELETE FROM tb_pedidos_clientes
-                WHERE id_pedido_cliente = ?';
-        $params = array($this->id_pedido_cliente);
+        $sql = 'DELETE FROM tb_detalles_pedidos
+                WHERE id_detalles_pedido = ?';
+        $params = array($this->id_detalles_pedido);
         return Database::executeRow($sql, $params);
     }
 
@@ -282,9 +282,9 @@ class PedidosHandler
     public function updateRowDetalle()
     {
         $sql = 'UPDATE tb_detalles_pedidos
-                SET id_pedido_cliente = ?, id_detalle_zapato = ?, cantidad_pedido = ?, precio_del_zapato = ?
+                SET cantidad_pedido = ?
                 WHERE id_detalles_pedido = ?';
-        $params = array($this->id_pedido_cliente, $this->id_detalle_zapato, $this->cantidad_pedido, $this->precio_del_zapato, $this->id_detalles_pedido);
+        $params = array($this->cantidad_pedido, $this->id_detalles_pedido);
         return Database::executeRow($sql, $params);
     }
 
@@ -310,9 +310,9 @@ class PedidosHandler
     public function updateRowPedidos()
     {
         $sql = 'UPDATE tb_pedidos_clientes
-                SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, fecha_de_entrega = ?, id_costo_de_envio_por_departamento = ?
+                SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, id_costo_de_envio_por_departamento = ?
                 WHERE id_pedido_cliente = ?';
-        $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->fecha_de_entrega, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
+        $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
         return Database::executeRow($sql, $params);
     }
 
@@ -320,7 +320,7 @@ class PedidosHandler
     public function readShoesOfCarritos()
     {
         // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
-        $sql = "SELECT id_detalles_pedido, foto_detalle_zapato,
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_detalles_pedido, foto_detalle_zapato,
         nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
         tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
         FROM tb_detalles_pedidos
@@ -338,6 +338,26 @@ class PedidosHandler
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }
+
+    public function readRepartidores()
+    {
+        $sql = "SELECT id_trabajador FROM tb_trabajadores WHERE id_nivel = 3
+                ORDER BY RAND()
+                LIMIT 1;";
+        return Database::getRow($sql);
+    }
+
+    //SELECT PARA VER PRECIOS
+    public function readPrecio()
+    {
+        // Consulta SQL para obtener un detalle de zapato aleatorio de un pedido específico
+        $sql = "SELECT id_costo_de_envio_por_departamento, costo_de_envio
+            FROM tb_costos_de_envio_por_departamento
+            ORDER BY RAND()
+            LIMIT 1;";
+        return Database::getRow($sql); // Asumiendo que getRow devuelve una sola fila
+    }
+
 
     //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES
     public function verCarrito()

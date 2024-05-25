@@ -122,28 +122,28 @@ TODO importante // realtando algo
                                         <!--NOMBRES-->
                                         <div class="col-md-6 mt-3">
                                             <input type="text" class="form-control" id="nombreInput"
-                                                placeholder="Ingresa los nombres" value="Adriana Paola" required>
+                                                placeholder="Ingresa los nombres" value="Adriana Paola" readonly>
                                         </div>
                                         <!--APELLIDOS-->
                                         <div class="col-md-6 mt-3">
                                             <input type="text" class="form-control" id="apellidosInput"
-                                                placeholder="Ingresa los apellidos" value="Menjía" required>
+                                                placeholder="Ingresa los apellidos" value="Menjía" readonly>
                                         </div>
                                         <!--DIRECCION-->
                                         <div class="col-md-12 mt-3">
                                             <input type="text" class="form-control" id="direccion"
-                                                placeholder="Ingres la direccion" value="mi casita" required>
+                                                placeholder="Ingres la direccion" value="mi casita" readonly>
                                         </div>
                                         <!--CORREO ELECTRONICO-->
                                         <div class="col-md-6 mt-3">
                                             <input type="email" class="form-control" id="correoInput"
                                                 placeholder="Ingresa el correo electronico"
-                                                value="adrigol.lola@gmail.com" required>
+                                                value="adrigol.lola@gmail.com" readonly>
                                         </div>
                                         <!--TELEFONO-->
                                         <div class="col-md-6 mt-3">
                                             <input type="text" class="form-control" id="telefonoInput"
-                                                placeholder="Ingresa el número telefonico" value="7084-2281" required>
+                                                placeholder="Ingresa el número telefonico" value="7084-2281" readonly>
                                         </div>
                                     </form>
                                 </div>
@@ -192,7 +192,7 @@ TODO importante // realtando algo
                                 <div
                                     class="col-lg-12 d-flex flex-column align-items-center justify-content-center mt-4">
                                     <h6 class="titillium-web-extralight">Total + envio = Total final</h6>
-                                    <h4 class="titillium-web-light">$490 + $10 = $500</h4>
+                                    <h4 class="titillium-web-light" id="totalPagar">$490 + $10 = $500</h4>
                                 </div>
                             </div>
                         </div>
@@ -212,12 +212,56 @@ TODO importante // realtando algo
                                 <div class="col-lg-3">
                                     <button type="button" id="Botoncomprar"
                                         class="btn text-center btn-primary titillium-web-bold bg-color-5blue text-white"
-                                        onclick="paga()"><i class="bi bi-send"></i>
+                                        onclick="comprar()"><i class="bi bi-send"></i>
                                         Pagar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para actualizar contraseña-->
+        <div class="modal fade" id="dataModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Encabezado del modal -->
+                    <div class="modal-header d-flex justify-content-center align-items-center">
+                        <h1 class="modal-title fs-5 text-center" id="modalTitle">Modificar cantidad de zapato</h1>
+                    </div>
+                    <!-- Formulario para actualizar contraseña -->
+                    <form id="cantForm" name="cantForm">
+                        <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                            <div class="offset-col-1 col-10">
+                                <!-- Campos -->
+                                <div class="col-sm-12 col-md-12">
+                                    <label for="cant" class="form-label">Cantidad:</label>
+                                    <input id="cant" type="number" name="cant"
+                                        class="form-control editableInput" required>
+                                </div>
+                            </div>
+                            <!-- Botones en el pie del modal -->
+                            <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                                <div class="contenedorBotones3 offset-lg-3 col-6">
+                                    <div class="col-12 d-flex justify-content-center">
+                                        <!-- Botón para cancelar la operación -->
+                                        <button type="button" id="cancelarBtn"
+                                            class="btn btn2 btn-primary me-2 shadow text18 titillium-web-regular col-4"
+                                            onclick="botonCancelar()">
+                                            Cancelar
+                                        </button>
+                                        <!-- Botón para actualizar el registro -->
+                                        <button type="button" id="btnUpdate"
+                                            class="btn btn3 btn-primary shadow text18 titillium-web-regular col-4"
+                                            onclick="actuEvent()">
+                                            Actualizar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

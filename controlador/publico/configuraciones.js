@@ -13,8 +13,7 @@ const CORREO = document.getElementById('correoDeUsuario');
 
 // Declaración de constantes para el modal, el título del modal y el formulario de comentario.
 const DATA_MODAL = new bootstrap.Modal('#dataModal'),
-    MODAL_TITLE = document.getElementById('modalTitle'),
-    COMMENT_FORM = document.getElementById('comentarioForm');
+    MODAL_TITLE = document.getElementById('modalTitle');
 
 const INFO_FORM = document.getElementById('infoForm');
 
@@ -27,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
     fillTable();
 });
+
 let id_worker = null;
 
 const fillTable = async () => {

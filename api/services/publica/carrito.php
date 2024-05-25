@@ -52,15 +52,73 @@ if (isset($_GET['action'])) {
                 break;
             //ACTUALIZAR
             case 'updateRow':
-            
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si todos los datos necesarios son válidos
+                if (
+                    !$pedidos->setIdDetallesPedido($_POST['idDetallesPedido']) or
+                    !$pedidos->setCantidadPedido($_POST['cantidad']) 
+                ) {
+                    // Si algún dato no es válido, se asigna un mensaje de error
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($pedidos->updateRowDetalle()) {
+                    // Si se actualiza el registro correctamente, se establece el estado como éxito y se crea un mensaje
+                    $result['status'] = 1;
+                    $result['message'] = 'Carrito actualizado correctamente';
+                } else {
+                    // Si ocurre un problema al actualizar el cliente, se asigna un mensaje de error
+                    $result['error'] = 'Ocurrió un problema al actualizar el carrito';
+                }
                 break;
             //CAMBIAR EsTATUS DEL PEDIDO
-            case 'updateStatus':
-            
+            case 'update':
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si todos los datos necesarios son válidos
+                if (
+                    !$pedidos->setIdPedidoCliente($_POST['id_pedido_cliente']) or
+                    !$pedidos->setIdRepartidor($_POST['id_repartidor']) or
+                    !$pedidos->setEstadoPedido2($_POST['estado_pedido']) or
+                    !$pedidos->setPrecioTotal($_POST['estado_pedido']) or
+                    !$pedidos->setFechaDeInicio($_POST['fecha_de_inicio']) or
+                    !$pedidos->setIdCostoDeEnvioPorDepartamento($_POST['id_costo_de_envio_por_departamento'])
+                    
+                ) {
+                    // Si algún dato no es válido, se asigna un mensaje de error
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($pedidos->updateRowPedidos()) {
+                    // Si se actualiza el registro correctamente, se establece el estado como éxito y se crea un mensaje
+                    $result['status'] = 1;
+                    $result['message'] = 'Estado del pedido actualizado correctamente';
+                } else {
+                    // Si ocurre un problema al actualizar el cliente, se asigna un mensaje de error
+                    $result['error'] = 'Ocurrió un problema al actualizar el estado del pedido';
+                }
                 break;
             // ELIMINAR
             case 'deleteRow':
-            
+                if (!$pedidos->setIdDetallesPedido($_POST['idDetallesPedido'])) {
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($pedidos->deleteRowPedidos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Carrito eliminado correctamente';
+                } else {
+                    $result['error'] = 'Ocurrió un problema al eliminar el carrito';
+                }
+                break;
+            case 'leerPrecios':
+                if ($result['dataset'] = $pedidos->readPrecio()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No precios';
+                }
+                break;
+            case 'leerRepartidor':
+                if ($result['dataset'] = $pedidos->readRepartidores()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No repartidores';
+                }
                 break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
