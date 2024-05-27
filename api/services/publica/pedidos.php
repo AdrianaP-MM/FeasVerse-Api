@@ -17,7 +17,13 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
                 //BUSCAR ORDENES
             case 'searchOrders':
-
+                $_POST = Validator::validateForm($_POST);
+                if ($result['dataset'] = $pedidos->SearchOrdersClients($_POST['estado'])) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos con esa búsqueda';
+                }
                 break;
             //BUSCAR ORDEnES
             case 'readAllOrdersOfClients':
@@ -26,6 +32,15 @@ if (isset($_GET['action'])) {
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
                     $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
+            //COMENTARIOS
+            case 'comentario':
+                if ($result['dataset'] = $pedidos->comentario()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'Ya comentaste a los productos comprados';
                 }
                 break;
                 //LEER TODO LOS ZAPATOS DE UNA ORDEN

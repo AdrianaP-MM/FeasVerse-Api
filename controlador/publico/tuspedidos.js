@@ -6,6 +6,8 @@ const DATA_MODAL = new bootstrap.Modal('#dataModal'),
     STAR = document.getElementsByClassName('star'),
     STARS = document.querySelectorAll('.star a');
 
+const SELECT_PEDIDO = document.getElementById('buscadorInput');
+
 const CONTENEDOR_PEDIDOS = document.getElementById('contenedorDePedidos');
 
 const CARRITO_API2 = 'services/publica/pedidos.php';
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Asigna un evento de clic a cada estrella para agregar la clase 'active' a las estrellas seleccionadas
     STARS.forEach((item, index1) => {
         item.addEventListener('click', () => {
-            STARS.forEach((STAR, index2) => { 
+            STARS.forEach((STAR, index2) => {
                 index1 >= index2 ? STAR.classList.add('active') : STAR.classList.remove('active');
             });
         });
@@ -34,6 +36,7 @@ const openDetails = async () => {
     // Muestra el modal y resetea el formulario de comentario.
     DATA_MODAL.show();
     COMMENT_FORM.reset();
+    fillSelect(CARRITO_API2, 'comentario', 'zapato');
 }
 
 // Definición de la función asíncrona para cancelar y cerrar el modal.
@@ -52,15 +55,23 @@ const botonAgregar = async () => {
     DATA_MODAL.hide();
 }
 
-const fillPedidos = async () => {
+const fillPedidos = async (form = null) => {
     // Se inicializa el contenido de la tabla.
     CONTENEDOR_PEDIDOS.innerHTML = '';
+    // Se inicializa la acción a realizar.
+    (form) ? action = 'searchOrders' : action = 'readAllOrdersOfClients';
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(CARRITO_API2, 'readAllOrdersOfClients');
+    const DATA = await fetchData(CARRITO_API2, action, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(async (row) => {
+            let fechaDeEntrega = 'No entregado';
+
+            if (row.fecha_de_entrega !== null) {
+                fechaDeEntrega = row.fecha_de_entrega;
+            }
+
             CONTENEDOR_PEDIDOS.innerHTML += `
             <div id="cardsDeZapato" class="col-lg-12">
                 <div class="accordion mt-3 mb-4" id="detalleInformacionPedido${row.id_pedido_cliente}">
@@ -120,7 +131,7 @@ const fillPedidos = async () => {
                                                 <b>Fecha de inicio del pedido:</b> ${row.fecha_de_inicio}
                                             </h6>
                                             <h6 class="titillium-web" id="fechaFin">
-                                                <b>Fecha de entrega:</b> ${row.fecha_de_entrega}
+                                                <b>Fecha de entrega:</b> ${fechaDeEntrega}
                                             </h6>
                                         </div>
                                     </div>
@@ -130,7 +141,7 @@ const fillPedidos = async () => {
                                         <div class="accordion-body" id="detallesDeMasPedidoRepartidor">
                                             <div class="col-lg-12">
                                                 <div
-                                                    class="container d-flex align-items-center justify-content-center" 
+                                                    class="container col-lg-12 d-flex flex-wrap justify-content-center align-items-center" 
                                                     id="contenedorCardsZaptos${row.id_pedido_cliente}">
                                                     
                                                 </div>
@@ -153,7 +164,7 @@ const fillPedidos = async () => {
                                     class="accordion-button rounded-bottom rounded-top-0" type="button"
                                     data-bs-toggle="collapse" data-bs-target="#collapseOnePedido${row.id_pedido_cliente}"
                                     aria-expanded="true" aria-controls="collapseOnePedido${row.id_pedido_cliente}">
-                                    Total del pedido: $1,440
+                                    Total del pedido: $${row.total_cobrar}
                                 </button>
                             </div>
                         </div>
@@ -219,9 +230,9 @@ const fillPedidos = async () => {
             } else {
                 await sweetAlert(2, DATA2.error, true);
             }
-    
+
         });
-        
+
         if (DATA.dataset == 0) {
             await sweetAlert(1, DATA.message, true);
         }
@@ -232,12 +243,12 @@ const fillPedidos = async () => {
 }
 
 
-const inicializarAccordion = async (form = null) => {
-    let action = 'readAllOrdersOfClients';
 
+const inicializarAccordion = async (form = null) => {
+    // Se inicializa el contenido de la tabla.
+    (form) ? action = 'searchOrders' : action = 'readAllOrdersOfClients';
     // Petición para obtener los registros disponibles.
     const DATA = await fetchData(CARRITO_API2, action, form);
-
     // Objeto para almacenar botones de acordeón y detalles correspondientes
     const accordionButtons = {};
     const infoRepartidors = {};
@@ -284,3 +295,45 @@ const inicializarAccordion = async (form = null) => {
         });
     }
 }
+
+// Método del evento para cuando cambia algo en el select.
+SELECT_PEDIDO.addEventListener('change', async () => {
+    await handleSearch();
+});
+
+// Definir la función para manejar la búsqueda
+async function handleSearch() {
+    try {
+        const SELECT_PEDIDO = document.getElementById('buscadorInput');
+        var value = parseInt(SELECT_PEDIDO.value);
+        var estado = '';
+
+        if (value === 1) {
+            estado = 'Entregado';
+        } else if (value === 2) {
+            estado = 'En camino';
+        }
+        else if (value === 3) {
+            estado = 'Pendiente';
+        }
+        else {
+            estado = '';
+        }
+
+        if (estado === '') {
+            await fillPedidos();
+            inicializarAccordion();
+        }
+        else {
+            // Constante tipo objeto con los datos del formulario.
+            const FORM1 = new FormData();
+            FORM1.append('estado', estado);
+            // Llamada a la función para llenar la tabla con los resultados de la búsqueda.
+            await fillPedidos(FORM1);
+            inicializarAccordion(FORM1);
+        }
+    } catch (error) {
+
+    }
+}
+

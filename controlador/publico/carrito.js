@@ -1,25 +1,25 @@
 // Declaraciones de constantes para los elementos del DOM
-const DIV_CARRITO = document.getElementById('carritoDeCompras');
-const DIV_METODO_COMPRA = document.getElementById('compraDatos');
-const TEXT_CANTIDAD_ZAPATO = document.getElementById('cantidadZapato');
-const TEXT_PRECIO_TOTAL = document.getElementById('totalPedido');
-const CANT_INPUT = document.getElementById('cant');
+const DIV_CARRITO = document.getElementById('carritoDeCompras'); // Contenedor del carrito de compras
+const DIV_METODO_COMPRA = document.getElementById('compraDatos'); // Contenedor de los datos del método de compra
+const TEXT_CANTIDAD_ZAPATO = document.getElementById('cantidadZapato'); // Elemento para mostrar la cantidad de zapatos
+const TEXT_PRECIO_TOTAL = document.getElementById('totalPedido'); // Elemento para mostrar el precio total del pedido
+const CANT_INPUT = document.getElementById('cant'); // Input para la cantidad
 
-const TABLE_BODY = document.getElementById('tableBody');
+const TABLE_BODY = document.getElementById('tableBody'); // Cuerpo de la tabla del carrito de compras
 
 // Obtener elementos del DOM utilizando los IDs declarados
-const NOMBRE_INPUT = document.getElementById('nombreInput');
-const APELLIDOS_INPUT = document.getElementById('apellidosInput');
-const DIRECCION = document.getElementById('direccion');
-const CORREO_INPUT = document.getElementById('correoInput');
-const TELEFONO_INPUT = document.getElementById('telefonoInput');
-const TOTAL_PAGAR = document.getElementById('totalPagar');
+const NOMBRE_INPUT = document.getElementById('nombreInput'); // Input para el nombre del cliente
+const APELLIDOS_INPUT = document.getElementById('apellidosInput'); // Input para los apellidos del cliente
+const DIRECCION = document.getElementById('direccion'); // Input para la dirección del cliente
+const CORREO_INPUT = document.getElementById('correoInput'); // Input para el correo electrónico del cliente
+const TELEFONO_INPUT = document.getElementById('telefonoInput'); // Input para el teléfono del cliente
+const TOTAL_PAGAR = document.getElementById('totalPagar'); // Elemento para mostrar el total a pagar
 
-const CLIENTES_API = 'services/publica/cliente.php';
+const CLIENTES_API = 'services/publica/cliente.php'; // URL de la API de clientes
 
 // Declaración de constantes para el modal, el título del modal y el formulario de comentario.
-const DATA_MODAL = new bootstrap.Modal('#dataModal'),
-    MODAL_TITLE = document.getElementById('modalTitle');
+const DATA_MODAL = new bootstrap.Modal('#dataModal'), // Instancia del modal de Bootstrap
+    MODAL_TITLE = document.getElementById('modalTitle'); // Título del modal
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
@@ -28,11 +28,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Visualización inicial del contenido: muestra el carrito de compras y oculta los detalles de compra
     DIV_CARRITO.classList.remove('d-none');
     DIV_METODO_COMPRA.classList.add('d-none');
+    // Llama a la función para llenar la tabla con los datos del carrito
     fillTable();
 });
 
-let total = 0;
+let total = 0; // Variable para almacenar el total del pedido
 
+// Función para llenar la tabla con los datos del carrito
 const fillTable = async () => {
     // Se inicializa el contenido de la tabla.
     TABLE_BODY.innerHTML = '';
@@ -70,12 +72,13 @@ const fillTable = async () => {
                 </td>
             </tr>
             `;
-            total += parseFloat(row.precio_total);
-            cant += 1;
+            total += parseFloat(row.precio_total); // Suma el precio total del pedido
+            cant += 1; // Incrementa la cantidad de zapatos
 
-            idPedidoCliente = row.id_pedido_cliente;
+            idPedidoCliente = row.id_pedido_cliente; // Asigna el ID del pedido del cliente
         });
 
+        // Muestra el precio total y la cantidad de zapatos en el carrito
         TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${total}`;
         TEXT_CANTIDAD_ZAPATO.innerHTML = `Tienes ${cant} zapatos en tu carrito`;
 
@@ -101,7 +104,7 @@ const fillTable = async () => {
             } else {
                 sweetAlert(4, DATA.error, true);
                 TEXT_PRECIO_TOTAL.innerHTML = `<b>Total:</b> $${0}`;
-                TEXT_CANTIDAD_ZAPATO.innerHTML = `Debes de inciar sesión para visualizar los productos del carrito`;
+                TEXT_CANTIDAD_ZAPATO.innerHTML = `Debes de iniciar sesión para visualizar los productos del carrito`;
             }
 
             if (DATA === 'Acceso denegado') {
@@ -111,15 +114,17 @@ const fillTable = async () => {
     }
 }
 
-let idDetalle;
+let idDetalle; // Variable para almacenar el ID del detalle del pedido
 
+// Función para actualizar la cantidad de un producto en el carrito
 const actualizar = async (id, cantidad) => {
     idDetalle = id;
-    document.getElementById('cant').value = cantidad;
+    document.getElementById('cant').value = cantidad; // Asigna la cantidad al input
     // Muestra el modal y resetea el formulario de comentario.
     DATA_MODAL.show();
 }
 
+// Función para realizar la compra
 const comprar = async () => {
     if (total === 0) {
         sweetAlert(3, 'No hay productos en el carrito', false);
@@ -145,13 +150,14 @@ const comprar = async () => {
             FORM1.append('estado_pedido', 1);
             FORM1.append('id_pedido_cliente', idPedidoCliente);
             FORM1.append('id_repartidor', idRepartidor);
+            FORM1.append('precio_total', total);
 
             // 4. Realizar la petición para update
             const DATA = await fetchData(CARRITO_API, 'update', FORM1);
 
             if (DATA.status) {
-                paga();
-                fillTable();
+                paga(); // Muestra la notificación de éxito
+                fillTable(); // Vuelve a cargar la tabla
             } else {
                 sweetAlert(3, DATA.error, false);
             }
@@ -162,10 +168,10 @@ const comprar = async () => {
     }
 }
 
-let idPedidoCliente;
+let idPedidoCliente; // Variable para almacenar el ID del pedido del cliente
 
+// Función para eliminar un producto del carrito
 const eliminar = async (id) => {
-
     const RESPONSE = await confirmAction('¿Seguro qué quieres eliminar este producto?', 'Se eliminará de tu carrito de compras');
     if (RESPONSE.isConfirmed) {
         const FORM = new FormData();
@@ -174,15 +180,14 @@ const eliminar = async (id) => {
 
         if (DATA.status) {
             sweetAlert(1, DATA.message, false);
-            fillTable();
+            fillTable(); // Vuelve a cargar la tabla
         } else {
             sweetAlert(3, DATA.error, false);
         }
     }
-
 }
 
-
+// Función para manejar el evento de actualización
 const actuEvent = async () => {
     const BTN_UPDATE = document.getElementById('btnUpdate');
     var textoBoton = BTN_UPDATE.textContent.trim();
@@ -231,12 +236,12 @@ const actuEvent = async () => {
     }
 }
 
-
+// Función para hacer los campos de entrada solo lectura o editables
 function makeFieldsReadOnly(isReadOnly) {
     CANT_INPUT.readOnly = isReadOnly;
 }
 
-let idPrecio;
+let idPrecio; // Variable para almacenar el ID del precio de envío
 
 // Función para cambiar la visualización al realizar una compra
 const botonComprar = async () => {
@@ -244,11 +249,13 @@ const botonComprar = async () => {
     DIV_CARRITO.classList.add('d-none');
     const DATA0 = await fetchData(CARRITO_API, 'leerPrecios');
     if (DATA0.status) {
-
         const ROW0 = DATA0.dataset;
         idPrecio = ROW0.id_costo_de_envio_por_departamento;
 
-        TOTAL_PAGAR.innerHTML = `$${total} + $${ROW0.costo_de_envio} = $${total + ROW0.costo_de_envio}`;
+        let all = parseFloat(total) + parseFloat(ROW0.costo_de_envio);
+
+        // Muestra el total a pagar, incluyendo el costo de envío
+        TOTAL_PAGAR.innerHTML = `$${total} + $${ROW0.costo_de_envio} = $${all}`;
 
         // Petición para obtener los datos del registro solicitado.
         const DATA = await fetchData(CLIENTES_API, 'readCliente');
@@ -261,7 +268,7 @@ const botonComprar = async () => {
             CORREO_INPUT.value = ROW.correo_cliente;
             DIRECCION.value = ROW.direccion_cliente;
 
-            DIV_METODO_COMPRA.classList.remove('d-none');
+            DIV_METODO_COMPRA.classList.remove('d-none'); // Muestra el contenedor de método de compra
 
         } else {
             sweetAlert(2, DATA.error, false);
@@ -324,4 +331,3 @@ const botonCancelar = async () => {
         DATA_MODAL.hide();
     }
 }
-

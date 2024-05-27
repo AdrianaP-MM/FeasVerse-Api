@@ -56,21 +56,21 @@ class PedidosHandler
     {
         // Inicializamos la consulta SQL
         $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
-    CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
-    CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
-    correo_cliente,
-    telefono_cliente,
-    direccion_cliente,
-    estado_pedido,
-    fecha_de_inicio,
-    fecha_de_entrega,
-    precio_total,
-    costo_de_envio,
-    precio_total + costo_de_envio AS total_cobrar
-    FROM tb_pedidos_clientes 
-    INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
-    INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
-    INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento";
+        CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
+        CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
+        correo_cliente,
+        telefono_cliente,
+        direccion_cliente,
+        estado_pedido,
+        fecha_de_inicio,
+        fecha_de_entrega,
+        precio_total,
+        costo_de_envio,
+        precio_total + costo_de_envio AS total_cobrar
+        FROM tb_pedidos_clientes 
+        INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
+        INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento";
 
         // Inicializamos los parámetros para la consulta
         $params = array();
@@ -78,13 +78,13 @@ class PedidosHandler
         // Creamos condiciones basadas en los parámetros de entrada
         if (!empty($searchTerm)) {
             $sql .= " WHERE estado_pedido != 'Carrito' AND (tb_trabajadores.nombre_trabajador LIKE ?
-        OR tb_trabajadores.apellido_trabajador LIKE ?
-        OR tb_clientes.nombre_cliente LIKE ?
-        OR tb_clientes.apellido_cliente LIKE ?
-        OR tb_clientes.correo_cliente LIKE ?
-        OR tb_clientes.telefono_cliente LIKE ?
-        OR tb_clientes.direccion_cliente LIKE ?
-        OR tb_costos_de_envio_por_departamento.costo_de_envio LIKE ?)";
+            OR tb_trabajadores.apellido_trabajador LIKE ?
+            OR tb_clientes.nombre_cliente LIKE ?
+            OR tb_clientes.apellido_cliente LIKE ?
+            OR tb_clientes.correo_cliente LIKE ?
+            OR tb_clientes.telefono_cliente LIKE ?
+            OR tb_clientes.direccion_cliente LIKE ?
+            OR tb_costos_de_envio_por_departamento.costo_de_envio LIKE ?)";
 
             // Añadimos los términos de búsqueda a los parámetros
             $params = array_fill(0, 8, "%$searchTerm%");
@@ -258,6 +258,49 @@ class PedidosHandler
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }
+
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
+    public function comentario()
+    {
+        // Consulta SQL para obtener todos los pedidos realizados
+        $sql = "SELECT dp.id_detalles_pedido, z.nombre_zapato
+        FROM tb_detalle_zapatos dz
+        INNER JOIN tb_zapatos z ON dz.id_zapato = z.id_zapato
+        INNER JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        INNER JOIN tb_pedidos_clientes p ON dp.id_pedido_cliente = p.id_pedido_cliente
+        LEFT JOIN tb_comentarios c ON dp.id_detalles_pedido = c.id_detalles_pedido
+        WHERE c.id_comentario IS NULL AND p.id_cliente = ?
+        GROUP BY nombre_zapato;";
+
+        $params = array($_SESSION['idCliente']);
+        return Database::getRows($sql, $params);
+    }
+
+
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
+    public function SearchOrdersClients($estado)
+    {
+        // Consulta SQL para obtener todos los pedidos realizados
+        $sql = "SELECT id_pedido_cliente, id_trabajador,
+        CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
+        correo_trabajador,
+        telefono_trabajador,
+        estado_pedido,
+        fecha_de_inicio,
+        fecha_de_entrega,
+        precio_total,
+        costo_de_envio,
+        precio_total + costo_de_envio AS total_cobrar
+        FROM tb_pedidos_clientes 
+        INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
+        INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
+        WHERE estado_pedido != 'Carrito' AND tb_pedidos_clientes.id_cliente = ? AND tb_pedidos_clientes.estado_pedido = ?;";
+
+        $params = array($_SESSION['idCliente'], $estado);
+        return Database::getRows($sql, $params);
+    }
+
 
     // Método para eliminar un pedido
     public function deleteRowPedidos()

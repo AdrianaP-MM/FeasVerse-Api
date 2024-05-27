@@ -77,7 +77,7 @@ if (isset($_GET['action'])) {
                     !$pedidos->setIdPedidoCliente($_POST['id_pedido_cliente']) or
                     !$pedidos->setIdRepartidor($_POST['id_repartidor']) or
                     !$pedidos->setEstadoPedido2($_POST['estado_pedido']) or
-                    !$pedidos->setPrecioTotal($_POST['estado_pedido']) or
+                    !$pedidos->setPrecioTotal($_POST['precio_total']) or
                     !$pedidos->setFechaDeInicio($_POST['fecha_de_inicio']) or
                     !$pedidos->setIdCostoDeEnvioPorDepartamento($_POST['id_costo_de_envio_por_departamento'])
                     
