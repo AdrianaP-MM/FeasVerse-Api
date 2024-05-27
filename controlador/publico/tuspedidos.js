@@ -19,8 +19,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadTemplate();
 
     // Asigna un evento de clic a cada estrella para agregar la clase 'active' a las estrellas seleccionadas
+    // Asigna un evento de clic a cada estrella para agregar la clase 'active' a las estrellas seleccionadas y guardar la calificación
+    const STARS = document.querySelectorAll('.estrella');
     STARS.forEach((item, index1) => {
-        item.addEventListener('click', () => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault();  // Prevenir el comportamiento por defecto del enlace
+            calificacionSeleccionada = parseInt(item.getAttribute('data-value'));  // Guardar la calificación seleccionada
             STARS.forEach((STAR, index2) => {
                 index1 >= index2 ? STAR.classList.add('active') : STAR.classList.remove('active');
             });
@@ -36,7 +40,7 @@ const openDetails = async () => {
     // Muestra el modal y resetea el formulario de comentario.
     DATA_MODAL.show();
     COMMENT_FORM.reset();
-    fillSelect(CARRITO_API2, 'comentario', 'zapato');
+    fillSelect(CARRITO_API2, 'comentario', 'idDetalleZapato');
 }
 
 // Definición de la función asíncrona para cancelar y cerrar el modal.
@@ -48,11 +52,47 @@ const botonCancelar = async () => {
     }
 }
 
-// Definición de la función asíncrona para agregar y cerrar el modal.
+// Función asíncrona para agregar y cerrar el modal
 const botonAgregar = async () => {
-    // Muestra una alerta de éxito y oculta el modal.
-    await sweetAlert(1, 'Se ha agregado correctamente', true);
-    DATA_MODAL.hide();
+    if (calificacionSeleccionada === 0) {
+        await sweetAlert(2, 'Tiene que poner una calificación de 1 al 5', true);
+    }
+    else {
+        // 1. Obtener la fecha actual
+        const today = new Date();
+
+        // 2. Formatear la fecha en 'YYYY-MM-DD'
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); // Los meses son indexados desde 0, por eso se suma 1
+        const day = String(today.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
+        // Aquí puedes agregar el código para insertar la calificación en la base de datos
+        FORM = new FormData(COMMENT_FORM);
+        FORM.append('calificacion', calificacionSeleccionada);
+        FORM.append('fecha', formattedDate);
+        FORM.append('estado', 1);
+
+        // Petición para agregar un comentario
+        const DATA = await fetchData(CARRITO_API2, 'comentarioCreate', FORM);
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Muestra una alerta de éxito y oculta el modal.
+            await sweetAlert(1, 'Se ha agregado correctamente', true);
+            DATA_MODAL.hide();
+            // Restablecer las estrellas
+            calificacionSeleccionada = 0; // Restablecer la calificación seleccionada a 0
+            STARS.forEach(STAR => {
+                STAR.classList.remove('active');
+            });
+            COMMENT_FORM.reset();
+
+        }
+        else {
+            await sweetAlert(2, DATA.error, true);
+        }
+    }
+
 }
 
 const fillPedidos = async (form = null) => {
@@ -174,7 +214,6 @@ const fillPedidos = async (form = null) => {
             `;
 
             const FORM_ID = new FormData();
-            console.log(row.id_pedido_cliente);
             FORM_ID.append('idPedido', row.id_pedido_cliente);
             const DATA2 = await fetchData(CARRITO_API2, 'ReadAllShoesOfOneOrder', FORM_ID);
             if (DATA2.status) {

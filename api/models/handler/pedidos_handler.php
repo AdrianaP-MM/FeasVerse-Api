@@ -23,6 +23,14 @@ class PedidosHandler
     protected $cantidad_pedido = null;
     protected $precio_del_zapato = null;
 
+    protected $id_comentario = null;
+    protected $titulo_comentario = null;
+    protected $descripcion_comentario = null;
+    protected $calificacion_comentario = null;
+    protected $estado_comentario = null;
+    protected $fecha_del_comentario = null;
+
+
     //!PRIVADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
     //!METODOS DE BUSQUEDA
@@ -275,6 +283,23 @@ class PedidosHandler
         $params = array($_SESSION['idCliente']);
         return Database::getRows($sql, $params);
     }
+
+    // Método para crear un nuevo comentario
+    public function createComentario()
+    {
+        $sql = 'INSERT INTO tb_comentarios (titulo_comentario, descripcion_comentario, calificacion_comentario, estado_comentario, fecha_del_comentario, id_detalles_pedido)
+            VALUES (?, ?, ?, ?, ?, ?)';
+        $params = array(
+            $this->titulo_comentario,
+            $this->descripcion_comentario,
+            $this->calificacion_comentario,
+            $this->estado_comentario,
+            $this->fecha_del_comentario,
+            $this->id_detalles_pedido
+        );
+        return Database::executeRow($sql, $params);
+    }
+
 
 
     //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS

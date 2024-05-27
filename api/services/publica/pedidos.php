@@ -43,6 +43,28 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ya comentaste a los productos comprados';
                 }
                 break;
+            //AGREGRAR COMENTARIO
+            case 'comentarioCreate':
+                // Validar y procesar los datos del formulario para crear un nuevo registro
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si todos los datos necesarios son válidos
+                if (
+                    !$pedidos->setIdDetallesPedido($_POST['idDetalleZapato']) or
+                    !$pedidos->setTituloComentario($_POST['tituloComentario']) or
+                    !$pedidos->setDescripcionComentario($_POST['descripcionComentario']) or
+                    !$pedidos->setFechaComentario($_POST['fecha']) or
+                    !$pedidos->setCalificacionComentario($_POST['calificacion']) or
+                    !$pedidos->setEstadoComentario($_POST['estado'])
+                ) {
+                    // Si algún dato no es válido, se asigna un mensaje de error
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->createComentario()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha creado correctamente el comentario';
+                } else {
+                    $result['error'] = 'Ya comentaste a los productos comprados';
+                }
+                break;
                 //LEER TODO LOS ZAPATOS DE UNA ORDEN
             case 'ReadAllShoesOfOneOrder':
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])) {

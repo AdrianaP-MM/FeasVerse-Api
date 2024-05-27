@@ -80,7 +80,7 @@ TODO importante // realtando algo
             <div class="col-lg-12 d-flex justify-content-center align-items-center">
                 <div class="col-lg-10" id="contenedorDePedidos">
                     <!--Comienzo de cards de zapatos-->
-                    
+
                 </div>
             </div>
             <div class="offset-lg-1 col-lg-10 mb-4">
@@ -110,20 +110,20 @@ TODO importante // realtando algo
                         <div class="modal-body row g-3 d-flex flex-column align-items-center">
                             <!-- Campo de titulo -->
                             <div class="col-sm-12 col-md-12">
-                                <label for="calificacion" class="form-label">Títutlo del comentario:</label>
-                                <input id="calificacion" type="text" name="nombreTrabajador"
+                                <label for="tituloComentario" class="form-label">Títutlo del comentario:</label>
+                                <input id="tituloComentario" type="text" name="tituloComentario"
                                     class="form-control editableInput" required>
                             </div>
 
                             <!-- Área de comentario -->
                             <div class="input-group">
                                 <span class="input-group-text">Comentario:</span>
-                                <textarea class="form-control" aria-label="With textarea" id="descripcionMarcaD"
+                                <textarea class="form-control" aria-label="With textarea" id="descripcionComentario" name="descripcionComentario"
                                     required></textarea>
                             </div>
 
                             <div class="col-12">
-                                <select class="form-select rounded-3 text-center text-white bg-color-1gray" id="zapato"
+                                <select class="form-select rounded-3 text-center text-white bg-color-1gray" id="idDetalleZapato" name="idDetalleZapato"
                                     required>
                                 </select>
                             </div>
@@ -136,15 +136,15 @@ TODO importante // realtando algo
                                 </label>
                                 <div class="col-12 container1 d-flex justify-content-center">
                                     <div class="star">
-                                        <a href="#" class="bi-star-fill estrella"></a>
-                                        <a href="#" class="bi-star-fill estrella"></a>
-                                        <a href="#" class="bi-star-fill estrella"></a>
-                                        <a href="#" class="bi-star-fill estrella"></a>
-                                        <a href="#" class="bi-star-fill estrella"></a>
+                                        <a href="#" class="bi-star-fill estrella" data-value="1"></a>
+                                        <a href="#" class="bi-star-fill estrella" data-value="2"></a>
+                                        <a href="#" class="bi-star-fill estrella" data-value="3"></a>
+                                        <a href="#" class="bi-star-fill estrella" data-value="4"></a>
+                                        <a href="#" class="bi-star-fill estrella" data-value="5"></a>
                                     </div>
                                 </div>
-
                             </div>
+
 
                             <!-- Botones en el pie del modal -->
                             <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">

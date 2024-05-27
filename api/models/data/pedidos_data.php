@@ -189,6 +189,91 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    public function setIdComentario($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del comentario es incorrecto';
+            return false;
+        }
+    }
+
+    public function setEstadoComentario($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            if ($value == 1) {
+                $this->estado_comentario = 'Activo';
+                return true;
+            } elseif ($value == 2) {
+                $this->estado_comentario = 'Desactivo';
+                return true;
+            }
+            else{    
+                // Si la validación falla o el valor no coincide con 1 o 2
+                $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
+                return false;
+            }
+            
+        }
+        else{    
+            // Si la validación falla o el valor no coincide con 1 o 2
+            $this->data_error = 'Ha ocurrido un error: El valor proporcionado no es válido';
+            return false;
+        }
+    }
+
+    public function setDescripcionComentario($value, $min = 2, $max = 250)
+    {
+        if (!Validator::validateString($value)) {
+            $this->data_error = 'La descripción contiene caracteres prohibidos';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->descripcion_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'La descripción debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+
+    public function setTituloComentario($value, $min = 2, $max = 50)
+    {
+        if (!Validator::validateAlphanumeric($value)) {
+            $this->data_error = 'El titulo debe ser un valor alfanumérico';
+            return false;
+        } elseif (Validator::validateLength($value, $min, $max)) {
+            $this->titulo_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El titulo debe tener una longitud entre ' . $min . ' y ' . $max;
+            return false;
+        }
+    }
+    
+    public function setCalificacionComentario($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->calificacion_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'El valor de la calificacion debe ser numérico entero';
+            return false;
+        }
+    }
+
+    public function setFechaComentario($value)
+    {
+        if (Validator::validateDate($value)) {
+            $this->fecha_del_comentario = $value;
+            return true;
+        } else {
+            $this->data_error = 'La fecha del comentario es incorrecta';
+            return false;
+        }
+    }
+
     // Método para obtener el error de los datos.
     public function getDataError()
     {
