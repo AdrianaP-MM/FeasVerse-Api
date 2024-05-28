@@ -22,6 +22,10 @@
     justify-content: center;
 }
 
+.fit{
+    width: fit-content;
+}
+
 /* Estilos del carrusel interno */
 .carruselA {
     min-height: 500px;

@@ -4,13 +4,10 @@ require_once('../../models/data/marcas_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
-    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
-    session_start();
     // Se instancia la clase correspondiente.
     $marca = new MarcasData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
-
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             //LEER TODOS
@@ -22,10 +19,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen marcas registradas';
                 }
                 break;
-            //ACTUALIZAR
-            case 'updateRow':
-                break;
-            //CAMBIAR EsTATUS DEL PEDIDO
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
