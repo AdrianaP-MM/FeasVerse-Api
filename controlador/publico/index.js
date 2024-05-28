@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     fillTable();
 });
 
-
 /*
 *   Función asíncrona para llenar la tabla con los registros disponibles.
 *   Parámetros: form (objeto opcional con los datos de búsqueda).
@@ -21,16 +20,42 @@ const fillTable = async () => {
     const DATA = await fetchData(MARCAS_API, 'readAll');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            TABLE_BODY.innerHTML += `
-            <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
-                <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
-            </div> 
+        let carouselItem = '';
+        let count = 0;
+
+        DATA.dataset.forEach((row, index) => {
+            // Si el índice es múltiplo de 4, crea un nuevo carousel-item y cards-wrapper
+            if (count % 4 === 0) {
+                if (count !== 0) {
+                    // Cierra el cards-wrapper y carousel-item previos
+                    carouselItem += `</div></div>`;
+                }
+                // Abre un nuevo carousel-item y cards-wrapper
+                carouselItem += `<div class="carousel-item ${count === 0 ? 'active' : ''}">
+                                    <div class="cards-wrapper">`;
+            }
+
+            // Añade la tarjeta al cards-wrapper actual
+            carouselItem += `
+                <div class="card cardM">
+                    <div class="image-wrapper">
+                        <a href="../../vistas/publico/buscador.html"><img
+                                src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" alt="${row.nombre}"></a>
+                    </div>
+                </div>
             `;
+
+            count++;
+
+            // Si es el último elemento, cierra el cards-wrapper y carousel-item
+            if (index === DATA.dataset.length - 1) {
+                carouselItem += `</div></div>`;
+            }
         });
 
-        if (DATA.dataset == 0) {
+        CONTAINER_MARCAS.innerHTML = carouselItem;
+
+        if (DATA.dataset.length === 0) {
             await sweetAlert(1, DATA.message, true);
         }
 
