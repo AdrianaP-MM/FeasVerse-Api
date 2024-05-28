@@ -43,6 +43,7 @@ class ZapatosHandler
         ORDER BY z.id_zapato DESC LIMIT 10;';
         return Database::getRows($sql);
     }
+
     public function readResumeEspecial()
     {
         $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 
@@ -52,6 +53,19 @@ class ZapatosHandler
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
         ORDER BY estrellas DESC LIMIT 10;';
         return Database::getRows($sql);
+    }
+
+    public function readAllZapatoMarca()
+    {
+        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 
+        FROM tb_zapatos z
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+        LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        WHERE id_marca = ?
+        ORDER BY z.id_zapato;';
+        $params = array($this->id_marca);
+        return Database::getRows($sql, $params);
     }
 
     public function readAllColores()
