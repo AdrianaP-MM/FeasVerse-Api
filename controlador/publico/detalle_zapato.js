@@ -3,6 +3,8 @@ const CONTAINER_PRECIO_CALIFICACION = document.getElementById('Container_Precio_
 const CONTAINER_DESCRIPCION = document.getElementById('Container_Descripcion');
 const CONTAINER_IMAGEN = document.getElementById('Container_Imagen');
 const CONTAINER_TALLAS = document.getElementById('Container_Tallas');
+const CONTAINER_RESEGNAS = document.getElementById('Container_Resegnas');
+const CONTAINER_PODRIA_GUSTARTE = document.getElementById('Container_Podria_Gustarte');
 const ZAPATOS_API = 'services/publica/zapatos.php';
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
@@ -63,11 +65,145 @@ const fillTable = async () => {
             `;
         });
         fillTallas();
+        fillResegnas();
+        fillSlider();
     } else {
         sweetAlert(2, DATA.error, false);
     }
 }
 
+const fillSlider = async () => {
+    CONTAINER_PODRIA_GUSTARTE.innerHTML = '';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(ZAPATOS_API, 'readAllEspecial');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            CONTAINER_PODRIA_GUSTARTE.innerHTML += `
+            <div class="card col-4 cardC">
+                <!-- Enlace a la página de detalles del zapato -->
+                <a href="../../vistas/publico/detalle_zapato.html?zapato=${row.id_zapato}" class="text15">
+                    <!-- Contenedor de la imagen del zapato -->
+                    <div class="image-wrapper2">
+                        <img  src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
+                        <!-- Imagen del zapato -->
+                    </div>
+                    <!-- Línea decorativa debajo de la imagen -->
+                    <div class="lineImgC"></div>
+                    <!-- Cuerpo de la tarjeta -->
+                    <div class="card-body">
+                        <!-- División de dos columnas -->
+                        <div class="d-flex flex-row justify-content-between">
+                            <!-- Columna 1 -->
+                            <div class="column1 ps-3">
+                                <!-- Nombre del zapato -->
+                                <h1 class="titillium-web-bold text25 text-black">${row.nombre_zapato}
+                                    <!-- Descripción del zapato -->
+                                    <p class="titillium-web-extralight text18 clgr3 mt-2">Zapato ${row.genero_zapato}</p>
+                                </h1>
+                                <!-- División para icono de estrella y calificación -->
+                                <div class="d-flex flex-row align-items-center mt-2 ">
+                                    <!-- Icono de estrella -->
+                                    <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                                    <!-- Calificación del zapato -->
+                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas}</p>
+                                </div>
+                            </div>
+                            <!-- Columna 2 -->
+                            <div class="column2 align-items-center">
+                                <!-- Número de colores disponibles -->
+                                <p class="titillium-web-extralight text18 mb-5 clgr3">${row.colores} colores</p>
+                                <!-- Precio del zapato -->
+                                <h1 class="titillium-web-bold text25 text-black fit"> $${row.precio_unitario_zapato}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            `;
+        });
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
+
+const fillResegnas = async () => {
+    CONTAINER_RESEGNAS.innerHTML = '';
+    const FORM = new FormData();
+    let id_zapato = Number(getQueryParam('zapato'));
+    FORM.append('id_zapato', id_zapato);
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(ZAPATOS_API, 'readOneReseñas', FORM);
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            // Generar las estrellas según la calificación
+            let estrellas = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= row.calificacion_comentario) {
+                    estrellas += `<svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.2521 1.53521L15.7546 8.80013L15.8708 9.13729H16.2274H24.2415L17.7835 13.563L17.4694 13.7782L17.5934 14.1383L20.0759 21.3449L13.5347 16.8621L13.2521 16.6684L12.9694 16.8621L6.42827 21.3449L8.91072 14.1383L9.03473 13.7782L8.72063 13.563L2.26268 9.13729H10.2768H10.6334L10.7495 8.80013L13.2521 1.53521Z" fill="#FFC700" stroke="#FFC700"/>
+                                </svg>`;
+                } else {
+                    estrellas += `<svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.2521 1.53521L15.7546 8.80013L15.8708 9.13729H16.2274H24.2415L17.7835 13.563L17.4694 13.7782L17.5934 14.1383L20.0759 21.3449L13.5347 16.8621L13.2521 16.6684L12.9694 16.8621L6.42827 21.3449L8.91072 14.1383L9.03473 13.7782L8.72063 13.563L2.26268 9.13729H10.2768H10.6334L10.7495 8.80013L13.2521 1.53521Z" fill="none" stroke="#FFC700"/>
+                                </svg>`;
+                }
+            }
+
+            // Crear el comentario con las estrellas generadas
+            CONTAINER_RESEGNAS.innerHTML += `
+            <div class="comentario mt-5 shadow p-3"> <!-- *Comentario 1-->
+                <div class="comentarioHeader d-flex flex-row flex-wrap  justify-content-between align-items-center">
+                    <!--DIV del nombre del usuario-->
+                    <div class="comentarioUser">
+                        <h6 class="m-0 p-0 titillium-web-regular text-black">
+                            ${row.nombre_cliente} ${row.apellido_cliente}
+                        </h6>
+                    </div>
+                    <!--DIV de la fecha del comentario-->
+                    <div class="comentarioFecha">
+                        <h6 class="m-0 p-0 titillium-web-regular color-gray1">
+                            ${row.fecha_del_comentario}
+                        </h6>
+                    </div>
+                </div>
+
+                <div class="comentarioBody d-flex flex-column mt-4 pt-2">
+                    <!--DIV del titulo del comentario-->
+                    <div class="comentarioTitulo">
+                        <h5 class="titillium-web-bold">
+                            ${row.titulo_comentario}
+                        </h5>
+                    </div>
+                    <!--DIV de la descripcion del comentario-->
+                    <div class="comentarioDesc">
+                        <p class="titillium-web-regular">
+                        ${row.descripcion_comentario}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="comentarioFooter d-flex flex-row justify-content-end flex-wrap">
+                    <!--DIV de las estrellas-->
+                    <div class="estrellasImg">
+                        <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2"> ${estrellas} ${row.calificacion_comentario}</p>
+                    </div>
+                    <!--DIV del numero de la calificacion-->
+                    <div class="estrellasNum">
+                        <div class="d-flex flex-row-reverse align-items-center mt-2 ">
+                            <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
+                            <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">${row.calificacion_comentario}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        });
+    } else {
+        sweetAlert(2, DATA.error, false);
+    }
+}
 
 const fillTallas = async () => {
     CONTAINER_TALLAS.innerHTML = '';

@@ -33,6 +33,18 @@ class ZapatosHandler
         return Database::getRows($sql);
     }
 
+    public function readOneResegnas()
+    {
+        $sql = 'SELECT co.id_comentario, cl.nombre_cliente, cl.apellido_cliente, co.fecha_del_comentario, co.titulo_comentario, co.descripcion_comentario, co.calificacion_comentario FROM tb_clientes cl
+        INNER JOIN tb_pedidos_clientes pc ON pc.id_cliente = cl.id_cliente
+        INNER JOIN tb_detalles_pedidos dp ON dp.id_pedido_cliente = pc.id_pedido_cliente
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        INNER JOIN tb_comentarios co ON co.id_detalles_pedido = dp.id_detalles_pedido
+        WHERE dz.id_zapato = ?;';
+        $params = array($this->id_zapato);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOneTallas()
     {
         $sql = 'SELECT DISTINCT t.id_talla, t.num_talla FROM tb_tallas t
