@@ -202,7 +202,7 @@ const fillResegnas = async () => {
             `;
         });
     } else {
-       //sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -229,6 +229,22 @@ const fillTallas = async () => {
     }
 }
 
+let btnAcept = `
+<button type="button" id="seguirExplorando" onclick="closeSweet()"
+    class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
+    <h6 class="titillium-web-extralight m-0 p-0 py-1">
+        Aceptar
+    </h6>
+</button>`;
+
+let btnGotoCarrito = `
+<button type="button" id="irAlCarrito" onclick="gotoCar()"
+    class="btn btn-primary shadow col-12 btn2">
+    <h6 class="titillium-web-extralight m-0 p-0 py-1">
+        Ir Al carrito
+    </h6>
+</button>`;
+
 let TALLA_INPUT = 0;
 const COLOR_INPUT = document.getElementById('coloresInput');
 const CANTIDAD_INPUT = document.getElementById('cantidadInput');
@@ -247,19 +263,13 @@ const AddCarrito = async () => {
     let COLOR = COLOR_INPUT.value;
     let CANTIDAD = CANTIDAD_INPUT.value;
     let TALLA = TALLA_INPUT;
+    let ID_DETALLE;
 
     if (TALLA == 0 || COLOR == '' || CANTIDAD == '' || CANTIDAD == 0) {
         console.log(TALLA, COLOR, CANTIDAD)
         message = 'Seleccione una talla, un color y la cantidad'
         titleMessage = '¡Especifique su pedido!'
-
-        buttons = `
-            <button type="button" id="seguirExplorando" onclick="closeSweet()"
-                class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
-                <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                    Aceptar
-                </h6>
-            </button>`
+        buttons = btnAcept;
     }
     else {
         // Constante tipo objeto con los datos del formulario.
@@ -268,41 +278,51 @@ const AddCarrito = async () => {
         FORM.append('id_color', COLOR);
         // Petición para guardar los datos del formulario.
         const DATA = await fetchData(ZAPATOS_API, 'searchDetalle', FORM);
-
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
         if (DATA.status) {
-            DATA.dataset.forEach(row => {
-                console.log(TALLA, COLOR, CANTIDAD)
-                message = `El zapato Jordan XX de color XX Talla XX ha sido exitosamente añadido al carrito de compras. Detalle: ${row.id_detalle_zapato}`
-                titleMessage = '¡Se ha agregado al carrito!'
-    
-                buttons = `
-                <button type="button" id="seguirExplorando" onclick="closeSweet()"
-                    class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
-                    <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                        Seguir Explorando
-                    </h6>
-                </button>
-                <button type="button" id="irAlCarrito" onclick="gotoCar()"
-                    class="btn btn-primary shadow col-12 btn2">
-                    <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                        Ir Al carrito
-                    </h6>
-                </button>`
-                ;
-            });
+            const ROW = DATA.dataset;
+            ID_DETALLE = ROW.id_detalle_zapato;
+
+            // Constante tipo objeto con los datos del formulario.
+            const FORM = new FormData();
+            FORM.append('id_detalle_zapato', ID_DETALLE);
+            // Petición para guardar los datos del formulario.
+
+            const DATA = await fetchData(ZAPATOS_API, 'validationCantidad', FORM); //------------AQUI ME QUEDE
+            if (DATA.status) {
+                const ROW = DATA.dataset;
+                let cantidadStock = ROW.cantidad;
+
+                if (CANTIDAD > cantidadStock) {
+                    console.log(TALLA, COLOR, CANTIDAD)
+                    message = `Ingrese otra cantidad, nuestro stock actual de ese zapato con esa talla y color es: ${cantidadStock}`
+                    titleMessage = 'La cantidad ingresada supera nuestro stock'
+
+                    buttons = btnAcept + btnGotoCarrito;
+                }
+                else {
+                    console.log(TALLA, COLOR, CANTIDAD)
+                    message = `El zapato Jordan XX de color XX Talla XX ha sido exitosamente añadido al carrito de compras. Detalle: ${row.id_detalle_zapato}`
+                    titleMessage = '¡Se ha agregado al carrito!'
+
+                    buttons = btnAcept + btnGotoCarrito;
+                }
+            }
+            else {
+                sweetAlert(4, DATA.error, true);
+            }
         } else {
-            console.log(TALLA, COLOR, CANTIDAD)
-            titleMessage = 'Sin STOCK'
-            message = `No hay zapato de esa talla y ese color :c selecciona otra talla u otro color`
-            buttons = `
-            <button type="button" id="seguirExplorando" onclick="closeSweet()"
-                class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
-                <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                    Aceptar
-                </h6>
-            </button>`
-            ;
+            if (DATA.error === 'Acción no disponible dentro de la sesión') {
+                titleMessage = 'Debe iniciar sesión'
+                message = `Cree una cuenta e inicie sesión para poder comprar`
+                buttons = btnAcept;
+            }
+            else {
+                console.log(TALLA, COLOR, CANTIDAD)
+                titleMessage = 'Sin STOCK'
+                message = `No hay zapato de esa talla y ese color :c selecciona otra talla u otro color`
+                buttons = btnAcept;
+            }
         }
     }
     Swal.fire({
@@ -311,7 +331,7 @@ const AddCarrito = async () => {
         showConfirmButton: false,
         allowOutsideClick: false,
         html: `
-        <div class="lineaIzq bg-color-1blue"></div>
+        <div class="lineaIzq bg-color-1blue"> </div>
         <div class="contenedorImg">
             <img src="../../recursos/imagenes/pngHombreFeliz.svg" class="imgHombre">
         </div>
@@ -324,7 +344,7 @@ const AddCarrito = async () => {
             </p>
         ${buttons}
         </div>
-    `,
+`,
     });
 }
 

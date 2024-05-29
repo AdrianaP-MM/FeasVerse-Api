@@ -35,7 +35,7 @@ class ZapatosHandler
 
     public function searchDetalle()
     {
-        $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ?';
+        $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ? LIMIT 1';
         $params = array(
             $this->id_talla,
             $this->id_color
