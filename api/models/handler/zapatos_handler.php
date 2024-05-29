@@ -22,6 +22,7 @@ class ZapatosHandler
     protected $id_talla = null;
     protected $cantidad_zapato = null;
     protected $num_talla = null;
+    protected $id_detalle_zapato = null;
 
     const RUTA_IMAGEN = '../../helpers/images/zapatos/';
 
@@ -33,6 +34,15 @@ class ZapatosHandler
         return Database::getRows($sql);
     }
 
+    public function validationCantidad()
+    {
+        $sql = 'SELECT cantidad_zapato FROM tb_detalle_zapatos WHERE id_detalle_zapato = ?;';
+        $params = array(
+            $this->id_detalle_zapato
+        );
+        return Database::getRow($sql, $params);
+    }
+
     public function searchDetalle()
     {
         $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ? LIMIT 1';
@@ -40,7 +50,7 @@ class ZapatosHandler
             $this->id_talla,
             $this->id_color
         );
-        return Database::getRows($sql, $params);
+        return Database::getRow($sql, $params);
     }
 
     public function readOneResegnas()

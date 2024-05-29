@@ -22,6 +22,17 @@ class ZapatosData extends ZapatosHandler{
         }
     }
 
+    public function setIdDetalleZapato($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->id_detalle_zapato = $value;
+            return true;
+        } else {
+            $this->data_error = 'El identificador del detalle zapato es incorrecto';
+            return false;
+        }
+    }
+
     public function setIdTalla($value)
     {
         if (Validator::validateNaturalNumber($value)) {

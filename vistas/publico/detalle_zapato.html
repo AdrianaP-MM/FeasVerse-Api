@@ -81,8 +81,8 @@
                         class="contenedorBotonCantidad mt-5 pt-4 col-12 d-flex flex-column justify-content-center align-items-center mb-5">
                         <div class="col-md-6 mb-4">
                             <label for="cantidadInput" class="form-label ">Cantidad</label>
-                            <input type="text" class="form-control" id="cantidadInput" name="cantidadInput"
-                                placeholder="Ingresa la cantidad a pedir" required >
+                            <input type="number" class="form-control" id="cantidadInput" name="cantidadInput"
+                                placeholder="Ingresa la cantidad a pedir" step="1" pattern="\d+" required >
                         </div>
                         <!-- BOTON DE AGREGAR CARRITO-->
                         <button type="button" id="agregarCarritoBtn" onclick="AddCarrito()"
@@ -94,7 +94,7 @@
                         <div id="Container_Cantidad_Disponible">
                             <!-- CANTIDAD DISPONIBLE-->
                             <h6 class="m-0 p-0 titillium-web-regular clgr2 mt-3">
-                                Cantidad todavía disponible: 25 ejemplares
+                            
                             </h6>
                         </div>
                     </div>

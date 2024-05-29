@@ -265,7 +265,7 @@ const AddCarrito = async () => {
     let TALLA = TALLA_INPUT;
     let ID_DETALLE;
 
-    if (TALLA == 0 || COLOR == '' || CANTIDAD == '' || CANTIDAD == 0) {
+    if (TALLA == 0 || COLOR == '' || CANTIDAD == '' || CANTIDAD <= 0) {
         console.log(TALLA, COLOR, CANTIDAD)
         message = 'Seleccione una talla, un color y la cantidad'
         titleMessage = '¡Especifique su pedido!'
@@ -273,53 +273,53 @@ const AddCarrito = async () => {
     }
     else {
         // Constante tipo objeto con los datos del formulario.
-        const FORM = new FormData();
-        FORM.append('id_talla', TALLA);
-        FORM.append('id_color', COLOR);
+        const FORM1 = new FormData();
+        FORM1.append('id_talla', TALLA);
+        FORM1.append('id_color', COLOR);
         // Petición para guardar los datos del formulario.
-        const DATA = await fetchData(ZAPATOS_API, 'searchDetalle', FORM);
+        const DATA1 = await fetchData(ZAPATOS_API, 'searchDetalle', FORM1);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (DATA.status) {
-            const ROW = DATA.dataset;
-            ID_DETALLE = ROW.id_detalle_zapato;
+        if (DATA1.status) {
+            const ROW1 = DATA1.dataset;
+            ID_DETALLE = ROW1.id_detalle_zapato;
 
             // Constante tipo objeto con los datos del formulario.
-            const FORM = new FormData();
-            FORM.append('id_detalle_zapato', ID_DETALLE);
+            const FORM2 = new FormData();
+            FORM2.append('id_detalle_zapato', ID_DETALLE);
             // Petición para guardar los datos del formulario.
 
-            const DATA = await fetchData(ZAPATOS_API, 'validationCantidad', FORM); //------------AQUI ME QUEDE
-            if (DATA.status) {
-                const ROW = DATA.dataset;
-                let cantidadStock = ROW.cantidad;
+            const DATA2 = await fetchData(ZAPATOS_API, 'validationCantidad', FORM2); 
+            if (DATA2.status) {
+                const ROW2 = DATA2.dataset;
+                let cantidadStock = ROW2.cantidad_zapato;
 
                 if (CANTIDAD > cantidadStock) {
                     console.log(TALLA, COLOR, CANTIDAD)
-                    message = `Ingrese otra cantidad, nuestro stock actual de ese zapato con esa talla y color es: ${cantidadStock}`
-                    titleMessage = 'La cantidad ingresada supera nuestro stock'
+                    message = `Ingrese otra cantidad, nuestro stock actual de este zapato con esa talla y color es: ${cantidadStock}`
+                    titleMessage = 'La cantidad supera el stock'
 
-                    buttons = btnAcept + btnGotoCarrito;
+                    buttons = btnAcept;
                 }
                 else {
                     console.log(TALLA, COLOR, CANTIDAD)
-                    message = `El zapato Jordan XX de color XX Talla XX ha sido exitosamente añadido al carrito de compras. Detalle: ${row.id_detalle_zapato}`
+                    message = `El zapato ha sido exitosamente añadido al carrito de compras.`
                     titleMessage = '¡Se ha agregado al carrito!'
 
                     buttons = btnAcept + btnGotoCarrito;
                 }
             }
             else {
-                sweetAlert(4, DATA.error, true);
+                sweetAlert(4, DATA2.error, true);
             }
         } else {
-            if (DATA.error === 'Acción no disponible dentro de la sesión') {
+            if (DATA1.error === 'Acción no disponible dentro de la sesión') {
                 titleMessage = 'Debe iniciar sesión'
                 message = `Cree una cuenta e inicie sesión para poder comprar`
                 buttons = btnAcept;
             }
             else {
                 console.log(TALLA, COLOR, CANTIDAD)
-                titleMessage = 'Sin STOCK'
+                titleMessage = 'Sin stock'
                 message = `No hay zapato de esa talla y ese color :c selecciona otra talla u otro color`
                 buttons = btnAcept;
             }
@@ -379,4 +379,8 @@ function getQueryParam(Param) {
     let urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(Param);
 }
+
+document.getElementById('cantidadInput').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+});
 

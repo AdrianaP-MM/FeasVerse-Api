@@ -25,17 +25,69 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapato inexistente';
                 }
             break;
-            /*case 'validationCantidad':
+            case 'validationCantidad':
                 if (
-                    !$zapato->setIdTallaZa($_POST['id_detalle_zapato'])
+                    !$zapato->setIdDetalleZapato($_POST['id_detalle_zapato'])
                 ) {
                     $result['error'] = $zapato->getDataError();
-                } elseif ($result['dataset'] = $zapato->searchDetalle()) {
+                } elseif ($result['dataset'] = $zapato->validationCantidad()) {
                     $result['status'] = 1;
                 } else {
                     $result['error'] = 'Zapato inexistente';
                 }
-            break;*/
+            break;
+            case 'readAllReciente':
+                if ($result['dataset'] = $zapato->readResumeReciente()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                break;
+            case 'readAllEspecial':
+                if ($result['dataset'] = $zapato->readResumeEspecial()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                break;
+            case 'readOneDetail':
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readOneDetail()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapato inexistente';
+                }
+                break;
+            case 'readOneColoresZapato':
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readOneColoresZapato()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapato inexistente';
+                }
+                break;
+            case 'readOneTallas':
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readOneTallas()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapato inexistente';
+                }
+                break;
+            case 'readOneReseñas':
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readOneResegnas()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Zapato inexistente';
+                }
+                break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
