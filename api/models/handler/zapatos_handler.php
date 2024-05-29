@@ -33,6 +33,36 @@ class ZapatosHandler
         return Database::getRows($sql);
     }
 
+    public function readOneTallas()
+    {
+        $sql = 'SELECT DISTINCT t.id_talla, t.num_talla FROM tb_tallas t
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_talla = t.id_talla
+        WHERE dz.id_zapato = ?;';
+        $params = array($this->id_zapato);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readOneColoresZapato()
+    {
+        $sql = 'SELECT DISTINCT c.id_color, c.nombre_color FROM tb_colores c
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_color = c.id_color
+        WHERE dz.id_zapato = ?;';
+        $params = array($this->id_zapato);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readOneDetail()
+    {
+        $sql = 'SELECT z.id_zapato, dz.foto_detalle_zapato, m.nombre_marca, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.descripcion_zapato
+        FROM tb_zapatos z
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+        LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        INNER JOIN tb_marcas m ON m.id_marca = z.id_marca WHERE z.id_zapato = ?;';
+        $params = array($this->id_zapato);
+        return Database::getRows($sql, $params);
+    }
+
     public function readResumeReciente()
     {
         $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 

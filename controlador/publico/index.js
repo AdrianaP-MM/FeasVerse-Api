@@ -33,7 +33,7 @@ const readSeleccionEspecial = async () => {
             CONTAINER_ESPECIAL.innerHTML += `
             <div class="card col-4 cardC">
                 <!-- Enlace a la página de detalles del zapato -->
-                <a href="../../vistas/publico/detalle_zapato.html" class="text15">
+                <a href="../../vistas/publico/detalle_zapato.html?zapato=${row.id_zapato}" class="text15">
                     <!-- Contenedor de la imagen del zapato -->
                     <div class="image-wrapper2">
                         <img  src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">
@@ -88,7 +88,7 @@ const readColeccionReciente = async () => {
             CONTAINER_RECIENTE.innerHTML += `
             <div class="card col-4 cardC">
                 <!-- Enlace a la página de detalles del zapato -->
-                <a href="../../vistas/publico/detalle_zapato.html" class="text15">
+                <a href="../../vistas/publico/detalle_zapato.html?zapato=${row.id_zapato}" class="text15">
                     <!-- Contenedor de la imagen del zapato -->
                     <div class="image-wrapper2">
                         <img  src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}">

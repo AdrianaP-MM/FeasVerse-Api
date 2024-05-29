@@ -180,9 +180,9 @@ const fetchData = async (filename, action, form = null) => {
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y selected (dato opcional con el valor seleccionado).
 *   Retorno: ninguno.
 */
-const fillSelect = async (filename, action, select, selected = null) => {
+const fillSelect = async (filename, action, select, selected = null, form = null) => {
     // Petición para obtener los datos.
-    const DATA = await fetchData(filename, action);
+    const DATA = await fetchData(filename, action, form);
     let content = '';
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
     if (DATA.status) {
