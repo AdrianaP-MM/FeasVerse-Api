@@ -74,7 +74,7 @@ const readSeleccionEspecial = async () => {
             `;
         });
     } else {
-        sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -129,7 +129,7 @@ const readColeccionReciente = async () => {
             `;
         });
     } else {
-        sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -158,7 +158,7 @@ const readMarcas = async () => {
             carouselItem += `
                 <div class="card cardM">
                     <div class="image-wrapper">
-                        <a href="../../vistas/publico/buscador.html"><img
+                        <a href="../../vistas/publico/buscador.html?marca=${row.id_marca}"><img
                                 src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" alt="${row.nombre}"></a>
                     </div>
                 </div>
@@ -179,6 +179,6 @@ const readMarcas = async () => {
         }
 
     } else {
-        sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }

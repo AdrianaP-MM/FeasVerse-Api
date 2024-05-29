@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
     // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
     switch ($_GET['action']) {
             //LEER TODOS
-        case 'readAllReciente':
+        case 'readAllZapatoMarca':
             $_POST = Validator::validateForm($_POST);
             // Verificar si todos los datos necesarios son válidos
             if (

@@ -92,6 +92,7 @@ class ZapatosHandler
         INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
         LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        GROUP BY z.id_zapato
         ORDER BY z.id_zapato DESC LIMIT 10;';
         return Database::getRows($sql);
     }
@@ -103,6 +104,7 @@ class ZapatosHandler
         INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
         LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        GROUP BY z.id_zapato 
         ORDER BY estrellas DESC LIMIT 10;';
         return Database::getRows($sql);
     }
@@ -115,6 +117,7 @@ class ZapatosHandler
         LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
         WHERE id_marca = ?
+        GROUP BY z.id_zapato
         ORDER BY z.id_zapato;';
         $params = array($this->id_marca);
         return Database::getRows($sql, $params);

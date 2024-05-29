@@ -69,7 +69,7 @@ const fillTable = async () => {
         fillResegnas();
         fillSlider();
     } else {
-        sweetAlert(2, DATA.error, false);
+        location.href = 'index.html';
     }
 }
 
@@ -124,7 +124,7 @@ const fillSlider = async () => {
             `;
         });
     } else {
-        sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -202,7 +202,7 @@ const fillResegnas = async () => {
             `;
         });
     } else {
-        sweetAlert(2, DATA.error, false);
+       //sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -225,7 +225,7 @@ const fillTallas = async () => {
             `;
         });
     } else {
-        sweetAlert(2, DATA.error, false);
+        //sweetAlert(2, DATA.error, false);
     }
 }
 

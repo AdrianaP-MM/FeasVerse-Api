@@ -1,4 +1,4 @@
-const CLIENTES_API = 'services/publica/buscador.php'; // URL de la API 
+const BUSCADOR_API = 'services/publica/buscador.php'; // URL de la API 
 
 // Seleccionar todos los inputs dentro de elementos con clase "RANGE-input"
 const RANGE_INPUT = document.querySelectorAll(".RANGE-input input");
@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Hace clic automáticamente en el botón del accordion para ocultar los detalles por defecto.
     ACCORDION_BUTTON_TALLAS.click();
+
+    fillTable();
 });
 
 // Función para mostrar/ocultar el icono de limpiar según si hay texto en el input
@@ -106,8 +108,14 @@ RANGE_INPUT.forEach(input => {
 const fillTable = async () => {
     // Se inicializa el contenido de la tabla.
     CARDS_ZAPATO_BODY.innerHTML = '';
+
+    const FORM = new FormData();
+    // Obtener los parámetros de la URL
+    let idMarca = Number(getQueryParam('marca'));
+    FORM.append('idMarca', idMarca);
+    
     // Petición para obtener los registros disponibles.
-    const DATA = await fetchData(CARRITO_API, 'readAll');
+    const DATA = await fetchData(BUSCADOR_API, 'readAllZapatoMarca', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
         // Se recorre el conjunto de registros fila por fila.
@@ -117,10 +125,10 @@ const fillTable = async () => {
             <div class="col-lg-4 col-md-3 col-sm-6">
                 <!--inicio de la card-->
                 <div class="card col-lg-12 col-md-12 col-sm-12" id="cardC">
-                    <a href="detalle_zapato.html" class="text15">
+                    <a href="../../vistas/publico/detalle_zapato.html?zapato=${row.id_zapato}" class="text15">
                         <div class="image-wrapper2 col-lg-12">
-                            <img src="../../recursos/imagenes/airJordan1.svg" id="imagenZapato"
-                                alt="...">
+                            <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato} id="imagenZapato"
+                                alt="${row.nombre_zapato}">
                         </div>
                         <div class="lineImgC"></div>
                         <div class="card-body">
@@ -130,11 +138,11 @@ const fillTable = async () => {
                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                             <h1 class="col-lg-12 col-md-12 col-sm-12 titillium-web-bold text18 text-black mb-0"
                                                 id="nombre">
-                                                Air Jordan 3
+                                                ${row.nombre_zapato}
                                             </h1>
                                             <p class="col-lg-12 col-md-12 col-sm-12 titillium-web-extralight text12 clgr3 mt-0"
                                                 id="categoria">
-                                                Zapato UNISEX
+                                                ${row.genero_zapato}
                                             </p>
                                         </div>
                                     </div>
@@ -143,7 +151,7 @@ const fillTable = async () => {
                                             class="d-flex col-lg-12 col-md-12 col-sm-12 justify-content-end">
                                             <p class="col-lg-11 titillium-web-extralight text12 clgr3"
                                                 id="colores">
-                                                5 colores</p>
+                                                ${row.colores}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -154,12 +162,12 @@ const fillTable = async () => {
                                             alt="">
                                         <p class="titillium-web-bold text12 m-0 align-baselin clYellowStar mt-1"
                                             id="calificacionZapato">
-                                            5</p>
+                                            ${row.estrellas}</p>
                                     </div>
                                     <div
                                         class="d-flex col-lg-6 col-md-6 col-sm-6 justify-content-end align-items-center">
                                         <h1 class="titillium-web-bold text15 text-black d-flex align-items-center mt-1"
-                                            id="precioZapato"> $285</h1>
+                                            id="precioZapato"> $${row.precio_unitario_zapato}</h1>
                                     </div>
                                 </div>
                             </div>
@@ -173,3 +181,11 @@ const fillTable = async () => {
     
     }
 }
+
+
+// Función para obtener un parámetro específico de la URL
+function getQueryParam(Param) {
+    let urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(Param);
+}
+
