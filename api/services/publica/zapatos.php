@@ -63,6 +63,18 @@ if (isset($_GET['action'])) {
                         $result['error'] = 'Zapato inexistente';
                     }
                 break;
+                case 'searchDetalle':
+                    if (
+                        !$zapato->setIdTalla($_POST['id_talla']) or
+                        !$zapato->setIdColor($_POST['id_color'])
+                    ){
+                        $result['error'] = $zapato->getDataError();
+                    } elseif ($result['dataset'] = $zapato->searchDetalle()) 
+                    {$result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Zapato inexistente';
+                    }
+                break;
                 default:
                     // Si no se reconoce la acción, se asigna un mensaje de error
                     $result['error'] = 'Acción no disponible dentro de la sesión';

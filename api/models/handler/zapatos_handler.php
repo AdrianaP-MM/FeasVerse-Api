@@ -33,6 +33,16 @@ class ZapatosHandler
         return Database::getRows($sql);
     }
 
+    public function searchDetalle()
+    {
+        $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ?';
+        $params = array(
+            $this->id_talla,
+            $this->id_color
+        );
+        return Database::getRows($sql, $params);
+    }
+
     public function readOneResegnas()
     {
         $sql = 'SELECT co.id_comentario, cl.nombre_cliente, cl.apellido_cliente, co.fecha_del_comentario, co.titulo_comentario, co.descripcion_comentario, co.calificacion_comentario FROM tb_clientes cl

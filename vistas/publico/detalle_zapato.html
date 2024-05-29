@@ -36,8 +36,8 @@
                             <h2 class="titillium-web-semibold text-white">Reseñas</h2>
                         </div>
                         <!-- *Contenedor de los comentarios-->
-                        <div
-                            class="contenedorComentarios p-2 d-flex flex-column mt-5 pt-4 col-12 col-sm-12 col-md-11 col-lg-11" id="Container_Resegnas">
+                        <div class="contenedorComentarios p-2 d-flex flex-column mt-5 pt-4 col-12 col-sm-12 col-md-11 col-lg-11"
+                            id="Container_Resegnas">
                             <!-- *Contenedor del comentario-->
                         </div>
                     </div>
@@ -79,6 +79,11 @@
                     <!-- CONTENEDOR DE BOTON DE AGREGAR CARRITO Y DE LA CANTIDAD FALTANTE-->
                     <div
                         class="contenedorBotonCantidad mt-5 pt-4 col-12 d-flex flex-column justify-content-center align-items-center mb-5">
+                        <div class="col-md-6 mb-4">
+                            <label for="cantidadInput" class="form-label ">Cantidad</label>
+                            <input type="text" class="form-control" id="cantidadInput" name="cantidadInput"
+                                placeholder="Ingresa la cantidad a pedir" required >
+                        </div>
                         <!-- BOTON DE AGREGAR CARRITO-->
                         <button type="button" id="agregarCarritoBtn" onclick="AddCarrito()"
                             class="btn btn-primary shadow bg-color-5blue col-lg-7 col-md-12 col-sm-12 col-12">
@@ -86,10 +91,12 @@
                                 Agregar al carrito
                             </h5>
                         </button>
-                        <!-- CANTIDAD DISPONIBLE-->
-                        <h6 class="m-0 p-0 titillium-web-regular clgr2 mt-3 ">
-                            Cantidad todavía disponible: 25 ejemplares
-                        </h6>
+                        <div id="Container_Cantidad_Disponible">
+                            <!-- CANTIDAD DISPONIBLE-->
+                            <h6 class="m-0 p-0 titillium-web-regular clgr2 mt-3">
+                                Cantidad todavía disponible: 25 ejemplares
+                            </h6>
+                        </div>
                     </div>
                 </div>
             </div>

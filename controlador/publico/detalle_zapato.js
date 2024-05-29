@@ -5,6 +5,7 @@ const CONTAINER_IMAGEN = document.getElementById('Container_Imagen');
 const CONTAINER_TALLAS = document.getElementById('Container_Tallas');
 const CONTAINER_RESEGNAS = document.getElementById('Container_Resegnas');
 const CONTAINER_PODRIA_GUSTARTE = document.getElementById('Container_Podria_Gustarte');
+const CONTAINER_CANTIDAD_DISPONIBLE = document.getElementById('Container_Cantidad_Disponible');
 const ZAPATOS_API = 'services/publica/zapatos.php';
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
@@ -216,7 +217,7 @@ const fillTallas = async () => {
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             CONTAINER_TALLAS.innerHTML += `
-            <div class="cuadradoTalla">
+            <div class="cuadradoTalla" onclick="setNumTalla(${row.id_talla}, this)">
                 <h5 class="titillium-web-regular m-0 p-0">
                     ${row.num_talla}
                 </h5>
@@ -228,8 +229,82 @@ const fillTallas = async () => {
     }
 }
 
+let TALLA_INPUT = 0;
+const COLOR_INPUT = document.getElementById('coloresInput');
+const CANTIDAD_INPUT = document.getElementById('cantidadInput');
+
+function setNumTalla(talla, div) {
+    // Resetear el color de fondo de todos los elementos
+    restoreCuadroTallas();
+    // Establecer el color de fondo del div seleccionado
+    div.style.backgroundColor = 'SkyBlue';
+    TALLA_INPUT = talla;
+}
+
 // Función para mostrar una notificación de éxito cuando se agrega un artículo al carrito
-function AddCarrito() {
+const AddCarrito = async () => {
+    let message, titleMessage, buttons;
+    let COLOR = COLOR_INPUT.value;
+    let CANTIDAD = CANTIDAD_INPUT.value;
+    let TALLA = TALLA_INPUT;
+
+    if (TALLA == 0 || COLOR == '' || CANTIDAD == '' || CANTIDAD == 0) {
+        console.log(TALLA, COLOR, CANTIDAD)
+        message = 'Seleccione una talla, un color y la cantidad'
+        titleMessage = '¡Especifique su pedido!'
+
+        buttons = `
+            <button type="button" id="seguirExplorando" onclick="closeSweet()"
+                class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
+                <h6 class="titillium-web-extralight m-0 p-0 py-1">
+                    Aceptar
+                </h6>
+            </button>`
+    }
+    else {
+        // Constante tipo objeto con los datos del formulario.
+        const FORM = new FormData();
+        FORM.append('id_talla', TALLA);
+        FORM.append('id_color', COLOR);
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(ZAPATOS_API, 'searchDetalle', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            DATA.dataset.forEach(row => {
+                console.log(TALLA, COLOR, CANTIDAD)
+                message = `El zapato Jordan XX de color XX Talla XX ha sido exitosamente añadido al carrito de compras. Detalle: ${row.id_detalle_zapato}`
+                titleMessage = '¡Se ha agregado al carrito!'
+    
+                buttons = `
+                <button type="button" id="seguirExplorando" onclick="closeSweet()"
+                    class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
+                    <h6 class="titillium-web-extralight m-0 p-0 py-1">
+                        Seguir Explorando
+                    </h6>
+                </button>
+                <button type="button" id="irAlCarrito" onclick="gotoCar()"
+                    class="btn btn-primary shadow col-12 btn2">
+                    <h6 class="titillium-web-extralight m-0 p-0 py-1">
+                        Ir Al carrito
+                    </h6>
+                </button>`
+                ;
+            });
+        } else {
+            console.log(TALLA, COLOR, CANTIDAD)
+            titleMessage = 'Sin STOCK'
+            message = `No hay zapato de esa talla y ese color :c selecciona otra talla u otro color`
+            buttons = `
+            <button type="button" id="seguirExplorando" onclick="closeSweet()"
+                class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
+                <h6 class="titillium-web-extralight m-0 p-0 py-1">
+                    Aceptar
+                </h6>
+            </button>`
+            ;
+        }
+    }
     Swal.fire({
         title: false,
         showCancelButton: false,
@@ -242,25 +317,12 @@ function AddCarrito() {
         </div>
         <div class="contenedorCuerpo mt-4 d-flex flex-column ">
             <h2 class="titillium-web-regular m-0 p-0 title">
-                ¡Se ha agregado al carrito!
+                ${titleMessage}
             </h2>
             <p class="m-0 p-0 titillium-web-regular clgr2 mb-4 text15 mt-2">
-                El zapato Jordan XX de color XX Talla XX ha sido exitosamente añadido al carrito de compras.
+                ${message}
             </p>
-
-            <button type="button" id="seguirExplorando" onclick="closeSweet()"
-                class="btn btn-primary bg-color-5blue col-12 mb-2 mt-2">
-                <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                    Seguir Explorando
-                </h6>
-            </button>
-
-            <button type="button" id="irAlCarrito" onclick="gotoCar()"
-                class="btn btn-primary shadow col-12 btn2">
-                <h6 class="titillium-web-extralight m-0 p-0 py-1">
-                    Ir Al carrito
-                </h6>
-            </button>
+        ${buttons}
         </div>
     `,
     });
@@ -268,12 +330,28 @@ function AddCarrito() {
 
 // Función para cerrar la notificación
 function closeSweet() {
+    restoreValues();
     Swal.close();
 }
 
 // Función para redirigir al usuario al carrito de compras
 function gotoCar() {
+    restoreValues();
     location.href = "../../vistas/publico/carrito.html";
+}
+
+function restoreValues() {
+    TALLA_INPUT = 0;
+    COLOR_INPUT.value = '';
+    CANTIDAD_INPUT.value = '';
+    restoreCuadroTallas();
+}
+
+function restoreCuadroTallas() {
+    const tallas = document.querySelectorAll('.cuadradoTalla');
+    tallas.forEach(tallaDiv => {
+        tallaDiv.style.backgroundColor = '';
+    });
 }
 
 // Función para obtener un parámetro específico de la URL
