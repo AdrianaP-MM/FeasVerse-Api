@@ -451,73 +451,43 @@ input[type="range"]::-moz-range-thumb {
     height: 4px;
 }
 
-/* Estilo personalizado para los enlaces de paginación */
-.page-link {
-    color: #0D4560;
-    /* Color del texto */
-    background-color: transparent;
-    /* Fondo transparente */
-    border: 1px solid #0D4560;
-    /* Borde con el color especificado */
-}
-
-
-/* Estilo personalizado para los enlaces de paginación */
 .pagination {
-    margin-top: 10px;
-    /* Espacio superior */
-    margin-bottom: 10px;
-    /* Espacio inferior */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
 }
 
 .page-item {
-    margin-right: 20px;
-    /* Espacio entre elementos */
+    margin: 0 5px;
 }
 
-
-/* Estilo personalizado para los enlaces de paginación */
 .page-link {
-    color: #0D4560;
-    /* Color del texto */
-    background-color: transparent;
-    /* Fondo transparente */
-    border: 1px solid #0D4560;
-    /* Borde con el color especificado */
-    border-radius: 10px;
-    /* Bordes redondeados */
-}
-
-/* Estilos para los elementos con clase "num" */
-.num {
-    /* Ancho de 40px */
-    width: 40px;
-    /* Texto centrado horizontalmente */
-    text-align: center;
-    /* Altura de 20px */
-    height: 20px;
-    /* Elemento mostrado como bloque */
     display: block;
+    padding: 10px 15px;
+    color: #007bff;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    transition: background-color 0.2s;
 }
 
-/* Estilo para los enlaces de paginación cuando están seleccionados */
-.page-item.active .page-link {
-    color: #ffffff;
-    /* Color del texto cuando está seleccionado */
-    background-color: #0D4560;
-    /* Fondo cuando está seleccionado */
-    border-color: #0D4560;
-    /* Color del borde cuando está seleccionado */
-}
-
-/* Estilo de hover para los enlaces de paginación */
 .page-link:hover {
-    background-color: #0D4560;
-    /* Color de fondo al hacer hover */
-    color: #ffffff;
-    /* Color del texto al hacer hover */
-    border-color: #0D4560;
-    /* Color del borde al hacer hover */
+    background-color: #e9ecef;
+    text-decoration: none;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.backNext, .num {
+    list-style-type: none; /* Esto elimina el marcador */
 }
 
 .A {
