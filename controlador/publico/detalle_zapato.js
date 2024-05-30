@@ -50,7 +50,7 @@ const fillTable = async () => {
             <!-- CALIFICACION-->
             <div class="contenedorCalificacion d-flex flex-row align-items-center ms-4">
                 <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
-                <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">${row.estrellas}</p>
+                <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar2">${row.estrellas !== null ? row.estrellas : 0}</p>
             </div>
             `;
             CONTAINER_DESCRIPCION.innerHTML += `
@@ -109,7 +109,7 @@ const fillSlider = async () => {
                                     <!-- Icono de estrella -->
                                     <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
                                     <!-- Calificación del zapato -->
-                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas}</p>
+                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas !== null ? row.estrellas : 0}</p>
                                 </div>
                             </div>
                             <!-- Columna 2 -->
@@ -247,6 +247,14 @@ let btnGotoCarrito = `
     </h6>
 </button>`;
 
+let btnGotoLogin = `
+<button type="button" id="irAlCarrito" onclick="gotoLogin()"
+    class="btn btn-primary shadow col-12 btn2">
+    <h6 class="titillium-web-extralight m-0 p-0 py-1">
+        Iniciar Sesión
+    </h6>
+</button>`;
+
 let TALLA_INPUT = 0;
 let PRECIO_ZAPATO = 0;
 const COLOR_INPUT = document.getElementById('coloresInput');
@@ -330,7 +338,7 @@ const AddCarrito = async () => {
             if (DATA1.error === 'Acción no disponible dentro de la sesión') {
                 titleMessage = 'Debe iniciar sesión'
                 message = `Cree una cuenta e inicie sesión para poder comprar`
-                buttons = btnAcept;
+                buttons = btnAcept + btnGotoLogin;
             }
             else {
                 console.log(TALLA, COLOR, CANTIDAD)
@@ -374,6 +382,12 @@ function gotoCar() {
     restoreValues();
     location.href = "../../vistas/publico/carrito.html";
 }
+
+function gotoLogin() {
+    restoreValues();
+    location.href = "../../vistas/publico/inicio_sesion_registro.html";
+}
+
 
 function restoreValues() {
     TALLA_INPUT = 0;

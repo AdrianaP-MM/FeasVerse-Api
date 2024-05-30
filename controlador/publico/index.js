@@ -57,7 +57,7 @@ const readSeleccionEspecial = async () => {
                                     <!-- Icono de estrella -->
                                     <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
                                     <!-- Calificación del zapato -->
-                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas}</p>
+                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas !== null ? row.estrellas : 0}</p>
                                 </div>
                             </div>
                             <!-- Columna 2 -->
@@ -112,7 +112,7 @@ const readColeccionReciente = async () => {
                                     <!-- Icono de estrella -->
                                     <img src="../../recursos/imagenes/icons/starFill.svg" alt="">
                                     <!-- Calificación del zapato -->
-                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas}</p>
+                                    <p class="titillium-web-bold text25 m-0 align-baselin clYellowStar">${row.estrellas !== null ? row.estrellas : 0}</p>
                                 </div>
                             </div>
                             <!-- Columna 2 -->
