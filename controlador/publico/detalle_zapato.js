@@ -376,7 +376,6 @@ function gotoCar() {
 }
 
 function restoreValues() {
-    PRECIO_ZAPATO = 0;
     TALLA_INPUT = 0;
     COLOR_INPUT.value = '';
     CANTIDAD_INPUT.value = '';

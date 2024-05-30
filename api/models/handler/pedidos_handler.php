@@ -36,7 +36,7 @@ class PedidosHandler
     {
         $sql = 'CALL insert_detalle_pedido(?, ?, ?, ?);';
         $params = array(
-            $this->$_SESSION['idCliente'],
+            2,
             $this->id_detalle_zapato,
             $this->cantidad_pedido,
             $this->precio_del_zapato
