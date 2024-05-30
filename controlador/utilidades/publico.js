@@ -12,9 +12,8 @@ const MAIN = document.querySelector('main');
 *   Retorno: ninguno.*/
 
 const loadTemplate = async () => {
-
     const DATA = await fetchData(USER_API, 'getUser');
-
+    const marcasHtml = await getMarcas();
     // Header template
     const headerTemplate = (session, username = '') => `
     <header class="sticky-top">
@@ -72,22 +71,7 @@ const loadTemplate = async () => {
                             <ul class="dropdown-menu bg-color-4blue">
                                 <div class="d-flex flex-column">
                                     <div class="d-flex flex-row flex-wrap contenedorMarcas">
-                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                            <img width="100px" height="100px"
-                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                        </a></li>
-                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                            <img width="100px" height="100px"
-                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                        </a></li>
-                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                            <img width="100px" height="100px"
-                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                        </a></li>
-                                        <li><a class="dropdown-item pointer-hover py-2 px-3" href="buscador.html">
-                                            <img width="100px" height="100px"
-                                                src="../../recursos/imagenes/marcas/adidas.svg" alt="ADIDAS">
-                                        </a></li>
+                                        ${marcasHtml}
                                     </div>
                                 </div>
                             </ul>
@@ -174,7 +158,7 @@ const loadTemplate = async () => {
     if (DATA.session) {
         comprobarCarrito();
     } else {
-        
+
     }
 };
 
@@ -208,3 +192,22 @@ const comprobarCarrito = async () => {
     }
 }
 
+const getMarcas = async () => {
+    const MARCAS_API = 'services/publica/marcas.php';
+    let marcasHtml = '';
+    // Petición para obtener los registros disponibles.
+    const DATA = await fetchData(MARCAS_API, 'readAll');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        DATA.dataset.forEach(row => {
+            marcasHtml += `
+            <li><a class="dropdown-item pointer-hover py-2 px-3" href="../../vistas/publico/buscador.html?marca=${row.id_marca}">
+            <img width="100px" height="100px" src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}">
+            </a></li>`;
+        });
+    } else {
+        // Si no hay marcas o hay un error, puedes manejarlo aquí
+        marcasHtml = '<li>No hay marcas disponibles</li>';
+    }
+    return marcasHtml;
+}
