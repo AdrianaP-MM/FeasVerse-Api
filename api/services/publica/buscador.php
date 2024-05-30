@@ -43,6 +43,27 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen zapatos registrados';
             }
             break;
+        case 'searchZapatoMarca':
+            // Verificar si idMarca es válido
+            if (!$zapato->setIdMarca($_POST['idMarca'])) {
+                $result['error'] = $zapato->getDataError();
+            } else {
+                $nombreZapato = isset($_POST['value']) ? $_POST['value'] : '';
+                $tallas = isset($_POST['tallas']) ? $_POST['tallas'] : [];
+                $idColor = isset($_POST['coloresSelect']) ? $_POST['coloresSelect'] : null;
+
+                $zapato->setNombreZapato($nombreZapato);
+                $zapato->setIdColor($idColor);
+
+                if ($result['dataset'] = $zapato->searchZapatoMarca($tallas)) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+            }
+            break;
+
         default:
             // Si no se reconoce la acción, se asigna un mensaje de error
             $result['error'] = 'Acción no disponible dentro de la sesión';

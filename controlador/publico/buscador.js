@@ -4,6 +4,8 @@ const CARDS_ZAPATO_BODY = document.getElementById('cardsZapato'); // Cuerpo de l
 const PAGINATION = document.getElementById('pagination'); // Contenedor de la paginación
 const CARDS_TALLAS = document.getElementById('contenedorFilaTallas');
 const SELECT_COLOR = document.getElementById('coloresSelect');
+const BUSCADOR = document.getElementById('buscadorInputZapatos');
+const BUSCADOR_INPUT = document.getElementById('buscador');
 
 const IMAGEN_MARCA = document.getElementById('imagenMarca');
 const NOMBRE_MARCA = document.getElementById('nombreDeLaMarca');
@@ -17,12 +19,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadTemplate();
     const ACCORDION_BUTTON_TALLAS = document.getElementById('accordionTallas');
     ACCORDION_BUTTON_TALLAS.click();
-    fillTalla();
+    await fillTalla();
     await fillMarca();
     await fillTable();
     fillSelect(BUSCADOR_API, 'readColor', 'coloresSelect');
     setupFilterEventListeners();
+
+    document.querySelectorAll('.cuadradoTalla').forEach(element => {
+        element.addEventListener('click', () => {
+            element.classList.toggle('selected');
+            fillSearch();
+        });
+    });
 });
+
 
 document.getElementById('buscadorInputZapatos').addEventListener('input', function () {
     var searchIcon = document.querySelector('.search-icon');
@@ -232,3 +242,115 @@ const getQueryParam = (param) => {
     let urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
+
+function getSelectedTallas() {
+    const selectedElements = document.querySelectorAll('.cuadradoTalla.selected');
+    const selectedTallas = Array.from(selectedElements).map(element => element.textContent.trim());
+    return selectedTallas;
+}
+const fillSearch = async (page = 1) => {
+    const FORM = new FormData();
+    let idMarca = Number(getQueryParam('marca'));
+    FORM.append('idMarca', idMarca);
+
+    // Añadir el valor de búsqueda si no está vacío
+    if (BUSCADOR.value) {
+        FORM.append('value', BUSCADOR.value);
+    }
+
+    // Añadir las tallas seleccionadas al FormData
+    const selectedTallas = getSelectedTallas();
+    if (selectedTallas.length > 0) {
+        selectedTallas.forEach(talla => {
+            FORM.append('tallas[]', talla);
+        });
+    }
+
+    // Solo añadir el color si se ha seleccionado uno
+    if (SELECT_COLOR.value) {
+        FORM.append('coloresSelect', SELECT_COLOR.value);
+    }
+
+    const DATA = await fetchData(BUSCADOR_API, 'searchZapatoMarca', FORM);
+    if (DATA.status) {
+        allZapatos = DATA.dataset;
+    } else {
+        sweetAlert(4, DATA.error, true);
+    }
+
+    const filteredZapatos = applyFiltersToData(allZapatos);
+
+    CARDS_ZAPATO_BODY.innerHTML = '';
+    let start = (page - 1) * itemsPerPage;
+    let end = start + itemsPerPage;
+    let paginatedItems = filteredZapatos.slice(start, end);
+
+    paginatedItems.forEach(row => {
+        CARDS_ZAPATO_BODY.innerHTML += `
+        <div class="col-lg-4 col-md-3 col-sm-6 mt-2 mb-2">
+            <div class="card col-lg-12 col-md-12 col-sm-12" id="cardC">
+                <a href="../../vistas/publico/detalle_zapato.html?zapato=${row.id_zapato}" class="text15">
+                    <div class="image-wrapper2 col-lg-12">
+                        <img src="${SERVER_URL}helpers/images/zapatos/${row.foto_detalle_zapato}" id="imagenZapato"
+                            alt="${row.nombre_zapato}">
+                    </div>
+                    <div class="lineImgC"></div>
+                    <div class="card-body">
+                        <div class="d-flex flex-column col-lg-12 col-md-12 col-sm-12">
+                            <div class="d-flex col-lg-12 col-md-12 col-sm-12">
+                                <div class="d-flex flex-column col-lg-8 col-md-8 col-sm-8">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <h1 class="col-lg-12 col-md-12 col-sm-12 titillium-web-bold text18 text-black mb-0"
+                                            id="nombre">
+                                            ${row.nombre_zapato}
+                                        </h1>
+                                        <p class="col-lg-12 col-md-12 col-sm-12 titillium-web-extralight text12 clgr3 mt-0"
+                                            id="categoria">
+                                            ${row.genero_zapato}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-lg-4 col-md-4 col-sm-4">
+                                    <div
+                                        class="d-flex col-lg-12 col-md-12 col-sm-12 justify-content-end">
+                                        <p class="col-lg-11 titillium-web-extralight text12 clgr3"
+                                            id="colores">
+                                            ${row.colores} colores</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex col-lg-12 col-md-12 col-sm-12">
+                                <div
+                                    class="col-lg-6 col-md-6 col-sm-6 d-flex flex-row align-items-center">
+                                    <img src="../../recursos/imagenes/icons/starFill.svg"
+                                        alt="">
+                                    <p class="titillium-web-bold text12 m-0 align-baselin clYellowStar mt-1"
+                                        id="calificacionZapato">
+                                        ${row.estrellas !== null ? row.estrellas : 0}</p>
+                                </div>
+                                <div
+                                    class="d-flex col-lg-6 col-md-6 col-sm-6 justify-content-end align-items-center">
+                                    <h1 class="titillium-web-bold text15 text-black d-flex align-items-center mt-1"
+                                        id="precioZapato"> $${row.precio_unitario_zapato}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        `;
+    });
+
+    setupPagination(filteredZapatos.length, itemsPerPage, page);
+}
+
+SELECT_COLOR.addEventListener('change', function() {
+    fillSearch();
+});
+
+BUSCADOR_INPUT.addEventListener('submit', async (event) => {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    fillSearch();
+});

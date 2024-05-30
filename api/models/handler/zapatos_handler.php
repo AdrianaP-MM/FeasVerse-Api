@@ -343,35 +343,31 @@ class ZapatosHandler
         return Database::getRows($sql, $params); // Ejecución de la consulta SQL
     }
 
-    public function searchZapatoMarca()
+    public function searchZapatoMarca($tallas = [])
     {
         $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 
-    FROM tb_zapatos z
-    INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
-    INNER JOIN tb_colores ON tb_colores.id_color = dz.id_color
-    INNER JOIN tb_tallas t ON t.id_talla = dz.id_talla
-    LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
-    LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
-    WHERE z.id_marca = ?';
+            FROM tb_zapatos z
+            INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+            INNER JOIN tb_colores ON tb_colores.id_color = dz.id_color
+            INNER JOIN tb_tallas t ON t.id_talla = dz.id_talla
+            LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+            LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+            WHERE z.id_marca = ?';
 
         $params = array($this->id_marca);
 
-        // Agregar condiciones de búsqueda adicionales si están presentes
         if ($this->nombre_zapato) {
             $sql .= ' AND z.nombre_zapato LIKE ?';
             $params[] = "%{$this->nombre_zapato}%";
         }
-        if ($this->precio_unitario_zapato !== null) {
-            $sql .= ' AND z.precio_unitario_zapato = ?';
-            $params[] = $this->precio_unitario_zapato;
-        }
-        if ($this->id_color) {
+        if ($this->id_color !== null) {
             $sql .= ' AND dz.id_color = ?';
             $params[] = $this->id_color;
         }
-        if ($this->num_talla) {
-            $sql .= ' AND t.num_talla = ?';
-            $params[] = $this->num_talla;
+        if (!empty($tallas)) {
+            $talla_placeholders = implode(',', array_fill(0, count($tallas), '?'));
+            $sql .= " AND t.num_talla IN ($talla_placeholders)";
+            $params = array_merge($params, $tallas);
         }
 
         $sql .= ' GROUP BY z.id_zapato

@@ -373,6 +373,12 @@ input[type="range"]::-moz-range-thumb {
     color: white;
 }
 
+.selected{
+    background-color: #0D4560;
+    /* Color del texto en blanco al hacer hover */
+    color: white;
+}
+
 /* Estilos para el media query con ancho máximo de 575px */
 @media screen and (max-width: 575px) {
     /* Estilos para el elemento con ID "imagenZapato" */
@@ -444,7 +450,7 @@ input[type="range"]::-moz-range-thumb {
 /* Estilos para la línea de imagen */
 .lineImgC {
     /* Fondo con color #1591CC */
-    background-color: #1591CC;
+    background-color: #0D4560;
     /* Ancho del 100% */
     width: 100%;
     /* Altura de 4px */
@@ -466,7 +472,7 @@ input[type="range"]::-moz-range-thumb {
 .page-link {
     display: block;
     padding: 10px 15px;
-    color: #007bff;
+    color: #0D4560;
     text-decoration: none;
     background-color: #fff;
     border: 1px solid #dee2e6;
@@ -482,8 +488,8 @@ input[type="range"]::-moz-range-thumb {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #0D4560;
+    border-color: #0D4560;
 }
 
 .backNext, .num {
