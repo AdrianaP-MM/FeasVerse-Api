@@ -83,6 +83,18 @@ class ZapatosHandler
         return Database::getRows($sql, $params);
     }
 
+    public function readColoresDisponiblesForTalla()
+    {
+        $sql = 'SELECT DISTINCT id_zapato, c.nombre_color
+                FROM tb_detalle_zapatos dz
+                INNER JOIN tb_colores c ON dz.id_color = c.id_color
+                WHERE dz.id_zapato = ? AND dz.id_talla = ?';
+        $params = array($this->id_zapato, $this->id_talla);
+        return Database::getRows($sql, $params);
+    }
+    
+    
+
     public function readOneDetail()
     {
         $sql = 'SELECT z.id_zapato, dz.foto_detalle_zapato, m.nombre_marca, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.descripcion_zapato

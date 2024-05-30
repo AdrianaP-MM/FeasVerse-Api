@@ -44,7 +44,6 @@ class ZapatosData extends ZapatosHandler{
         }
     }
 
-
     public function setGenero($value)
     {
         if (Validator::validateNaturalNumber($value)) {

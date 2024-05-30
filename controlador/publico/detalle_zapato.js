@@ -223,6 +223,7 @@ const fillTallas = async () => {
                 <h5 class="titillium-web-regular m-0 p-0">
                     ${row.num_talla}
                 </h5>
+                <input type="hidden" name="id_talla" value="${row.id_talla}">
             </div>
             `;
         });
@@ -230,6 +231,7 @@ const fillTallas = async () => {
         //sweetAlert(2, DATA.error, false);
     }
 }
+
 
 let btnAcept = `
 <button type="button" id="seguirExplorando" onclick="closeSweet()"
@@ -259,13 +261,35 @@ let TALLA_INPUT = 0;
 let PRECIO_ZAPATO = 0;
 const COLOR_INPUT = document.getElementById('coloresInput');
 const CANTIDAD_INPUT = document.getElementById('cantidadInput');
+const CONTAINER_COLORES = document.getElementById('coloresContainer'); // Contenedor para los colores
 
-function setNumTalla(talla, div) {
+async function setNumTalla(talla, div) {
     // Resetear el color de fondo de todos los elementos
     restoreCuadroTallas();
     // Establecer el color de fondo del div seleccionado
     div.style.backgroundColor = 'SkyBlue';
     TALLA_INPUT = talla;
+    
+    // Obtener y mostrar los colores disponibles para la talla seleccionada
+    await fetchColoresDisponibles(talla);
+}
+
+const fetchColoresDisponibles = async (id_talla) => {
+    console.log(id_talla);
+    COLOR_INPUT.innerHTML = ''; // Limpiar los colores anteriores
+    const FORM = new FormData();
+    let id_zapato = Number(getQueryParam('zapato'));
+    FORM.append('id_zapato', id_zapato);
+    FORM.append('id_talla', id_talla); // Asegúrate de añadir id_talla aquí
+
+    // Petición para obtener los colores disponibles para la talla seleccionada
+    fillSelect(ZAPATOS_API, 'readColoresDisponiblesForTalla', 'coloresInput', '', FORM);
+    
+    if (DATA.status) {
+        
+    } else {
+        //sweetAlert(2, DATA.error, false);
+    }
 }
 
 // Función para mostrar una notificación de éxito cuando se agrega un artículo al carrito
