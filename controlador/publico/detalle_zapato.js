@@ -7,6 +7,7 @@ const CONTAINER_RESEGNAS = document.getElementById('Container_Resegnas');
 const CONTAINER_PODRIA_GUSTARTE = document.getElementById('Container_Podria_Gustarte');
 const CONTAINER_CANTIDAD_DISPONIBLE = document.getElementById('Container_Cantidad_Disponible');
 const ZAPATOS_API = 'services/publica/zapatos.php';
+const PEDIDOS_API = 'services/publica/pedidos.php';
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
@@ -30,6 +31,7 @@ const fillTable = async () => {
     if (DATA.status) {
         fillSelect(ZAPATOS_API, 'readOneColoresZapato', 'coloresInput', '', FORM);
         DATA.dataset.forEach(row => {
+            PRECIO_ZAPATO = row.precio_unitario_zapato;
             CONTAINER_TITLE.innerHTML += `
             <!--NOMBRE-->
             <h1 class="m-0 p-0 titillium-web-regular">
@@ -246,6 +248,7 @@ let btnGotoCarrito = `
 </button>`;
 
 let TALLA_INPUT = 0;
+let PRECIO_ZAPATO = 0;
 const COLOR_INPUT = document.getElementById('coloresInput');
 const CANTIDAD_INPUT = document.getElementById('cantidadInput');
 
@@ -267,8 +270,8 @@ const AddCarrito = async () => {
 
     if (TALLA == 0 || COLOR == '' || CANTIDAD == '' || CANTIDAD <= 0) {
         console.log(TALLA, COLOR, CANTIDAD)
-        message = 'Seleccione una talla, un color y la cantidad'
-        titleMessage = '¡Especifique su pedido!'
+        message = 'Seleccione una talla, un color y la cantidad';
+        titleMessage = '¡Especifique su pedido!';
         buttons = btnAcept;
     }
     else {
@@ -288,24 +291,36 @@ const AddCarrito = async () => {
             FORM2.append('id_detalle_zapato', ID_DETALLE);
             // Petición para guardar los datos del formulario.
 
-            const DATA2 = await fetchData(ZAPATOS_API, 'validationCantidad', FORM2); 
+            const DATA2 = await fetchData(ZAPATOS_API, 'validationCantidad', FORM2);
             if (DATA2.status) {
                 const ROW2 = DATA2.dataset;
                 let cantidadStock = ROW2.cantidad_zapato;
 
                 if (CANTIDAD > cantidadStock) {
-                    console.log(TALLA, COLOR, CANTIDAD)
-                    message = `Ingrese otra cantidad, nuestro stock actual de este zapato con esa talla y color es: ${cantidadStock}`
-                    titleMessage = 'La cantidad supera el stock'
+                    console.log(TALLA, COLOR, CANTIDAD);
+                    message = `Ingrese otra cantidad, nuestro stock actual de este zapato con esa talla y color es: ${cantidadStock}`;
+                    titleMessage = 'La cantidad supera el stock';
 
                     buttons = btnAcept;
                 }
                 else {
-                    console.log(TALLA, COLOR, CANTIDAD)
-                    message = `El zapato ha sido exitosamente añadido al carrito de compras.`
-                    titleMessage = '¡Se ha agregado al carrito!'
-
-                    buttons = btnAcept + btnGotoCarrito;
+                    const FORM3 = new FormData();
+                    FORM3.append('id_detalle_zapato', ID_DETALLE);
+                    FORM3.append('cantidad_pedido', CANTIDAD);
+                    FORM3.append('precio_del_zapato', PRECIO_ZAPATO);
+                    // Petición para guardar los datos del formulario.
+                    const DATA3 = await fetchData(PEDIDOS_API, 'createDetallePedido', FORM3);
+                    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                    if (DATA3.status) {
+                        message = `El zapato ha sido exitosamente añadido al carrito de compras.`;
+                        titleMessage = '¡Se ha agregado al carrito!';
+                        buttons = btnAcept + btnGotoCarrito;
+                    }
+                    else {
+                        titleMessage = `Algo salió mal`;
+                        message = 'No se puedo agregar al carrito error: ' + DATA3.error;
+                        buttons = btnAcept;
+                    }
                 }
             }
             else {
@@ -361,6 +376,7 @@ function gotoCar() {
 }
 
 function restoreValues() {
+    PRECIO_ZAPATO = 0;
     TALLA_INPUT = 0;
     COLOR_INPUT.value = '';
     CANTIDAD_INPUT.value = '';

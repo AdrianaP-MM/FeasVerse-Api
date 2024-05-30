@@ -16,6 +16,24 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
                 //BUSCAR ORDENES
+            case 'createDetallePedido':
+                // Validar y procesar los datos del formulario para crear un nuevo registro
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si todos los datos necesarios son válidos
+                if (
+                    !$pedidos->setIdDetalleZapato($_POST['id_detalle_zapato']) or
+                    !$pedidos->setCantidadPedido($_POST['cantidad_pedido']) or
+                    !$pedidos->setPrecioDelZapato($_POST['precio_del_zapato'])
+                ) {
+                    // Si algún dato no es válido, se asigna un mensaje de error
+                    $result['error'] = $pedidos->getDataError();
+                } elseif ($result['dataset'] = $pedidos->createDetallePedido()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Se ha creado correctamente el detalle pedido';
+                } else {
+                    $result['error'] = 'ERROR no se pudo agregar';
+                }
+            break;
             case 'searchOrders':
                 $_POST = Validator::validateForm($_POST);
                 if ($result['dataset'] = $pedidos->SearchOrdersClients($_POST['estado'])) {

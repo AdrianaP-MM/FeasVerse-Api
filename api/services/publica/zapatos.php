@@ -11,7 +11,6 @@ if (isset($_GET['action'])) {
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
     if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1;
-
         switch ($_GET['action']) {
             case 'searchDetalle':
                 if (

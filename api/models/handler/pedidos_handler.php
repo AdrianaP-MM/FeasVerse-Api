@@ -30,8 +30,19 @@ class PedidosHandler
     protected $estado_comentario = null;
     protected $fecha_del_comentario = null;
 
-
     //!PRIVADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+     // Método para crear un nuevo comentario
+    public function createDetallePedido()
+    {
+        $sql = 'CALL insert_detalle_pedido(?, ?, ?, ?);';
+        $params = array(
+            $this->$_SESSION['idCliente'],
+            $this->id_detalle_zapato,
+            $this->cantidad_pedido,
+            $this->precio_del_zapato
+        );
+        return Database::executeRow($sql, $params);
+    }
 
     //!METODOS DE BUSQUEDA
     //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
