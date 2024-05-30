@@ -44,7 +44,7 @@
                         </h1>
                         <!--DESCRIPCION DE LA MARCA-->
                         <p class="titillium-web col-lg-12 col-sm-12 mt-sm-3" id="descripcionDeLaMarca">
-                            
+
                         </p>
                     </div>
                 </div>
@@ -62,29 +62,6 @@
                                     id="buscadorInputZapatos" required>
                                 <span class="search-icon"><i class="bi bi-search"></i></span>
                                 <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Contenedor del select -->
-                    <div class="col-lg-4 col-md-12 col-sm-12 contenedorSelectBuscado">
-                        <div class="col-lg-12 col-md-12 d-flex flex-column">
-                            <div
-                                class="col-lg-12 col-md-12 d-flex flex-row justify-content-center align-items-center mt-md-3 mt-sm-3">
-                                <!-- Título del select -->
-                                <h6
-                                    class="titillium-web col-lg-3 col-md-3 col-sm-3 d-flex justify-content-end align-items-center pt-1 me-2 ordenarPor">
-                                    Ordenar por:
-                                </h6>
-                                <!-- Div para el SELECT -->
-                                <div class="custom-select col-lg-6 col-md-8 col-sm-8">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected>Selecciona una opción</option>
-                                        <option value="1">Recientes</option>
-                                        <option value="2">Antiguos</option>
-                                        <option value="3">Lo más comprado</option>
-                                        <option value="3">Mejor calificación</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,72 +105,8 @@
                                         <div class="tallasScroll col-lg-12 col-md-12 d-flex justify-content-center">
                                             <!--CARDS DE TALLAS-->
                                             <div
-                                                class="contenedorFilaTallas d-flex flex-row flex-wrap justify-content-center">
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        8
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        8.5
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        9
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        9.5
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        10
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        10.5
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
-                                                <div class="cuadradoTalla">
-                                                    <h5 class="titillium-web-regular m-0 p-0">
-                                                        30
-                                                    </h5>
-                                                </div>
+                                                class="contenedorFilaTallas d-flex flex-row flex-wrap justify-content-center" id="contenedorFilaTallas">
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -218,9 +131,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <!--SELECCION DE COLORES-->
                                                 <select class="form-select color-5blue" id="coloresSelect">
-                                                    <option disabled selected>Selecciona un color</option>
-                                                    <option value="1">Rojo</option>
-                                                    <option value="2">Azul</option>
+                                                    <option disabled selected value="0">Selecciona un color</option>
                                                 </select required>
                                             </div>
                                         </div>
@@ -243,67 +154,22 @@
                                     <div class="accordion-body">
                                         <!--DIV DE cHECK para seleccion de los generos de zapato-->
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="checkboxHombre">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkboxHombre"
+                                                data-genero="Masculino">
                                             <label class="form-check-label color-5blue titillium-web-bold"
-                                                for="checkboxHombre">
-                                                Hombre
-                                            </label>
+                                                for="checkboxHombre">Masculino</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="checkboxMujer">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkboxMujer"
+                                                data-genero="Femenino">
                                             <label class="form-check-label color-5blue titillium-web-bold"
-                                                for="checkboxMujer">
-                                                Mujer
-                                            </label>
+                                                for="checkboxMujer">Femenino</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="checkboxUnisex">
+                                            <input class="form-check-input" type="checkbox" value="" id="checkboxUnisex"
+                                                data-genero="Unisex">
                                             <label class="form-check-label color-5blue titillium-web-bold"
-                                                for="checkboxUnisex">
-                                                Unisex
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--ACCORDION DE PRECIO-->
-                            <div class="accordion-item rounded-0 border col-md-12 border-0">
-                                <h2 class="accordion-header">
-                                    <button
-                                        class="accordion-button collapsed color-5blue titillium-web-bold bg-color-0gray"
-                                        type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#precioPanelAccordionAlwaysOpen" aria-expanded="false"
-                                        aria-controls="precioPanelAccordionAlwaysOpen">
-                                        PRECIO
-                                    </button>
-                                </h2>
-                                <!--ACCORDION DE BODY rango-->
-                                <div id="precioPanelAccordionAlwaysOpen" class="accordion-collapse collapse">
-                                    <div class="accordion-body bg-color-0gray">
-                                        <!--DIV DEL RANGO DEL PRECIO-->
-                                        <div class="col-lg-12 col-md-12 mt-4 container2">
-                                            <div class="slider">
-                                                <div class="progress"></div>
-                                            </div>
-                                            <div class="range-input">
-                                                <input type="range" class="range-min" min="0" max="10000" value="2500"
-                                                    step="100">
-                                                <input type="range" class="range-max" min="0" max="10000" value="7500"
-                                                    step="100">
-                                            </div>
-                                            <div class="price-input">
-                                                <div class="field">
-                                                    <span>Min</span>
-                                                    <input type="number" class="input-min" value="2500">
-                                                </div>
-                                                <div class="separator">-</div>
-                                                <div class="field">
-                                                    <span>Max</span>
-                                                    <input type="number" class="input-max" value="7500">
-                                                </div>
-                                            </div>
+                                                for="checkboxUnisex">Unisex</label>
                                         </div>
                                     </div>
                                 </div>

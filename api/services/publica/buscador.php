@@ -27,6 +27,22 @@ if (isset($_GET['action'])) {
                 $result['error'] = 'No existen zapatos registrados';
             }
             break;
+        case 'readTallas':
+            if ($result['dataset'] = $zapato->readTallas()) {
+                $result['status'] = 1;
+                $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+            } else {
+                $result['error'] = 'No existen zapatos registrados';
+            }
+            break;
+        case 'readColor':
+            if ($result['dataset'] = $zapato->readColoresPublic()) {
+                $result['status'] = 1;
+                $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+            } else {
+                $result['error'] = 'No existen zapatos registrados';
+            }
+            break;
         default:
             // Si no se reconoce la acción, se asigna un mensaje de error
             $result['error'] = 'Acción no disponible dentro de la sesión';
