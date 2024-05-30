@@ -4,15 +4,18 @@ require_once('../../models/data/zapatos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
-    session_start();
+    session_start(); // Inicia la sesión.
     // Se instancia la clase correspondiente.
     $zapato = new ZapatosData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
+
+    // Verifica si el usuario ha iniciado sesión.
     if (isset($_SESSION['idCliente'])) {
-        $result['session'] = 1;
+        $result['session'] = 1; // Indica que hay una sesión activa.
         switch ($_GET['action']) {
             case 'searchDetalle':
+                // Validar los datos y buscar detalles del zapato.
                 if (
                     !$zapato->setIdTalla($_POST['id_talla']) or
                     !$zapato->setIdColor($_POST['id_color'])
@@ -23,8 +26,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Zapato inexistente';
                 }
-            break;
+                break;
             case 'validationCantidad':
+                // Validar los datos y verificar la cantidad disponible del zapato.
                 if (
                     !$zapato->setIdDetalleZapato($_POST['id_detalle_zapato'])
                 ) {
@@ -34,8 +38,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Zapato inexistente';
                 }
-            break;
+                break;
             case 'readAllReciente':
+                // Leer los zapatos más recientes.
                 if ($result['dataset'] = $zapato->readResumeReciente()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
@@ -44,6 +49,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAllEspecial':
+                // Leer los zapatos especiales.
                 if ($result['dataset'] = $zapato->readResumeEspecial()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
@@ -52,6 +58,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneDetail':
+                // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneDetail()) {
@@ -61,6 +68,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneColoresZapato':
+                // Leer los colores disponibles de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneColoresZapato()) {
@@ -70,6 +78,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneTallas':
+                // Leer las tallas disponibles de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneTallas()) {
@@ -79,6 +88,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneReseñas':
+                // Leer las reseñas de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneResegnas()) {
@@ -88,14 +98,14 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                // Si no se reconoce la acción, se asigna un mensaje de error
+                // Si no se reconoce la acción, se asigna un mensaje de error.
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     } else {
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        // Se compara la acción a realizar cuando no hay una sesión iniciada.
         switch ($_GET['action']) {
-                //LEER TODOS
             case 'readAllReciente':
+                // Leer los zapatos más recientes.
                 if ($result['dataset'] = $zapato->readResumeReciente()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
@@ -104,6 +114,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readAllEspecial':
+                // Leer los zapatos especiales.
                 if ($result['dataset'] = $zapato->readResumeEspecial()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
@@ -112,6 +123,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneDetail':
+                // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneDetail()) {
@@ -121,6 +133,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneColoresZapato':
+                // Leer los colores disponibles de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneColoresZapato()) {
@@ -130,6 +143,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneTallas':
+                // Leer las tallas disponibles de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneTallas()) {
@@ -139,6 +153,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readOneReseñas':
+                // Leer las reseñas de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->readOneResegnas()) {
@@ -148,7 +163,7 @@ if (isset($_GET['action'])) {
                 }
                 break;
             default:
-                // Si no se reconoce la acción, se asigna un mensaje de error
+                // Si no se reconoce la acción, se asigna un mensaje de error.
                 $result['error'] = 'Acción no disponible dentro de la sesión';
         }
     }
@@ -159,5 +174,6 @@ if (isset($_GET['action'])) {
     // Se imprime el resultado en formato JSON y se retorna al controlador.
     print(json_encode($result));
 } else {
+    // Si no se envió una acción válida, se devuelve un mensaje de recurso no disponible.
     print(json_encode('Recurso no disponible'));
 }

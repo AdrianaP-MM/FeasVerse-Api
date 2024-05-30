@@ -10,12 +10,12 @@ if (isset($_GET['action'])) {
     $pedidos = new PedidosData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+    // Se verifica si existe una sesión iniciada como cliente, de lo contrario se finaliza el script con un mensaje de error.
     if (isset($_SESSION['idCliente'])) {
-        $result['session'] = 1;
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
+        $result['session'] = 1; // Indica que hay una sesión activa.
+        // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
-                //BUSCAR ORDENES
+                // Crear un detalle de pedido
             case 'createDetallePedido':
                 // Validar y procesar los datos del formulario para crear un nuevo registro
                 $_POST = Validator::validateForm($_POST);
@@ -33,7 +33,9 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'ERROR no se pudo agregar';
                 }
-            break;
+                break;
+
+                // Buscar órdenes
             case 'searchOrders':
                 $_POST = Validator::validateForm($_POST);
                 if ($result['dataset'] = $pedidos->SearchOrdersClients($_POST['estado'])) {
@@ -43,7 +45,8 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos con esa búsqueda';
                 }
                 break;
-            //BUSCAR ORDEnES
+
+                // Leer todas las órdenes de clientes
             case 'readAllOrdersOfClients':
                 if ($result['dataset'] = $pedidos->readAllOrdersClients()) {
                     $result['status'] = 1;
@@ -52,7 +55,8 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos registrados';
                 }
                 break;
-            //COMENTARIOS
+
+                // Comentarios
             case 'comentario':
                 if ($result['dataset'] = $pedidos->comentario()) {
                     $result['status'] = 1;
@@ -61,9 +65,10 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ya comentaste a los productos comprados';
                 }
                 break;
-            //AGREGRAR COMENTARIO
+
+                // Crear un comentario
             case 'comentarioCreate':
-                // Validar y procesar los datos del formulario para crear un nuevo registro
+                // Validar y procesar los datos del formulario para crear un nuevo comentario
                 $_POST = Validator::validateForm($_POST);
                 // Verificar si todos los datos necesarios son válidos
                 if (
@@ -83,7 +88,8 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ya comentaste a los productos comprados';
                 }
                 break;
-                //LEER TODO LOS ZAPATOS DE UNA ORDEN
+
+                // Leer todos los zapatos de una orden específica
             case 'ReadAllShoesOfOneOrder':
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])) {
                     $result['error'] = $pedidos->getDataError();
@@ -93,6 +99,7 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapatos inexistente';
                 }
                 break;
+
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
@@ -104,8 +111,10 @@ if (isset($_GET['action'])) {
         // Se imprime el resultado en formato JSON y se retorna al controlador.
         print(json_encode($result));
     } else {
+        // Si no hay una sesión iniciada, se devuelve un mensaje de acceso denegado.
         print(json_encode('Acceso denegado'));
     }
 } else {
+    // Si no se envió una acción válida, se devuelve un mensaje de recurso no disponible.
     print(json_encode('Recurso no disponible'));
 }
