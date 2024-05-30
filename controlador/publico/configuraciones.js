@@ -104,7 +104,9 @@ const addSave = async () => {
     }
 }
 
+// Función que hace los campos de un formulario de entrada de datos solo de lectura o editables.
 function makeFieldsReadOnly(isReadOnly) {
+    // Configura el atributo readOnly de cada campo según el valor de isReadOnly.
     NOMBRES_INPUT.readOnly = isReadOnly;
     APELLIDOS_INPUT.readOnly = isReadOnly;
     DUI_INPUT.readOnly = isReadOnly;
@@ -114,15 +116,19 @@ function makeFieldsReadOnly(isReadOnly) {
     DIRECCION_INPUT.readOnly = isReadOnly;
 }
 
+// Itera sobre cada formulario y añade un listener de evento de envío a cada uno.
 Array.from(forms).forEach(form => {
     form.addEventListener('submit', event => {
+        // Si el formulario no es válido, previene el envío y la propagación del evento.
         if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
+            event.preventDefault();
+            event.stopPropagation();
         }
-        form.classList.add('was-validated')
-    }, false)
-})
+        // Añade la clase 'was-validated' al formulario para indicar que ha sido validado.
+        form.classList.add('was-validated');
+    }, false);
+});
+
 
 
 document.getElementById('duiInput').addEventListener('input', function (event) {
