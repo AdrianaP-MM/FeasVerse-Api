@@ -107,8 +107,9 @@ const fillTable = async () => {
                 TEXT_CANTIDAD_ZAPATO.innerHTML = `Debes de iniciar sesión para visualizar los productos del carrito`;
             }
 
-            if (DATA === 'Acceso denegado') {
-                sweetAlert(4, 'Debe de iniciar sesión', true);
+            if (DATA2 === 'Acceso denegado') {
+                await sweetAlert(4, 'Debe de iniciar sesión', true);
+                location.href = 'index.html';
             }
         }
     }
@@ -159,11 +160,25 @@ const comprar = async () => {
                 paga(); // Muestra la notificación de éxito
                 fillTable(); // Vuelve a cargar la tabla
             } else {
+                if (DATA === 'Acceso denegado') {
+                    await sweetAlert(3, 'Debes de iniciar sesión', false);
+                    location.href = 'index.html';
+                }
+                else{
                 sweetAlert(3, DATA.error, false);
+
+                }
             }
         }
         else {
-            sweetAlert(3, DATA0.error, false);
+            if (DATA0 === 'Acceso denegado') {
+                await sweetAlert(3, 'Debes de iniciar sesión', false);
+                location.href = 'index.html';
+            }
+            else {
+                sweetAlert(3, DATA0.error, false);
+
+            }
         }
     }
 }

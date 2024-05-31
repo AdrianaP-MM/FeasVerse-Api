@@ -71,7 +71,7 @@ const botonAgregar = async () => {
         FORM = new FormData(COMMENT_FORM);
         FORM.append('calificacion', calificacionSeleccionada);
         FORM.append('fecha', formattedDate);
-        FORM.append('estado', 1);
+        FORM.append('estado', 2);
 
         // Petición para agregar un comentario
         const DATA = await fetchData(CARRITO_API2, 'comentarioCreate', FORM);

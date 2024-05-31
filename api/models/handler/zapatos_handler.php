@@ -60,7 +60,7 @@ class ZapatosHandler
         INNER JOIN tb_detalles_pedidos dp ON dp.id_pedido_cliente = pc.id_pedido_cliente
         INNER JOIN tb_detalle_zapatos dz ON dz.id_detalle_zapato = dp.id_detalle_zapato
         INNER JOIN tb_comentarios co ON co.id_detalles_pedido = dp.id_detalles_pedido
-        WHERE dz.id_zapato = ?;';
+        WHERE dz.id_zapato = ? AND co.estado_comentario != "Desactivo";';
         $params = array($this->id_zapato);
         return Database::getRows($sql, $params);
     }

@@ -76,7 +76,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'Zapato inexistente';
                 }
-                break;                
+                break;
             case 'readOneTallas':
                 // Leer las tallas disponibles de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
@@ -97,6 +97,19 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapato inexistente';
                 }
                 break;
+            case 'readColoresDisponiblesForTalla':
+
+
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif (!$zapato->setIdTalla($_POST['id_talla'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readColoresDisponiblesForTalla()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Colores no disponibles para esta talla';
+                }
+                break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error.
                 $result['error'] = 'Acción no disponible dentro de la sesión';
@@ -113,20 +126,20 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen zapatos registrados';
                 }
                 break;
-                case 'readColoresDisponiblesForTalla':
-                    
+            case 'readColoresDisponiblesForTalla':
 
-                    if (!$zapato->setId($_POST['id_zapato'])) {
-                        $result['error'] = $zapato->getDataError();
-                    } elseif (!$zapato->setIdTalla($_POST['id_talla'])) {
-                        $result['error'] = $zapato->getDataError();
-                    } elseif ($result['dataset'] = $zapato->readColoresDisponiblesForTalla()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['error'] = 'Colores no disponibles para esta talla';
-                    }
-                    break;
-                                
+
+                if (!$zapato->setId($_POST['id_zapato'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif (!$zapato->setIdTalla($_POST['id_talla'])) {
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readColoresDisponiblesForTalla()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Colores no disponibles para esta talla';
+                }
+                break;
+
             case 'readAllEspecial':
                 // Leer los zapatos especiales.
                 if ($result['dataset'] = $zapato->readResumeEspecial()) {
