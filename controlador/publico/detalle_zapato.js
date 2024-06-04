@@ -8,6 +8,9 @@ const CONTAINER_PODRIA_GUSTARTE = document.getElementById('Container_Podria_Gust
 const CONTAINER_CANTIDAD_DISPONIBLE = document.getElementById('Container_Cantidad_Disponible');
 const ZAPATOS_API = 'services/publica/zapatos.php';
 const PEDIDOS_API = 'services/publica/pedidos.php';
+// Seleccionar el elemento input
+const cantidadInput = document.getElementById('cantidadInput');
+
 
 // Evento que se dispara cuando el documento HTML ha cargado completamente
 document.addEventListener('DOMContentLoaded', async () => {
@@ -269,7 +272,7 @@ async function setNumTalla(talla, div) {
     // Establecer el color de fondo del div seleccionado
     div.style.backgroundColor = 'SkyBlue';
     TALLA_INPUT = talla;
-    
+
     // Obtener y mostrar los colores disponibles para la talla seleccionada
     await fetchColoresDisponibles(talla);
 }
@@ -281,14 +284,14 @@ const fetchColoresDisponibles = async (id_talla) => {
     let id_zapato = Number(getQueryParam('zapato'));
     FORM.append('id_zapato', id_zapato);
     FORM.append('id_talla', id_talla); // Asegúrate de añadir id_talla aquí
-
-    // Petición para obtener los colores disponibles para la talla seleccionada
-    fillSelect(ZAPATOS_API, 'readColoresDisponiblesForTalla', 'coloresInput', '', FORM);
-    
+    const DATA = await fetchData(ZAPATOS_API, 'readColoresDisponiblesForTalla', FORM);
     if (DATA.status) {
-        
+        const ROW = DATA.dataset
+        cantidadInput.max = ROW.cantidad_zapato;
+        // Petición para obtener los colores disponibles para la talla seleccionada
+        fillSelect(ZAPATOS_API, 'readColoresDisponiblesForTalla', 'coloresInput', '', FORM);
     } else {
-        //sweetAlert(2, DATA.error, false);
+        sweetAlert(2, DATA.error, false);
     }
 }
 
@@ -414,6 +417,10 @@ function gotoLogin() {
 
 
 function restoreValues() {
+    const FORM = new FormData();
+    let id_zapato = Number(getQueryParam('zapato'));
+    FORM.append('id_zapato', id_zapato);
+    fillSelect(ZAPATOS_API, 'readOneColoresZapato', 'coloresInput', '', FORM);
     TALLA_INPUT = 0;
     COLOR_INPUT.value = '';
     CANTIDAD_INPUT.value = '';

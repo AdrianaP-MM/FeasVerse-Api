@@ -98,8 +98,6 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'readColoresDisponiblesForTalla':
-
-
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif (!$zapato->setIdTalla($_POST['id_talla'])) {
