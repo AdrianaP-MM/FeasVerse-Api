@@ -88,7 +88,7 @@ const fillMarca = async () => {
         DESCRIPCION_MARCA.innerHTML = ROW.descripcion_marca;
         IMAGEN_MARCA.src = `${SERVER_URL}helpers/images/marcas/${ROW.foto_marca}`;
     } else {
-        // Maneja el error (mostrar mensaje de error, etc.)
+        location.href = 'index.html';   
     }
 }
 
