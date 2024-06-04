@@ -42,6 +42,9 @@ h6 {
     min-width: 528px;
     /* Ancho máximo ajustado al contenido */
     max-width: max-content;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 /* Media query para pantallas con un ancho máximo de 1180px */

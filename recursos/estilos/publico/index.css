@@ -126,30 +126,16 @@
 @media screen and (max-width: 666px) {
 
     /* Ocultar todas las tarjetas excepto la primera en pantallas pequeñas */
-    .cardM:not(:first-child) {
-        display: none;
+    .cardM{
+        margin: 25px;
+        height: fit-content;
+        width: fit-content;
     }
 
-    /* Estilos para las imágenes dentro del contenedor en pantallas pequeñas */
-    .image-wrapper img {
-        width: 100vw;
-        /* Ancho de la imagen */
-        height: 30vh;
-        /* Altura de la imagen */
-    }
-
-    /* Estilos para el contenedor de las tarjetas en pantallas pequeñas */
-    .cards-wrapper {
-        display: flex;
-        /* Mostrar las tarjetas en fila */
-    }
-
-    /* Estilos para el contenedor de imagen en pantallas pequeñas */
+    /* Estilos para el contenedor de imagen en pantallas grandes */
     .image-wrapper {
-        height: 20vh;
+        height: 46vw;
         /* Altura del contenedor de imagen */
-        width: 100vw;
-        /* Ancho del contenedor de imagen */
         display: flex;
         /* Mostrar como flexbox */
         align-items: center;
@@ -157,6 +143,24 @@
         justify-content: center;
         /* Centrar horizontalmente */
     }
+
+    /* Estilos para las imágenes dentro del contenedor en pantallas grandes */
+    .image-wrapper img {
+        width: 46vw;
+        /* Ancho de la imagen */
+        height: 46vw;
+        /* Altura de la imagen */
+    }
+
+    /* Estilos para el contenedor de las tarjetas en pantallas pequeñas */
+    .cards-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* Mostrar las tarjetas en fila */
+    }
+
 }
 
 /*-------------------------- CARRUSEL DE ZAPATOS ------------------*/
