@@ -262,13 +262,15 @@ const COLOR_INPUT = document.getElementById('coloresInput');
 const CANTIDAD_INPUT = document.getElementById('cantidadInput');
 const CONTAINER_COLORES = document.getElementById('coloresContainer'); // Contenedor para los colores
 
-async function setNumTalla(talla, div) {
+async function setNumTalla(talla, div, STOCK) {
     // Resetear el color de fondo de todos los elementos
     restoreCuadroTallas();
     // Establecer el color de fondo del div seleccionado
     div.style.backgroundColor = 'SkyBlue';
     TALLA_INPUT = talla;
 
+    console.log(STOCK + " " + "Cantidad maxima")
+    cantidadInput.max = STOCK;
     // Obtener y mostrar los colores disponibles para la talla seleccionada
     //await fetchColoresDisponibles(talla);
 }
@@ -305,11 +307,9 @@ const fetchTallasDisponibles = async (id_color) => {
     FORM.append('id_color', id_color); // Asegúrate de añadir id_talla aquí
     const DATA = await fetchData(ZAPATOS_API, 'readTallasDisponiblesForColor', FORM);
     if (DATA.status) {
-        const ROW = DATA.dataset
-        cantidadInput.max = ROW.cantidad_zapato;
         DATA.dataset.forEach(row => {
             CONTAINER_TALLAS.innerHTML += `
-            <div class="cuadradoTalla" onclick="setNumTalla(${row.id_talla}, this)">
+            <div class="cuadradoTalla" onclick="setNumTalla(${row.id_talla}, this, ${row.cantidad_zapato})">
                 <h5 class="titillium-web-regular m-0 p-0">
                     ${row.num_talla}
                 </h5>
