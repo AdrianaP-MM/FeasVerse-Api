@@ -15,6 +15,11 @@ button{
     background-color: transparent;
 }
 
+.modal-content {
+    background-color: #1A89BD;
+    color: white;
+}
+
 button:hover{
     background-color: gainsboro;
 }

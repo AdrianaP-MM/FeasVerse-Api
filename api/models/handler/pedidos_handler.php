@@ -31,7 +31,7 @@ class PedidosHandler
     protected $fecha_del_comentario = null;
 
     //!PRIVADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-     // Método para crear un nuevo comentario
+    // Método para crear un nuevo comentario
     public function createDetallePedido()
     {
         $sql = 'CALL insert_detalle_pedido(?, ?, ?, ?);';
@@ -222,10 +222,21 @@ class PedidosHandler
     // Método para actualizar el estado de un pedido
     public function updateStatus()
     {
-        $sql = 'UPDATE tb_pedidos_clientes
-                SET estado_pedido = ?
-                WHERE id_pedido_cliente = ?';
-        $params = array($this->estado_pedido, $this->id_pedido_cliente);
+        // Iniciar la variable SQL y los parámetros
+        $sql = 'UPDATE tb_pedidos_clientes SET estado_pedido = ?';
+        $params = array($this->estado_pedido);
+
+        // Verificar si el estado es "Entregado"
+        if ($this->estado_pedido === 'Entregado') {
+            // Agregar la fecha de entrega a la consulta SQL y a los parámetros
+            $sql .= ', fecha_de_entrega = NOW()';
+        }
+
+        // Agregar la cláusula WHERE a la consulta SQL
+        $sql .= ' WHERE id_pedido_cliente = ?';
+        $params[] = $this->id_pedido_cliente;
+
+        // Ejecutar la consulta SQL con los parámetros
         return Database::executeRow($sql, $params);
     }
 
@@ -399,7 +410,7 @@ class PedidosHandler
     public function readShoesOfCarritos()
     {
         // Consulta SQL para obtener los detalles de los zapatos de un pedido específico
-        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_detalles_pedido, foto_detalle_zapato,
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, tb_detalle_zapatos.id_detalle_zapato, id_detalles_pedido, foto_detalle_zapato,
         nombre_zapato, nombre_color, num_talla, cantidad_pedido, tb_zapatos.precio_unitario_zapato,
         tb_zapatos.precio_unitario_zapato * cantidad_pedido AS precio_total
         FROM tb_detalles_pedidos
