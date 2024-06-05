@@ -220,13 +220,13 @@ const fillTallas = async () => {
     const DATA = await fetchData(ZAPATOS_API, 'readOneTallas', FORM);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
     if (DATA.status) {
-        DATA.dataset.forEach(row => {
+        //DATA.dataset.forEach(row => {
             CONTAINER_TALLAS.innerHTML += `
                 <h5 class="titillium-web-regular m-0 p-0">
                     Seleccione un color
                 </h5>
             `;
-        });
+        //});
     } else {
         //sweetAlert(2, DATA.error, false);
     }
