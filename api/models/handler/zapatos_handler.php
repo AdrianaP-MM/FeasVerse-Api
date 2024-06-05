@@ -69,8 +69,17 @@ class ZapatosHandler
     {
         $sql = 'SELECT DISTINCT t.id_talla, t.num_talla FROM tb_tallas t
         INNER JOIN tb_detalle_zapatos dz ON dz.id_talla = t.id_talla
-        WHERE dz.id_zapato = ?;';
+        WHERE dz.id_zapato = ? AND dz.cantidad_zapato > 0;';
         $params = array($this->id_zapato);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readTallasDisponiblesForColor()
+    {
+        $sql = 'SELECT DISTINCT t.id_talla, t.num_talla, dz.cantidad_zapato FROM tb_tallas t
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_talla = t.id_talla
+        WHERE dz.id_zapato = ? AND dz.id_color = ?;';
+        $params = array($this->id_zapato, $this->id_color);
         return Database::getRows($sql, $params);
     }
 
@@ -78,14 +87,14 @@ class ZapatosHandler
     {
         $sql = 'SELECT DISTINCT c.id_color, c.nombre_color FROM tb_colores c
         INNER JOIN tb_detalle_zapatos dz ON dz.id_color = c.id_color
-        WHERE dz.id_zapato = ?;';
+        WHERE dz.id_zapato = ? AND dz.cantidad_zapato > 0;';
         $params = array($this->id_zapato);
         return Database::getRows($sql, $params);
     }
 
     public function readColoresDisponiblesForTalla()
     {
-        $sql = 'SELECT DISTINCT id_zapato, c.nombre_color, cantidad_zapato
+        $sql = 'SELECT DISTINCT c.id_color, c.nombre_color, id_zapato, cantidad_zapato
                 FROM tb_detalle_zapatos dz
                 INNER JOIN tb_colores c ON dz.id_color = c.id_color
                 WHERE dz.id_zapato = ? AND dz.id_talla = ?';

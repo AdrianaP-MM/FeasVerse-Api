@@ -222,19 +222,15 @@ const fillTallas = async () => {
     if (DATA.status) {
         DATA.dataset.forEach(row => {
             CONTAINER_TALLAS.innerHTML += `
-            <div class="cuadradoTalla" onclick="setNumTalla(${row.id_talla}, this)">
                 <h5 class="titillium-web-regular m-0 p-0">
-                    ${row.num_talla}
+                    Seleccione un color
                 </h5>
-                <input type="hidden" name="id_talla" value="${row.id_talla}">
-            </div>
             `;
         });
     } else {
         //sweetAlert(2, DATA.error, false);
     }
 }
-
 
 let btnAcept = `
 <button type="button" id="seguirExplorando" onclick="closeSweet()"
@@ -274,7 +270,7 @@ async function setNumTalla(talla, div) {
     TALLA_INPUT = talla;
 
     // Obtener y mostrar los colores disponibles para la talla seleccionada
-    await fetchColoresDisponibles(talla);
+    //await fetchColoresDisponibles(talla);
 }
 
 const fetchColoresDisponibles = async (id_talla) => {
@@ -292,6 +288,37 @@ const fetchColoresDisponibles = async (id_talla) => {
         fillSelect(ZAPATOS_API, 'readColoresDisponiblesForTalla', 'coloresInput', '', FORM);
     } else {
         sweetAlert(2, DATA.error, false);
+    }
+}
+
+COLOR_INPUT.addEventListener('change', function() {
+    var selectedValue = COLOR_INPUT.value;
+    fetchTallasDisponibles(selectedValue);
+});
+
+const fetchTallasDisponibles = async (id_color) => {
+    console.log(id_color);
+    CONTAINER_TALLAS.innerHTML = ''; // Limpiar las tallas anteriores
+    const FORM = new FormData();
+    let id_zapato = Number(getQueryParam('zapato'));
+    FORM.append('id_zapato', id_zapato);
+    FORM.append('id_color', id_color); // Asegúrate de añadir id_talla aquí
+    const DATA = await fetchData(ZAPATOS_API, 'readTallasDisponiblesForColor', FORM);
+    if (DATA.status) {
+        const ROW = DATA.dataset
+        cantidadInput.max = ROW.cantidad_zapato;
+        DATA.dataset.forEach(row => {
+            CONTAINER_TALLAS.innerHTML += `
+            <div class="cuadradoTalla" onclick="setNumTalla(${row.id_talla}, this)">
+                <h5 class="titillium-web-regular m-0 p-0">
+                    ${row.num_talla}
+                </h5>
+                <input type="hidden" name="id_talla" value="${row.id_talla}">
+            </div>
+            `;
+        });
+    } else {
+        fillTallas();
     }
 }
 
@@ -314,6 +341,7 @@ const AddCarrito = async () => {
         const FORM1 = new FormData();
         FORM1.append('id_talla', TALLA);
         FORM1.append('id_color', COLOR);
+        console.log(TALLA, COLOR + " " + "Search detalle")
         // Petición para guardar los datos del formulario.
         const DATA1 = await fetchData(ZAPATOS_API, 'searchDetalle', FORM1);
         // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
@@ -368,7 +396,7 @@ const AddCarrito = async () => {
                 buttons = btnAcept + btnGotoLogin;
             }
             else {
-                console.log(TALLA, COLOR, CANTIDAD)
+                console.log(TALLA, COLOR, CANTIDAD, ID_DETALLE)
                 titleMessage = 'Sin stock'
                 message = `No hay zapato de esa talla y ese color :c selecciona otra talla u otro color`
                 buttons = btnAcept;
@@ -421,6 +449,7 @@ function restoreValues() {
     let id_zapato = Number(getQueryParam('zapato'));
     FORM.append('id_zapato', id_zapato);
     fillSelect(ZAPATOS_API, 'readOneColoresZapato', 'coloresInput', '', FORM);
+    fillTallas();
     TALLA_INPUT = 0;
     COLOR_INPUT.value = '';
     CANTIDAD_INPUT.value = '';

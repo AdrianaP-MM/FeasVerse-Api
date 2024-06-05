@@ -108,6 +108,17 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Colores no disponibles para esta talla';
                 }
                 break;
+                case 'readTallasDisponiblesForColor':
+                    if (!$zapato->setId($_POST['id_zapato'])) {
+                        $result['error'] = $zapato->getDataError();
+                    } elseif (!$zapato->setIdColor($_POST['id_color'])) {
+                        $result['error'] = $zapato->getDataError();
+                    } elseif ($result['dataset'] = $zapato->readTallasDisponiblesForColor()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Tallas no disponibles para ese color';
+                    }
+                break;
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error.
                 $result['error'] = 'Acción no disponible dentro de la sesión';
@@ -124,9 +135,18 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen zapatos registrados';
                 }
                 break;
+                case 'readTallasDisponiblesForColor':
+                    if (!$zapato->setId($_POST['id_zapato'])) {
+                        $result['error'] = $zapato->getDataError();
+                    } elseif (!$zapato->setIdColor($_POST['id_color'])) {
+                        $result['error'] = $zapato->getDataError();
+                    } elseif ($result['dataset'] = $zapato->readTallasDisponiblesForColor()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'Tallas no disponibles para ese color';
+                    }
+                break;
             case 'readColoresDisponiblesForTalla':
-
-
                 if (!$zapato->setId($_POST['id_zapato'])) {
                     $result['error'] = $zapato->getDataError();
                 } elseif (!$zapato->setIdTalla($_POST['id_talla'])) {

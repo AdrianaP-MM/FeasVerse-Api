@@ -184,7 +184,6 @@ const fillSelect = async (filename, action, select, selected = null, form = null
     // Petición para obtener los datos.
     const DATA = await fetchData(filename, action, form);
     let content = '';
-    console.log(filename, action, select, selected, form);
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje.
     if (DATA.status) {
         content += '<option value="" selected>Seleccione una opción</option>';
