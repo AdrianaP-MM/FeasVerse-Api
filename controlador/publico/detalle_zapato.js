@@ -341,6 +341,7 @@ const AddCarrito = async () => {
         const FORM1 = new FormData();
         FORM1.append('id_talla', TALLA);
         FORM1.append('id_color', COLOR);
+        FORM1.append('id_zapato', Number(getQueryParam('zapato')));
         console.log(TALLA, COLOR + " " + "Search detalle")
         // Petición para guardar los datos del formulario.
         const DATA1 = await fetchData(ZAPATOS_API, 'searchDetalle', FORM1);

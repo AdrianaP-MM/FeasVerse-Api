@@ -118,11 +118,13 @@ const fillTable = async () => {
 
 let idDetalle; // Variable para almacenar el ID del detalle del pedido
 let idShoes; // Variable para almacenar el ID del zapato
+let cantdad;
 
 // Función para actualizar la cantidad de un producto en el carrito
 const actualizar = async (id, cantidad, idZapato) => {
     idDetalle = id;
     idShoes = idZapato;
+    cantdad = cantidad;
     document.getElementById('cant').value = cantidad; // Asigna la cantidad al input
     const FORM2 = new FormData();
     FORM2.append('id_detalle_zapato', idShoes);
@@ -231,6 +233,10 @@ const actuEvent = async () => {
     else if (textoBoton == 'Guardar') {
         let cant = CANT_INPUT.value.trim();
 
+        if (cant <= 0) {
+            sweetAlert(2, 'Por favor, ingrese una cantidad, no igual a cero o menor', false);
+        }
+
         // Verificar que el campo de cantidad no esté vacío.
         if (!cant) {
             sweetAlert(2, 'Por favor, ingrese una cantidad', false);
@@ -252,8 +258,35 @@ const actuEvent = async () => {
                 const ROW2 = DATA2.dataset;
                 let cantidadStock = ROW2.cantidad_zapato;
 
-                if (cant > cantidadStock) {
-                    sweetAlert(4, `Ingrese otra cantidad, nuestro stock actual de este zapato con esa talla y color es: ${cantidadStock}`, true);
+                if ((cant > cantidadStock) || (cantidadStock < cant) || ((0 === cantidadStock) && (cant < cantdad && cant > 0))) {
+                    if (((0 === cantidadStock) && (cant < cantdad && cant > 0)) || (cantidadStock < cant)) {
+                        // Constante tipo objeto con los datos del formulario.
+                        const FORM = new FormData();
+                        FORM.append('idDetallesPedido', idDetalle);
+                        FORM.append('cantidad', cant);
+
+                        // Petición para guardar los datos del formulario.
+                        const DATA = await fetchData(CARRITO_API, 'updateRow', FORM);
+
+                        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+                        if (DATA.status) {
+                            // Se muestra un mensaje de éxito.
+                            await sweetAlert(1, 'Se ha actualizado correctamente', true);
+                            // Deshabilita la edición de los campos de entrada.
+                            makeFieldsReadOnly(true);
+                            BTN_UPDATE.textContent = 'Actualizar';
+                            // Se carga nuevamente la tabla para visualizar los cambios.
+                            fillTable();
+                            DATA_MODAL.hide();
+                        } else {
+                            makeFieldsReadOnly(false);
+                            sweetAlert(2, DATA.error, false);
+                        }
+                    }
+                    else {
+                        sweetAlert(4, `Ingrese otra cantidad, nuestro stock actual de este zapato con esa talla y color es: ${cantidadStock}`, true);
+                    }
+
                 }
                 else {
 

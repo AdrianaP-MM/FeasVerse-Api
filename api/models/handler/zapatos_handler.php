@@ -45,10 +45,11 @@ class ZapatosHandler
 
     public function searchDetalle()
     {
-        $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ? LIMIT 1';
+        $sql = 'SELECT id_detalle_zapato FROM tb_detalle_zapatos WHERE id_talla = ? AND id_color = ? AND id_zapato = ? LIMIT 1';
         $params = array(
             $this->id_talla,
-            $this->id_color
+            $this->id_color,
+            $this->id_zapato
         );
         return Database::getRow($sql, $params);
     }

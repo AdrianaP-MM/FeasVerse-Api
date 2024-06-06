@@ -18,7 +18,8 @@ if (isset($_GET['action'])) {
                 // Validar los datos y buscar detalles del zapato.
                 if (
                     !$zapato->setIdTalla($_POST['id_talla']) or
-                    !$zapato->setIdColor($_POST['id_color'])
+                    !$zapato->setIdColor($_POST['id_color']) or
+                    !$zapato->setId($_POST['id_zapato'])
                 ) {
                     $result['error'] = $zapato->getDataError();
                 } elseif ($result['dataset'] = $zapato->searchDetalle()) {
