@@ -82,7 +82,6 @@ class Database
      */
     private static function setException($code, $message)
     {
-        print_r($message);
         // Se asigna el mensaje del error original por si se necesita.
         self::$error = $message . PHP_EOL;
         // Se compara el código del error para establecer un error personalizado.
@@ -104,6 +103,9 @@ class Database
                 break;
             case '23000':
                 self::$error = 'Violación de restricción de integridad';
+                break;
+            case '45000':
+                self::$error = 'Error de sintaxis en la sentencia SQL';
                 break;
             default:
                 self::$error = 'Ocurrió un problema en la base de datos';

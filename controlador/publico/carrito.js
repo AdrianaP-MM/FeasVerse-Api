@@ -279,8 +279,13 @@ const actuEvent = async () => {
                             fillTable();
                             DATA_MODAL.hide();
                         } else {
-                            makeFieldsReadOnly(false);
-                            sweetAlert(2, DATA.error, false);
+                            if(DATA.exception === 'Error de sintaxis en la sentencia SQL'){
+                                sweetAlert(2, 'Tiene que poner una cantidad menor del stock', false);
+                            }
+                            else{ 
+                                makeFieldsReadOnly(false);
+                                sweetAlert(2, DATA.error, false);
+                            }
                         }
                     }
                     else {
