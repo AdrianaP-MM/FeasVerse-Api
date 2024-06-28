@@ -27,6 +27,35 @@ class ZapatosHandler
     const RUTA_IMAGEN = '../../helpers/images/zapatos/';
 
 
+    public function readMasVendido()
+    {
+        $sql = '(
+            SELECT z.id_zapato, z.nombre_zapato, dz.foto_detalle_zapato, SUM(dp.cantidad_pedido) AS total_vendido
+            FROM tb_zapatos z
+            INNER JOIN tb_detalle_zapatos dz ON z.id_zapato = dz.id_zapato
+            JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+            GROUP BY z.id_zapato, z.nombre_zapato
+            ORDER BY total_vendido DESC
+            LIMIT 1
+        )
+        UNION ALL
+        (
+            SELECT z.id_zapato, z.nombre_zapato, dz.foto_detalle_zapato, 0 AS total_vendido
+            FROM tb_zapatos z
+            INNER JOIN tb_detalle_zapatos dz
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM tb_detalle_zapatos dz
+                JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+                WHERE dz.id_zapato = z.id_zapato
+            )
+            ORDER BY z.id_zapato
+            LIMIT 1
+        )
+        LIMIT 1;';
+        return Database::getRow($sql);
+    }
+
     public function readAll()
     {
         $sql = 'SELECT zapatos.id_zapato, zapatos.nombre_zapato,  detalle_zapatos.foto_detalle_zapato  FROM  tb_zapatos AS zapatos
@@ -102,7 +131,7 @@ class ZapatosHandler
         $params = array($this->id_zapato, $this->id_talla);
         return Database::getRows($sql, $params);
     }
-    
+
     public function readOneDetail()
     {
         $sql = 'SELECT z.id_zapato, dz.foto_detalle_zapato, m.nombre_marca, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.descripcion_zapato
