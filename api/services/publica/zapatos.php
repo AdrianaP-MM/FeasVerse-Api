@@ -57,7 +57,16 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'No existen zapatos registrados';
                 }
-                break;
+            break;
+                case 'readResumeAllZapatos':
+                     // Leer los zapatos especiales.
+                if ($result['dataset'] = $zapato->readResumeAllZapatos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                    break;
             case 'readOneDetail':
                 // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
@@ -186,6 +195,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen zapatos registrados';
                 }
                 break;
+                case 'readResumeAllZapatos':
+                          // Leer los zapatos especiales.
+                if ($result['dataset'] = $zapato->readResumeAllZapatos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                    break;
             case 'readOneDetail':
                 // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
