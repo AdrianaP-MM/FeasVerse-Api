@@ -24,6 +24,8 @@ class ClienteHandler
     /*
     *   Métodos para gestionar la cuenta del cliente.
     */
+
+    
     public function checkUser($correo_cliente, $clave_cliente)
     {
         // Consulta SQL para buscar un usuario por correo electrónico
@@ -252,4 +254,27 @@ class ClienteHandler
         // Ejecuta la consulta y devuelve el resultado
         return Database::getRow($sql, $params);
     }
+
+    public function readCantidadPedidosPorMes()
+    {
+        $sql = '
+        SELECT
+            c.id_cliente,
+            COUNT(p.id_pedido_cliente) AS cantidad_pedidos,
+            DATE_FORMAT(CURRENT_DATE(), "%M") AS mes_actual
+        FROM
+            tb_clientes c
+        JOIN
+            tb_pedidos_clientes p ON c.id_cliente = p.id_cliente
+        WHERE
+            MONTH(p.fecha_de_inicio) = MONTH(CURRENT_DATE())
+            AND YEAR(p.fecha_de_inicio) = YEAR(CURRENT_DATE())
+            AND c.id_cliente = ?
+        GROUP BY
+            c.id_cliente, c.nombre_cliente, c.apellido_cliente;
+        ';
+        $params = array($_SESSION['idCliente']);
+        return Database::getRow($sql, $params);
+    }
+
 }

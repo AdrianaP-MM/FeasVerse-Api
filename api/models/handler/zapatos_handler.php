@@ -26,7 +26,6 @@ class ZapatosHandler
 
     const RUTA_IMAGEN = '../../helpers/images/zapatos/';
 
-
     public function readMasVendido()
     {
         $sql = '(
@@ -108,7 +107,7 @@ class ZapatosHandler
     {
         $sql = 'SELECT DISTINCT t.id_talla, t.num_talla, dz.cantidad_zapato FROM tb_tallas t
         INNER JOIN tb_detalle_zapatos dz ON dz.id_talla = t.id_talla
-        WHERE dz.id_zapato = ? AND dz.id_color = ?;';
+        WHERE dz.id_zapato = ? AND dz.id_color = ? AND dz.cantidad_zapato > 0;';
         $params = array($this->id_zapato, $this->id_color);
         return Database::getRows($sql, $params);
     }
@@ -141,7 +140,7 @@ class ZapatosHandler
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
         INNER JOIN tb_marcas m ON m.id_marca = z.id_marca WHERE z.id_zapato = ?;';
         $params = array($this->id_zapato);
-        return Database::getRows($sql, $params);
+        return Database::getRow($sql, $params);
     }
 
     public function readResumeReciente()

@@ -44,6 +44,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Cliente inexistente';
                 }
                 break;
+            case 'readCantidadPedidosPorMes':
+                if ($result['dataset'] = $cliente->readCantidadPedidosPorMes()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'Pedidos inexistentes';
+                }
+            break;
                 //CAMBIAR CONTRASEÑA
             case 'changePassword':
                 $_POST = Validator::validateForm($_POST);
