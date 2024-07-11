@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -25,6 +25,28 @@ class ZapatosHandler
     protected $id_detalle_zapato = null;
 
     const RUTA_IMAGEN = '../../helpers/images/zapatos/';
+
+    public function updateRowZapato()
+    {
+        $sql = 'UPDATE tb_zapatos
+        SET
+            id_marca = ?,
+            nombre_zapato = ?,
+            genero_zapato = ?,
+            descripcion_zapato = ?,
+            precio_unitario_zapato = ?
+        WHERE id_zapato = ?;';
+
+        $params = array(
+            $this->id_marca,
+            $this->nombre_zapato,
+            $this->genero_zapato,
+            $this->descripcion_zapato,
+            $this->precio_unitario_zapato,
+            $this->id_zapato
+        );
+        return Database::executeRow($sql, $params);
+    }
 
     public function readMasVendido()
     {
@@ -58,7 +80,7 @@ class ZapatosHandler
     public function readAll()
     {
         $sql = 'SELECT zapatos.id_zapato, zapatos.nombre_zapato,  detalle_zapatos.foto_detalle_zapato  FROM  tb_zapatos AS zapatos
-    INNER JOIN tb_detalle_zapatos AS detalle_zapatos ON zapatos.id_zapato = detalle_zapatos.id_zapato;';
+        INNER JOIN tb_detalle_zapatos AS detalle_zapatos ON zapatos.id_zapato = detalle_zapatos.id_zapato GROUP BY id_zapato;';
         return Database::getRows($sql);
     }
 
@@ -391,7 +413,7 @@ class ZapatosHandler
         $sql = "SELECT id_detalle_zapato, id_talla, cantidad_zapato, nombre_color, foto_detalle_zapato AS 'foto' FROM tb_detalle_zapatos INNER JOIN tb_colores ON tb_colores.id_color = tb_detalle_zapatos.id_color 
         WHERE id_zapato = ?;"; // Consulta SQL para obtener los datos de un zapato por ID
         $params = array($this->id_zapato); // Parámetros para la consulta SQL
-        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
+        return Database::getRows($sql, $params); // Ejecución de la consulta SQL
     }
 
     public function readFtoDetalle()
@@ -399,7 +421,7 @@ class ZapatosHandler
         $sql = "SELECT  foto_detalle_zapato  FROM tb_detalle_zapatos
         WHERE id_zapato = ?  LIMIT 1;"; // Consulta SQL para obtener los datos de un zapato por ID
         $params = array($this->id_zapato); // Parámetros para la consulta SQL
-        return Database::getRows($sql, $params); // Ejecución de la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
     }
 
     public function searchZapatoMarca($tallas = [])

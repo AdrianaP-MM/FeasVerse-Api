@@ -125,8 +125,7 @@
                         </div>
                     </div>
                     <!--Pagina de Tallas-->
-                    <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="tallas"
-                        aria-labelledby="tallas-tab">
+                    <div class="tab-pane fade show z-3 d-none" role="tabpanel" id="tallas" aria-labelledby="tallas-tab">
                         <div class="ContenedorB1">
                             <div class="ContenedorTotalA d-flex flex-column align-items-center">
                                 <form class="ms-2 col-lg-12 col-md-10 col mt-3 mb-4" id="searchFormTalla">
@@ -380,17 +379,14 @@
                         </div>
                     </div>
                     <!-- Modal para Tallas -->
-
                     <!-- TODO ----------------------------AGREGAR ZAPATO MODAL------------------------------------------>
-                    <div class="modal fade" id="dataModalAdd" data-bs-backdrop="static" data-bs-keyboard="false"
+                    <!-- <div class="modal fade" id="dataModalAdd" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="modalTitleD" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
-                                <!-- Encabezado del modal -->
                                 <div class="modal-header d-flex justify-content-center align-items-center">
                                     <h1 class="modal-title fs-5 text-center" id="modalTitleD"></h1>
                                 </div>
-                                <!-- Formulario para crear o actualizar un registro -->
                                 <div class="ContenedorTotalD d-flex flex-column flex-wrap">
                                     <div class="ContenedorForms row flex-wrap">
                                         <div class="formZapato mt-2 col-md-5">
@@ -433,16 +429,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Botones en el pie del modal -->
                                     <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
                                         <div class="contenedorBotones3">
-                                            <!-- Botón para cancelar la operación -->
                                             <button type="button" id="cancelarBtn3"
                                                 class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
                                                 onclick="botonCancelar3()">
                                                 Cancelar
                                             </button>
-                                            <!-- Botón para actualizar el registro -->
                                             <button type="button" id="actualizarBtn3"
                                                 class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
                                                 onclick="botonActualizar3()">
@@ -454,17 +447,15 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <!-- TODO ----------------------------AGREGAR ZAPATO MODAL------------------------------------------>
+                    </div> -->
+                    <!-- TODO ----------------------------AGREGAR ZAPATO MODAL----------------------------------------
                     <div class="modal fade" id="dataModalAdd" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="modalTitleD" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered">
                             <div class="modal-content">
-                                <!-- Encabezado del modal -->
                                 <div class="modal-header d-flex justify-content-center align-items-center">
                                     <h1 class="modal-title fs-5 text-center" id="modalTitleD"></h1>
                                 </div>
-                                <!-- Formulario para crear o actualizar un registro -->
                                 <div class="ContenedorTotalD d-flex flex-column flex-wrap">
                                     <div class="ContenedorForms row flex-wrap">
                                         <div class="formZapato mt-4 col-md-7">
@@ -507,16 +498,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Botones en el pie del modal -->
                                     <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
                                         <div class="contenedorBotones3">
-                                            <!-- Botón para cancelar la operación -->
                                             <button type="button" id="cancelarBtn3"
                                                 class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
                                                 onclick="botonCancelar3()">
                                                 Cancelar
                                             </button>
-                                            <!-- Botón para actualizar el registro -->
                                             <button type="button" id="actualizarBtn3"
                                                 class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
                                                 onclick="botonActualizar3()">
@@ -528,7 +516,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- TODO ----------------------------DETALLES ZAPATO MODAL------------------------------------------>
                     <div class="modal fade" id="dataModalD" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="modalTitleD" aria-hidden="true">
@@ -551,11 +539,16 @@
                                                     <input type="text" class="form-control" id="nombreZapatoD"
                                                         name="nombreZapatoD">
                                                 </div>
-                                                <div class="formGenero mt-2 mx-2 col-md-5">
-                                                    <label for="generoZapatoD" class="formMarca">
-                                                        Género del zapato</label>
-                                                    <input type="text" class="form-control" id="generoZapatoD"
-                                                        name="generoZapatoD">
+                                                <div class="col-md-6 mt-2 mx-2">
+                                                    <label for="generoInput" class="form-label ">Género del
+                                                        zapato</label>
+                                                    <select class="form-select" aria-label="Genero" id="generoZapatoD"
+                                                        name="generoZapatoD" required>
+                                                        <option value="0" disabled selected>Selecciona un género</option>
+                                                        <option value="1">UNISEX</option>
+                                                        <option value="2">Hombre</option>
+                                                        <option value="3">Femenino</option>
+                                                    </select>
                                                 </div>
                                                 <div class="formZapato mt-2 col-md-5 mx-2">
                                                     <label for="marcaZapatoD" class="formMarca">
@@ -578,6 +571,7 @@
                                                 </div>
                                             </form>
                                         </div>
+
                                         <div class="ContenedorFoto d-flex flex-column align-items-center">
                                             <h3>Foto del zapato</h3>
                                             <img id="selectedImageDetalleZapato" class="sizeCard1 borderImage"
@@ -585,7 +579,7 @@
                                             <div class="btn btn-primary btn-rounded mt-3">
                                                 <label class="form-label text-white m-1" for="customFile1">Seleccionar
                                                     imagen</label>
-                                                <input type="file" class="form-control d-none" id="customFile1" readonly
+                                                <input type="file" class="form-control d-none" id="customFile1" name="customFile1"
                                                     onchange="displaySelectedImage(event, 'selectedImageDetalleZapato')" />
                                             </div>
                                         </div>
@@ -619,17 +613,70 @@
                                         <button type="button" id="actualizarBtn3"
                                             class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
                                             onclick="botonActualizar3()">
-                                            Aceptar
+                                            Actualizar
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- TODO ----------------------------AGREGAR TALLAS MODAL------------------------------------------>
+        <div class="modal fade" id="addNewDetalleWOF_MODAL" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Encabezado del modal -->
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h1 class="modal-title fs-5 text-center" id="modalTitle"></h1>
+                </div>
+                <!-- Formulario para crear o actualizar un registro -->
+                <form id="addNewDetalleWOF" name="addNewDetalleWOF">
+                    <div class="modal-body row g-3 d-flex flex-column align-items-center">
+                        <!-- Campo de nombres -->
+                        <div class="col-sm-6 col-md-6">
+                            <label for="addTalla_new" class="form-label">Ingresa la talla</label>
+                            <select class="form-select" aria-label="Default select example" id="addTalla_new"
+                                name="addTalla_new">
+                            </select>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            <label for="Color_new" class="form-label">Ingresa un color</label>
+                            <select class="form-select" aria-label="Default select example" id="Color_new"
+                                name="Color_new">
+                            </select>
+                        </div>
+                        <div class="col-sm-6 col-md-6 mb-3">
+                            <label for="cantidad_new" class="form-label">Ingresa el stock para el
+                                color</label>
+                            <input type="number" class="form-control" id="cantidad_new" name="cantidad_new"
+                                min=0>
+                        </div>
+                        <div class="lineaS align-items-center mt-4"></div>
+                        <!-- Botones en el pie del modal -->
+                        <div class="modal-footer mt-5 d-flex justify-content-center align-items-center">
+                            <div class="contenedorBotones3">
+                                <!-- Botón para cancelar la operación -->
+                                <button type="button" id="cancelarBtn"
+                                    class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                    onclick="hideAddDetalleModal()">
+                                    Cancelar
+                                </button>
+                                <!-- Botón para actualizar el registro -->
+                                <button type="button" id="actualizarBtn"
+                                    class="btn btn3 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                    onclick="">
+                                    Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </main>
     <footer id="footer"></footer>
     <!-- *Llamada a las hojas de estilos del framework e iconos -->

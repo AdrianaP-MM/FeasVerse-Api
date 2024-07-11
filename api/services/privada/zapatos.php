@@ -121,6 +121,27 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al subir el zapato';
                 }
                 break;
+                case 'updateRowZapato':
+                    $_POST = Validator::validateForm($_POST);
+                    //print_r($_POST);
+                    if (
+                        !$zapatos->setIdMarca($_POST['marcaZapatoD']) or
+                        !$zapatos->setNombreZapato($_POST['nombreZapatoD']) or
+                        !$zapatos->setGenero($_POST['generoZapatoD']) or
+                        !$zapatos->setDescripcion($_POST['descripcionZapatoD']) or
+                        !$zapatos->setPrecio($_POST['precioZapatoD']) or
+                        !$zapatos->setId($_POST['id_zapato']) 
+                        //!$zapatos->setFotoZapato($_FILES['foto_zapato'], $zapatos->getFilename())
+                    ) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($zapatos->updateRowZapato()) {
+                        $result['status'] = 1;
+                        //$result['fileStatus'] = Validator::changeFile($_FILES['foto_zapato'], $zapatos::RUTA_IMAGEN, $zapatos->getFilename());
+                        $result['message'] = 'Zapato modificado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al actualizar el zapato';
+                    }
+                    break;
             case 'createRowPT2':
                 $_POST = Validator::validateForm($_POST);
                 if (
