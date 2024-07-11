@@ -159,6 +159,38 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear el zapato';
                 }
                 break;
+                case 'createRowDetalle':
+                    $_POST = Validator::validateForm($_POST);
+                    //print_r($_POST);
+                    if (
+                        !$zapatos->setIdTalla($_POST['addTalla_new']) or
+                        !$zapatos->setCantidad($_POST['cantidad_new']) or
+                        !$zapatos->setIdColor($_POST['Color_new']) or
+                        !$zapatos->setId($_POST['id_zapato'])
+                    ) {
+                        $result['error'] = $zapatos->getDataError();
+                    } elseif ($zapatos->createRowDetalle()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Detalle del zapato creado correctamente';
+                    } else {
+                        $result['error'] = 'Ocurrió un problema al crear el zapato';
+                    }
+                    break;
+                    case 'updateDetalle':
+                        $_POST = Validator::validateForm($_POST);
+                        //print_r($_POST);
+                        if (
+                            !$zapatos->setCantidad($_POST['cantidad']) or
+                            !$zapatos->setIdDetalleZapato($_POST['id_detalle'])
+                        ) {
+                            $result['error'] = $zapatos->getDataError();
+                        } elseif ($zapatos->updateDetalle()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Detalle del zapato actualizado correctamente';
+                        } else {
+                            $result['error'] = 'Ocurrió un problema al actualizar el zapato';
+                        }
+                        break;
             case 'addColores':
                 $_POST = Validator::validateForm($_POST);
                 if (

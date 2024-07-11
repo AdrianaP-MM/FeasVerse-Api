@@ -52,6 +52,7 @@ const TALLA_INPUT_ADD = document.getElementById('tallaInputAdd');
 const TALLAS_DIV = document.getElementById('tallas');
 
 const FORM_EDIT_ZAPATO = document.getElementById('formZapatoEdit');
+const NEW_ZAPATO_FORM = document.getElementById('addNewDetalleWOF');
 
 
 const ZAPATOS_API = 'services/privada/zapatos.php';
@@ -464,39 +465,38 @@ const fillTableDetalles = async (id) => {
         }
         else {
             if (Array.isArray(DATA.dataset)) {
-                // Construir la fila de la tabla si solo hay un elemento en el conjunto de datos.
-                DATA.dataset.forEach(row => {
+                for (let i = 0; i < DATA.dataset.length; i++) {
+                    const row = DATA.dataset[i];
+
+                    // Construir fila de la tabla
                     TABLE_BODY.innerHTML += `
-                <tr>
-                    <td data-labelN="N°">${row.id_detalle_zapato}</td>
-                    <td data-labelT="Talla"> 
-                    <label for="input_talla_zapato_NEW" class="form-label">Ingresa la talla</label>
-                    <select class="form-select" aria-label="Default select example" id="input_talla_zapato_NEW"
-                    name="input_talla_zapato_NEW">
-                    </select></td>
-                    <td data-labelS="Cantidad Actual">
-                    <input id="input_cantidad_zapato_NEW" type="text" name="input_cantidad_zapato_NEW"
-                    class="form-control editableInput" required value="${row.cantidad_zapato}">
-                    </td>
-                    <td data-labelE="Color actual">${row.nombre_color}</td>
-                    <td>
-                        <button class="Verde"> <img class="note"
-                            src="../../recursos/imagenes/icons/notebook.svg"
-                            width="35px" height="35px">
-                        </button>
-                        <button class="Rojo" onclick="deleteDetalle(${row.id_detalle_zapato})"> <img class="note"
-                            src="../../recursos/imagenes/basura.svg" width="35px"
-                            height="35px">
-                        </button>
-                        <button class="Rojo" onclick="openAddDetalleModal()"> <img class="note"
-                            src="../../recursos/imagenes/icons/gmlIcon1.svg" width="35px"
-                            height="35px">
-                        </button>
-                    </td>
-                </tr>
-            `;
-                    fillSelect(ZAPATOS_API, 'readTallas', 'input_talla_zapato_NEW', row.id_talla);
-                });
+                        <tr>
+                            <td data-labelN="N°">${row.id_detalle_zapato}</td>
+                            <td data-labelT="Talla">
+                                <label for="input_talla_zapato_NEW_${row.id_detalle_zapato}" class="form-label">Ingresa la talla</label>
+                                <select class="form-select input_talla_zapato_NEW" aria-label="Default select example"
+                                    id="input_talla_zapato_NEW_${row.id_detalle_zapato}" name="input_talla_zapato_NEW" disabled>
+                                </select>
+                            </td>
+                            <td data-labelS="Cantidad Actual">
+                                <input id="input_cantidad_zapato_NEW_${row.id_detalle_zapato}" type="text" name="input_cantidad_zapato_NEW"
+                                    class="form-control editableInput" required value="${row.cantidad_zapato}">
+                            </td>
+                            <td data-labelE="Color actual">${row.nombre_color}</td>
+                            <td>
+                                <button class="Verde" onclick="updateDetalle(${row.id_detalle_zapato})">
+                                    <img class="note" src="../../recursos/imagenes/icons/notebook.svg" width="35px" height="35px">
+                                </button>
+                                <button class="Rojo" onclick="deleteDetalle(${row.id_detalle_zapato})">
+                                    <img class="note" src="../../recursos/imagenes/basura.svg" width="35px" height="35px">
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+
+                    // Llenar el select correspondiente a esta fila
+                    fillSelect(ZAPATOS_API, 'readTallas', `input_talla_zapato_NEW_${row.id_detalle_zapato}`, row.id_talla);
+                }
             } else {
                 const ROW = DATA.dataset;
                 TABLE_BODY.innerHTML += `
@@ -504,24 +504,20 @@ const fillTableDetalles = async (id) => {
                     <td data-labelN="N°">${ROW.id_detalle_zapato}</td>
                     <td data-labelT="Talla"> <label for="input_talla_zapato_NEW" class="form-label">Ingresa la talla</label>
                     <select class="form-select" aria-label="Default select example" id="input_talla_zapato_NEW"
-                    name="input_talla_zapato_NEW">
+                    name="input_talla_zapato_NEW" disabled>
                     </select></td>
                         <td data-labelS="Cantidad Actual">
-                        <input id="nombreColor" type="text" name="nombreColor"
+                        <input id="input_cantidad_zapato_NEW_" type="text" name="input_cantidad_zapato_NEW_"
                                                 class="form-control editableInput" required readonly value="${ROW.cantidad_zapato}">
                                                 </td>
                     <td data-labelE="Color actual">${ROW.nombre_color}</td>
                     <td>
-                        <button class="Verde"> <img class="note"
+                        <button class="Verde" onclick="updateDetalle(${ROW.id_detalle_zapato})"> <img class="note"
                             src="../../recursos/imagenes/icons/notebook.svg"
                             width="35px" height="35px">
                         </button>
                         <button class="Rojo" onclick="deleteDetalle(${ROW.id_detalle_zapato})"> <img class="note"
                             src="../../recursos/imagenes/basura.svg" width="35px"
-                            height="35px">
-                        </button>
-                            <button class="Rojo" onclick="openAddDetalleModal()"> <img class="note"
-                            src="../../recursos/imagenes/icons/gmlIcon1.svg" width="35px"
                             height="35px">
                         </button>
                     </td>
@@ -535,21 +531,63 @@ const fillTableDetalles = async (id) => {
     }
 }
 
+async function updateDetalle(id_detalle) {
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData();
+    const cantidad = document.getElementById(`input_cantidad_zapato_NEW_${id_detalle}`);
+    FORM.append('cantidad', cantidad.value);
+    FORM.append('id_detalle', id_detalle)
 
-async function openAddDetalleModal() {
-    NEW_ZAPATOS_DETALLES.show();
-    
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'updateDetalle', FORM);
+
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        await sweetAlert(1, 'Se ha actualizado correctamente', true);
+        fillTableDetalles(id_zapatoW);
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+
 }
+
+function openAddDetalleModal() {
+    NEW_ZAPATOS_DETALLES.show();
+}
+
+async function addDetalleZapato() {
+    event.preventDefault();
+    // Constante tipo objeto con los datos del formulario.
+    const FORM = new FormData(NEW_ZAPATO_FORM);
+    FORM.append('id_zapato', id_zapatoW);
+
+    // Petición para guardar los datos del formulario.
+    const DATA = await fetchData(ZAPATOS_API, 'createRowDetalle', FORM);
+
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+    if (DATA.status) {
+        // Se muestra un mensaje de éxito.
+        await sweetAlert(1, 'Se ha guardado correctamente', true);
+        fillTableDetalles(id_zapatoW);
+        // Se carga nuevamente la tabla para visualizar los cambios.
+        NEW_ZAPATOS_DETALLES.hide();
+        // Resetear el formulario   
+        NEW_ZAPATOS_DETALLES.reset();
+    } else {
+        await sweetAlert(2, DATA.error, false);
+    }
+
+}
+
 
 async function hideAddDetalleModal() {
     const RESPONSE = await confirmAction('Regresar', '¿Seguro, qué quieres regresar?');
     if (RESPONSE.isConfirmed) {
         NEW_ZAPATOS_DETALLES.hide();
     }
-    else {
-
-    }
-    
+    else { }
 }
 
 

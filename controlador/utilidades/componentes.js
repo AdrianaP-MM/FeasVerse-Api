@@ -116,6 +116,43 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     });
 }
 
+const barGraphPie = (canvas, xAxis, yAxis, legend, title) => {
+    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+    let colors = [];
+
+    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
+    xAxis.forEach(() => {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+    });
+
+    // Se crea una instancia para generar el gráfico con los datos recibidos.
+    new Chart(document.getElementById(canvas), {
+        type: 'pie',          // Tipo de gráfico (línea en este caso).
+        data: {
+            labels: xAxis,      // Etiquetas en el eje x.
+            datasets: [{
+                label: legend,   // Leyenda del conjunto de datos.
+                data: yAxis,     // Datos en el eje y.
+
+                borderColor: 'rgb(75, 192, 192)',  // Color del borde de la línea.
+                tension: 0.1      // Tensión de la curva.
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: title   // Título del gráfico.
+                },
+                legend: {
+                    display: false  // No mostrar la leyenda.
+                }
+            }
+        }
+    });
+}
+
+
 
 /*
 *   Función asíncrona para cerrar la sesión del usuario.
@@ -180,7 +217,7 @@ const fetchData = async (filename, action, form = null) => {
 *   Parámetros: filename (nombre del archivo), action (acción a realizar), select (identificador del select en el formulario) y selected (dato opcional con el valor seleccionado).
 *   Retorno: ninguno.
 */
-const fillSelect = async (filename, action, select, selected = null, form = null) => {
+const fillSelect = async (filename, action, select, selected = null, form = null, Dclas = null) => {
     // Petición para obtener los datos.
     const DATA = await fetchData(filename, action, form);
     let content = '';
@@ -203,6 +240,14 @@ const fillSelect = async (filename, action, select, selected = null, form = null
     } else {
         content += '<option>No hay opciones disponibles</option>';
     }
-    // Se agregan las opciones a la etiqueta select mediante el id.
-    document.getElementById(select).innerHTML = content;
+    if (select) {
+        // Se agregan las opciones a la etiqueta select mediante el id.
+        document.getElementById(select).innerHTML = content;
+    }
+    if (Dclas) {
+        const elements = document.getElementsByClassName(Dclas);
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].innerHTML = content;
+        }
+    }
 }

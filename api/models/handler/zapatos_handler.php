@@ -48,6 +48,36 @@ class ZapatosHandler
         return Database::executeRow($sql, $params);
     }
 
+
+    public function updateDetalle()
+    {
+        $sql = 'UPDATE tb_detalle_zapatos SET 
+            cantidad_zapato = ?
+           WHERE id_detalle_zapato = ?';
+
+        $params = array(
+            $this->cantidad_zapato,
+            $this->id_detalle_zapato
+        );
+        
+        return Database::executeRow($sql, $params);
+    }
+
+
+    public function createRowDetalle()
+    {
+        $sql = 'INSERT INTO tb_detalle_zapatos (id_zapato, id_talla, cantidad_zapato, id_color, foto_detalle_zapato)
+           VALUES (?, ?, ?, ?, "default.png");';
+
+        $params = array(
+            $this->id_zapato,
+            $this->id_talla,
+            $this->cantidad_zapato,
+            $this->id_color
+        );
+        return Database::executeRow($sql, $params);
+    }
+
     public function readMasVendido()
     {
         $sql = '(
