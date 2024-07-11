@@ -40,6 +40,11 @@ const graficoBarrasVentas = async () => {
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
         barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
+        barGraph('chart2', Meses, Ventas, 'Ventas', 'Ventas por mes');
+        barGraph('chart3', Meses, Ventas, 'Ventas', 'Ventas por mes');
+        barGraph('chart4', Meses, Ventas, 'Ventas', 'Ventas por mes');
+        barGraph('chart5', Meses, Ventas, 'Ventas', 'Ventas por mes');
+        barGraph('chart6', Meses, Ventas, 'Ventas', 'Ventas por mes');
     } else {
         document.getElementById('chart1').remove();
     }

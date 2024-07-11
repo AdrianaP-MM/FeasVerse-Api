@@ -1,60 +1,76 @@
-/** Estilo para el contenedor principal */
-.ContenedorT {
-    min-height: 100%; /* Altura mínima del 100% del viewport */
-    max-height: 100%; /* Altura máxima del 100% del viewport */
-    width: 100%; /* Ancho del 100% del contenedor padre */
-    flex: 1; /* Ocupa todo el espacio disponible en el eje principal */
-    display: flex; /* Contenedor flexible */
-    flex-direction: column; /* Diseñado como columna principal */
-    justify-content: center; /* Centra verticalmente el contenido */
-    align-items: center; /* Centra horizontalmente el contenido */
-    padding-top: 40px; /* Espaciado superior */
-    padding-bottom: 40px; /* Espaciado inferior */
-    padding-left: 50px; /* Espaciado izquierdo */
-    padding-right: 50px; /* Espaciado derecho */
+
+/* Estilos para la imagen del zapato */
+.imgHeader {
+    max-inline-size: 100%;
+    block-size: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    /* Radio de borde */
+    height: 100%;
+    min-width: 100%;
+    aspect-ratio: 2/1;
+    /* Proporción de aspecto */
+}
+.headerImage {
+    height: 20vh;
+}
+.ribbon {
+    width: 0px;
+    height: 120px;
+    border-left: 50px solid #d9534f;
+    border-right: 50px solid #d9534f;
+    border-bottom: 35px solid transparent;
+    position: absolute;
+    top: -6%;
+}
+.red {
+    left: 12%;
+}
+.red2 {
+    right: 12%;
+}
+.graficContainer{
+    width: 300px;
 }
 
-/** Estilo para el contenedor de los elementos principales */
-.ItemsContenedorMain {
-    min-height: 70vh; /* Altura mínima del 70% del viewport */
-    max-height: 70vh; /* Altura máxima del 70% del viewport */
-    flex: 1; /* Ocupa todo el espacio disponible en el eje principal */
-    min-width: 55vw; /* Ancho mínimo del 55% del viewport */
-    max-width: 55vw; /* Ancho máximo del 55% del viewport */
-    display: flex; /* Contenedor flexible */
-    flex-direction: column; /* Diseñado como columna principal */
-    justify-content: space-around; /* Distribuye uniformemente el espacio alrededor del contenido */
-    padding: 40px; /* Espaciado general */
+.mainBody{
+    width: fit-content;
 }
-
-/** Estilo para los contenedores de saludo y gráfica */
-.ContenedorSaludo,
-.ContenedorGrafica {
-    min-height: 100%; /* Altura mínima del 100% del contenedor padre */
-    min-width: 100%; /* Ancho mínimo del 100% del contenedor padre */
-    display: flex; /* Contenedor flexible */
-    justify-items: center; /* Centra horizontalmente los elementos secundarios */
-    justify-content: center; /* Centra verticalmente los elementos secundarios */
+.mainFooter,#mainContent{
+    width: auto;
 }
 
 /** Clase donde se pondrá la animación */
-.ContenedorT {
-    animation: transitionIn 1s; /* Animación de entrada con duración de 1 segundo */
+#mainContent {
+    animation: transitionIn 1s;
+    /* Animación de entrada con duración de 1 segundo */
 }
 
-.ContenedorT {
+#mainContent {
     animation: transitionIn 1s;
 }
 
 /** Animación de entrada a la página */
 @keyframes transitionIn {
     from {
-        opacity: 0; /* Inicialmente invisible */
-        transform: rotateX(-10deg); /* Rotación en el eje X */
+        opacity: 0;
+        /* Inicialmente invisible */
+        transform: rotateX(-10deg);
+        /* Rotación en el eje X */
     }
 
     to {
-        opacity: 1; /* Se vuelve completamente visible */
-        transform: rotateX(0); /* Sin rotación */
+        opacity: 1;
+        /* Se vuelve completamente visible */
+        transform: rotateX(0);
+        /* Sin rotación */
     }
+}
+
+@media screen and (min-width: 550px) {
+    .graficContainer{
+        width: 550px;
+    }
+    
 }
