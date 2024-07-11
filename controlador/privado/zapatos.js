@@ -467,7 +467,7 @@ const fillTableDetalles = async (id) => {
             if (Array.isArray(DATA.dataset)) {
                 for (let i = 0; i < DATA.dataset.length; i++) {
                     const row = DATA.dataset[i];
-
+                    const isDisabled = row.estado_zapato === 'Desactivo';
                     // Construir fila de la tabla
                     TABLE_BODY.innerHTML += `
                         <tr>
@@ -480,11 +480,11 @@ const fillTableDetalles = async (id) => {
                             </td>
                             <td data-labelS="Cantidad Actual">
                                 <input id="input_cantidad_zapato_NEW_${row.id_detalle_zapato}" type="text" name="input_cantidad_zapato_NEW"
-                                    class="form-control editableInput" required value="${row.cantidad_zapato}">
+                                    class="form-control editableInput" required value="${row.cantidad_zapato}"  ${isDisabled ? 'disabled' : ''}>
                             </td>
                             <td data-labelE="Color actual">${row.nombre_color}</td>
                             <td>
-                                <button class="Verde" onclick="updateDetalle(${row.id_detalle_zapato})">
+                                <button class="Verde" onclick="updateDetalle(${row.id_detalle_zapato})" ${isDisabled ? 'disabled' : ''}>
                                     <img class="note" src="../../recursos/imagenes/icons/notebook.svg" width="35px" height="35px">
                                 </button>
                                 <button class="Rojo" onclick="deleteDetalle(${row.id_detalle_zapato})">
@@ -508,11 +508,11 @@ const fillTableDetalles = async (id) => {
                     </select></td>
                         <td data-labelS="Cantidad Actual">
                         <input id="input_cantidad_zapato_NEW_" type="text" name="input_cantidad_zapato_NEW_"
-                                                class="form-control editableInput" required readonly value="${ROW.cantidad_zapato}">
+                                                class="form-control editableInput" required readonly value="${ROW.cantidad_zapato}" ${isDisabled ? 'disabled' : ''}>
                                                 </td>
                     <td data-labelE="Color actual">${ROW.nombre_color}</td>
                     <td>
-                        <button class="Verde" onclick="updateDetalle(${ROW.id_detalle_zapato})"> <img class="note"
+                        <button class="Verde" onclick="updateDetalle(${ROW.id_detalle_zapato})" ${isDisabled ? 'disabled' : ''}> <img class="note"
                             src="../../recursos/imagenes/icons/notebook.svg"
                             width="35px" height="35px">
                         </button>
@@ -530,6 +530,31 @@ const fillTableDetalles = async (id) => {
         sweetAlert(4, DATA.error, true);
     }
 }
+
+const deleteDetalle = async (id_detalle) => {
+    event.preventDefault();
+    const FORM = new FormData();
+    FORM.append('id_detalle', id_detalle);
+
+    const RESPONSE = await confirmAction('Desactivar', '¿Seguro, qué quieres desactivar el detalle?');
+    if (RESPONSE.isConfirmed) {
+        // Petición para guardar los datos del formulario.
+        const DATA = await fetchData(ZAPATOS_API, 'deleteDetalle', FORM);
+
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
+        if (DATA.status) {
+            // Se muestra un mensaje de éxito.
+            await sweetAlert(1, 'Se ha desactivado correctamente', true);
+            fillTableDetalles(id_detalle);
+        } else {
+            sweetAlert(2, DATA.error, false);
+        }
+    }
+    else {
+
+    }
+
+};
 
 async function updateDetalle(id_detalle) {
     event.preventDefault();
@@ -589,34 +614,6 @@ async function hideAddDetalleModal() {
     }
     else { }
 }
-
-
-
-const deleteDetalle = async (id_detalle) => {
-    event.preventDefault();
-    const FORM = new FormData();
-    FORM.append('id_detalle', id_detalle);
-
-    const RESPONSE = await confirmAction('Eliminar', '¿Seguro, qué quieres eliminar?');
-    if (RESPONSE.isConfirmed) {
-        // Petición para guardar los datos del formulario.
-        const DATA = await fetchData(ZAPATOS_API, 'deleteDetalle', FORM);
-
-        // Se comprueba si la respuesta es satisfactoria, de lo contrario se muestra un mensaje con la excepción.
-        if (DATA.status) {
-            // Se muestra un mensaje de éxito.
-            await sweetAlert(1, 'Se ha eliminado correctamente', true);
-            fillTableDetalles(id_detalle);
-        } else {
-            sweetAlert(2, DATA.error, false);
-        }
-    }
-    else {
-
-    }
-
-};
-
 
 function findNumberValue(value) {
     // Comprobar si el valor es 'Activo'

@@ -20,12 +20,12 @@ if (isset($_GET['action'])) {
                     !$zapatos->setIdDetalleZapato($_POST['id_detalle']) 
                 ) {
                     $result['error'] = $zapatos->getDataError();
-                }/* elseif ($zapatos->deleteDetalle()) {
+                } elseif ($zapatos->deleteDetalle()) {
                     $result['status'] = 1;
-                    $result['message'] = 'El detalle se eliminó correctamente';
+                    $result['message'] = 'El detalle se desactivò correctamente';
                 } else {
-                    $result['error'] = 'Ocurrió un problema al eliminar el detalle, porque tiene datos relacionados';
-                }*/
+                    $result['error'] = 'Ocurrió un problema al desactivar el detalle, porque tiene datos relacionados';
+                }
                 break;
             case 'searchRows':
                 // Verificar si el valor de búsqueda es válido

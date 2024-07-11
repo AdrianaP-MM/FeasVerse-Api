@@ -47,7 +47,15 @@ class ZapatosHandler
         );
         return Database::executeRow($sql, $params);
     }
-
+    public function deleteDetalle()
+    {
+        $sql = 'CALL CambiarEstadoZapato(?);';
+        $params = array(
+            $this->id_detalle_zapato
+        );
+        
+        return Database::executeRow($sql, $params);
+    }
 
     public function updateDetalle()
     {
