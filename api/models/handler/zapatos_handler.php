@@ -391,7 +391,7 @@ class ZapatosHandler
         $sql = "SELECT id_detalle_zapato, id_talla, cantidad_zapato, nombre_color, foto_detalle_zapato AS 'foto' FROM tb_detalle_zapatos INNER JOIN tb_colores ON tb_colores.id_color = tb_detalle_zapatos.id_color 
         WHERE id_zapato = ?;"; // Consulta SQL para obtener los datos de un zapato por ID
         $params = array($this->id_zapato); // Parámetros para la consulta SQL
-        return Database::getRows($sql, $params); // Ejecución de la consulta SQL
+        return Database::getRow($sql, $params); // Ejecución de la consulta SQL
     }
 
     public function readFtoDetalle()

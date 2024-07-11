@@ -38,7 +38,7 @@
                         <!--Boton para los zapatos registrados-->
                         <button class="nav-link boton-cambiar-color" data-bs-toggle="tab" id="registrados-tab"
                             type="button" data-bs-target="#registrados" role="tab" aria-controls="registrados"
-                            aria-selected="true" onclick="showZapatos()">
+                            aria-selected="true" onclick="showZapatos(this)">
                             Registrados
                         </button>
                     </li>
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div id="slider-container">
+                        <div id="slider-container" class="p-0 m-0">
                             <div id="slider"></div>
 
                         </div>
@@ -166,14 +166,14 @@
                         </div>
                     </div>
                     <!--Pagina para Agregar Zapato-->
-                    <div class="tab-pane1 fade z-2 position-relative d-none" role="tabpanel" id="agregar"
+                    <div class="tab-pane1 fade z-2 position-relative d-none h-100" role="tabpanel" id="agregar"
                         aria-labelledby="agregar-tab">
-                        <div class="ContenedorTotalA1 z-3 position-relative">
+                        <div class="ContenedorTotal z-3 position-relative">
                             <div class="ContenedorTituloA">
                                 <h1 class="titillium-web-regular text25 text-white mb-3 mt-1">Agregar Zapatos
                                 </h1>
                             </div>
-                            <div class="ContenedorForm">
+                            <div class="ContenedorForm py-5">
                                 <form class="row needs-validation form1" novalidate id="addZapato">
                                     <div class="col-md-6">
                                         <label for="nombreInput" class="form-label">Nombre del zapato</label>
@@ -275,7 +275,7 @@
                                                 <!-- Botón para cancelar la operación -->
                                                 <button type="button" id="cancelarBtn"
                                                     class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
-                                                    onclick="botonCancelarDetalle()">
+                                                    onclick="botonCancelarTalla()">
                                                     Cancelar
                                                 </button>
                                                 <!-- Botón para actualizar el registro -->
