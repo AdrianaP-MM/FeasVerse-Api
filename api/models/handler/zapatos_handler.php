@@ -240,7 +240,8 @@ class ZapatosHandler
 
     public function readAllZapatoMarca()
     {
-        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 
+        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, 
+        ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.estado_zapato
         FROM tb_zapatos z
         INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
         INNER JOIN tb_colores ON tb_colores.id_color = dz.id_color

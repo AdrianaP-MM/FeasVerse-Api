@@ -55,10 +55,13 @@ const search = async () => {
             TABLE_BODY.innerHTML += `
             <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
+                 <button type="button" class="btn btn-warning" onclick="openReport(${row.id_marcas})">
+                            <i class="bi bi-filetype-pdf"></i>
+                </button>
             </div>
             `;
         });
-    } else if(inputBusqueda.value == ''){fillTable();}   
+    } else if (inputBusqueda.value == '') { fillTable(); }
     else {
         sweetAlert(2, 'No se han encontrado coincidencias', false);
         inputBusqueda.value = '';
@@ -175,7 +178,7 @@ const returnBack = async () => {
         // Limpia los valores de los elementos de entrada y establece una imagen de marcador de posición.
         NOMBRE_INPUT.value = ' ';
         DESC_INPUT.value = ' ';
-      
+
         // Simula un clic en la primera pestaña para cambiar a la vista de tabla.
         primeraPestana.click();
 
@@ -301,4 +304,19 @@ const botonCancelar = async () => {
             DATA_MODAL.hide();
         }
     }
+}
+
+
+/*
+*   Función para abrir un reporte parametrizado de productos de una categoría.
+*   Parámetros: id (identificador del registro seleccionado).
+*   Retorno: ninguno.
+*/
+const openReport = (id) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/private/marcas.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id_marca', id);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
