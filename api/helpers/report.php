@@ -55,15 +55,15 @@ class Report extends FPDF
         // Se establece el logo.
         $this->ln(3);
         $this->addText(0, $this->encodeString($this->minLetter), 11, [91, 91, 91], '');
-       
+        $this->ln(5);
     }
     
     public function onlyFrstPage(){
         $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/FeasVerseLogo.png';
         $this->image($imagePath, 95, 13, 17);
-        $this->ln(28);
+        $this->ln(23);
         $this->addText(0, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
-        $this->ln(3);
+        $this->ln(2);
 
         $this->Cell($this->espaciado);
         // Agregar las partes del título con diferentes estilos y control de línea
