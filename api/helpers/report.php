@@ -8,6 +8,9 @@ class Report extends FPDF
     private $minLetter = null;
     private $letterUnderline = null;
     private $userName = null;
+    private $regular = null;
+    private $black = null;
+    private $regular2 = null;
 
     public function startReport($title, $minLetter, $letterUnderline)
     {
@@ -17,8 +20,18 @@ class Report extends FPDF
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
             $this->userName = $_SESSION['nombreTrabajador'];
+
+            // Dividir el título en tres partes
+            $titleParts = explode(' ', $title, 3);
+            if (count($titleParts) >= 3) {
+                $this->regular = $titleParts[0];     // Zapatos
+                $this->black = $titleParts[1];       // FEASVERSE
+                $this->regular2 = $titleParts[2];    // de la marca
+            }
+
             $this->setTitle('FeasVerse - Reporte', true);
             $this->setMargins(0, 2, 0);
+            $this->setMargins(15, 0, 15);
             $this->addPage('P', 'Letter');
             $this->putImages();
             $this->aliasNbPages();
@@ -36,24 +49,28 @@ class Report extends FPDF
     {
         // Se establece el logo.
         $this->ln(3);
-        $this->cell(10);
-        $this->addText($this->encodeString($this->minLetter), 11, [91, 91, 91], '');
+        $this->addText(0, $this->encodeString($this->minLetter), 11, [91, 91, 91], '');
         $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/FeasVerseLogo.png';
         $this->image($imagePath, 95, 13, 17);
         $this->ln(28);
-        $this->addText('Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
+        $this->addText(0, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
         $this->ln(5);
-        $this->addText(
-            $this->encodeString($this->title),
-            18,
-            [0, 0, 0],
-            '',
-            'C'
-        );
+
+        $this->Cell(40);
+        // Agregar las partes del título con diferentes estilos y control de línea
+        $this->setFont('Arial', '', 18);
+        $this->Cell(30, 10, $this->encodeString($this->regular), 0, 0, 'C', 0); // 'C' para centrar y '1' para dibujar el borde
+        $this->setFont('Arial', 'B', 18);
+        $this->Cell(35, 10, $this->encodeString($this->black), 0, 0, 'C', 0);
+        $this->setFont('Arial', '', 18);
+        $this->Cell(45, 10, $this->encodeString($this->regular2), 0, 1, 'C', 0);
+        $this->Cell(45);
+
         $this->ln(2);
-        $this->addText($this->encodeString($this->letterUnderline), 22, [0, 0, 0], 'U', 'C');
-        $this->cell(25);
-        $this->addText('Nombre de usuario: '.$this->encodeString($this->userName), 12, [0, 0, 0], '', 'L');
+        $this->addText(0, $this->encodeString($this->letterUnderline), 22, [0, 0, 0], 'U', 'C');
+        $this->ln(9);
+        $this->cell(7);
+        $this->addText(0, 'Nombre de usuario: ' . $this->encodeString($this->userName), 12, [0, 0, 0], '', 'L');
         $this->ln(10);
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
     }
@@ -78,7 +95,7 @@ class Report extends FPDF
         $this->cell(0, 10, $this->encodeString('Página ') . $this->pageNo() . '/{nb}', 0, 0, 'C');
     }
 
-    public function addText($text, $size = 12, $color = [0, 0, 0], $style = '', $align = 'L')
+    public function addText($w, $text, $size = 12, $color = [0, 0, 0], $style = '', $align = 'L', $nextInline = true)
     {
         $this->setFont('Arial', $style, $size);
         $this->setTextColor($color[0], $color[1], $color[2]);
@@ -87,15 +104,12 @@ class Report extends FPDF
         $alignments = ['L' => 'L', 'C' => 'C', 'R' => 'R'];
         $alignment = isset($alignments[$align]) ? $alignments[$align] : 'L';
 
-        if ($alignment == 'C') {
-            // Centrar texto
-            $this->cell(0, 1, $this->encodeString($text), 0, 1, $alignment);
-        } elseif ($alignment == 'R') {
-            // Alinear texto a la derecha
-            $this->cell(0, 1, $this->encodeString($text), 0, 1, $alignment);
+        if ($nextInline) {
+            // Imprimir en la misma línea
+            $this->cell($w, 5, $this->encodeString($text), 0, 0, $alignment, 0);
         } else {
-            // Alinear texto a la izquierda (por defecto)
-            $this->multiCell(0, 1, $this->encodeString($text), 0, $alignment);
+            // Imprimir con salto de línea
+            $this->multiCell($w, 5, $this->encodeString($text), 0, $alignment);
         }
 
         $this->ln(5); // Salto de línea después del texto

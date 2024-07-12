@@ -23,8 +23,7 @@ class MarcasHandler
     {
         $sql = 'SELECT
                 m.nombre_marca AS NombreMarca,
-                CONCAT(ROUND(COUNT(z.id_zapato) * 100.0 / (SELECT COUNT(*) FROM tb_zapatos), 2), " % ") AS Porcentaje,
-                COUNT(z.id_zapato) AS CantidadDeZapatos
+                CONCAT(ROUND(COUNT(z.id_zapato) * 100.0 / (SELECT COUNT(*) FROM tb_zapatos), 2)) AS Porcentaje
             FROM
                 tb_marcas m
                 INNER JOIN tb_zapatos z ON m.id_marca = z.id_marca

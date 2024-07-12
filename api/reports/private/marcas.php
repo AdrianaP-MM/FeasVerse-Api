@@ -25,7 +25,7 @@ if (isset($_GET['id_marca'])) {
                 // Se establece la fuente para los encabezados.
                 $pdf->setFont('Arial', 'B', 12);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->Cell(25);
+                $pdf->Cell(10);
                 $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
                 $pdf->SetFillColor(20, 106, 147); // Establecer color de fondo rojo (RGB)
                 $pdf->Cell(100, 10, 'Nombre del SNEAKER', 0, 0, '', 1); // 'C' para centrar y '1' para dibujar el borde
@@ -37,7 +37,7 @@ if (isset($_GET['id_marca'])) {
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataZapatos as $rowProducto) {
-                    $pdf->cell(25);
+                    $pdf->cell(10);
                     ($rowProducto['estado_zapato']) ? $estado = 'Activo' : $estado = 'Inactivo';
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(100, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 0, 0);

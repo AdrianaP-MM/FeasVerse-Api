@@ -116,42 +116,40 @@ const barGraph = (canvas, xAxis, yAxis, legend, title) => {
     });
 }
 
-const barGraphPie = (canvas, xAxis, yAxis, legend, title) => {
+
+/*
+*   Función para generar un gráfico de pastel.
+*   Requiere la librería chart.js para funcionar.
+*   Parámetros: canvas (identificador de la etiqueta canvas), legends (valores para las etiquetas), values (valores de los datos) y title (título del gráfico).
+*   Retorno: ninguno.
+*/
+const pieGraph = (canvas, legends, values, title) => {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
-
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar y se agregan al arreglo.
-    xAxis.forEach(() => {
+    values.forEach(() => {
         colors.push('#' + (Math.random().toString(16)).substring(2, 8));
     });
-
     // Se crea una instancia para generar el gráfico con los datos recibidos.
     new Chart(document.getElementById(canvas), {
-        type: 'pie',          // Tipo de gráfico (línea en este caso).
+        type: 'pie',
         data: {
-            labels: xAxis,      // Etiquetas en el eje x.
+            labels: legends,
             datasets: [{
-                label: legend,   // Leyenda del conjunto de datos.
-                data: yAxis,     // Datos en el eje y.
-                backgroundColor: colors,
-                borderColor: 'rgb(75, 192, 192)',  // Color del borde de la línea.
-                tension: 0.1// Tensión de la curva.
+                data: values,
+                backgroundColor: colors
             }]
         },
         options: {
             plugins: {
                 title: {
                     display: true,
-                    text: title   // Título del gráfico.
-                },
-                legend: {
-                    display: false  // No mostrar la leyenda.
+                    text: title
                 }
             }
         }
     });
 }
-
 
 
 /*
