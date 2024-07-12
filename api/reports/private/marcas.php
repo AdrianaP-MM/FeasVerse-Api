@@ -41,8 +41,8 @@ if (isset($_GET['id_marca'])) {
                     ($rowProducto['estado_zapato']) ? $estado = 'Activo' : $estado = 'Inactivo';
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(100, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 0, 0);
-                    $pdf->cell(30, 10, $rowProducto['precio_unitario_zapato'], 1, 0);
-                    $pdf->cell(30, 10, $estado, 1, 1);
+                    $pdf->cell(30, 10, $rowProducto['precio_unitario_zapato'], 1, 0, 'C');
+                    $pdf->cell(30, 10, $estado, 1, 1, 'C');
                 }
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay zapatos con esa marca'), 1, 1);
