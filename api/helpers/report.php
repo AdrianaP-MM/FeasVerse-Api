@@ -38,6 +38,7 @@ class Report extends FPDF
             $this->setMargins(15, 0, 15);
             $this->addPage('P', 'Letter');
             $this->aliasNbPages();
+            $this->onlyFrstPage();
         } else {
             header('location:' . self::CURRENT_URL);
         }
@@ -54,6 +55,10 @@ class Report extends FPDF
         // Se establece el logo.
         $this->ln(3);
         $this->addText(0, $this->encodeString($this->minLetter), 11, [91, 91, 91], '');
+       
+    }
+    
+    public function onlyFrstPage(){
         $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/FeasVerseLogo.png';
         $this->image($imagePath, 95, 13, 17);
         $this->ln(28);
