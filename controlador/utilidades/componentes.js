@@ -133,9 +133,9 @@ const barGraphPie = (canvas, xAxis, yAxis, legend, title) => {
             datasets: [{
                 label: legend,   // Leyenda del conjunto de datos.
                 data: yAxis,     // Datos en el eje y.
-
+                backgroundColor: colors,
                 borderColor: 'rgb(75, 192, 192)',  // Color del borde de la línea.
-                tension: 0.1      // Tensión de la curva.
+                tension: 0.1// Tensión de la curva.
             }]
         },
         options: {
