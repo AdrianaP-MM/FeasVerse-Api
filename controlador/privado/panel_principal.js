@@ -66,7 +66,7 @@ const graficoPieZapatos = async () => {
         });
         console.log(Marcas, Porcentajes)
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        pieGraph('chart1', Marcas, Porcentajes, 'Cantidad de zapatos por marca');
+        pieGraph('chart1', Marcas, Porcentajes, 'Porcentaje de zapatos por marca');
     } else {
         document.getElementById('chart1').remove();
     }

@@ -143,8 +143,18 @@ h1 {
 
 .btnSeeReport{
     width: 150px;
-    height: 100px;
-    background-color: #146A93;
+    height: 45px;
+    background-color: #ffffff;
+    border-radius: 0px;
+}
+
+.btnSeeReport:hover{
+    background-color: #9adfff;
+}
+
+.IconImage{
+    max-width: 25px;
+    max-height: 25px;
 }
 
 .sizeCard>img{

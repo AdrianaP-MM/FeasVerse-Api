@@ -57,8 +57,8 @@ const search = async () => {
                 <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
                 </div> 
-                <button type="button" class="btn z-3 my-1 btnSeeReport shadow" onclick="openReport(${row.id_marca})">
-                    <i class="p-2 m-0 text-white"> Abrir reporte </i>
+                <button type="button" class="btn z-3 my-0 btnSeeReport" onclick="openReport(${row.id_marca})">
+                    <i class="p-0 m-0 text-white"> <img src="../../recursos/imagenes/icons/IconPdf.svg" class="IconImage" /> </i>
                 </button>
             </div> 
             `;
@@ -89,8 +89,8 @@ const fillTable = async (form = null) => {
                 <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
                 </div> 
-                <button type="button" class="btn z-3 my-1 btnSeeReport shadow" onclick="openReport(${row.id_marca})">
-                <i class="p-2 m-0 text-white"> Abrir reporte de zapatos con esta marca </i>
+                <button type="button" class="btn z-3 my-0 btnSeeReport" onclick="openReport(${row.id_marca})">
+                <i class="p-0 m-0 text-white">  <img src="../../recursos/imagenes/icons/IconPdf.svg" class="IconImage" /> </i>
                 </button>
             </div> 
             `;
