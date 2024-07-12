@@ -11,7 +11,7 @@ class Report extends FPDF
     public function startReport($title, $minLetter, $letterUnderline)
     {
         session_start();
-        if (isset($_SESSION['idAdministrador'])) {
+        if (isset($_SESSION['idTrabajador'])) {
             $this->title = $title;
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;

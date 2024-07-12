@@ -324,6 +324,7 @@ const openReport = (id) => {
     const PATH = new URL(`${SERVER_URL}reports/private/marcas.php`);
     // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
     PATH.searchParams.append('id_marca', id);
+    console.log(PATH.href);
     // Se abre el reporte en una nueva pestaña.
     window.open(PATH.href);
 }
