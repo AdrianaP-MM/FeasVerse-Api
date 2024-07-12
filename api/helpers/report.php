@@ -12,8 +12,9 @@ class Report extends FPDF
     private $black = null;
     private $regular2 = null;
     private $anchoDemas = null;
+    private $espaciado = null;
 
-    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas)
+    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado)
     {
         session_start();
         if (isset($_SESSION['idTrabajador'])) {
@@ -21,6 +22,7 @@ class Report extends FPDF
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
             $this->anchoDemas = $anchoDemas;
+            $this->espaciado = $espaciado;
             $this->userName = $_SESSION['nombreTrabajador'];
 
             // Dividir el título en tres partes
@@ -56,9 +58,9 @@ class Report extends FPDF
         $this->image($imagePath, 95, 13, 17);
         $this->ln(28);
         $this->addText(0, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
-        $this->ln(5);
+        $this->ln(3);
 
-        $this->Cell(40);
+        $this->Cell($this->espaciado);
         // Agregar las partes del título con diferentes estilos y control de línea
         $this->setFont('Arial', '', 18);
         $this->Cell(30, 10, $this->encodeString($this->regular), 0, 0, 'C', 0); // 'C' para centrar y '1' para dibujar el borde
@@ -73,7 +75,7 @@ class Report extends FPDF
         $this->ln(9);
         $this->cell(7);
         $this->addText(0, 'Nombre de usuario: ' . $this->encodeString($this->userName), 12, [0, 0, 0], '', 'L');
-        $this->ln(10);
+        $this->ln(5);
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
     }
 
