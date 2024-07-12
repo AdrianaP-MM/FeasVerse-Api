@@ -141,8 +141,15 @@ h1 {
     width: 150px;
 }
 
+.btnSeeReport{
+    width: 150px;
+    height: 40px;
+    background-color: #146A93;
+}
+
 .sizeCard>img{
     max-width: 150px;
+    height: 150px;
     aspect-ratio: 1/1;
 }
 

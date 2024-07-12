@@ -17,24 +17,30 @@ if (isset($_GET['id_marca'])) {
         // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
         if ($rowMarca = $marca->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Zapatos de la Marca ' . $rowMarca['nombre_marca']);
+            $pdf->startReport('Zapatos FEASVERSE de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca']);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataZapatos = $zapato->readAllZapatoMarca()) {
                 // Se establece un color de relleno para los encabezados.
                 $pdf->setFillColor(225);
                 // Se establece la fuente para los encabezados.
-                $pdf->setFont('Arial', 'B', 11);
+                $pdf->setFont('Arial', 'B', 12);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->cell(126, 10, 'Nombre', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Precio (US$)', 1, 0, 'C', 1);
-                $pdf->cell(30, 10, 'Estado', 1, 1, 'C', 1);
+                $pdf->Cell(25);
+                $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
+                $pdf->SetFillColor(20, 106, 147); // Establecer color de fondo rojo (RGB)
+                $pdf->Cell(100, 10, 'Nombre del SNEAKER', 0, 0, '', 1); // 'C' para centrar y '1' para dibujar el borde
+                $pdf->Cell(30, 10, 'Precio (US$)', 0, 0, 'C', 1);
+                $pdf->Cell(30, 10, 'Estado', 0, 1, 'C', 1); // 1 para dibujar el borde y 1 para nueva línea
+                $pdf->SetFillColor(255, 255, 255); // Restablecer el color de fondo a blanco (opcional)
+                $pdf->SetTextColor(0, 0, 0); 
                 // Se establece la fuente para los datos de los productos.
                 $pdf->setFont('Arial', '', 11);
                 // Se recorren los registros fila por fila.
                 foreach ($dataZapatos as $rowProducto) {
+                    $pdf->cell(25);
                     ($rowProducto['estado_zapato']) ? $estado = 'Activo' : $estado = 'Inactivo';
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->cell(126, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 1, 0);
+                    $pdf->cell(100, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 0, 0);
                     $pdf->cell(30, 10, $rowProducto['precio_unitario_zapato'], 1, 0);
                     $pdf->cell(30, 10, $estado, 1, 1);
                 }

@@ -53,12 +53,14 @@ const search = async () => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
-            <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
+            <div>
+                <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
-                 <button type="button" class="btn btn-warning" onclick="openReport(${row.id_marcas})">
-                            <i class="bi bi-filetype-pdf"></i>
+                </div> 
+                <button type="button" class="btn z-3 my-1 btnSeeReport shadow" onclick="openReport(${row.id_marca})">
+                    <i class="p-2 m-0 text-white"> Abrir reporte </i>
                 </button>
-            </div>
+            </div> 
             `;
         });
     } else if (inputBusqueda.value == '') { fillTable(); }
@@ -83,8 +85,13 @@ const fillTable = async (form = null) => {
         // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
             TABLE_BODY.innerHTML += `
-            <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
+            <div>
+                <div class="card sizeCard" onclick="openDetails(${row.id_marca})">
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
+                </div> 
+                <button type="button" class="btn z-3 my-1 btnSeeReport shadow" onclick="openReport(${row.id_marca})">
+                <i class="p-2 m-0 text-white"> Abrir reporte </i>
+                </button>
             </div> 
             `;
         });
