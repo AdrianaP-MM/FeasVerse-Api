@@ -37,7 +37,6 @@ class Report extends FPDF
             $this->setMargins(0, 2, 0);
             $this->setMargins(15, 0, 15);
             $this->addPage('P', 'Letter');
-            $this->putImages();
             $this->aliasNbPages();
         } else {
             header('location:' . self::CURRENT_URL);
@@ -51,6 +50,7 @@ class Report extends FPDF
 
     public function header()
     {
+        $this->putImages();
         // Se establece el logo.
         $this->ln(3);
         $this->addText(0, $this->encodeString($this->minLetter), 11, [91, 91, 91], '');
