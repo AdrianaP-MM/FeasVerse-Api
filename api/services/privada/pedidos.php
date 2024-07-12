@@ -36,6 +36,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen pedidos registrados';
                 }
                 break;
+                //GRAFICO DE PEDIDOS
+            case 'graficoPedidos':
+                if ($result['dataset'] = $pedidos->graficaPedidos()) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                } else {
+                    $result['error'] = 'No existen pedidos registrados';
+                }
+                break;
                 //LEER TODO LOS ZAPATOS DE UNA ORDEN
             case 'ReadAllShoesOfOneOrder':
                 if (!$pedidos->setIdPedidoCliente($_POST['idPedido'])) {

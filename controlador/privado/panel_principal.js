@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     graficoBarrasVentas();
     graficoPieZapatos();
+    graficoBarVertical();           
 });
 
 // Definición de la función asíncrona llamada 'graficoBarrasVentas'.
@@ -39,8 +40,6 @@ const graficoBarrasVentas = async () => {
         DATA.dataset.forEach(row => {
             Ventas.push(row.Cantidad);
         });
-        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart2', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart3', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart4', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart5', Meses, Ventas, 'Ventas', 'Ventas por mes');
@@ -71,3 +70,31 @@ const graficoPieZapatos = async () => {
         document.getElementById('chart1').remove();
     }
 }
+
+// Definición de la función asíncrona llamada 'graficoBarVertical'.
+const graficoBarVertical = async () => {
+    try {
+        // Petición para obtener los datos del gráfico.
+        const DATA = await fetchData(PEDIDOS_API, 'graficoPedidos');
+        // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+        if (DATA.status) {
+            // Se declaran los arreglos para guardar los datos a graficar.
+            let estado = [];
+            let cantidad = [];
+            // Se recorre el conjunto de registros fila por fila a través del objeto row.
+            DATA.dataset.forEach(row => {
+                if (row.estado_pedido && row.cantidad_pedidos !== undefined) {
+                    estado.push(row.estado_pedido);
+                    cantidad.push(row.cantidad_pedidos);
+                }
+            });
+            // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+            BarVerGraph('chart2', estado, cantidad, 'Cantidad de pedidos por estado');
+        } else {
+            document.getElementById('chart2').remove();
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        document.getElementById('chart2').remove();
+    }
+};

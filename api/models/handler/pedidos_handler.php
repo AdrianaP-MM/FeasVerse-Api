@@ -70,6 +70,20 @@ class PedidosHandler
         return Database::getRows($sql);
     }
 
+    public function graficaPedidos(){
+        $sql = "SELECT 
+            estado_pedido, 
+            COUNT(*) AS cantidad_pedidos
+        FROM 
+            tb_pedidos_clientes
+        WHERE 
+            estado_pedido != 'Carrito'
+        GROUP BY 
+            estado_pedido;
+        ";
+        return Database::getRows($sql);
+    }
+
     // Método para buscar pedidos según el estado y un término de búsqueda
     public function searchOrders($estado, $searchTerm)
     {
