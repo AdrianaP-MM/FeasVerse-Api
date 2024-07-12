@@ -16,6 +16,13 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un trabajador ha iniciado sesión.
         switch ($_GET['action']) {
                 //BUSCAR
+                case 'readPorcentajeZapatosMarca':
+                    if ($result['dataset'] = $marca->readPorcentajeZapatosMarca()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen marcas registradas';
+                    }
+                    break;
             case 'searchRows':
                 if (!Validator::validateSearch($_POST['search'])) {
                     $result['error'] = Validator::getSearchError();

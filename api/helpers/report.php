@@ -7,6 +7,7 @@ class Report extends FPDF
     private $title = null;
     private $minLetter = null;
     private $letterUnderline = null;
+    private $userName = null;
 
     public function startReport($title, $minLetter, $letterUnderline)
     {
@@ -15,11 +16,12 @@ class Report extends FPDF
             $this->title = $title;
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
+            $this->userName = $_SESSION['nombreTrabajador'];
             $this->setTitle('FeasVerse - Reporte', true);
             $this->setMargins(0, 2, 0);
             $this->addPage('P', 'Letter');
-            $this->aliasNbPages();
             $this->putImages();
+            $this->aliasNbPages();
         } else {
             header('location:' . self::CURRENT_URL);
         }
@@ -33,12 +35,12 @@ class Report extends FPDF
     public function header()
     {
         // Se establece el logo.
-        //$this->image('../../recursos/imagenes/carrusel/', 15, 15, 20);
         $this->ln(3);
         $this->cell(10);
         $this->addText($this->encodeString($this->minLetter), 11, [91, 91, 91], '');
-
-        $this->ln(10);
+        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/FeasVerseLogo.png';
+        $this->image($imagePath, 95, 13, 17);
+        $this->ln(28);
         $this->addText('Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
         $this->ln(5);
         $this->addText(
@@ -50,7 +52,9 @@ class Report extends FPDF
         );
         $this->ln(2);
         $this->addText($this->encodeString($this->letterUnderline), 22, [0, 0, 0], 'U', 'C');
-        $this->ln(15);
+        $this->cell(25);
+        $this->addText('Nombre de usuario: '.$this->encodeString($this->userName), 12, [0, 0, 0], '', 'L');
+        $this->ln(10);
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
     }
 

@@ -19,6 +19,22 @@ class MarcasHandler
     const RUTA_IMAGEN = '../../helpers/images/marcas/';
 
     // Método para leer todas las marcas
+    public function readPorcentajeZapatosMarca()
+    {
+        $sql = 'SELECT
+                m.nombre_marca AS NombreMarca,
+                CONCAT(ROUND(COUNT(z.id_zapato) * 100.0 / (SELECT COUNT(*) FROM tb_zapatos), 2), " % ") AS Porcentaje,
+                COUNT(z.id_zapato) AS CantidadDeZapatos
+            FROM
+                tb_marcas m
+                INNER JOIN tb_zapatos z ON m.id_marca = z.id_marca
+            GROUP BY
+                m.nombre_marca;';
+        return Database::getRows($sql);
+    }
+
+
+    // Método para leer todas las marcas
     public function readAll()
     {
         $sql = 'SELECT id_marca, foto_marca FROM tb_marcas';

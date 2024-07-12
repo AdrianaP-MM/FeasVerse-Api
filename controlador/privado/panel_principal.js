@@ -1,5 +1,6 @@
 // Constante para completar la ruta de la API.
 const PEDIDOS_API = 'services/privada/pedidos.php';
+const MARCAS_API = 'services/privada/marcas.php';
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -22,11 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Llamada a la función para mostrar el encabezado y pie del documento.
     loadTemplate();
     graficoBarrasVentas();
+    graficoPieZapatos();
 });
 
 // Definición de la función asíncrona llamada 'graficoBarrasVentas'.
 const graficoBarrasVentas = async () => {
-
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(PEDIDOS_API, 'ventasPorMes');
     // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
@@ -39,12 +40,32 @@ const graficoBarrasVentas = async () => {
             Ventas.push(row.Cantidad);
         });
         // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
-        barGraph('chart1', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart2', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart3', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart4', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart5', Meses, Ventas, 'Ventas', 'Ventas por mes');
         barGraph('chart6', Meses, Ventas, 'Ventas', 'Ventas por mes');
+    } else {
+        //document.getElementById('chart1').remove();
+    }
+}
+
+// Definición de la función asíncrona llamada 'graficoBarrasVentas'.
+const graficoPieZapatos = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(MARCAS_API, 'readPorcentajeZapatosMarca');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let Marcas = [];
+        let Porcentajes = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            Marcas.push(row.NombreMarca);
+            Porcentajes.push(row.Porcentaje);
+        });
+        // Llamada a la función para generar y mostrar un gráfico de barras. Se encuentra en el archivo components.js
+        barGraphPie('chart1', Marcas, Porcentajes, 'Porcentaje:', 'Cantidad de zapatos por marca');
     } else {
         document.getElementById('chart1').remove();
     }

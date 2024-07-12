@@ -28,6 +28,9 @@ TODO importante // realtando algo
     <link href="../../recursos/estilos/fuentes.css" rel="stylesheet">
     <!-- *Llamada al hoja de estilo css -->
     <link href="../../recursos/estilos/privado/index.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 
 <body>
@@ -87,7 +90,8 @@ TODO importante // realtando algo
                             <!--Contenedor boton del inicio de sesion -->
                             <div class="d-flex justify-content-center">
                                 <div class="text-center col-sm-12 col-md-6">
-                                    <button type="submit" class="btn btn-primary titillium-web-regular botonAzul"><i class="bi bi-send"></i>
+                                    <button type="submit" class="btn btn-primary titillium-web-regular botonAzul"><i
+                                            class="bi bi-send"></i>
                                         Iniciar sesión</button>
                                 </div>
                             </div>
@@ -99,48 +103,48 @@ TODO importante // realtando algo
                 <div class="row 3">
                     <div class="col-sm-8 offset-sm-2">
                         <!--Comienzo del formulario de restablecer contrarseña -->
-                            <form class="d-none bg-light rounded-5 p-3 bordesAzul" id="forgetpasswordstepone">
-                                <div class="my-3"></div>
-                                <!--Contenedor del texto de restablecimiento de contraseña -->
-                                <div
-                                    class="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-4">
-                                    <h3 class="titillium-web-bold">Restablecer contraseña</h3>
-                                    <h6 class="text-center titillium-web-light">Por favor, ingrese tu correo electrónico,
-                                        para mandarle un código para el restablecimiento de contraseña</h6>
-                                </div>
-                                <!--Contenedor del input, volver y el boton de siguiente -->
-                                <div class="row g-3">
-                                    <div class="col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
-                                        <!--Contenedor del Input de correo electronico -->
-                                        <div class="d-flex align-items-center">
-                                            <img src="../../recursos/imagenes/correo.svg" class="me-1 mb-2" width="15"
-                                                alt="candado">
-                                            <label for="correo_electronico_paso1"
-                                                class="form-label titillium-web-regular">Correo
-                                                electrónico</label>
-                                        </div>
-                                        <input id="correo_electronico_paso1" type="email" name="correo_electronico_paso1"
-                                            class="form-control titillium-web-regular bordesAzul"
-                                            placeholder="pollo.camperosv@gmail.com" required>
+                        <form class="d-none bg-light rounded-5 p-3 bordesAzul" id="forgetpasswordstepone">
+                            <div class="my-3"></div>
+                            <!--Contenedor del texto de restablecimiento de contraseña -->
+                            <div
+                                class="d-flex flex-column justify-content-center align-items-center col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-4">
+                                <h3 class="titillium-web-bold">Restablecer contraseña</h3>
+                                <h6 class="text-center titillium-web-light">Por favor, ingrese tu correo electrónico,
+                                    para mandarle un código para el restablecimiento de contraseña</h6>
+                            </div>
+                            <!--Contenedor del input, volver y el boton de siguiente -->
+                            <div class="row g-3">
+                                <div class="col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2">
+                                    <!--Contenedor del Input de correo electronico -->
+                                    <div class="d-flex align-items-center">
+                                        <img src="../../recursos/imagenes/correo.svg" class="me-1 mb-2" width="15"
+                                            alt="candado">
+                                        <label for="correo_electronico_paso1"
+                                            class="form-label titillium-web-regular">Correo
+                                            electrónico</label>
                                     </div>
-                                    <!--Texto para volver al inicio de sesion -->
-                                    <label class="text-end col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
-                                        for="volver_inicio_sesion">
-                                        <a class="color-5blue" onclick="showLoginForm()">
-                                            Volver al inicio de sesión</a>
-                                    </label>
-                                    <!--Boton de mandar código -->
-                                    <div class="d-flex justify-content-center">
-                                        <div class="text-center col-sm-12 col-md-6">
-                                            <button type="submit" class="btn btn-primary titillium-web-regular botonAzul">
-                                                <i class="bi bi-send"></i>
-                                                Mandar código
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="mx-5"></div>
+                                    <input id="correo_electronico_paso1" type="email" name="correo_electronico_paso1"
+                                        class="form-control titillium-web-regular bordesAzul"
+                                        placeholder="pollo.camperosv@gmail.com" required>
                                 </div>
-                            </form>
+                                <!--Texto para volver al inicio de sesion -->
+                                <label class="text-end col-sm-12 col-md-6 offset-md-3 col-lg-8 offset-lg-2 mb-2"
+                                    for="volver_inicio_sesion">
+                                    <a class="color-5blue" onclick="showLoginForm()">
+                                        Volver al inicio de sesión</a>
+                                </label>
+                                <!--Boton de mandar código -->
+                                <div class="d-flex justify-content-center">
+                                    <div class="text-center col-sm-12 col-md-6">
+                                        <button type="submit" class="btn btn-primary titillium-web-regular botonAzul">
+                                            <i class="bi bi-send"></i>
+                                            Mandar código
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mx-5"></div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <!-- Formulario para olvidaste contraseña, paso 2 -->
@@ -184,8 +188,7 @@ TODO importante // realtando algo
                                 <div class="d-flex justify-content-center">
                                     <div class="text-center col-sm-12 col-md-6">
                                         <button type="submit" class="btn btn-primary titillium-web-regular botonAzul"
-                                            href="javascript:void(0);"><i
-                                                class="bi bi-send"></i>
+                                            href="javascript:void(0);"><i class="bi bi-send"></i>
                                             Confirmar código</button>
                                     </div>
                                 </div>

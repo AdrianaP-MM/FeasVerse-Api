@@ -90,7 +90,7 @@ const fillTable = async (form = null) => {
                 <img src="${SERVER_URL}helpers/images/marcas/${row.foto_marca}" />
                 </div> 
                 <button type="button" class="btn z-3 my-1 btnSeeReport shadow" onclick="openReport(${row.id_marca})">
-                <i class="p-2 m-0 text-white"> Abrir reporte </i>
+                <i class="p-2 m-0 text-white"> Abrir reporte de zapatos con esta marca </i>
                 </button>
             </div> 
             `;
