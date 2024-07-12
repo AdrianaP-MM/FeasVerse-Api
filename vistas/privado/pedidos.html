@@ -67,20 +67,20 @@
                                     <!-- Formulario de búsqueda -->
                                     <form class="ms-2 col-lg-12 col-md-10 col mt-3 mb-4" id="searchForm">
                                         <div class="row col-lg-12">
-                                                <div class="search-container">
-                                                    <input type="search" class="form-control" name="search"
-                                                        placeholder="Buscar....." id="buscadorInputRepartidor">
-                                                    <span class="search-icon"><i class="bi bi-search"></i></span>
-                                                    <span class="clear-icon" onclick="clearSearch()"><i
-                                                            class="bi clear-icon"></i></span>
-                                                </div>
+                                            <div class="search-container">
+                                                <input type="search" class="form-control" name="search"
+                                                    placeholder="Buscar....." id="buscadorInputRepartidor">
+                                                <span class="search-icon"><i class="bi bi-search"></i></span>
+                                                <span class="clear-icon" onclick="clearSearch()"><i
+                                                        class="bi clear-icon"></i></span>
+                                            </div>
                                         </div>
                                     </form>
                                     <!--Contenedor de cards-->
                                     <div class="container" id="contenedorDeLasCardsDeRepatidor">
                                         <!-- Detalles del CARDS de Pedido -->
                                         <!--CARD 1 de pedido-->
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +107,8 @@
                                             </div>
                                             <div class="col-lg-2 col-md-4">
                                                 <div class="custom-select">
-                                                    <select class="form-select" aria-label="Default select example" id="selectPedido">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="selectPedido">
                                                         <option selected>Todos</option>
                                                         <option value="1">Entregado</option>
                                                         <option value="2">En camino</option>
@@ -117,9 +118,35 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <h1 class="d-flex justify-content-center text-white mb-4">Generar reportes</h1>
+                                    <div class="d-flex justify-content-center">
+
+                                        <button type="button" id="btnSeeReportPendiente"
+                                            class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="openReportTodo()">
+                                            Todos los pedidos
+                                        </button>
+                                        <button type="button" id="btnSeeReportPendiente"
+                                            class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="openReportPendiente()">
+                                            Pedidos pendientes
+                                        </button>
+                                        <button type="button" id="btnSeeReportPendiente"
+                                            class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="openReportEnCamino()">
+                                            Pedidos en camino
+                                        </button>
+
+                                        <button type="button" id="btnSeeReportPendiente"
+                                            class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                            onclick="openReportEntregados()">
+                                            Pedidos entregados
+                                        </button>
+
+                                    </div>
                                     <!--Contenedor de cards-->
                                     <div class="container" id="contenedorDeLasCardsDePedido">
-                                        
+
                                     </div>
                                 </div>
                             </div>

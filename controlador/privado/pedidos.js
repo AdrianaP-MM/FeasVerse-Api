@@ -36,21 +36,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     inicializarAccordion();
 });
 
-function regresar() {
-    
+const openReportTodo = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/private/pedidos_todos.php`);
+    console.log(PATH.href);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 
-//FUNCION PARA mostrar los nuevos pedidos del repartidor  
-function mostrarNuevosPedidos() {
-    
+const openReportPendiente = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/private/pedidos_pendiente.php`);
+    console.log(PATH.href);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 
-function mostrarPedidosProgreso() {
-    
+const openReportEnCamino = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/private/pedidos_encamino.php`);
+    console.log(PATH.href);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 
-function mostrarPedidosEntregados() {
-   
+const openReportEntregados = () => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/private/pedidos_entregado.php`);
+    console.log(PATH.href);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
 }
 
 //! Funciones para mostrar el espacio de repartidor o el espacio de pedidos y cambiar colores de botones.
