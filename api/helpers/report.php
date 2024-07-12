@@ -11,14 +11,16 @@ class Report extends FPDF
     private $regular = null;
     private $black = null;
     private $regular2 = null;
+    private $anchoDemas = null;
 
-    public function startReport($title, $minLetter, $letterUnderline)
+    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas)
     {
         session_start();
         if (isset($_SESSION['idTrabajador'])) {
             $this->title = $title;
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
+            $this->anchoDemas = $anchoDemas;
             $this->userName = $_SESSION['nombreTrabajador'];
 
             // Dividir el título en tres partes
@@ -63,7 +65,7 @@ class Report extends FPDF
         $this->setFont('Arial', 'B', 18);
         $this->Cell(35, 10, $this->encodeString($this->black), 0, 0, 'C', 0);
         $this->setFont('Arial', '', 18);
-        $this->Cell(45, 10, $this->encodeString($this->regular2), 0, 1, 'C', 0);
+        $this->Cell($this->anchoDemas, 10, $this->encodeString($this->regular2), 0, 1, 'C', 0);
         $this->Cell(45);
 
         $this->ln(2);

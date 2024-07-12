@@ -17,7 +17,7 @@ if (isset($_GET['id_marca'])) {
         // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
         if ($rowMarca = $marca->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Zapatos FEASVERSE de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca']);
+            $pdf->startReport('Zapatos FEASVERSE de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca'], 45);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataZapatos = $zapato->readAllZapatoMarca()) {
                 // Se establece un color de relleno para los encabezados.
