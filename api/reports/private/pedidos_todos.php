@@ -11,6 +11,7 @@ $Pedidos = new PedidosData;
 
 // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
 if ($dataOrders = $Pedidos->readAllOrders()) {
+    session_start();
     // Se inicia el reporte con el encabezado del documento.
     $pdf->startReport('Reporte FEASVERSE de todos los pedidos: ', 'Reporte sobre todos pedidos', '', 69, 26);
     // Se establece un color de relleno para mostrar el nombre de la categoría.

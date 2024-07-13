@@ -61,7 +61,7 @@ function showFormUser() {
     MAIN.classList.add('d-none');
 }
 function showPedidos() {
-    location.href = 'tuspedidos.html';
+    location.href = 'tus_pedidos.html';
 }
 
 const returnBack = async () => {

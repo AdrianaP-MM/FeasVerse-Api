@@ -16,14 +16,16 @@ class Report extends FPDF
 
     public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado)
     {
-        session_start();
-        if (isset($_SESSION['idTrabajador'])) {
+        if (isset($_SESSION['idTrabajador']) || isset($_SESSION['idCliente'])) {
             $this->title = $title;
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
             $this->anchoDemas = $anchoDemas;
             $this->espaciado = $espaciado;
-            $this->userName = $_SESSION['nombreTrabajador'];
+            if (isset($_SESSION['idTrabajador']))
+                $this->userName = $_SESSION['nombreTrabajador'];
+            else
+                $this->userName = $_SESSION['nombreCliente'];
 
             // Dividir el título en tres partes
             $titleParts = explode(' ', $title, 3);

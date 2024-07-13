@@ -6,6 +6,7 @@ require_once('../../helpers/report.php');
 $pdf = new Report;
 // Se verifica si existe un valor para la categoría, de lo contrario se muestra un mensaje.
 if (isset($_GET['id_marca'])) {
+    session_start();
     // Se incluyen las clases para la transferencia y acceso a datos.
     require_once('../../models/data/marcas_data.php');
     require_once('../../models/data/zapatos_data.php');

@@ -11,6 +11,7 @@ $Pedidos = new PedidosData;
 
 // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
 if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
+    session_start();
     // Se inicia el reporte con el encabezado del documento.
     $pdf->startReport('Reporte FEASVERSE de todos los pedidos en camino: ', 'Reporte sobre todos pedidos en camino', '', 99, 12);
     // Se establece un color de relleno para mostrar el nombre de la categoría.

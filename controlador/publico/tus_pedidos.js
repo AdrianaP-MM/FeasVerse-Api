@@ -186,13 +186,20 @@ const fillPedidos = async (form = null) => {
                                                     
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12" id="containerTotales">
-                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                    id="totalPediod">Total del pedido: $${row.precio_total}</h6>
-                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                    id="envio">Envío: $${row.costo_de_envio}</h6>
-                                                <h6 class="titillium-web-extralight d-flex justify-content-end"
-                                                    id="totalCobrar">Total a cobrar: $${row.total_cobrar}</h6>
+                                            <div class="col-lg-12 d-flex justify-content-center aling-items-center" id="containerTotales">
+                                                <div class="col-lg-6">
+                                                    <button id="btn4" class="btn btn4 btn-primary mt-4" onclick="generarReporte(${row.id_pedido_cliente})">
+                                                        <i class="bi bi-filetype-pdf"></i> Generar reporte
+                                                    </button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                        id="totalPediod">Total del pedido: $${row.precio_total}</h6>
+                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                        id="envio">Envío: $${row.costo_de_envio}</h6>
+                                                    <h6 class="titillium-web-extralight d-flex justify-content-end"
+                                                        id="totalCobrar">Total a cobrar: $${row.total_cobrar}</h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -339,6 +346,16 @@ const inicializarAccordion = async (form = null) => {
 SELECT_PEDIDO.addEventListener('change', async () => {
     await handleSearch();
 });
+
+const generarReporte = async (idPedido) => {
+    // Se declara una constante tipo objeto con la ruta específica del reporte en el servidor.
+    const PATH = new URL(`${SERVER_URL}reports/public/pedidos.php`);
+    // Se agrega un parámetro a la ruta con el valor del registro seleccionado.
+    PATH.searchParams.append('id', idPedido);
+    console.log(PATH.href);
+    // Se abre el reporte en una nueva pestaña.
+    window.open(PATH.href);
+}
 
 // Definir la función para manejar la búsqueda
 async function handleSearch() {
