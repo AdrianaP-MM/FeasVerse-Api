@@ -14,6 +14,22 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1; // Indica que hay una sesión activa.
         switch ($_GET['action']) {
+            case 'readResumeAllZapatosMarca':
+                // Validar los datos del formulario.
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si el ID de la marca es válido.
+                if (!$zapato->setIdMarca($_POST['idMarca'])) {
+                    // Si el dato no es válido, se asigna un mensaje de error.
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readResumeAllZapatosMarca()) {
+                    // Si los datos son válidos, se obtienen los zapatos y se asigna el mensaje correspondiente.
+                    $result['status'] = 1;
+                } else {
+                    // Si no existen registros, se asigna un mensaje de error.
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                break;
+    
             case 'searchDetalle':
                 // Validar los datos y buscar detalles del zapato.
                 if (
