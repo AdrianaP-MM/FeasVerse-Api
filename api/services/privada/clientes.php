@@ -30,6 +30,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                case 'readPorcentajeClientes':
+                    if ($result['dataset'] = $cliente->readPorcentajeClientes()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen clientes';
+                    }
+                    break;
             //CREAR
             case 'createRow':
                 // Validar y procesar los datos del formulario para crear un nuevo registro

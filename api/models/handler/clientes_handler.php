@@ -25,7 +25,7 @@ class ClienteHandler
     *   Métodos para gestionar la cuenta del cliente.
     */
 
-    
+
     public function checkUser($correo_cliente, $clave_cliente)
     {
         // Consulta SQL para buscar un usuario por correo electrónico
@@ -52,6 +52,16 @@ class ClienteHandler
             return false;
         }
     }
+
+    // Método para leer todas las marcas
+    public function readPorcentajeClientes()
+    {
+        $sql = 'SELECT estado_cliente, COUNT(*) AS total_clientes
+        FROM tb_clientes
+        GROUP BY estado_cliente;';
+        return Database::getRows($sql);
+    }
+
 
     public function checkMail()
     {
@@ -276,5 +286,4 @@ class ClienteHandler
         $params = array($_SESSION['idCliente']);
         return Database::getRow($sql, $params);
     }
-
 }

@@ -1,6 +1,7 @@
 // Constante para completar la ruta de la API.
 const PEDIDOS_API = 'services/privada/pedidos.php';
 const MARCAS_API = 'services/privada/marcas.php';
+const CLIENTES_API = 'services/privada/clientes.php';
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,30 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     graficoBarrasVentas();
     graficoPieZapatos();
-    graficoBarVertical();           
+    graficoBarVertical(); 
+    graficoBarrasClientes();          
 });
 
-// Definición de la función asíncrona llamada 'graficoBarrasVentas'.
-const graficoBarrasVentas = async () => {
-    // Petición para obtener los datos del gráfico.
-    const DATA = await fetchData(PEDIDOS_API, 'ventasPorMes');
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
-    if (DATA.status) {
-        // Se declaran los arreglos para guardar los datos a graficar.
-        let Meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-        let Ventas = [];
-        // Se recorre el conjunto de registros fila por fila a través del objeto row.
-        DATA.dataset.forEach(row => {
-            Ventas.push(row.Cantidad);
-        });
-        barGraph('chart3', Meses, Ventas, 'Ventas', 'Ventas por mes');
-        barGraph('chart4', Meses, Ventas, 'Ventas', 'Ventas por mes');
-        barGraph('chart5', Meses, Ventas, 'Ventas', 'Ventas por mes');
-        barGraph('chart6', Meses, Ventas, 'Ventas', 'Ventas por mes');
-    } else {
-        //document.getElementById('chart1').remove();
-    }
-}
 
 // Definición de la función asíncrona llamada 'graficoBarrasVentas'.
 const graficoPieZapatos = async () => {
@@ -98,3 +79,42 @@ const graficoBarVertical = async () => {
         document.getElementById('chart2').remove();
     }
 };
+
+// Definición de la función asíncrona llamada 'graficoBarrasVentas'.
+const graficoBarrasVentas = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(PEDIDOS_API, 'ventasPorMes');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let Meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        let Ventas = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            Ventas.push(row.Cantidad);
+        });
+        barGraph('chart3', Meses, Ventas, 'Ventas', 'Ventas por mes');
+    } else {
+        //document.getElementById('chart1').remove();
+    }
+}
+
+
+const graficoBarrasClientes = async () => {
+    // Petición para obtener los datos del gráfico.
+    const DATA = await fetchData(CLIENTES_API, 'readPorcentajeClientes');
+    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+    if (DATA.status) {
+        // Se declaran los arreglos para guardar los datos a graficar.
+        let Estados = ['Activados', 'Desactivados'];
+        let Clientes = [];
+        // Se recorre el conjunto de registros fila por fila a través del objeto row.
+        DATA.dataset.forEach(row => {
+            Clientes.push(row.total_clientes);
+            console.log(Estados, Clientes)
+        });
+        donutGraph('chart4', Estados, Clientes, 'Estado del cliente', 'Clientes por estado');
+    } else {
+        document.getElementById('chart4').remove();
+    }
+}
