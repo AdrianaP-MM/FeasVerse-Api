@@ -30,6 +30,22 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay coincidencias';
                 }
                 break;
+                case 'readAllActivos':
+                    if ($result['dataset'] = $trabajador->readAllActivos()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    } else {
+                        $result['error'] = 'No existen clientes registrados';
+                    }
+                    break;
+                    case 'readAllInactivos':
+                        if ($result['dataset'] = $trabajador->readAllInactivos()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                        } else {
+                            $result['error'] = 'No existen clientes registrados';
+                        }
+                        break;
                 case 'readPorcentajeClientes':
                     if ($result['dataset'] = $cliente->readPorcentajeClientes()) {
                         $result['status'] = 1;

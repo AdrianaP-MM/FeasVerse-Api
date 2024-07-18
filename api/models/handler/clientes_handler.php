@@ -62,6 +62,22 @@ class ClienteHandler
         return Database::getRows($sql);
     }
 
+    public function readAllInactivos()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, direccion_cliente, clave_cliente, fecha_de_registro, fecha_de_nacimiento, estado_cliente
+                FROM tb_clientes
+                WHERE estado_cliente = "Desactivo";'; // Consulta SQL para obtener todos los trabajadores // Parámetros para la consulta SQL
+        return Database::getRows($sql);
+    }
+
+    public function readAllActivos()
+    {
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, dui_cliente, telefono_cliente, correo_cliente, direccion_cliente, clave_cliente, fecha_de_registro, fecha_de_nacimiento, estado_cliente
+                FROM tb_clientes
+                WHERE estado_cliente = "Activo";'; // Consulta SQL para obtener todos los trabajadores // Parámetros para la consulta SQL
+        return Database::getRows($sql);
+    }
+
 
     public function checkMail()
     {
