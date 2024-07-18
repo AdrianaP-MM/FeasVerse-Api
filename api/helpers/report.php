@@ -13,8 +13,9 @@ class Report extends FPDF
     private $regular2 = null;
     private $anchoDemas = null;
     private $espaciado = null;
+    private $celdaNegritaW = null;
 
-    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado)
+    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado, $celdaNegritaW = 35)
     {
         if (isset($_SESSION['idTrabajador']) || isset($_SESSION['idCliente'])) {
             $this->title = $title;
@@ -22,6 +23,7 @@ class Report extends FPDF
             $this->letterUnderline = $letterUnderline;
             $this->anchoDemas = $anchoDemas;
             $this->espaciado = $espaciado;
+            $this->celdaNegritaW = $celdaNegritaW;
             if (isset($_SESSION['idTrabajador']))
                 $this->userName = $_SESSION['nombreTrabajador'];
             else
@@ -72,7 +74,7 @@ class Report extends FPDF
         $this->setFont('Arial', '', 18);
         $this->Cell(30, 10, $this->encodeString($this->regular), 0, 0, 'C', 0); // 'C' para centrar y '1' para dibujar el borde
         $this->setFont('Arial', 'B', 18);
-        $this->Cell(35, 10, $this->encodeString($this->black), 0, 0, 'C', 0);
+        $this->Cell($this->celdaNegritaW, 10, $this->encodeString($this->black), 0, 0, 'C', 0);
         $this->setFont('Arial', '', 18);
         $this->Cell($this->anchoDemas, 10, $this->encodeString($this->regular2), 0, 1, 'C', 0);
         $this->Cell(45);

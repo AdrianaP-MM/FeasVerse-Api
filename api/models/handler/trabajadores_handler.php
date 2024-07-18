@@ -96,10 +96,32 @@ class TrabajadorHandler
     public function readAll()
     {
         $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador FROM tb_trabajadores t
-        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel AND id_trabajador != ? ORDER BY t.id_trabajador ASC;'; // Consulta SQL para obtener todos los trabajadores
+        INNER JOIN tb_niveles n WHERE n.id_nivel = t.id_nivel AND id_trabajador != ? ORDER BY t.estado_trabajador ASC;'; // Consulta SQL para obtener todos los trabajadores
         $params = array($_SESSION['idTrabajador']); // Parámetros para la consulta SQL
         return Database::getRows($sql, $params);
     }
+
+    public function readAllInactivos(){
+        $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador
+FROM tb_trabajadores t
+INNER JOIN tb_niveles n ON n.id_nivel = t.id_nivel
+WHERE t.id_trabajador != ? AND t.estado_trabajador = "Desactivo"
+ORDER BY t.apellido_trabajador'; // Consulta SQL para obtener todos los trabajadores
+        $params = array($_SESSION['idTrabajador']); // Parámetros para la consulta SQL
+        return Database::getRows($sql, $params);
+    }
+
+    public function readAllActivos(){
+        $sql = 'SELECT t.id_trabajador, t.apellido_trabajador, t.nombre_trabajador, t.dui_trabajador, t.telefono_trabajador, t.correo_trabajador, n.nivel, t.estado_trabajador
+FROM tb_trabajadores t
+INNER JOIN tb_niveles n ON n.id_nivel = t.id_nivel
+WHERE t.id_trabajador != ? AND t.estado_trabajador = "Activo"
+ORDER BY t.apellido_trabajador'; // Consulta SQL para obtener todos los trabajadores
+        $params = array($_SESSION['idTrabajador']); // Parámetros para la consulta SQL
+        return Database::getRows($sql, $params);
+    }
+
+
 
     // Método para crear un nuevo trabajador
     public function createRow()

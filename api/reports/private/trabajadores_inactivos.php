@@ -15,10 +15,10 @@ require_once('../../models/data/trabajadores_data.php');
 $trabajador = new TrabajadorData;
 
 // Se verifica si hay trabajadores existentes, de lo contrario se muestra un mensaje.
-if ($dataTrabajador = $trabajador->readAll()) {
+if ($dataTrabajador = $trabajador->readAllInactivos()) {
    
-    // Se inicia el reporte con el encabezado del documento. fernando es gay
-    $pdf->startReport('Trabajadores de FeasVerse ', 'Reporte sobre todos los trabajadores de nuestra tienda', '', 1, 43 , 43, );
+    // Se inicia el reporte con el encabezado del documento.
+    $pdf->startReport('Trabajadores inactivos de', 'Reporte sobre todos los trabajadores inactivos de nuestra tienda', 'FeasVerse', 1, 55, 38);
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.
@@ -27,7 +27,7 @@ if ($dataTrabajador = $trabajador->readAll()) {
     $pdf->Cell(10);
     $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
     $pdf->SetFillColor(20, 106, 147); // Establecer color de fondo rojo (RGB)
-    $pdf->Cell(100, 10, 'Nombre del trabajador', 0, 0, '', 1); // 'C' para centrar y '1' para dibujar el borde
+    $pdf->Cell(100, 10, 'Nombre del trabajador', 0, 0, 'C', 1); // 'C' para centrar y '1' para dibujar el borde
     $pdf->Cell(30, 10, 'Nivel', 0, 0, 'C', 1);
     $pdf->Cell(30, 10, 'Estado', 0, 1, 'C', 1); // 1 para dibujar el borde y 1 para nueva línea
     $pdf->SetFillColor(255, 255, 255); // Restablecer el color de fondo a blanco (opcional)

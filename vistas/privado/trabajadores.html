@@ -134,6 +134,27 @@
                             <span class="clear-icon" onclick="clearSearch()"><i class="bi clear-icon"></i></span>
                         </div>
 
+                        <h1 class="d-flex justify-content-center text-white mb-4 mt-2">Generar reportes</h1>
+                        <div class="d-flex justify-content-center">
+
+                            <button type="button" id="btnSeeReportPendiente"
+                                class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                onclick="generarReporte()">
+                                Todos los trabajadores
+                            </button>
+                            <button type="button" id="btnSeeReportPendiente"
+                                class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                onclick="generarReporteActivos()">
+                                Trabajadores activos
+                            </button>
+                            <button type="button" id="btnSeeReportPendiente"
+                                class="btn btn2 btn-primary ms-4 shadow text18 titillium-web-regular"
+                                onclick="generarReporteInactivos()">
+                                Trabajadores inactivos
+                            </button>
+
+                        </div>
+
                         <div class="Contenedor-tabla z-3 mt-4 table-responsive col-11">
                             <table class="table table-hover table-bordered" id="tablaTrabajadores">
                                 <thead class="thead">
@@ -155,9 +176,6 @@
                             class="contenedorBotones col-11 z-0 d-flex flex-wrap justify-content-center justify-content-lg-start justify-content-md-start">
                             <button type="button" class="btn btn3 btn-primary mx-4 my-2 shadow text18 titillium-web-regular" id="btnBloq" onclick="botonBloquear()"
                             >Bloquear
-                            </button>
-                            <button type="button" class="btn btn3 btn-primary mx-4 my-2 shadow text18 titillium-web-regular" id="btnBloq" onclick="generarReporte()"
-                            >Reporte
                             </button>
                             <p id="textoInfo" class="text-white titillium-web-regular text-center d-flex justify-content-center align-items-center m-0"></p>
                         </div>

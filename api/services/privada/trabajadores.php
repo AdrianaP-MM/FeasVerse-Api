@@ -46,9 +46,25 @@ if (isset($_GET['action'])) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
-                    $result['error'] = 'No existen productos registrados';
+                    $result['error'] = 'No existen trabajadores registrados';
                 }
                 break;
+                case 'readAllActivos':
+                    if ($result['dataset'] = $trabajador->readAllActivos()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                    } else {
+                        $result['error'] = 'No existen trabajadores registrados';
+                    }
+                    break;
+                    case 'readAllInactivos':
+                        if ($result['dataset'] = $trabajador->readAllInactivos()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
+                        } else {
+                            $result['error'] = 'No existen trabajadores registrados';
+                        }
+                        break;
                 //LEER UNO
             case 'readOne':
                 if (!$trabajador->setId($_POST['id_trabajador'])) {
