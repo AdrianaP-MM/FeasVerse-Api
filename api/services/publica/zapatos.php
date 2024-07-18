@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase del modelo.
-require_once('../../models/data/zapatos_data.php');
+require_once ('../../models/data/zapatos_data.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -14,6 +14,42 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1; // Indica que hay una sesión activa.
         switch ($_GET['action']) {
+            case 'readResumeAllZapatosMarca':
+                // Validar los datos del formulario.
+                $_POST = Validator::validateForm($_POST);
+                // Verificar si el ID de la marca es válido.
+                if (!$zapato->setIdMarca($_POST['idMarca'])) {
+                    // Si el dato no es válido, se asigna un mensaje de error.
+                    $result['error'] = $zapato->getDataError();
+                } elseif ($result['dataset'] = $zapato->readResumeAllZapatosMarca()) {
+                    // Si los datos son válidos, se obtienen los zapatos y se asigna el mensaje correspondiente.
+                    $result['status'] = 1;
+                } else {
+                    // Si no existen registros, se asigna un mensaje de error.
+                    $result['error'] = 'No existen zapatos registrados';
+                }
+                break;
+
+            case 'searchValue':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $zapato->searchValue()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
+                break;
+
+            case 'searchValueZapatoMarca':
+                if (!Validator::validateSearch($_POST['search'])) {
+                    $result['error'] = Validator::getSearchError();
+                } elseif ($result['dataset'] = $zapato->searchValueZapatoMarca()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['error'] = 'No hay coincidencias';
+                }
+                break;
+
             case 'searchDetalle':
                 // Validar los datos y buscar detalles del zapato.
                 if (
@@ -57,16 +93,16 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['error'] = 'No existen zapatos registrados';
                 }
-            break;
-                case 'readResumeAllZapatos':
-                     // Leer los zapatos especiales.
+                break;
+            case 'readResumeAllZapatos':
+                // Leer los zapatos especiales.
                 if ($result['dataset'] = $zapato->readResumeAllZapatos()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
                     $result['error'] = 'No existen zapatos registrados';
                 }
-                    break;
+                break;
             case 'readOneDetail':
                 // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
@@ -195,15 +231,15 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen zapatos registrados';
                 }
                 break;
-                case 'readResumeAllZapatos':
-                          // Leer los zapatos especiales.
+            case 'readResumeAllZapatos':
+                // Leer los zapatos especiales.
                 if ($result['dataset'] = $zapato->readResumeAllZapatos()) {
                     $result['status'] = 1;
                     $result['message'] = 'Existen ' . count($result['dataset']) . ' registros';
                 } else {
                     $result['error'] = 'No existen zapatos registrados';
                 }
-                    break;
+                break;
             case 'readOneDetail':
                 // Leer el detalle de un zapato específico.
                 if (!$zapato->setId($_POST['id_zapato'])) {
@@ -254,8 +290,8 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('Content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-    print(json_encode($result));
+    print (json_encode($result));
 } else {
     // Si no se envió una acción válida, se devuelve un mensaje de recurso no disponible.
-    print(json_encode('Recurso no disponible'));
+    print (json_encode('Recurso no disponible'));
 }

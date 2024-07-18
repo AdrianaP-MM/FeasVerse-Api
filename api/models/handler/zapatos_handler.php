@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once('../../helpers/database.php');
+require_once ('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -156,6 +156,21 @@ class ZapatosHandler
         return Database::getRows($sql);
     }
 
+    public function readResumeAllZapatosMarca()
+    {
+        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, ROUND(AVG(c.calificacion_comentario), 2) AS estrellas 
+        FROM tb_zapatos z
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+        LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        WHERE z.id_marca = ? 
+        GROUP BY z.id_zapato;';
+        $params = array(
+            $this->id_marca
+        );
+        return Database::getRows($sql, $params);
+    }
+
     public function validationCantidad()
     {
         $sql = 'SELECT cantidad_zapato FROM tb_detalle_zapatos WHERE id_detalle_zapato = ?;';
@@ -274,6 +289,40 @@ class ZapatosHandler
         GROUP BY z.id_zapato
         ORDER BY z.id_zapato;';
         $params = array($this->id_marca);
+        return Database::getRows($sql, $params);
+    }
+
+    public function searchValueZapatoMarca()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, 
+        ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.estado_zapato
+        FROM tb_zapatos z
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+        INNER JOIN tb_colores ON tb_colores.id_color = dz.id_color
+        LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        WHERE z.nombre_zapato LIKE ? AND z.id_marca = ?
+        GROUP BY z.id_zapato
+        ORDER BY z.id_zapato;';
+        $params = array($value, $this->id_marca);
+        return Database::getRows($sql, $params);
+    }
+
+    public function searchValue()
+    {
+        $value = '%' . Validator::getSearchValue() . '%';
+        $sql = 'SELECT z.id_zapato, z.nombre_zapato, z.genero_zapato, z.precio_unitario_zapato, dz.foto_detalle_zapato, COUNT(DISTINCT dz.id_color) AS colores, 
+        ROUND(AVG(c.calificacion_comentario), 2) AS estrellas, z.estado_zapato
+        FROM tb_zapatos z
+        INNER JOIN tb_detalle_zapatos dz ON dz.id_zapato = z.id_zapato
+        INNER JOIN tb_colores ON tb_colores.id_color = dz.id_color
+        LEFT JOIN tb_detalles_pedidos dp ON dz.id_detalle_zapato = dp.id_detalle_zapato
+        LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
+        WHERE z.nombre_zapato LIKE ?
+        GROUP BY z.id_zapato
+        ORDER BY z.id_zapato;';
+        $params = array($value);
         return Database::getRows($sql, $params);
     }
 
