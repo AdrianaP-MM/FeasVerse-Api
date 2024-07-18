@@ -2,6 +2,7 @@
 const PEDIDOS_API = 'services/privada/pedidos.php';
 const MARCAS_API = 'services/privada/marcas.php';
 const CLIENTES_API = 'services/privada/clientes.php';
+const ZAPATOS_API = 'services/privada/zapatos.php';
 
 // Método del evento para cuando el documento ha cargado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,8 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTemplate();
     graficoBarrasVentas();
     graficoPieZapatos();
-    graficoBarVertical(); 
-    graficoBarrasClientes();          
+    graficoBarVertical();
+    graficoBarrasClientes();
+    graficoBarTop();
 });
 
 
@@ -103,18 +105,80 @@ const graficoBarrasVentas = async () => {
 const graficoBarrasClientes = async () => {
     // Petición para obtener los datos del gráfico.
     const DATA = await fetchData(CLIENTES_API, 'readPorcentajeClientes');
-    // Se comprueba si la respuesta es satisfactoria, de lo contrario se remueve la etiqueta canvas.
+
+    // Se comprueba si la respuesta es satisfactoria.
     if (DATA.status) {
         // Se declaran los arreglos para guardar los datos a graficar.
-        let Estados = ['Activados', 'Desactivados'];
+        let Estados = [];
         let Clientes = [];
+
         // Se recorre el conjunto de registros fila por fila a través del objeto row.
         DATA.dataset.forEach(row => {
+            Estados.push(row.estado_cliente);
             Clientes.push(row.total_clientes);
-            console.log(Estados, Clientes)
         });
-        donutGraph('chart4', Estados, Clientes, 'Estado del cliente', 'Clientes por estado');
+
+        // Obtener el contenedor del gráfico.
+        const chartContainer = document.querySelector('.graficContainerCliente');
+
+        // Verificar si todos los clientes están en el mismo estado.
+        if (Estados.every(estado => estado === 'Activo')) {
+            console.log("Todos los clientes están activos.");
+            // Insertar HTML en el contenedor con un mensaje.
+            chartContainer.innerHTML = `
+                <div class="alert alert-success" role="alert">
+                    Todos los clientes están activos.
+                </div>
+            `;
+        } else if (Estados.every(estado => estado === 'Desactivo')) {
+            console.log("Todos los clientes están desactivados.");
+            // Insertar HTML en el contenedor con un mensaje.
+            chartContainer.innerHTML = `
+                <div class="alert alert-warning" role="alert">
+                    Todos los clientes están desactivados.
+                </div>
+            `;
+        } else {
+            // Restaurar el canvas y generar el gráfico.
+            chartContainer.innerHTML = '<canvas id="chart4"></canvas>';
+            // Llamada a la función para dibujar el gráfico.
+            donutGraph('chart4', ['Activados', 'Desactivados'], Clientes, 'Estado del cliente', 'Clientes por estado');
+        }
     } else {
-        document.getElementById('chart4').remove();
+        console.error("Error al obtener los datos.");
+        const chartContainer = document.querySelector('.graficContainerCliente');
+        chartContainer.innerHTML = `
+            <div class="alert alert-danger" role="alert">
+                Error al obtener los datos.
+            </div>
+        `;
     }
 }
+
+const graficoBarTop = async () => {
+    try {
+        // Petición para obtener los datos del gráfico.
+        const DATA = await fetchData(ZAPATOS_API, 'readTopZapatos');
+        // Se comprueba si la respuesta es satisfactoria.
+        if (DATA.status) {
+            // Se declaran los arreglos para guardar los datos a graficar.
+            let nombresZapatos = [];
+            let calificacionesPromedio = [];
+            // Se recorre el conjunto de registros fila por fila a través del objeto row.
+            DATA.dataset.forEach(row => {
+                if (row.nombre_zapato !== undefined && row.promedio_calificacion !== undefined) {
+                    nombresZapatos.push(row.nombre_zapato);
+                    calificacionesPromedio.push(row.promedio_calificacion);
+                }
+            });
+            // Llamada a la función para generar y mostrar un gráfico de barras.
+            BarVer2Graph('chart5', nombresZapatos, calificacionesPromedio, 'Top 5 zapatos mejor calificados');
+        } else {
+            document.getElementById('chart5').remove();
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        document.getElementById('chart5').remove();
+    }
+};
+

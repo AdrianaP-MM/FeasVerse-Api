@@ -1,6 +1,6 @@
 <?php
 // Se incluye la clase para trabajar con la base de datos.
-require_once ('../../helpers/database.php');
+require_once('../../helpers/database.php');
 /*
  *  Clase para manejar el comportamiento de los datos de la tabla administrador.
  */
@@ -53,9 +53,32 @@ class ZapatosHandler
         $params = array(
             $this->id_detalle_zapato
         );
-        
+
         return Database::executeRow($sql, $params);
     }
+
+    public function readTopZapatos()
+    {
+        $sql = 'SELECT 
+                  z.nombre_zapato,
+                  AVG(c.calificacion_comentario) AS promedio_calificacion
+                FROM 
+                tb_comentarios c
+                JOIN 
+                tb_detalles_pedidos dp ON c.id_detalles_pedido = dp.id_detalles_pedido
+                JOIN 
+                tb_detalle_zapatos dz ON dp.id_detalle_zapato = dz.id_detalle_zapato
+                JOIN 
+                tb_zapatos z ON dz.id_zapato = z.id_zapato
+                GROUP BY 
+                z.id_zapato, z.nombre_zapato
+                ORDER BY 
+                promedio_calificacion DESC
+                LIMIT 5;';
+        return Database::getRows($sql);
+    }
+
+
 
     public function updateDetalle()
     {
@@ -67,7 +90,7 @@ class ZapatosHandler
             $this->cantidad_zapato,
             $this->id_detalle_zapato
         );
-        
+
         return Database::executeRow($sql, $params);
     }
 

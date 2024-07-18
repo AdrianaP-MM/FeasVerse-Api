@@ -27,6 +27,13 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al desactivar el detalle, porque tiene datos relacionados';
                 }
                 break;
+                case 'readTopZapatos':
+                    if ($result['dataset'] = $zapatos->readTopZapatos()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['error'] = 'No existen zapatos';
+                    }
+                    break;
             case 'searchRows':
                 // Verificar si el valor de búsqueda es válido
                 if (!Validator::validateSearch($_POST['inputBusquedaZapatos'])) {
