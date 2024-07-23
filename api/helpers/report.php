@@ -3,7 +3,7 @@ require_once('../../libraries/fpdf185/fpdf.php');
 
 class Report extends FPDF
 {
-    const CURRENT_URL = 'http://localhost/FeasVerse/vistas/privado';
+    const CURRENT_URL = 'http://localhost/FeasVerse-Web/vistas/privado';
     private $title = null;
     private $minLetter = null;
     private $letterUnderline = null;
@@ -63,7 +63,7 @@ class Report extends FPDF
     }
     
     public function onlyFrstPage(){
-        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/FeasVerseLogo.png';
+        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse-Api/api/helpers/images/FeasVerseLogo.png';
         $this->image($imagePath, 95, 13, 17);
         $this->ln(23);
         $this->addText(0, 'Fecha/Hora: ' . date('d-m-Y H:i:s'), 12, [0, 0, 0], 'I', 'C');
@@ -90,8 +90,8 @@ class Report extends FPDF
 
     private function putImages()
     {
-        $imagePathLeft = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/BorderLeft.png';
-        $imagePathRight = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse/api/helpers/images/BorderRight.png';
+        $imagePathLeft = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse-Api/api/helpers/images/BorderLeft.png';
+        $imagePathRight = $_SERVER['DOCUMENT_ROOT'] . '/FeasVerse-Api/api/helpers/images/BorderRight.png';
         if (file_exists($imagePathLeft) && file_exists($imagePathRight)) {
             $this->Image($imagePathLeft, 0, 0, 0, 0);
             $this->Image($imagePathRight, 200, 0, 0, 0);
