@@ -71,15 +71,7 @@ class PedidosHandler
     }
 
     public function graficaPedidos(){
-        $sql = "SELECT 
-            estado_pedido, 
-            COUNT(*) AS cantidad_pedidos
-        FROM 
-            tb_pedidos_clientes
-        WHERE 
-            estado_pedido != 'Carrito'
-        GROUP BY 
-            estado_pedido;
+        $sql = "SELECT*FROM vista_estado_pedidos
         ";
         return Database::getRows($sql);
     }
