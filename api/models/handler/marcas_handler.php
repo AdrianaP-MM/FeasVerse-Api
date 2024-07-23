@@ -21,14 +21,7 @@ class MarcasHandler
     // Método para leer todas las marcas
     public function readPorcentajeZapatosMarca()
     {
-        $sql = 'SELECT
-                m.nombre_marca AS NombreMarca,
-                CONCAT(ROUND(COUNT(z.id_zapato) * 100.0 / (SELECT COUNT(*) FROM tb_zapatos), 2)) AS Porcentaje
-            FROM
-                tb_marcas m
-                INNER JOIN tb_zapatos z ON m.id_marca = z.id_marca
-            GROUP BY
-                m.nombre_marca;';
+        $sql = 'SELECT * FROM vw_porcentaje_zapatos_por_marca;';
         return Database::getRows($sql);
     }
 
