@@ -57,9 +57,7 @@ class ClienteHandler
     // Método para leer todas las marcas
     public function readPorcentajeClientes()
     {
-        $sql = 'SELECT estado_cliente, COUNT(*) AS total_clientes
-        FROM tb_clientes
-        GROUP BY estado_cliente;';
+        $sql = 'SELECT * FROM vw_total_clientes_por_estado;';
         return Database::getRows($sql);
     }
 

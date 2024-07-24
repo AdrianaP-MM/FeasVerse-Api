@@ -59,22 +59,7 @@ class ZapatosHandler
 
     public function readTopZapatos()
     {
-        $sql = 'SELECT 
-                  z.nombre_zapato,
-                  AVG(c.calificacion_comentario) AS promedio_calificacion
-                FROM 
-                tb_comentarios c
-                JOIN 
-                tb_detalles_pedidos dp ON c.id_detalles_pedido = dp.id_detalles_pedido
-                JOIN 
-                tb_detalle_zapatos dz ON dp.id_detalle_zapato = dz.id_detalle_zapato
-                JOIN 
-                tb_zapatos z ON dz.id_zapato = z.id_zapato
-                GROUP BY 
-                z.id_zapato, z.nombre_zapato
-                ORDER BY 
-                promedio_calificacion DESC
-                LIMIT 5;';
+        $sql = 'SELECT * FROM vw_top_5_zapatos_por_calificacion;';
         return Database::getRows($sql);
     }
 
