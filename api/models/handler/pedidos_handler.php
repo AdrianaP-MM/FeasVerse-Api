@@ -249,8 +249,7 @@ class PedidosHandler
     // Método para obtener la cantidad de ventas por mes
     public function ventasMes()
     {
-        $sql = '
-        ';
+        $sql = 'SELECT * FROM pedidos_entregados_por_mes;';
         return Database::getRows($sql);
     }
 
