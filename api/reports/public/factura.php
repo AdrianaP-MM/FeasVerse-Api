@@ -65,7 +65,7 @@ if ($dataOrders = $Pedidos->readAllOrdersFactura()) {
 
     // Se guarda el documento en el servidor con un nombre único.
     $rutaRelativaPDF = '../../helpers/pdf/factura_' . $rowOrders['id_pedido_cliente'] . '_' . $uniqueId . '.pdf';
-    $pdf->output('F', $rutaRelativaPDF);
+    $pdf->output('F', $rutaRelativaPDF); // F es para guardar el archivo en el servidor
 
     // Construir la URL completa del archivo PDF
     $rutaAbsolutaPDF = 'http://localhost/FeasVerse-Api/api/helpers/pdf/factura_' . $rowOrders['id_pedido_cliente'] . '_' . $uniqueId . '.pdf';

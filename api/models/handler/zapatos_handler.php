@@ -234,7 +234,7 @@ class ZapatosHandler
         LEFT JOIN tb_comentarios c ON c.id_detalles_pedido = dp.id_detalles_pedido
         INNER JOIN tb_marcas m ON m.id_marca = z.id_marca WHERE z.id_zapato = ?;';
         $params = array($this->id_zapato);
-        return Database::getRows($sql, $params);
+        return Database::getRow($sql, $params);
     }
 
     public function readResumeReciente()
