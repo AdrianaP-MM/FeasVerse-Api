@@ -18,7 +18,7 @@ $trabajador = new TrabajadorData;
 if ($dataTrabajador = $trabajador->readAllInactivos()) {
 
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Trabajadores inactivos de', 'Reporte sobre todos los trabajadores inactivos de nuestra tienda', 'FeasVerse', 1, 55, 38);
+    $pdf->startReport('Trabajadores inactivos de', 'Reporte sobre todos los trabajadores inactivos de nuestra tienda', 'FeasVerse', 1, 59, 38);
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.

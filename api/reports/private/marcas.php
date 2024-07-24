@@ -18,7 +18,7 @@ if (isset($_GET['id_marca'])) {
         // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
         if ($rowMarca = $marca->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Zapatos FeasVerse de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca'], 43, 40);
+            $pdf->startReport('Zapatos FeasVerse de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca'], 43, 45, 30);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataZapatos = $zapato->readAllZapatoMarca()) {
                 // Se establece un color de relleno para los encabezados.
@@ -42,7 +42,7 @@ if (isset($_GET['id_marca'])) {
                     ($rowProducto['estado_zapato']) ? $estado = 'Activo' : $estado = 'Inactivo';
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(100, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 0, 0);
-                    $pdf->cell(30, 10, $rowProducto['precio_unitario_zapato'], 1, 0, 'C');
+                    $pdf->cell(30, 10, '$' . $rowProducto['precio_unitario_zapato'], 1, 0, 'C');
                     $pdf->cell(30, 10, $estado, 1, 1, 'C');
                 }
             } else {

@@ -13,7 +13,7 @@ $Pedidos = new PedidosData;
 if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
     session_start();
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Reporte FeasVerse de todos los pedidos en camino: ', 'Reporte sobre todos pedidos en camino', '', 99, 12);
+    $pdf->startReport('Reporte FeasVerse de todos los pedidos en camino: ', 'Reporte sobre todos pedidos en camino', '', 99, 12, 28);
     // Se establece un color de relleno para mostrar el nombre de la categoría.
     $pdf->setFillColor(240);
     // Se establece la fuente para los datos de los productos.
@@ -47,9 +47,11 @@ if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
                     // Se imprimen las celdas con los datos de los productos.
                     $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 1, 0);
                     $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['cantidad_pedido']), 1, 0);
-                    $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['precio_unitario_zapato']), 1, 0);
-                    $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['precio_total']), 1, 1);
+                    $pdf->cell(43.75, 10, '$' . $pdf->encodeString($rowProducto['precio_unitario_zapato']), 1, 0);
+                    $pdf->cell(43.75, 10, '$' . $pdf->encodeString($rowProducto['precio_total']), 1, 1);
                 }
+                $pdf->SetFillColor(227, 227, 227);
+                $pdf->cell(175, 10, $pdf->encodeString('El total es: $' . $rowOrders['total_cobrar']), 1, 1, 'R', 1);
             } else {
                 $pdf->cell(0, 10, $pdf->encodeString('No hay productos del pedido'), 1, 1);
             }

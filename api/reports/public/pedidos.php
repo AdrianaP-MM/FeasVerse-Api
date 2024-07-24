@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
     if ($dataOrders = $Pedidos->SearchOrdersClientsId($_GET['id'])) {
         // Se inicia el reporte con el encabezado del documento.
-        $pdf->startReport($pdf->encodeString('Reporte FeasVerse de tú pedido: '), $pdf->encodeString('Reporte sobre tú pedido'), '', 45, 38);
+        $pdf->startReport('Reporte FeasVerse de tu pedido: ', 'Reporte sobre tu pedido', '', 45, 38, 29);
         // Se establece un color de relleno para mostrar el nombre de la categoría.
         $pdf->setFillColor(240);
         // Se establece la fuente para los datos de los productos.
@@ -47,14 +47,15 @@ if (isset($_GET['id'])) {
                         // Se imprimen las celdas con los datos de los productos.
                         $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['nombre_zapato']), 1, 0);
                         $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['cantidad_pedido']), 1, 0);
-                        $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['precio_unitario_zapato']), 1, 0);
-                        $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['precio_total']), 1, 1);
+                        $pdf->cell(43.75, 10, '$' .  $pdf->encodeString($rowProducto['precio_unitario_zapato']), 1, 0);
+                        $pdf->cell(43.75, 10, '$' .  $pdf->encodeString($rowProducto['precio_total']), 1, 1);
                     }
                 } else {
                     $pdf->cell(0, 10, $pdf->encodeString('No hay productos del pedido'), 1, 1);
                 }
                 $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
                 $pdf->SetFillColor(14, 114, 161);
+                $pdf->SetFillColor(227, 227, 227);
                 $pdf->cell(175, 10, $pdf->encodeString('El total es: $' . $rowOrders['total_cobrar']), 1, 1, 'R', 1);
                 $pdf->SetFillColor(255, 255, 255); // Restablecer el color de fondo a blanco (opcional)
                 $pdf->SetTextColor(0, 0, 0);

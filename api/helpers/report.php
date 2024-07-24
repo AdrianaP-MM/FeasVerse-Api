@@ -72,7 +72,7 @@ class Report extends FPDF
         $this->putImages();
         // Se establece el logo.
         $this->ln(3); // Salto de línea
-        $this->addText(0, $this->encodeString($this->minLetter), 11, [91, 91, 91], ''); // 91, 91, 91 para el color gris, el 11 es el tamaño de la letra y 0 es el ancho de la celda
+        $this->addText(0, $this->minLetter, 11, [91, 91, 91], ''); // 91, 91, 91 para el color gris, el 11 es el tamaño de la letra y 0 es el ancho de la celda
         $this->ln(5);
     }
     
@@ -95,10 +95,10 @@ class Report extends FPDF
         $this->Cell(45);
 
         $this->ln(2);
-        $this->addText(0, $this->encodeString($this->letterUnderline), 22, [0, 0, 0], 'U', 'C'); // 'U' para subrayar y 'C' para centrar 
+        $this->addText(0, $this->letterUnderline, 22, [0, 0, 0], 'U', 'C'); // 'U' para subrayar y 'C' para centrar 
         $this->ln(9);
         $this->cell(7);
-        $this->addText(0, 'Nombre de usuario: ' . $this->encodeString($this->userName), 12, [0, 0, 0], '', 'L'); // 'L' para alinear a la izquierda
+        $this->addText(0, 'Nombre de usuario: ' . $this->userName, 12, [0, 0, 0], '', 'L'); // 'L' para alinear a la izquierda
         $this->ln(5);
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
     }

@@ -18,7 +18,7 @@ $trabajador = new TrabajadorData;
 if ($dataTrabajador = $trabajador->readAll()) {
 
     // Se inicia el reporte con el encabezado del documento. fernando es gay
-    $pdf->startReport('Trabajadores de FeasVerse ', 'Reporte sobre todos los trabajadores de nuestra tienda', '', 1, 43 , 43, );
+    $pdf->startReport('Trabajadores de FEASVERSE', 'Reporte sobre todos los trabajadores de nuestra tienda', '', 33, 50 , 20, );
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.
