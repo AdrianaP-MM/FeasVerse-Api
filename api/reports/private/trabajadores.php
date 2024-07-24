@@ -16,7 +16,7 @@ $trabajador = new TrabajadorData;
 
 // Se verifica si hay trabajadores existentes, de lo contrario se muestra un mensaje.
 if ($dataTrabajador = $trabajador->readAll()) {
-   
+
     // Se inicia el reporte con el encabezado del documento. fernando es gay
     $pdf->startReport('Trabajadores de FeasVerse ', 'Reporte sobre todos los trabajadores de nuestra tienda', '', 1, 43 , 43, );
     // Se establece un color de relleno para los encabezados.

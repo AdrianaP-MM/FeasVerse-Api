@@ -13,7 +13,7 @@ $Pedidos = new PedidosData;
 if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
     session_start();
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Reporte FEASVERSE de todos los pedidos en camino: ', 'Reporte sobre todos pedidos en camino', '', 99, 12);
+    $pdf->startReport('Reporte FeasVerse de todos los pedidos en camino: ', 'Reporte sobre todos pedidos en camino', '', 99, 12);
     // Se establece un color de relleno para mostrar el nombre de la categoría.
     $pdf->setFillColor(240);
     // Se establece la fuente para los datos de los productos.
@@ -35,6 +35,7 @@ if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
         $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
         $pdf->SetFillColor(14, 114, 161);
         $pdf->cell(175, 10, $pdf->encodeString('Número de pedido: ' . $rowOrders['id_pedido_cliente']), 1, 1, 'C', 1);
+        $pdf->cell(175, 10, $pdf->encodeString('Nombre del cliente: ' . $rowOrders['nombre_cliente']), 1, 1, 'C', 1);
         $pdf->SetFillColor(255, 255, 255); // Restablecer el color de fondo a blanco (opcional)
         $pdf->SetTextColor(0, 0, 0); 
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
@@ -50,7 +51,7 @@ if ($dataOrders = $Pedidos->searchOrders('En camino', '')) {
                     $pdf->cell(43.75, 10, $pdf->encodeString($rowProducto['precio_total']), 1, 1);
                 }
             } else {
-                $pdf->cell(0, 10, $pdf->encodeString('No hay productos del Pedido'), 1, 1);
+                $pdf->cell(0, 10, $pdf->encodeString('No hay productos del pedido'), 1, 1);
             }
         } else {
             $pdf->cell(0, 10, $pdf->encodeString('Pedido incorrecta o inexistente'), 1, 1);

@@ -16,7 +16,7 @@ $trabajador = new TrabajadorData;
 
 // Se verifica si hay trabajadores existentes, de lo contrario se muestra un mensaje.
 if ($dataTrabajador = $trabajador->readAllActivos()) {
-   
+
     // Se inicia el reporte con el encabezado del documento.
     $pdf->startReport('Trabajadores activos de', 'Reporte sobre todos los trabajadores activos de nuestra tienda', 'FeasVerse', 1, 55, 38);
     // Se establece un color de relleno para los encabezados.

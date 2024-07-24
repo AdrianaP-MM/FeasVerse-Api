@@ -432,8 +432,35 @@ class PedidosHandler
         $sql = 'UPDATE tb_pedidos_clientes
                 SET id_repartidor = ?, estado_pedido = ?, precio_total = ?, fecha_de_inicio = ?, id_costo_de_envio_por_departamento = ?
                 WHERE id_pedido_cliente = ?';
+        $_SESSION['idPedidoCliente'] = $this->id_pedido_cliente;
         $params = array($this->id_repartidor, $this->estado_pedido, $this->precio_total, $this->fecha_de_inicio, $this->id_costo_de_envio_por_departamento, $this->id_pedido_cliente);
         return Database::executeRow($sql, $params);
+    }
+
+    //SELECT PARA LEER TODOS LOS PEDIDOS REALIzADOS
+    public function readAllOrdersFactura()
+    {
+        // Consulta SQL para obtener todos los pedidos realizados
+        $sql = "SELECT tb_pedidos_clientes.id_pedido_cliente, id_trabajador,
+        CONCAT(tb_trabajadores.nombre_trabajador,' ', tb_trabajadores.apellido_trabajador) AS nombre_repartidor,
+        CONCAT(tb_clientes.nombre_cliente,' ', tb_clientes.apellido_cliente) AS nombre_cliente,
+        correo_cliente,
+        telefono_cliente,
+        direccion_cliente,
+        estado_pedido,
+        fecha_de_inicio,
+        fecha_de_entrega,
+        precio_total,
+        costo_de_envio,
+        precio_total + costo_de_envio AS total_cobrar
+        FROM tb_pedidos_clientes 
+        INNER JOIN tb_trabajadores ON tb_trabajadores.id_trabajador = tb_pedidos_clientes.id_repartidor
+        INNER JOIN tb_clientes ON tb_clientes.id_cliente = tb_pedidos_clientes.id_cliente
+        INNER JOIN tb_costos_de_envio_por_departamento ON tb_pedidos_clientes.id_costo_de_envio_por_departamento = tb_costos_de_envio_por_departamento.id_costo_de_envio_por_departamento
+        WHERE estado_pedido != 'Carrito' AND id_pedido_cliente = ?;";
+        
+        $params = array($_SESSION['idPedidoCliente']);
+        return Database::getRows($sql, $params);
     }
 
     //SELECT PARA VER LOS ZAPATOS DE LAS ORDENES

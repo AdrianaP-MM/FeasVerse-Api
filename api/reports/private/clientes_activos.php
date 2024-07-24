@@ -16,9 +16,9 @@ $cliente = new ClienteData;
 
 // Se verifica si hay trabajadores existentes, de lo contrario se muestra un mensaje.
 if ($dataCliente = $cliente->readAllActivos()) {
-   
+    
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Clientes activos FEASVERSE', 'Reporte sobre todos los clientes activos de nuestra tienda','', 55, 38);
+    $pdf->startReport('Clientes activos FeasVerse', 'Reporte sobre todos los clientes activos de nuestra tienda','', 55, 38);
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.
@@ -40,8 +40,8 @@ if ($dataCliente = $cliente->readAllActivos()) {
         
         // Imprimir las celdas con los datos del trabajador
         $pdf->cell(100, 10, $pdf->encodeString($rowCliente['nombre_cliente']), 1, 0);
-        $pdf->cell(30, 10, $rowCliente['apellido_cliente'], 1, 0, 'C');
-        $pdf->cell(30, 10, $rowCliente['estado_cliente'], 1, 1, 'C');
+        $pdf->cell(30, 10, $pdf->encodeString($rowCliente['apellido_cliente']), 1, 0, 'C');
+        $pdf->cell(30, 10, $pdf->encodeString($rowCliente['estado_cliente']), 1, 1, 'C');
     }
     
     

@@ -18,7 +18,7 @@ if (isset($_GET['id_marca'])) {
         // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
         if ($rowMarca = $marca->readOne()) {
             // Se inicia el reporte con el encabezado del documento.
-            $pdf->startReport('Zapatos FEASVERSE de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca'], 43, 40);
+            $pdf->startReport('Zapatos FeasVerse de la marca: ', 'Reporte sobre todos los zapatos de nuestra tienda que tengan por marca ' . '"' . $rowMarca['nombre_marca'] . '"', $rowMarca['nombre_marca'], 43, 40);
             // Se verifica si existen registros para mostrar, de lo contrario se imprime un mensaje.
             if ($dataZapatos = $zapato->readAllZapatoMarca()) {
                 // Se establece un color de relleno para los encabezados.
@@ -29,7 +29,7 @@ if (isset($_GET['id_marca'])) {
                 $pdf->Cell(10);
                 $pdf->SetTextColor(255, 255, 255); // Color de texto blanco (RGB)
                 $pdf->SetFillColor(20, 106, 147); // Establecer color de fondo rojo (RGB)
-                $pdf->Cell(100, 10, 'Nombre del SNEAKER', 0, 0, '', 1); // 'C' para centrar y '1' para dibujar el borde
+                $pdf->Cell(100, 10, 'Nombre del sneaker', 0, 0, '', 1); // 'C' para centrar y '1' para dibujar el borde
                 $pdf->Cell(30, 10, 'Precio (US$)', 0, 0, 'C', 1);
                 $pdf->Cell(30, 10, 'Estado', 0, 1, 'C', 1); // 1 para dibujar el borde y 1 para nueva línea
                 $pdf->SetFillColor(255, 255, 255); // Restablecer el color de fondo a blanco (opcional)
@@ -57,5 +57,5 @@ if (isset($_GET['id_marca'])) {
         print('Marca incorrecta');
     }
 } else {
-    print('Debe seleccionar una Marca :p');
+    print('Debe seleccionar una marca :p');
 }

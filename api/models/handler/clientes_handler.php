@@ -44,6 +44,7 @@ class ClienteHandler
             $this->id_cliente = $data['id_cliente'];
             $_SESSION['idCliente'] = $data['id_cliente'];
             $_SESSION['nombreCliente'] = $data['nombre_cliente'];
+            $_SESSION['correoCliente'] = $data['correo_cliente'];
             $this->correo_cliente = $data['correo_cliente'];
             $this->estado_cliente = $data['estado_cliente'];
             return true;

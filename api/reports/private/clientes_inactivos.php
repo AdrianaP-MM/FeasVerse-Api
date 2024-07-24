@@ -18,7 +18,7 @@ $cliente = new ClienteData;
 if ($dataCliente = $cliente->readAllInactivos()) {
    
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Clientes inactivos de FEASVERSE', 'Reporte sobre todos los clientes inactivos de nuestra tienda', '', 55, 38);
+    $pdf->startReport('Clientes inactivos de FeasVese', 'Reporte sobre todos los clientes inactivos de nuestra tienda', '', 55, 38);
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.
@@ -40,7 +40,7 @@ if ($dataCliente = $cliente->readAllInactivos()) {
         
         // Imprimir las celdas con los datos del trabajador
         $pdf->cell(100, 10, $pdf->encodeString($rowCliente['nombre_cliente']), 1, 0);
-        $pdf->cell(30, 10, $rowCliente['apellido_cliente'], 1, 0, 'C');
+        $pdf->cell(30, 10, $pdf->encodeString($rowCliente['apellido_cliente']), 1, 0, 'C');
         $pdf->cell(30, 10, $rowCliente['estado_cliente'], 1, 1, 'C');
     }
     

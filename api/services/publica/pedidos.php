@@ -1,6 +1,7 @@
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/pedidos_data.php');
+require_once('../../services/mandar_factura.php');
 
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
@@ -8,6 +9,7 @@ if (isset($_GET['action'])) {
     session_start();
     // Se instancia la clase correspondiente.
     $pedidos = new PedidosData;
+    $mandarCorreo = new mandarCorreoFactura;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
     // Se verifica si existe una sesión iniciada como cliente, de lo contrario se finaliza el script con un mensaje de error.
@@ -99,6 +101,24 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Zapatos inexistente';
                 }
                 break;
+            case 'enviarFactura':
+                // Preparar el cuerpo del correo electrónico
+                $correoDestino = $_SESSION['correoCliente'];
+                $nombreDestinatario =  $_SESSION['nombreCliente']; // Puedes personalizar este valor si lo necesitas
+                $asunto = 'Correo de factura';
+                $rutaPDF = $_POST['rutaPDF'];
+                // Enviar el correo electrónico y verificar si hubo algún error
+                $envioExitoso = $mandarCorreo->enviarCorreoFactura($correoDestino, $nombreDestinatario, $asunto, $rutaPDF);
+                if ($envioExitoso === true) {
+                    $result['status'] = 1;
+                    $result['message'] = 'Factura enviada con exito';
+                } else {
+                    $result['status'] = 0;
+                    $result['error'] = 'Error al enviar el correo: ' . $envioExitoso;
+                }
+                print(json_encode($result));
+                break;
+
 
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
