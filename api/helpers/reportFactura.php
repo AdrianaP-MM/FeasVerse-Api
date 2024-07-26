@@ -4,7 +4,7 @@ require_once('../../libraries/fpdf185/fpdf.php');
 class ReportFactura extends FPDF
 {
     // URL actual
-    const CURRENT_URL = 'http://localhost/FeasVerse-Web/vistas/privado';
+    const CURRENT_URL = 'http://localhost/FeasVerse-Web/vistas/publico';
     // Variables para el título del reporte
     private $title = null;
     private $minLetter = null;
@@ -70,7 +70,6 @@ class ReportFactura extends FPDF
             // Se establece el título del documento
             $this->setTitle('FeasVerse - Reporte', true);
             // Se establece el margen del documento
-            $this->setMargins(0, 2, 0); // 0, 2, 0 para ajustar el margen de la página donde el 0 es el margen izquierdo, 2 es el margen superior y 0 es el margen derecho
             $this->setMargins(15, 0, 15); // 15, 0, 15 para ajustar el margen de la página donde el 15 es el margen izquierdo, 0 es el margen superior y 15 es el margen derecho
             //Se añade una página y la orientaccion y el tamaño de la hoja
             $this->addPage('P', 'Letter');
@@ -145,7 +144,6 @@ class ReportFactura extends FPDF
             $this->Image($imagePathRight, 200, 0, 0, 0); // 200, 0, 0, 0 para ajustar la imagen al tamaño de la página
         } else {
             throw new Exception("No se encontró la imagen en la ruta especificada: $imagePathLeft");
-            throw new Exception("No se encontró la imagen en la ruta especificada: $imagePathRight");
         }
     }
 
