@@ -18,20 +18,21 @@ class Report extends FPDF
     private $celdaNegritaW = null;
 
     // Método para iniciar el reporte
-    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado, $celdaNegritaW = 35)
+    public function startReport($title, $minLetter, $letterUnderline, $anchoDemas, $espaciado, $celdaNegritaW = 35, $nameSession = 'idTrabajador')
     {
         // Se verifica si hay una sesión activa
-        if (isset($_SESSION['idTrabajador']) || isset($_SESSION['idCliente'])) {
+        if (isset($_SESSION[$nameSession])) {
             $this->title = $title;
             $this->minLetter = $minLetter;
             $this->letterUnderline = $letterUnderline;
             $this->anchoDemas = $anchoDemas;
             $this->espaciado = $espaciado;
             $this->celdaNegritaW = $celdaNegritaW;
+
             // Se establece el nombre de usuario
-            if (isset($_SESSION['idTrabajador']))
+            if ($nameSession == 'idTrabajador')
                 $this->userName = $_SESSION['nombreTrabajador'];
-            else
+            else if($nameSession == 'idCliente')
                 $this->userName = $_SESSION['nombreCliente'];
 
             // Dividir el título en tres partes

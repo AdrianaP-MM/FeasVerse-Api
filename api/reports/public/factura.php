@@ -13,7 +13,7 @@ session_start();
 // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
 if ($dataOrders = $Pedidos->readAllOrdersFactura()) {
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Reporte FeasVerse de tu factura del pedido: ', 'Factura de tu pedido', '', 70, 10,35);
+    $pdf->startReport('Reporte FeasVerse de tu factura del pedido: ', 'Factura de tu pedido', '', 70, 10,35, 'idCliente');
     // Se establece un color de relleno para mostrar el nombre de la categoría.
     $pdf->setFillColor(240);
     // Se establece la fuente para los datos de los productos.

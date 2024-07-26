@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     // Se verifica si hay zapatos con esa marca existente, de lo contrario se muestra un mensaje.
     if ($dataOrders = $Pedidos->SearchOrdersClientsId($_GET['id'])) {
         // Se inicia el reporte con el encabezado del documento.
-        $pdf->startReport('Reporte FeasVerse de tu pedido: ', 'Reporte sobre tu pedido', '', 45, 38, 29);
+        $pdf->startReport('Reporte FeasVerse de tu pedido: ', 'Reporte sobre tu pedido', '', 45, 38, 29, 'idCliente');
         // Se establece un color de relleno para mostrar el nombre de la categoría.
         $pdf->setFillColor(240);
         // Se establece la fuente para los datos de los productos.
