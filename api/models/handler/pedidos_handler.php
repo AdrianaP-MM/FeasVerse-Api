@@ -1,3 +1,5 @@
+
+
 <?php
 // Se incluye la clase para trabajar con la base de datos.
 require_once('../../helpers/database.php');
@@ -29,9 +31,6 @@ class PedidosHandler
     protected $calificacion_comentario = null;
     protected $estado_comentario = null;
     protected $fecha_del_comentario = null;
-
-    protected $cantidad_pedido_new = null;
-    protected $cantidad_pedido_old = null;
 
     //!PRIVADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     // Método para crear un nuevo comentario
@@ -388,16 +387,19 @@ class PedidosHandler
     // Método para actualizar un detalle de pedido existente
     public function updateRowDetalle()
     {
-        $sql = 'CALL before_update_tb_detalles_pedidos(?, ?, ?);';
-        $params = array($this->id_detalles_pedido, $this->cantidad_pedido_new, $this->cantidad_pedido_old);
+        $sql = 'UPDATE tb_detalles_pedidos
+                SET cantidad_pedido = ?
+                WHERE id_detalles_pedido = ?';
+        $params = array($this->cantidad_pedido, $this->id_detalles_pedido);
         return Database::executeRow($sql, $params);
     }
 
     // Método para eliminar un detalle de pedido
     public function deleteRowDetalle()
     {
-        $sql = 'CALL before_update_tb_detalles_pedidos(?, ?, ?);';
-        $params = array($this->id_detalles_pedido, $this->cantidad_pedido);
+        $sql = 'DELETE FROM tb_detalles_pedidos
+                WHERE id_detalles_pedido = ?';
+        $params = array($this->id_detalles_pedido);
         return Database::executeRow($sql, $params);
     }
 

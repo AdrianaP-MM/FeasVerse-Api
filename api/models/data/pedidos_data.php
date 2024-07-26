@@ -1,3 +1,5 @@
+
+
 <?php
 // Se incluye la clase para validar los datos de entrada.
 require_once('../../helpers/validator.php');
@@ -170,30 +172,6 @@ class PedidosData extends PedidosHandler
     {
         if (Validator::validateNaturalNumber($value)) {
             $this->cantidad_pedido = $value;
-            return true;
-        } else {
-            $this->data_error = 'La cantidad del pedido es incorrecta';
-            return false;
-        }
-    }
-
-    // Método para establecer la cantidad del pedido.
-    public function setCantidadPedidoNew($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->cantidad_pedido_new = $value;
-            return true;
-        } else {
-            $this->data_error = 'La cantidad del pedido es incorrecta';
-            return false;
-        }
-    }
-
-    // Método para establecer la cantidad del pedido.
-    public function setCantidadPedidoOld($value)
-    {
-        if (Validator::validateNaturalNumber($value)) {
-            $this->cantidad_pedido_old = $value;
             return true;
         } else {
             $this->data_error = 'La cantidad del pedido es incorrecta';

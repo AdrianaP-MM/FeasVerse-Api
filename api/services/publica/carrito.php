@@ -1,3 +1,5 @@
+CARRITO
+
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/pedidos_data.php');
@@ -60,8 +62,7 @@ if (isset($_GET['action'])) {
                 // Verificar si todos los datos necesarios son válidos
                 if (
                     !$pedidos->setIdDetallesPedido($_POST['idDetallesPedido']) or
-                    !$pedidos->setCantidadPedidoOld($_POST['cantidadOld']) or
-                    !$pedidos->setCantidadPedidoNew($_POST['cantidadNew']) 
+                    !$pedidos->setCantidadPedido($_POST['cantidad']) 
                 ) {
                     // Si algún dato no es válido, se asigna un mensaje de error
                     $result['error'] = $pedidos->getDataError();
@@ -101,9 +102,7 @@ if (isset($_GET['action'])) {
 
             // ELIMINAR
             case 'deleteRow':
-                if (!$pedidos->setIdDetallesPedido($_POST['idDetallesPedido'])
-                    or !$pedidos->setCantidadPedido($_POST['cantidad'])
-                ) {
+                if (!$pedidos->setIdDetallesPedido($_POST['idDetallesPedido'])) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->deleteRowPedidos()) {
                     $result['status'] = 1;
