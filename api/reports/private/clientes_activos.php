@@ -18,7 +18,7 @@ $cliente = new ClienteData;
 if ($dataCliente = $cliente->readAllActivos()) {
     
     // Se inicia el reporte con el encabezado del documento.
-    $pdf->startReport('Clientes activos FeasVerse', 'Reporte sobre todos los clientes activos de nuestra tienda','', 55, 38);
+    $pdf->startReport('Clientes activos de', 'Reporte sobre todos los clientes inactivos de nuestra tienda', 'FeasVerse', 12, 59, 20);
     // Se establece un color de relleno para los encabezados.
     $pdf->setFillColor(225);
     // Se establece la fuente para los encabezados.
