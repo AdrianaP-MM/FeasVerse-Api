@@ -1,9 +1,6 @@
-CARRITO
-
 <?php
 // Se incluye la clase del modelo.
 require_once('../../models/data/pedidos_data.php');
-
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
@@ -12,7 +9,6 @@ if (isset($_GET['action'])) {
     $pedidos = new PedidosData;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'session' => 0, 'message' => null, 'dataset' => null, 'error' => null, 'exception' => null, 'username' => null);
-
     // Se verifica si existe una sesión iniciada como cliente para realizar las acciones correspondientes.
     if (isset($_SESSION['idCliente'])) {
         $result['session'] = 1;
@@ -36,7 +32,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al crear el carrito';
                 }
                 break;
-
             // LEER TODOS
             case 'readAll':
                 if ($result['dataset'] = $pedidos->readShoesOfCarritos()) {
@@ -46,7 +41,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen carrito del cliente';
                 }
                 break;
-
             case 'readAllCarrito':
                 if ($result['dataset'] = $pedidos->verCarrito()) {
                     $result['status'] = 1;
@@ -55,7 +49,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No existen carrito del cliente';
                 }
                 break;
-
             // ACTUALIZAR
             case 'updateRow':
                 $_POST = Validator::validateForm($_POST);
@@ -66,6 +59,7 @@ if (isset($_GET['action'])) {
                 ) {
                     // Si algún dato no es válido, se asigna un mensaje de error
                     $result['error'] = $pedidos->getDataError();
+  
                 } elseif ($pedidos->updateRowDetalle()) {
                     // Si se actualiza el registro correctamente, se establece el estado como éxito y se crea un mensaje
                     $result['status'] = 1;
@@ -75,7 +69,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al actualizar el carrito';
                 }
                 break;
-
             // CAMBIAR ESTADO DEL PEDIDO
             case 'update':
                 $_POST = Validator::validateForm($_POST);
@@ -111,7 +104,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'Ocurrió un problema al eliminar el carrito';
                 }
                 break;
-
             case 'leerPrecios':
                 if ($result['dataset'] = $pedidos->readPrecio()) {
                     $result['status'] = 1;
@@ -120,7 +112,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay precios';
                 }
                 break;
-
             case 'leerRepartidor':
                 if ($result['dataset'] = $pedidos->readRepartidores()) {
                     $result['status'] = 1;
@@ -129,7 +120,6 @@ if (isset($_GET['action'])) {
                     $result['error'] = 'No hay repartidores';
                 }
                 break;
-
             default:
                 // Si no se reconoce la acción, se asigna un mensaje de error
                 $result['error'] = 'Acción no disponible dentro de la sesión';
