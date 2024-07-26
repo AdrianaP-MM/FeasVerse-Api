@@ -60,7 +60,8 @@ if (isset($_GET['action'])) {
                 // Verificar si todos los datos necesarios son válidos
                 if (
                     !$pedidos->setIdDetallesPedido($_POST['idDetallesPedido']) or
-                    !$pedidos->setCantidadPedido($_POST['cantidad']) 
+                    !$pedidos->setCantidadPedidoOld($_POST['cantidadOld']) or
+                    !$pedidos->setCantidadPedidoNew($_POST['cantidadNew']) 
                 ) {
                     // Si algún dato no es válido, se asigna un mensaje de error
                     $result['error'] = $pedidos->getDataError();
@@ -100,7 +101,9 @@ if (isset($_GET['action'])) {
 
             // ELIMINAR
             case 'deleteRow':
-                if (!$pedidos->setIdDetallesPedido($_POST['idDetallesPedido'])) {
+                if (!$pedidos->setIdDetallesPedido($_POST['idDetallesPedido'])
+                    or !$pedidos->setCantidadPedido($_POST['cantidad'])
+                ) {
                     $result['error'] = $pedidos->getDataError();
                 } elseif ($pedidos->deleteRowPedidos()) {
                     $result['status'] = 1;

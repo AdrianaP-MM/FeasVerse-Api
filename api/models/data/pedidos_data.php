@@ -177,6 +177,30 @@ class PedidosData extends PedidosHandler
         }
     }
 
+    // Método para establecer la cantidad del pedido.
+    public function setCantidadPedidoNew($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad_pedido_new = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad del pedido es incorrecta';
+            return false;
+        }
+    }
+
+    // Método para establecer la cantidad del pedido.
+    public function setCantidadPedidoOld($value)
+    {
+        if (Validator::validateNaturalNumber($value)) {
+            $this->cantidad_pedido_old = $value;
+            return true;
+        } else {
+            $this->data_error = 'La cantidad del pedido es incorrecta';
+            return false;
+        }
+    }
+
     // Método para establecer el precio del zapato.
     public function setPrecioDelZapato($value)
     {
